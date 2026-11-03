@@ -262,7 +262,7 @@ document.addEventListener('alpine:init', function () {
     var label = (a[0] === 'add' || a[0] === 'have' || a[0] === 'loading') ? a[1] : llStatus(a[1]);
     return {key: key, kind: a[0], label: label, href: a[2], cls: look[0], icon: a[0] === 'status' || a[0] === 'wanted' || a[0] === 'open' ? icon : look[1], busy: false};
   }
-  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, ''); }
 
   Alpine.data('llSearchResults', function () {
     var all = (window.llSearchRows || []).map(function (r) {

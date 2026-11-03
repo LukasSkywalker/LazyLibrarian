@@ -94,7 +94,7 @@ document.addEventListener('alpine:init', function () {
     empty: ${_js('No results found')}, noMatch: ${_js('No matching results')},
     results: ${_jsn('%(count)s result', '%(count)s results')}
   };
-  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, ''); }
 
   Alpine.data('llComicResults', function () {
     var all = (window.llComicRows || []).map(function (r) {

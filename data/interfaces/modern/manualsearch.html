@@ -107,7 +107,7 @@ document.addEventListener('alpine:init', function () {
     results: ${_jsn('%(count)s result', '%(count)s results')}
   };
   var ICONS = {nzb: 'fa-newspaper', torrent: 'fa-magnet', magnet: 'fa-magnet', torznab: 'fa-magnet', direct: 'fa-download', irc: 'fa-comments'};
-  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function fold(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, ''); }
 
   Alpine.data('llManualSearch', function () {
     var all = (window.llManualRows || []).map(function (r) { r.hay = fold(r.title + ' ' + r.provider + ' ' + r.date); return r; });
