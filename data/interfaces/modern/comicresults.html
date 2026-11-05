@@ -42,7 +42,7 @@
 %>
 <div x-data="llComicResults" x-init="window.addEventListener('pageshow', function () { busy = null; })">
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
-    <h1 class="h4 mb-0 me-1">${title}</h1>
+    <h1 class="h4 mb-0 me-1">${title | h}</h1>
     <span class="text-body-secondary small" x-text="countText"></span>
     <span class="flex-grow-1"></span>
     <div class="input-group input-group-sm llcr-filter">
