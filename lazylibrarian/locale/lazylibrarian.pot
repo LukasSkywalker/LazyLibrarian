@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-05 01:30+0000\n"
+"POT-Creation-Date: 2026-11-05 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -247,6 +247,7 @@ msgstr ""
 #: data/interfaces/bookstrap/members.html:75
 #: data/interfaces/bookstrap/users.html:119
 #: data/interfaces/modern/comics.html:170
+#: data/interfaces/modern/dlresult.html:30
 #: data/interfaces/modern/history.html:129
 #: data/interfaces/modern/issues.html:183
 msgid "Delete"
@@ -797,8 +798,10 @@ msgstr ""
 #: data/interfaces/bookstrap/users.html:262
 #: data/interfaces/bookstrap/users.html:293
 #: data/interfaces/bookstrap/users.html:328
+#: data/interfaces/modern/choosetype.html:60
 #: data/interfaces/modern/comics.html:185
 #: data/interfaces/modern/config.html:278
+#: data/interfaces/modern/dlresult.html:33
 #: data/interfaces/modern/history.html:111
 #: data/interfaces/modern/history.html:138
 #: data/interfaces/modern/index.html:207
@@ -1774,6 +1777,7 @@ msgstr ""
 #: data/interfaces/modern/author.html:343
 #: data/interfaces/modern/book_detail.html:265
 #: data/interfaces/modern/books.html:243 data/interfaces/modern/comics.html:214
+#: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/history.html:155
 #: data/interfaces/modern/index.html:239 data/interfaces/modern/issues.html:212
 #: data/interfaces/modern/logs.html:103
@@ -6308,6 +6312,7 @@ msgstr ""
 
 #: data/interfaces/bookstrap/dlresult.html:27
 #: data/interfaces/bookstrap/history.html:74
+#: data/interfaces/modern/dlresult.html:27
 #: data/interfaces/modern/history.html:126
 msgid "Mark Failed"
 msgstr ""
@@ -6791,6 +6796,7 @@ msgid "Download "
 msgstr ""
 
 #: data/interfaces/bookstrap/history.html:77
+#: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/history.html:157
 msgid "Marked Failed"
 msgstr ""
@@ -8264,6 +8270,16 @@ msgstr ""
 msgid "Day"
 msgstr ""
 
+#: data/interfaces/modern/dlresult.html:48
+#: data/interfaces/modern/history.html:157
+msgid "Deleted"
+msgstr ""
+
+#: data/interfaces/modern/dlresult.html:49
+#: data/interfaces/modern/history.html:159
+msgid "Delete this history entry?"
+msgstr ""
+
 #: data/interfaces/modern/history.html:54 data/interfaces/modern/logs.html:51
 msgid "Newest"
 msgstr ""
@@ -8276,20 +8292,12 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: data/interfaces/modern/history.html:157
-msgid "Deleted"
-msgstr ""
-
 #: data/interfaces/modern/history.html:158
 msgid "Clear this part of the history?"
 msgstr ""
 
 #: data/interfaces/modern/history.html:158
 msgid "Clear all history? Snatched books go back to Wanted."
-msgstr ""
-
-#: data/interfaces/modern/history.html:159
-msgid "Delete this history entry?"
 msgstr ""
 
 #: data/interfaces/modern/history.html:161
