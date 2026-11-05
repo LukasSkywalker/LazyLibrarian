@@ -5,6 +5,8 @@
     from lazylibrarian.scheduling import show_running
     root = CONFIG['HTTP_ROOT'].rstrip('/') if CONFIG['HTTP_ROOT'] else ''
     current = (self.attr.page_id if hasattr(self.attr, 'page_id') else '')
+    # a page for visitors (login, register) has no menu, notices or polling while nobody is logged in
+    bare = bool(getattr(self.attr, 'guest_page', False)) and not perm
     if current == 'books' and context.get('library') == 'AudioBook':
         current = 'audio'
     nav = []
