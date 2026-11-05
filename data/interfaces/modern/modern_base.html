@@ -118,6 +118,8 @@
                    'open in the classic one. You can go back to the classic interface at any time from the menu.'),
             actions=[('primary', _('Got it'), 'cookie', 'll_modern_welcome|1|365'),
                      ('secondary', _('Back to classic'), 'classic', '')]))
+    if bare:
+        notices = []
 %>
 <!doctype html>
 <html lang="${ui_lang}" data-bs-theme="light">
@@ -265,6 +267,7 @@
   ${next.headIncludes()}
 </head>
 <body>
+  %if not bare:
   <nav class="navbar navbar-expand-lg sticky-top ll-nav">
     <div class="container-xl">
       <button class="navbar-brand ll-brand d-flex align-items-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#ll-mainnav"
@@ -333,6 +336,7 @@
       </div>
     </div>
   </nav>
+  %endif
 
   <main class="container-xl ll-main">
     ${next.body()}
@@ -501,6 +505,7 @@
     })();
   </script>
   %endif
+  %if not bare:
   <script>
     setInterval(function () {
       fetch('show_running', {credentials: 'same-origin'}).then(function (r) { return r.text(); }).then(function (t) {
@@ -508,6 +513,7 @@
       }).catch(function () {});
     }, 4000);
   </script>
+  %endif
 </body>
 </html>
 <%def name="headIncludes()"></%def>
