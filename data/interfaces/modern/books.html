@@ -98,6 +98,8 @@
     # audio.html inherits this page and only changes page_id
     audio = self.attr.page_id == 'audio'
     lib = 'AudioBook' if audio else 'eBook'
+    page = 'audio' if audio else 'books'
+    primary = lazylibrarian.PRIMARY_AUTHORS == True
 %>
 <div x-data="llBooks" x-init="start()">
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
@@ -145,9 +147,26 @@
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="selecting ? stopSelect() : (selecting = true)"
             x-text="selecting ? T.done : T.select"></button>
     %endif
+    <a class="btn btn-sm rounded-pill ${'btn-secondary' if primary else 'btn-outline-secondary'}" href="toggle_primary?page=${page}"
+       title="${_('Primary Author, or Contributor') | h}" aria-label="${_('Primary Author, or Contributor') | h}" aria-pressed="${'true' if primary else 'false'}">
+      <i class="fa ${'fa-star' if primary else 'fa-handshake'}" aria-hidden="true"></i>
+    </a>
     %if perm&lazylibrarian.perm_force:
-    <a class="btn btn-sm btn-ll rounded-pill" href="force_search?source=${'audio' if audio else 'books'}"><i class="fa fa-search" aria-hidden="true"></i> ${_('Search wanted')}</a>
+    <a class="btn btn-sm btn-ll rounded-pill" href="force_search?source=${page}"><i class="fa fa-search" aria-hidden="true"></i> ${_('Search wanted')}</a>
+    <div class="dropdown">
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
+              title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="force_process?source=${page}"><i class="fa fa-cogs fa-fw me-2" aria-hidden="true"></i>${_('Run Post-Processor')}</a></li>
+        <li><a class="dropdown-item" href="library_scan?library=${lib}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('Library Scan')}</a></li>
+      </ul>
+    </div>
     %endif
+  </div>
+
+  <div class="alert alert-info d-flex align-items-center gap-2 py-2 small" role="status" x-show="scanning" x-cloak>
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+    <span x-text="scanText || T.scanning"></span>
   </div>
 
   <div class="d-flex gap-2 llb-chips pb-1 mb-3" role="group" aria-label="${_('Status') | h}">
@@ -233,12 +252,14 @@
 <%
     audio = self.attr.page_id == 'audio'
     lib = 'AudioBook' if audio else 'eBook'
+    scanning = bool(lazylibrarian.AUDIO_UPDATE if audio else lazylibrarian.EBOOK_UPDATE)
 %>
 <script>
 document.addEventListener('alpine:init', function () {
   var PAGE = 30;
   var T = {
     select: ${_js('Select')}, done: ${_js('Done')}, allShown: ${_js('That is all')},
+    scanning: ${_js('Libraryscan in progress ...')},
     pickFirst: ${_js('Select at least one book first')}, searching: ${_js('Searching...')},
     failed: ${_js('Something went wrong, try again')}, all: ${_js('All')},
     grid: ${_js('Covers')}, compact: ${_js('Compact')}, list: ${_js('List')},
@@ -251,6 +272,7 @@ document.addEventListener('alpine:init', function () {
   };
   var booklang = ${js(booklang or '')};
   var LIB = ${js(lib)}, SOURCE = ${js('Audio' if audio else 'Books')}, PAGE_NAME = ${js('audio' if audio else 'books')};
+  var SCANNING = ${js(scanning)};
 
   function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) % 360; } return h; }
 
@@ -271,7 +293,7 @@ document.addEventListener('alpine:init', function () {
     return {
       T: T, books: [], total: 0, start_: 0, loading: false, done: false, gen: 0,
       q: '', f: '', sort: '2:asc', selecting: false, sel: {}, toastText: '', view: 'grid',
-      scope: 'all', broad: false,
+      scope: 'all', broad: false, scanning: SCANNING, scanText: '', scanTimer: 0,
       scopes: [{id: 'all', label: T.everything, placeholder: T.phAll}, {id: 'title', label: T.title, placeholder: T.phTitle},
                {id: 'author', label: T.author, placeholder: T.phAuthor}, {id: 'series', label: T.series, placeholder: T.phSeries}],
       get scopeObj() { var s = this.scope; return this.scopes.filter(function (o) { return o.id === s; })[0] || this.scopes[0]; },
@@ -300,6 +322,7 @@ document.addEventListener('alpine:init', function () {
         this.$watch('scope', function () { self.broad = false; if (self.q) { self.reset(); } else { self.save(); } });
         new IntersectionObserver(function (e) { if (e[0].isIntersecting) { self.load(); } }, {rootMargin: '400px'})
           .observe(this.$refs.sentinel);
+        if (this.scanning) { this.watchScan(); }
         this.load();
       },
 
@@ -322,6 +345,8 @@ document.addEventListener('alpine:init', function () {
           self.start_ += rows.length;
           self.total = json.iTotalDisplayRecords || 0;
           self.done = rows.length === 0 || self.start_ >= self.total;
+          // the scan thread can set its flag just after this page rendered
+          if (json.loading && !self.scanning) { self.scanning = true; self.watchScan(); }
         }).catch(function () {
           if (gen === self.gen) { self.done = true; self.toast(T.failed); }
         }).finally(function () {
@@ -373,6 +398,26 @@ document.addEventListener('alpine:init', function () {
         this.$nextTick(function () {
           if (!self.done && self.$refs.sentinel.getBoundingClientRect().top < window.innerHeight + 400) { self.load(); }
         });
+      },
+
+      // library scan running: show its progress, reload the list when it ends
+      watchScan: function () {
+        if (this.scanTimer) { return; }
+        var self = this;
+        var check = 'get_books?source=' + SOURCE + '&library=' + LIB + '&iDisplayStart=0&iDisplayLength=1';
+        this.scanTimer = setInterval(function () {
+          fetch('libraryscan_progress', {credentials: 'same-origin'}).then(function (r) { return r.text(); }).then(function (t) {
+            // the endpoint returns a bookstrap progress bar: "...width:P%...>current/total</span>..."
+            var m = /(\d+)\/(\d+)\s*<\/span>/.exec(t), p = /width:\s*(\d+)%/.exec(t);
+            self.scanText = m ? T.scanning + ' ' + m[1] + ' / ' + m[2] + (p ? ' (' + p[1] + '%)' : '') : '';
+          }).catch(function () {});
+          fetch(check + '&_=' + Date.now(), {credentials: 'same-origin'}).then(function (r) { return r.json(); }).then(function (j) {
+            if (!j.loading) {
+              clearInterval(self.scanTimer); self.scanTimer = 0; self.scanning = false; self.scanText = '';
+              self.reset();
+            }
+          }).catch(function () {});
+        }, 3000);
       },
 
       stopSelect: function () { this.selecting = false; this.sel = {}; },
