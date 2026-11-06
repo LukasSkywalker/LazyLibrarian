@@ -3,6 +3,7 @@
 # Purpose:
 #   Test functions in formatter.py
 
+from unittest import mock
 
 import lazylibrarian
 from lazylibrarian import formatter
@@ -325,7 +326,9 @@ class FormatterTest(LLTestCaseWithStartup):
             self.assertEqual(formatter.date_format(d[0]), d[1])
 
     def test_date_format_picker(self):
-        picker = formatter.date_format_picker('$d.$m.$Y', formatter.DISPLAY_DATE_FORMATS)
+        # Examples use today's date, pin it so the expected strings are stable
+        with mock.patch.object(formatter, 'now', return_value='2026-12-31 12:00:00'):
+            picker = formatter.date_format_picker('$d.$m.$Y', formatter.DISPLAY_DATE_FORMATS)
         self.assertEqual(picker['selected'], '$d.$m.$Y')
         self.assertIsNone(picker['other'])
         self.assertEqual(len(picker['formats']), len(formatter.DISPLAY_DATE_FORMATS))
@@ -335,7 +338,8 @@ class FormatterTest(LLTestCaseWithStartup):
 
     def test_date_format_picker_keeps_unknown_format(self):
         # A hand written format must survive saving the config page unchanged
-        picker = formatter.date_format_picker('$y$m$d', formatter.DISPLAY_DATE_FORMATS)
+        with mock.patch.object(formatter, 'now', return_value='2026-12-31 12:00:00'):
+            picker = formatter.date_format_picker('$y$m$d', formatter.DISPLAY_DATE_FORMATS)
         self.assertEqual(picker['other'], {'format': '$y$m$d', 'example': '261231'})
         self.assertEqual(picker['selected'], '$y$m$d')
 
