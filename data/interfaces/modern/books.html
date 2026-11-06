@@ -1,6 +1,7 @@
 <%inherit file="modern_base.html" />
 <%!
     import lazylibrarian
+    from lazylibrarian.config2 import CONFIG
     page_id = 'books'
 %>
 <%def name="headIncludes()">
@@ -218,6 +219,16 @@
     <template x-for="a in ['Wanted', 'Have', 'Skipped', 'Ignored']" :key="a">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk(a)" x-text="llStatus(a)"></button>
     </template>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove')}</button>
+    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete')}</button>
+    %if CONFIG['USER_ACCOUNTS']:
+    <span class="vr mx-1" aria-hidden="true"></span>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Unread')">${_('Unread')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Read')">${_('Read')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('ToRead')">${_('To Read')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Reading')">${_('Reading')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Abandoned')">${_('Abandoned')}</button>
+    %endif
     <button type="button" class="btn btn-sm btn-link" @click="stopSelect()">${_('Cancel')}</button>
   </div>
   %endif
@@ -247,7 +258,8 @@ document.addEventListener('alpine:init', function () {
     phAll: ${_js('Title, author, series')}, phTitle: ${_js('Search titles')},
     phAuthor: ${_js('Search authors')}, phSeries: ${_js('Search series')},
     selected: ${_jsn('%(count)s selected', '%(count)s selected')},
-    books: ${_jsn('%(count)s book', '%(count)s books')}
+    books: ${_jsn('%(count)s book', '%(count)s books')},
+    confirmDel: ${_jsn('Are you sure you want to permanently delete the selected book?', 'Are you sure you want to permanently delete the %(count)s selected books?')}
   };
   var booklang = ${js(booklang or '')};
   var LIB = ${js(lib)}, SOURCE = ${js('Audio' if audio else 'Books')}, PAGE_NAME = ${js('audio' if audio else 'books')};
@@ -380,6 +392,7 @@ document.addEventListener('alpine:init', function () {
       bulk: function (action) {
         var ids = Object.keys(this.sel);
         if (!ids.length) { this.toast(T.pickFirst); return; }
+        if (action === 'Delete' && !window.confirm(llNgettext(T.confirmDel, ids.length))) { return; }
         this.stopSelect();
         this.mark(ids, action);
       },
