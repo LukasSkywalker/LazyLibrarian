@@ -47,10 +47,10 @@
       <option value="WARNING">${_('Warnings and errors')}</option>
       <option value="ERROR">${_('Errors only')}</option>
     </select>
-    <select class="form-select form-select-sm w-auto rounded-pill" x-model="sort" aria-label="${_('Sort') | h}">
-      <option value="desc">${_('Newest')}</option>
-      <option value="asc">${_('Oldest')}</option>
-    </select>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="sort = sort === 'desc' ? 'asc' : 'desc'"
+            :title="sort === 'desc' ? T.newest : T.oldest" :aria-label="sort === 'desc' ? T.newest : T.oldest">
+      <i class="fa fa-fw" :class="sort === 'desc' ? 'fa-sort-amount-down' : 'fa-sort-amount-up'" aria-hidden="true"></i>
+    </button>
     <select class="form-select form-select-sm w-auto rounded-pill" x-model.number="refresh" aria-label="${_('Refresh rate') | h}">
       <option value="0">${_('No Refresh')}</option>
       <option value="5">${_('5 Seconds')}</option>
@@ -101,7 +101,7 @@ document.addEventListener('alpine:init', function () {
   var PAGE = 100;
   var T = {
     allShown: ${_js('That is all')}, failed: ${_js('Something went wrong, try again')}, done: ${_js('Done')},
-    confirmDelete: ${_js('Delete the log files on disk?')},
+    confirmDelete: ${_js('Delete the log files on disk?')}, newest: ${_js('Newest')}, oldest: ${_js('Oldest')},
     lines: ${_jsn('%(count)s line', '%(count)s lines')}
   };
   var seq = 0;
