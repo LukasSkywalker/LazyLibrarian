@@ -3761,10 +3761,10 @@
                 <div class="row">
                 %for mag in config['comics_list']:
                 <div class="col-md-6">
-                <label>${mag['Title']}</label>
+                <label>${mag['Title'] | h}</label>
                   <div class="input-group">
-                    <label for="genre_list[${mag['Title']}]" class="input-group-addon">${_('Genres')}&nbsp;</label>
-                    <input type="text" id="genre_list[${mag['Title']}]" name="genre_list[${mag['Title']}]" value="${mag['Genre']}" class="form-control" placeholder="${_('Genre list') | h}">
+                    <label for="genre_list[${mag['Title'] | h}]" class="input-group-addon">${_('Genres')}&nbsp;</label>
+                    <input type="text" id="genre_list[${mag['Title'] | h}]" name="genre_list[${mag['Title'] | h}]" value="${mag['Genre'] | h}" class="form-control" placeholder="${_('Genre list') | h}">
                   </div>
                 </div>
                 %endfor
@@ -3782,30 +3782,30 @@
                 <div class="row">
                 %for mag in config['magazines_list']:
                 <div class="col-md-6 addon-align">
-                <label>${mag['Title']}</label>
+                <label>${mag['Title'] | h}</label>
                   <div class="input-group">
-                    <label for="reject_list[${mag['Title']}]" class="input-group-addon">${_('Reject')}&nbsp;</label>
-                    <input type="text" id="reject_list[${mag['Title']}]" name="reject_list[${mag['Title']}]" value="${mag['Reject']}" class="form-control" placeholder="${_('Reject word list') | h}">
+                    <label for="reject_list[${mag['Title'] | h}]" class="input-group-addon">${_('Reject')}&nbsp;</label>
+                    <input type="text" id="reject_list[${mag['Title'] | h}]" name="reject_list[${mag['Title'] | h}]" value="${mag['Reject'] | h}" class="form-control" placeholder="${_('Reject word list') | h}">
                   </div>
                   <div class="input-group">
-                    <label for="regex[${mag['Title']}]" class="input-group-addon">${_('Search')}</label>
-                    <input type="text" id="regex[${mag['Title']}]" name="regex[${mag['Title']}]" value="${mag['Regex']}" class="form-control" placeholder="${_('Search expression') | h}">
+                    <label for="regex[${mag['Title'] | h}]" class="input-group-addon">${_('Search')}</label>
+                    <input type="text" id="regex[${mag['Title'] | h}]" name="regex[${mag['Title'] | h}]" value="${mag['Regex'] | h}" class="form-control" placeholder="${_('Search expression') | h}">
                   </div>
                   <div class="input-group">
-                    <label for="genre_list[${mag['Title']}]" class="input-group-addon">${_('Genres')}</label>
-                    <input type="text" id="genre_list[${mag['Title']}]" name="genre_list[${mag['Title']}]" value="${mag['Genre']}" class="form-control" placeholder="${_('Genre list') | h}">
+                    <label for="genre_list[${mag['Title'] | h}]" class="input-group-addon">${_('Genres')}</label>
+                    <input type="text" id="genre_list[${mag['Title'] | h}]" name="genre_list[${mag['Title'] | h}]" value="${mag['Genre'] | h}" class="form-control" placeholder="${_('Genre list') | h}">
                   </div>
                   <div class="input-group">
-                    <label for="datetype[${mag['Title']}]" class="input-group-addon">${_('Date Style')}</label>
-                    <input type="text" id="datetype[${mag['Title']}]" name="datetype[${mag['Title']}]" value="${mag['DateType']}" class="form-control" placeholder="auto">
+                    <label for="datetype[${mag['Title'] | h}]" class="input-group-addon">${_('Date Style')}</label>
+                    <input type="text" id="datetype[${mag['Title'] | h}]" name="datetype[${mag['Title'] | h}]" value="${mag['DateType'] | h}" class="form-control" placeholder="auto">
                   </div>
                   <div class="input-group">
-                    <label for="coverpage[${mag['Title']}]" class="input-group-addon">${_('Cover Page')}</label>
-                    <input type="number" id="coverpage[${mag['Title']}]" name="coverpage[${mag['Title']}]" value="${mag['CoverPage']}" min=1 class="form-control" placeholder="1">
+                    <label for="coverpage[${mag['Title'] | h}]" class="input-group-addon">${_('Cover Page')}</label>
+                    <input type="number" id="coverpage[${mag['Title'] | h}]" name="coverpage[${mag['Title'] | h}]" value="${mag['CoverPage'] | h}" min=1 class="form-control" placeholder="1">
                   </div>
                   <div class="input-group">
-                    <label for="language[${mag['Title']}]" class="input-group-addon">${_('Language')}</label>
-                    <input type="text" id="language[${mag['Title']}]" name="language[${mag['Title']}]" value="${mag['Language']}" class="form-control" placeholder="${_('For opf/pdf') | h}" title="${_('For opf/pdf') | h}">
+                    <label for="language[${mag['Title'] | h}]" class="input-group-addon">${_('Language')}</label>
+                    <input type="text" id="language[${mag['Title'] | h}]" name="language[${mag['Title'] | h}]" value="${mag['Language'] | h}" class="form-control" placeholder="${_('For opf/pdf') | h}" title="${_('For opf/pdf') | h}">
                   </div>
                 </div>
                 %endfor
