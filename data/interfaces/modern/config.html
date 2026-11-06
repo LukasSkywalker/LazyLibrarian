@@ -965,21 +965,34 @@
             if (!walker.currentNode.parentNode.closest('strong') && TOK.test(walker.currentNode.nodeValue)) { nodes.push(walker.currentNode); }
             TOK.lastIndex = 0;
           }
+          // the word before the first variable ("Options:", in any language) and the commas between them go, the
+          // buttons stand on their own; any other text ("Absolute path...", "any string") stays
           nodes.forEach(function (node) {
-            var text = node.nodeValue, frag = document.createDocumentFragment(), last = 0, m;
+            var text = node.nodeValue, frag = document.createDocumentFragment(), last = 0, m, count = 0;
             TOK.lastIndex = 0;
             while ((m = TOK.exec(text))) {
-              if (m.index > last) { frag.appendChild(document.createTextNode(text.slice(last, m.index))); }
+              var gap = text.slice(last, m.index);
+              if (!count) { gap = gap.replace(/[^\s.:;]+\s*:\s*$/, ''); } else if (/^[\s,;]*$/.test(gap)) { gap = ' '; }
+              if (gap) { frag.appendChild(document.createTextNode(gap)); }
+              count++;
               var b = document.createElement('button');
               b.type = 'button'; b.className = 'llc-token'; b.dataset.token = m[0];
               b.textContent = NAMES[m[0]] || m[0]; b.title = m[0] + ' · ' + insertTip;
               frag.appendChild(b);
               last = m.index + m[0].length;
             }
-            if (last < text.length) { frag.appendChild(document.createTextNode(text.slice(last))); }
+            var tail = text.slice(last).replace(/^[\s,;]+/, '');
+            if (tail) { frag.appendChild(document.createTextNode(' ' + tail)); }
             node.parentNode.replaceChild(frag, node);
           });
           if (!nodes.length) { return; }
+          // "($Series variable)" in the label names the variable this pattern fills; the buttons say it already
+          var lab = field.id && form.querySelector('label[for="' + field.id + '"]');
+          if (lab) {
+            Array.prototype.forEach.call(lab.childNodes, function (n) {
+              if (n.nodeType === 3) { n.nodeValue = n.nodeValue.replace(/\s*\([^()]*\$[^()]*\)/g, ''); }
+            });
+          }
           help.addEventListener('click', function (e) {
             var b = e.target.closest('.llc-token');
             if (!b) { return; }
