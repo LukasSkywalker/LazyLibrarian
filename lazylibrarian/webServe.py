@@ -5884,7 +5884,12 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def wall_columns(self, redirect=None, count=None, have='', title=''):
-        title = title.split(' (')[0].replace(' ', '+')
+        # walls cut at MAX_WALL show "<title> (Top N)"; drop only that suffix, a magazine title may contain ' ('
+        top = re.escape(i18n.gettext('%(title)s (Top %(count)s)'))
+        top = top.replace(re.escape('%(title)s'), '(.*)', 1).replace(re.escape('%(count)s'), r'\d+', 1)
+        match = re.fullmatch(top, title)
+        if match:
+            title = match.group(1)
         if not have:
             have = '1' if 'Wanted' in title else '0'
         columns = check_int(CONFIG.get_int('WALL_COLUMNS'), 6)
@@ -5899,11 +5904,11 @@ class WebInterface:
             raise cherrypy.HTTPRedirect(f'book_wall?have={have}')
         if redirect == 'magazines':
             if title:
-                raise cherrypy.HTTPRedirect(f'mag_wall?title={title}')
+                raise cherrypy.HTTPRedirect(f"mag_wall?{urlencode({'title': title})}")
             raise cherrypy.HTTPRedirect('mag_wall')
         if redirect == 'comic':
             if title:
-                raise cherrypy.HTTPRedirect(f'comic_wall?comicid={title}')
+                raise cherrypy.HTTPRedirect(f"comic_wall?{urlencode({'comicid': title})}")
             raise cherrypy.HTTPRedirect('comic_wall')
         if redirect == 'authors':
             raise cherrypy.HTTPRedirect(f'author_wall?have={have}')
