@@ -5943,10 +5943,13 @@ class WebInterface:
             if comicdata["Description"] != editordata:
                 edited += "Description "
 
-            if comicid != new_id:
+            response = ''
+            # an empty field would leave the comic without an ID
+            if new_id and comicid != new_id:
                 match = db.match('SELECT ComicID from comics where ComicID=?', (new_id,))
                 if match:
-                    logger.debug(f"Unable to use new ID, {new_id} already exists")
+                    response = f"Unable to use new ID, {new_id} already exists"
+                    logger.debug(response)
                 else:
                     db.action('PRAGMA foreign_keys = OFF')
                     db.action("UPDATE comics SET comicid=? WHERE comicid=?", (new_id, comicid))
@@ -5967,7 +5970,10 @@ class WebInterface:
             else:
                 logger.debug(f'Comic [{comicdata["Title"]}] has not been changed')
             db.close()
-            raise cherrypy.HTTPRedirect(f"comicissue_page?comicid={comicid}")
+            url = f"comicissue_page?comicid={quote(comicid)}"
+            if response:
+                url += f"&response={quote(response)}"
+            raise cherrypy.HTTPRedirect(url)
         logger.warning(f"Invalid comicid [{comicid}]")
         db.close()
         raise cherrypy.HTTPError(404, f"Comic ID {comicid} not found")
@@ -6165,7 +6171,7 @@ class WebInterface:
 
     @cherrypy.expose
     @require_auth()
-    def comicissue_page(self, comicid):
+    def comicissue_page(self, comicid, response=''):
         global lastcomic
         logger = logging.getLogger(__name__)
         self.check_permitted(lazylibrarian.perm_comics, redirect_unauth=True)
@@ -6204,7 +6210,7 @@ class WebInterface:
 
         return serve_template(templatename="comicissues.html", comicid=comicid,
                               title=safetitle, issues=[], covercount=covercount, user=user,
-                              firstpage=firstpage)
+                              firstpage=firstpage, response=response)
 
     @cherrypy.expose
     @require_auth()
@@ -6980,9 +6986,14 @@ class WebInterface:
         issuenum = kwargs.get('issuenum')
         db = database.DBConnection()
         magazine = db.match("SELECT DateType,IssueDate from magazines WHERE Title=? COLLATE NOCASE", (magtitle,))
-        datetype = magazine['DateType']
-        mostrecentissue = magazine['IssueDate']
+        # a title that is not in the magazines table yet gets added further down, until then it has no date type
+        datetype = magazine['DateType'] if magazine else ''
+        mostrecentissue = magazine['IssueDate'] if magazine else ''
         issue = db.match("SELECT Title,IssueDate,IssueFile,Cover,IssueID from issues WHERE IssueID=?", (issueid,))
+        if not issue:
+            logger.debug(f'Issue {issueid} not found')
+            db.close()
+            raise cherrypy.HTTPRedirect("magazines")
         redirect = issue['Title']
         dateparts = get_dateparts(issuenum, datetype=datetype)
         if not dateparts['style']:
