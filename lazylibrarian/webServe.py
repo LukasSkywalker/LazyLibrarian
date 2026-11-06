@@ -1423,6 +1423,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def user_admin(self):
+        self.check_permitted(lazylibrarian.perm_admin)
         self.label_thread('USERADMIN')
         db = database.DBConnection()
         try:
@@ -1440,12 +1441,15 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def update_feeds(self, **kwargs):
+        self.check_permitted(lazylibrarian.perm_admin)
         logger = logging.getLogger(__name__)
         if 'value' in kwargs and kwargs['value'] == '':
             # cancel or [x] pressed
             return i18n.gettext('No changes made')
         user = kwargs.pop('user', '')
-        value = get_list(kwargs.pop('value[]', ''))
+        value = kwargs.pop('value[]', '')
+        # a list when more than one feed is ticked, otherwise a string
+        value = [str(itm) for itm in value] if isinstance(value, list) else get_list(value)
         cnt = 0
         db = database.DBConnection()
         for itm in kwargs:
@@ -1477,6 +1481,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def user_feeds(self, **kwargs):
+        self.check_permitted(lazylibrarian.perm_admin)
         logger = logging.getLogger(__name__)
         user = kwargs['user']
         if user:
@@ -1678,7 +1683,7 @@ class WebInterface:
 
             if details['Theme'] != kwargs['theme']:
                 valid = False
-                if kwargs['theme'] == 'legacy':
+                if kwargs['theme'] in ('legacy', 'modern'):
                     valid = True
                 elif kwargs['theme']:
                     parts = kwargs['theme'].split('_', 1)
