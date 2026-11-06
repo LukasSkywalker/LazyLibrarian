@@ -163,6 +163,7 @@ ${bk.headIncludes()}
           <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
                   title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="author_detail?authorid=${a['AuthorID'] | u}"><i class="fa fa-info-circle fa-fw me-2" aria-hidden="true"></i>${_('Detail')}</a></li>
             %if perm&lazylibrarian.perm_edit:
             <li><a class="dropdown-item" href="edit_author?authorid=${a['AuthorID'] | u}"><i class="fa fa-pencil-alt fa-fw me-2" aria-hidden="true"></i>${_('Edit')}</a></li>
             %endif
