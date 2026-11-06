@@ -6975,9 +6975,14 @@ class WebInterface:
         issuenum = kwargs.get('issuenum')
         db = database.DBConnection()
         magazine = db.match("SELECT DateType,IssueDate from magazines WHERE Title=? COLLATE NOCASE", (magtitle,))
-        datetype = magazine['DateType']
-        mostrecentissue = magazine['IssueDate']
+        # a title that is not in the magazines table yet gets added further down, until then it has no date type
+        datetype = magazine['DateType'] if magazine else ''
+        mostrecentissue = magazine['IssueDate'] if magazine else ''
         issue = db.match("SELECT Title,IssueDate,IssueFile,Cover,IssueID from issues WHERE IssueID=?", (issueid,))
+        if not issue:
+            logger.debug(f'Issue {issueid} not found')
+            db.close()
+            raise cherrypy.HTTPRedirect("magazines")
         redirect = issue['Title']
         dateparts = get_dateparts(issuenum, datetype=datetype)
         if not dateparts['style']:
