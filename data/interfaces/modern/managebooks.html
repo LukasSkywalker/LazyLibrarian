@@ -26,6 +26,7 @@ ${bk.headIncludes()}
     ebook_on = CONFIG.get_int('EBOOK_TAB') > 0
     audio_on = CONFIG.get_int('AUDIO_TAB') > 0
     status_now = whichStatus or 'Wanted'
+    lib_icon = {'eBook': 'fa-book', 'AudioBook': 'fa-headphones'}
     chips = [(s, status_label(s)) for s in ['All', 'Wanted', 'Snatched', 'Open', 'Have', 'Skipped', 'Ignored']]
     if CONFIG['USER_ACCOUNTS']:
         chips += [('ToRead', _('To Read')), ('Reading', _('Reading')), ('Read', _('Read')), ('Abandoned', _('Abandoned'))]
@@ -63,12 +64,13 @@ ${bk.headIncludes()}
       <option value="7:desc">${_('Listed')}</option>
     </select>
     %if len(types) > 1 and perm&lazylibrarian.perm_audio:
-    <select class="form-select form-select-sm w-auto rounded-pill" aria-label="${_('Library') | h}"
-            onchange="window.location = 'manage?whichStatus=${status_now | u}&library=' + this.value">
+    <div class="btn-group btn-group-sm" role="group" aria-label="${_('Library') | h}">
       %for t in types:
-      <option value="${t}" ${'selected' if t == library else ''}>${status_label(t)}</option>
+      <a class="btn ${'btn-secondary' if t == library else 'btn-outline-secondary'}${' rounded-start-pill' if loop.first else ''}${' rounded-end-pill' if loop.last else ''}"
+         href="manage?whichStatus=${status_now | u}&library=${t | u}" title="${status_label(t) | h}" aria-label="${status_label(t) | h}"
+         ${'aria-current="true"' if t == library else ''}><i class="fa ${lib_icon.get(t, 'fa-book')}" aria-hidden="true"></i></a>
       %endfor
-    </select>
+    </div>
     %endif
     %if perm&lazylibrarian.perm_status or CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" x-show="selecting" x-cloak @click="selectAll()">${_('Select all')}</button>
@@ -77,9 +79,8 @@ ${bk.headIncludes()}
     %endif
     %if perm&lazylibrarian.perm_force:
     <div class="dropdown">
-      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-cogs" aria-hidden="true"></i> ${_('Tools')}
-      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
+              title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
       <ul class="dropdown-menu dropdown-menu-end">
         %if library != 'AudioBook':
         <li><a class="dropdown-item" href="import_alternate"><i class="fa fa-book fa-fw me-2" aria-hidden="true"></i>${_('Import eBooks')}</a></li>
