@@ -5938,10 +5938,13 @@ class WebInterface:
             if comicdata["Description"] != editordata:
                 edited += "Description "
 
-            if comicid != new_id:
+            response = ''
+            # an empty field would leave the comic without an ID
+            if new_id and comicid != new_id:
                 match = db.match('SELECT ComicID from comics where ComicID=?', (new_id,))
                 if match:
-                    logger.debug(f"Unable to use new ID, {new_id} already exists")
+                    response = f"Unable to use new ID, {new_id} already exists"
+                    logger.debug(response)
                 else:
                     db.action('PRAGMA foreign_keys = OFF')
                     db.action("UPDATE comics SET comicid=? WHERE comicid=?", (new_id, comicid))
@@ -5962,7 +5965,10 @@ class WebInterface:
             else:
                 logger.debug(f'Comic [{comicdata["Title"]}] has not been changed')
             db.close()
-            raise cherrypy.HTTPRedirect(f"comicissue_page?comicid={comicid}")
+            url = f"comicissue_page?comicid={quote(comicid)}"
+            if response:
+                url += f"&response={quote(response)}"
+            raise cherrypy.HTTPRedirect(url)
         logger.warning(f"Invalid comicid [{comicid}]")
         db.close()
         raise cherrypy.HTTPError(404, f"Comic ID {comicid} not found")
@@ -6160,7 +6166,7 @@ class WebInterface:
 
     @cherrypy.expose
     @require_auth()
-    def comicissue_page(self, comicid):
+    def comicissue_page(self, comicid, response=''):
         global lastcomic
         logger = logging.getLogger(__name__)
         self.check_permitted(lazylibrarian.perm_comics, redirect_unauth=True)
@@ -6199,7 +6205,7 @@ class WebInterface:
 
         return serve_template(templatename="comicissues.html", comicid=comicid,
                               title=safetitle, issues=[], covercount=covercount, user=user,
-                              firstpage=firstpage)
+                              firstpage=firstpage, response=response)
 
     @cherrypy.expose
     @require_auth()
