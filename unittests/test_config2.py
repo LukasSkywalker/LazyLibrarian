@@ -15,6 +15,7 @@ from lazylibrarian.configdefs import get_default
 from lazylibrarian.configenums import Access
 from lazylibrarian.filesystem import DIRS, syspath, remove_file, path_isfile, safe_copy
 from lazylibrarian.formatter import ImportPrefs
+from lazylibrarian.logconfig import LogConfig
 from unittests.unittesthelpers import LLTestCaseWithConfigandDIRS
 
 # Ini files used for testing load/save functions.
@@ -410,6 +411,23 @@ class Config2Test(LLTestCaseWithConfigandDIRS):
         }
         self.do_access_compare(acs, expectedacs, [Access.READ_OK],
                                'Loading complex ini file did not modify the expected values')
+
+    def test_configread_does_not_log_secrets(self):
+        """ Loading config.ini happens before the redact list exists, so the config-write
+        log must mask secret values itself """
+        cfg = LLConfigHandler(defaults=BASE_DEFAULTS)
+        # Debug logging on while the file loads, as at startup (the test ini has loglevel = 10)
+        writelog = LogConfig.enable_special_logger('configwrite', True)
+        try:
+            with self.assertLogs(writelog, level=logging.DEBUG) as cm:
+                cfg.load_configfile(self.COMPLEX_INI_FILE)
+        finally:
+            LogConfig.enable_special_logger('configwrite', False)
+        secret = cfg['API_KEY']
+        self.assertTrue(secret, 'The test config has an API key')
+        self.assertIn('DEBUG:special.configwrite:Set config[API_KEY]=[redacted]', cm.output)
+        for line in cm.output:
+            self.assertNotIn(secret, line)
 
     def test_configread_witherrors(self):
         """ Test reading a config.ini file with errors we should be able to correct """

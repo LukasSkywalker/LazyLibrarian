@@ -29,6 +29,7 @@ from lazylibrarian.configtypes import (
     ConfigItem,
     ConfigScheduler,
     ErrorListIterator,
+    is_secret_key,
 )
 from lazylibrarian.filesystem import DIRS, path_exists, syspath
 from lazylibrarian.formatter import plural, thread_name
@@ -559,14 +560,10 @@ class LLConfigHandler(ConfigDict):
         """ Update REDACTLIST after config changes """
 
         self.REDACTLIST = []
-        wordlist = ['PASS', 'TOKEN', 'SECRET', '_API', '_USER', '_DEV', '_KEY', 'ADMIN_', '_AUTH_']
-        if self.get_bool('HOSTREDACT'):
-            wordlist.append('_HOST')
         for key in self.config.keys():
-            if key not in ['BOOK_API', 'GIT_USER', 'SINGLE_USER']:
-                for word in wordlist:
-                    if word in key and self[key] and len(self[key]) > 3:
-                        self.REDACTLIST.append(f"{self[key]}")
+            if (is_secret_key(key) or (self.get_bool('HOSTREDACT') and '_HOST' in key)) \
+                    and self[key] and len(self[key]) > 3:
+                self.REDACTLIST.append(f"{self[key]}")
         for key in ['EMAIL_FROM', 'EMAIL_TO', 'SSL_CERTS']:
             if self[key]:
                 self.REDACTLIST.append(f"{self[key]}")
