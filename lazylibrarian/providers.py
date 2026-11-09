@@ -1892,7 +1892,7 @@ def cancel_search_type(search_type: str, error_msg: str, provider: ConfigDict, e
 
         match = (200 <= errorcode < 300)  # 200-299 are API call specific error codes
 
-        if not match:
+        if not match or errorcode == 202:  # drunkenslug returns 202 no such function
             errorlist = ['no such function', 'unknown parameter', 'unknown function', 'bad_gateway',
                          'bad request', 'bad_request', 'incorrect parameter', 'does not support', 'validation failed']
 
@@ -1958,7 +1958,7 @@ def newznab_plus(book: dict, provider: ConfigDict, search_type: str, search_mode
 
     rootxml = None
     logger.debug(f"URL = {url}")
-    result, success = fetch_url(url, raw=True)
+    result, success = fetch_url(url, raw=True, impersonate='chrome')
 
     if test:
         try:
@@ -2186,7 +2186,7 @@ def return_search_structure(provider: ConfigDict, api_key, book, search_type, se
         logger.debug(f'{search_mode} Search parameters set to {str(params)}')
     else:
         logger.debug(f'{search_mode} No matching search parameters for {search_type}')
-
+        logger.debug(dict(provider))
     return params
 
 
