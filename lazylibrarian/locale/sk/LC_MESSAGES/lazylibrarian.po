@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-10-31 19:05+0000\n"
+"POT-Creation-Date: 2026-11-09 08:32+0000\n"
 "PO-Revision-Date: 2026-10-30 08:27+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -44,9 +44,10 @@ msgstr ""
 #: data/interfaces/bookstrap/managebooks.html:110
 #: data/interfaces/bookstrap/searchresults.html:15
 #: data/interfaces/bookstrap/series.html:44
-#: data/interfaces/modern/books.html:119 data/interfaces/modern/comics.html:101
-#: data/interfaces/modern/comics.html:147 data/interfaces/modern/index.html:218
-#: data/interfaces/modern/issues.html:106
+#: data/interfaces/modern/books.html:122 data/interfaces/modern/comics.html:101
+#: data/interfaces/modern/comics.html:147
+#: data/interfaces/modern/editbook.html:67
+#: data/interfaces/modern/index.html:218 data/interfaces/modern/issues.html:106
 #: data/interfaces/modern/issues.html:119
 #: data/interfaces/modern/magazines.html:99
 #: data/interfaces/modern/magazines.html:145
@@ -59,7 +60,7 @@ msgstr "Hľadať"
 #: data/interfaces/bookstrap/comics.html:13
 #: data/interfaces/bookstrap/issues.html:11
 #: data/interfaces/bookstrap/magazines.html:13
-#: data/interfaces/modern/comics.html:102
+#: data/interfaces/modern/books.html:161 data/interfaces/modern/comics.html:102
 #: data/interfaces/modern/issues.html:107
 #: data/interfaces/modern/magazines.html:100
 msgid "Run Post-Processor"
@@ -73,7 +74,7 @@ msgstr "Spustiť spracovanie"
 #: data/interfaces/bookstrap/config.html:2763
 #: data/interfaces/bookstrap/issues.html:12
 #: data/interfaces/bookstrap/magazines.html:14
-#: data/interfaces/modern/comics.html:103
+#: data/interfaces/modern/books.html:162 data/interfaces/modern/comics.html:103
 #: data/interfaces/modern/issues.html:108
 #: data/interfaces/modern/issues.html:120
 #: data/interfaces/modern/magazines.html:101
@@ -118,15 +119,16 @@ msgstr "Všetci alebo len moji"
 #: data/interfaces/bookstrap/books.html:30
 #: data/interfaces/bookstrap/editauthor.html:54
 #: data/interfaces/bookstrap/editauthor.html:56
+#: data/interfaces/modern/books.html:152
 msgid "Primary Author, or Contributor"
 msgstr "Hlavný autor alebo spoluautor"
 
 #: data/interfaces/bookstrap/audio.html:36
 #: data/interfaces/bookstrap/books.html:35
 #: data/interfaces/bookstrap/config.html:3807
-#: data/interfaces/modern/author.html:235
+#: data/interfaces/modern/author.html:236
 #: data/interfaces/modern/book_detail.html:80
-#: data/interfaces/modern/books.html:136
+#: data/interfaces/modern/books.html:139 data/interfaces/modern/config.html:949
 msgid "Language"
 msgstr "Jazyk"
 
@@ -150,8 +152,9 @@ msgstr "Jazyk"
 #: data/interfaces/bookstrap/members.html:201
 #: data/interfaces/bookstrap/series.html:75
 #: data/interfaces/bookstrap/series.html:251
-#: data/interfaces/modern/author.html:236 data/interfaces/modern/books.html:138
-#: data/interfaces/modern/books.html:243 data/interfaces/modern/issues.html:170
+#: data/interfaces/modern/author.html:237 data/interfaces/modern/books.html:141
+#: data/interfaces/modern/books.html:275 data/interfaces/modern/issues.html:170
+#: data/interfaces/modern/manualsearch.html:69
 #: data/interfaces/modern/members.html:190
 #: data/interfaces/modern/series.html:78 lazylibrarian/i18n.py:394
 msgid "All"
@@ -163,7 +166,7 @@ msgstr "Všetky"
 #: data/interfaces/bookstrap/comics.html:52
 #: data/interfaces/bookstrap/issues.html:35
 #: data/interfaces/bookstrap/magazines.html:55
-#: data/interfaces/modern/comics.html:121
+#: data/interfaces/modern/books.html:273 data/interfaces/modern/comics.html:121
 #: data/interfaces/modern/issues.html:134
 #: data/interfaces/modern/magazines.html:120
 msgid "Libraryscan in progress ..."
@@ -195,6 +198,7 @@ msgstr "Hľadané"
 #: data/interfaces/bookstrap/members.html:74
 #: data/interfaces/bookstrap/series.html:93
 #: data/interfaces/bookstrap/series.html:112
+#: data/interfaces/modern/comicresults.html:72
 #: data/interfaces/modern/series.html:111 lazylibrarian/i18n.py:394
 msgid "Have"
 msgstr "V knižnici"
@@ -208,7 +212,7 @@ msgstr "V knižnici"
 #: data/interfaces/bookstrap/members.html:74
 #: data/interfaces/bookstrap/series.html:78
 #: data/interfaces/bookstrap/series.html:124
-#: data/interfaces/modern/author.html:245
+#: data/interfaces/modern/author.html:246
 #: data/interfaces/modern/members.html:97 data/interfaces/modern/series.html:80
 #: lazylibrarian/i18n.py:395
 msgid "Ignored"
@@ -230,7 +234,9 @@ msgstr "Preskočené"
 #: data/interfaces/bookstrap/issues.html:42
 #: data/interfaces/bookstrap/magazines.html:69
 #: data/interfaces/bookstrap/members.html:75
-#: data/interfaces/modern/comics.html:169
+#: data/interfaces/modern/books.html:241 data/interfaces/modern/comics.html:169
+#: data/interfaces/modern/editauthor.html:178
+#: data/interfaces/modern/editcomic.html:91
 #: data/interfaces/modern/issues.html:182 lazylibrarian/i18n.py:396
 msgid "Remove"
 msgstr "Odstrániť"
@@ -247,9 +253,11 @@ msgstr "Odstrániť"
 #: data/interfaces/bookstrap/magazines.html:70
 #: data/interfaces/bookstrap/members.html:75
 #: data/interfaces/bookstrap/users.html:119
-#: data/interfaces/modern/comics.html:170
+#: data/interfaces/modern/books.html:242 data/interfaces/modern/comics.html:170
+#: data/interfaces/modern/dlresult.html:30
+#: data/interfaces/modern/editcomic.html:93
 #: data/interfaces/modern/history.html:129
-#: data/interfaces/modern/issues.html:183
+#: data/interfaces/modern/issues.html:183 data/interfaces/modern/users.html:197
 msgid "Delete"
 msgstr "Vymazať"
 
@@ -308,6 +316,7 @@ msgstr "Vykonať"
 #: data/interfaces/bookstrap/members.html:126
 #: data/interfaces/bookstrap/searchresults.html:47
 #: data/interfaces/bookstrap/searchresults.html:176
+#: data/interfaces/modern/editbook.html:178
 #: data/interfaces/modern/issues.html:173
 msgid "Cover"
 msgstr "Obálka"
@@ -342,10 +351,13 @@ msgstr "Stĺpce:"
 #: data/interfaces/bookstrap/searchresults.html:48
 #: data/interfaces/bookstrap/series.html:91
 #: data/interfaces/bookstrap/series.html:110
-#: data/interfaces/modern/books.html:130 data/interfaces/modern/books.html:246
+#: data/interfaces/modern/books.html:133 data/interfaces/modern/books.html:278
+#: data/interfaces/modern/config.html:948
+#: data/interfaces/modern/editauthor.html:80
 #: data/interfaces/modern/history.html:86
-#: data/interfaces/modern/managebooks.html:60
+#: data/interfaces/modern/managebooks.html:61
 #: data/interfaces/modern/members.html:126
+#: data/interfaces/modern/searchresults.html:141
 #: data/interfaces/modern/series.html:110
 msgid "Author"
 msgstr "Autor"
@@ -374,11 +386,18 @@ msgstr "Autor"
 #: data/interfaces/bookstrap/members.html:92
 #: data/interfaces/bookstrap/members.html:108
 #: data/interfaces/bookstrap/searchresults.html:49
-#: data/interfaces/modern/author.html:224 data/interfaces/modern/books.html:131
-#: data/interfaces/modern/books.html:246 data/interfaces/modern/comics.html:81
+#: data/interfaces/modern/author.html:225 data/interfaces/modern/books.html:134
+#: data/interfaces/modern/books.html:278
+#: data/interfaces/modern/comicresults.html:55
+#: data/interfaces/modern/comics.html:81 data/interfaces/modern/config.html:948
+#: data/interfaces/modern/editissue.html:48
+#: data/interfaces/modern/editmag.html:43
 #: data/interfaces/modern/history.html:56
 #: data/interfaces/modern/magazines.html:79
-#: data/interfaces/modern/managebooks.html:61
+#: data/interfaces/modern/managebooks.html:62
+#: data/interfaces/modern/manageissues.html:52
+#: data/interfaces/modern/manualsearch.html:66
+#: data/interfaces/modern/searchresults.html:140
 msgid "Title"
 msgstr "Názov"
 
@@ -397,9 +416,13 @@ msgstr "Názov"
 #: data/interfaces/bookstrap/managebooks.html:104
 #: data/interfaces/bookstrap/managebooks.html:128
 #: data/interfaces/bookstrap/series.html:92
-#: data/interfaces/modern/author.html:153 data/interfaces/modern/books.html:246
+#: data/interfaces/modern/author.html:153
+#: data/interfaces/modern/author_detail.html:139
+#: data/interfaces/modern/books.html:278
+#: data/interfaces/modern/editbook.html:138
+#: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
-#: data/interfaces/modern/modern_base.html:16 lazylibrarian/webServe.py:2051
+#: data/interfaces/modern/modern_base.html:18 lazylibrarian/webServe.py:2061
 msgid "Series"
 msgstr "Série"
 
@@ -416,6 +439,8 @@ msgstr "Série"
 #: data/interfaces/bookstrap/managebooks.html:129
 #: data/interfaces/bookstrap/managebooks.html:567
 #: data/interfaces/bookstrap/searchresults.html:51
+#: data/interfaces/modern/searchresults.html:143
+#: data/interfaces/modern/searchresults.html:247
 msgid "Rating"
 msgstr "Hodnotenie"
 
@@ -430,8 +455,10 @@ msgstr "Hodnotenie"
 #: data/interfaces/bookstrap/managebooks.html:106
 #: data/interfaces/bookstrap/managebooks.html:130
 #: data/interfaces/bookstrap/searchresults.html:50
-#: data/interfaces/modern/author.html:223 data/interfaces/modern/books.html:133
-#: data/interfaces/modern/managebooks.html:62
+#: data/interfaces/modern/author.html:224 data/interfaces/modern/books.html:136
+#: data/interfaces/modern/managebooks.html:63
+#: data/interfaces/modern/searchresults.html:142
+#: data/interfaces/modern/searchresults.html:247
 msgid "Released"
 msgstr "Vydané"
 
@@ -451,9 +478,9 @@ msgstr "Vydané"
 #: data/interfaces/bookstrap/issues.html:73
 #: data/interfaces/bookstrap/magazines.html:89
 #: data/interfaces/bookstrap/magazines.html:113
-#: data/interfaces/modern/author.html:225
+#: data/interfaces/modern/author.html:226
 #: data/interfaces/modern/book_detail.html:89
-#: data/interfaces/modern/books.html:132 data/interfaces/modern/comics.html:83
+#: data/interfaces/modern/books.html:135 data/interfaces/modern/comics.html:83
 #: data/interfaces/modern/index.html:95 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:81
 msgid "Added"
@@ -480,8 +507,11 @@ msgstr "Pridané"
 #: data/interfaces/bookstrap/members.html:115
 #: data/interfaces/bookstrap/series.html:94
 #: data/interfaces/bookstrap/series.html:113
-#: data/interfaces/modern/author.html:143 data/interfaces/modern/books.html:153
-#: data/interfaces/modern/managebooks.html:112
+#: data/interfaces/modern/author.html:143
+#: data/interfaces/modern/author_detail.html:129
+#: data/interfaces/modern/books.html:173
+#: data/interfaces/modern/managebooks.html:113
+#: data/interfaces/modern/manageissues.html:62
 #: data/interfaces/modern/series.html:112
 #: data/interfaces/modern/series.html:142
 msgid "Status"
@@ -510,9 +540,10 @@ msgstr "Poslať"
 #: data/interfaces/bookstrap/managebooks.html:589
 #: data/interfaces/bookstrap/members.html:198
 #: data/interfaces/bookstrap/searchresults.html:238
-#: data/interfaces/modern/author.html:292 data/interfaces/modern/books.html:211
-#: data/interfaces/modern/managebooks.html:151
+#: data/interfaces/modern/author.html:293 data/interfaces/modern/books.html:231
+#: data/interfaces/modern/managebooks.html:152
 #: data/interfaces/modern/members.html:183
+#: data/interfaces/modern/searchresults.html:246
 msgid "No books found"
 msgstr "Nenašli sa žiadne knihy"
 
@@ -532,7 +563,12 @@ msgstr "Nenašli sa žiadne knihy"
 #: data/interfaces/bookstrap/manualsearch.html:71
 #: data/interfaces/bookstrap/members.html:204
 #: data/interfaces/bookstrap/series.html:275
+#: data/interfaces/modern/comicresults.html:51
 #: data/interfaces/modern/history.html:51 data/interfaces/modern/logs.html:42
+#: data/interfaces/modern/manageissues.html:49
+#: data/interfaces/modern/manualsearch.html:59
+#: data/interfaces/modern/searchresults.html:136
+#: data/interfaces/modern/users.html:64 data/interfaces/modern/users.html:65
 #: data/interfaces/modern/whatsnew.html:83
 msgid "Results filter"
 msgstr "Filtrovať výsledky"
@@ -555,14 +591,17 @@ msgstr[2] "Naozaj chcete natrvalo vymazať %(count)s vybraných audiokníh?"
 #: data/interfaces/bookstrap/comicissues.html:185
 #: data/interfaces/bookstrap/comics.html:268
 #: data/interfaces/bookstrap/editauthor.html:266
-#: data/interfaces/bookstrap/editcomic.html:61
+#: data/interfaces/bookstrap/editcomic.html:63
 #: data/interfaces/bookstrap/editseries.html:62
 #: data/interfaces/bookstrap/index.html:304
 #: data/interfaces/bookstrap/issues.html:207
 #: data/interfaces/bookstrap/magazines.html:271
 #: data/interfaces/bookstrap/users.html:276
-#: data/interfaces/modern/author.html:319
-#: data/interfaces/modern/modern_base.html:390
+#: data/interfaces/modern/author.html:320
+#: data/interfaces/modern/author_detail.html:341
+#: data/interfaces/modern/editseries.html:96
+#: data/interfaces/modern/modern_base.html:394
+#: data/interfaces/modern/users.html:228
 msgid "Yes"
 msgstr "Áno"
 
@@ -576,14 +615,18 @@ msgstr "Áno"
 #: data/interfaces/bookstrap/editauthor.html:267
 #: data/interfaces/bookstrap/editauthor.html:291
 #: data/interfaces/bookstrap/editauthor.html:318
-#: data/interfaces/bookstrap/editcomic.html:65
+#: data/interfaces/bookstrap/editcomic.html:67
 #: data/interfaces/bookstrap/editseries.html:66
 #: data/interfaces/bookstrap/index.html:308
 #: data/interfaces/bookstrap/issues.html:211
 #: data/interfaces/bookstrap/magazines.html:275
 #: data/interfaces/bookstrap/users.html:280
-#: data/interfaces/modern/author.html:318
-#: data/interfaces/modern/modern_base.html:389
+#: data/interfaces/modern/author.html:319
+#: data/interfaces/modern/author_detail.html:340
+#: data/interfaces/modern/editauthor.html:241
+#: data/interfaces/modern/editseries.html:95
+#: data/interfaces/modern/modern_base.html:393
+#: data/interfaces/modern/users.html:227
 msgid "No"
 msgstr "Nie"
 
@@ -601,7 +644,9 @@ msgstr "Nie"
 #: data/interfaces/bookstrap/members.html:219
 #: data/interfaces/bookstrap/searchresults.html:266
 #: data/interfaces/bookstrap/series.html:290
-#: data/interfaces/modern/managebooks.html:172
+#: data/interfaces/modern/editmag.html:102
+#: data/interfaces/modern/managebooks.html:173
+#: data/interfaces/modern/searchresults.html:218
 msgid "Processing..."
 msgstr "Spracúva sa..."
 
@@ -616,6 +661,7 @@ msgstr "Spracúva sa..."
 #: data/interfaces/bookstrap/members.html:246
 #: data/interfaces/bookstrap/searchresults.html:293
 #: data/interfaces/bookstrap/series.html:317
+#: data/interfaces/modern/editmag.html:102
 msgid "Summary:"
 msgstr "Súhrn:"
 
@@ -631,6 +677,8 @@ msgstr "Súhrn:"
 #: data/interfaces/bookstrap/members.html:249
 #: data/interfaces/bookstrap/searchresults.html:296
 #: data/interfaces/bookstrap/series.html:320
+#: data/interfaces/modern/editmag.html:103
+#: data/interfaces/modern/searchresults.html:248
 msgid "Successful:"
 msgstr "Úspešné:"
 
@@ -645,6 +693,8 @@ msgstr "Úspešné:"
 #: data/interfaces/bookstrap/members.html:251
 #: data/interfaces/bookstrap/searchresults.html:298
 #: data/interfaces/bookstrap/series.html:322
+#: data/interfaces/modern/editmag.html:103
+#: data/interfaces/modern/searchresults.html:248
 msgid "Failed:"
 msgstr "Neúspešné:"
 
@@ -671,7 +721,9 @@ msgstr "Označenie kníh dokončené"
 #: data/interfaces/bookstrap/members.html:260
 #: data/interfaces/bookstrap/searchresults.html:307
 #: data/interfaces/bookstrap/series.html:331
-#: data/interfaces/modern/config.html:261
+#: data/interfaces/modern/config.html:278
+#: data/interfaces/modern/editmag.html:103
+#: data/interfaces/modern/searchresults.html:226
 msgid "OK"
 msgstr "OK"
 
@@ -686,6 +738,8 @@ msgstr "OK"
 #: data/interfaces/bookstrap/members.html:275
 #: data/interfaces/bookstrap/searchresults.html:322
 #: data/interfaces/bookstrap/series.html:346
+#: data/interfaces/modern/editmag.html:104
+#: data/interfaces/modern/searchresults.html:248
 msgid "Error"
 msgstr "Chyba"
 
@@ -700,6 +754,7 @@ msgstr "Chyba"
 #: data/interfaces/bookstrap/members.html:276
 #: data/interfaces/bookstrap/searchresults.html:323
 #: data/interfaces/bookstrap/series.html:347
+#: data/interfaces/modern/editmag.html:104
 msgid "An error occurred:"
 msgstr "Nastala chyba:"
 
@@ -780,16 +835,24 @@ msgstr "Nastala chyba:"
 #: data/interfaces/bookstrap/users.html:262
 #: data/interfaces/bookstrap/users.html:293
 #: data/interfaces/bookstrap/users.html:328
+#: data/interfaces/modern/choosetype.html:60
 #: data/interfaces/modern/comics.html:185
-#: data/interfaces/modern/config.html:261
+#: data/interfaces/modern/config.html:278
+#: data/interfaces/modern/dlresult.html:33
 #: data/interfaces/modern/history.html:111
 #: data/interfaces/modern/history.html:138
-#: data/interfaces/modern/index.html:207
+#: data/interfaces/modern/index.html:207 data/interfaces/modern/login.html:52
+#: data/interfaces/modern/login.html:68
 #: data/interfaces/modern/magazines.html:181
-#: data/interfaces/modern/managebooks.html:169
-#: data/interfaces/modern/managebooks.html:179
-#: data/interfaces/modern/modern_base.html:378
-#: data/interfaces/modern/modern_base.html:421
+#: data/interfaces/modern/managebooks.html:170
+#: data/interfaces/modern/managebooks.html:180
+#: data/interfaces/modern/modern_base.html:382
+#: data/interfaces/modern/modern_base.html:423
+#: data/interfaces/modern/profile.html:126
+#: data/interfaces/modern/profile.html:130
+#: data/interfaces/modern/response.html:18
+#: data/interfaces/modern/searchresults.html:215
+#: data/interfaces/modern/users.html:208 data/interfaces/modern/users.html:238
 msgid "Close"
 msgstr "Zavrieť"
 
@@ -825,28 +888,32 @@ msgstr "Aktívne"
 #: data/interfaces/bookstrap/author_detail.html:30
 #: data/interfaces/bookstrap/editauthor.html:28
 #: data/interfaces/bookstrap/members.html:14
-#: data/interfaces/modern/author.html:170
+#: data/interfaces/modern/author.html:171
+#: data/interfaces/modern/author_detail.html:156
 msgid "Refresh Author"
 msgstr "Obnoviť autora"
 
 #: data/interfaces/bookstrap/author.html:27
 #: data/interfaces/bookstrap/author_detail.html:31
 #: data/interfaces/bookstrap/editauthor.html:29
-#: data/interfaces/modern/author.html:172
+#: data/interfaces/modern/author.html:173
+#: data/interfaces/modern/author_detail.html:158
 msgid "eBook Scan"
 msgstr "Prehľadať e-knihy"
 
 #: data/interfaces/bookstrap/author.html:29
 #: data/interfaces/bookstrap/author_detail.html:33
 #: data/interfaces/bookstrap/editauthor.html:31
-#: data/interfaces/modern/author.html:175
+#: data/interfaces/modern/author.html:176
+#: data/interfaces/modern/author_detail.html:161
 msgid "AudioBook Scan"
 msgstr "Prehľadať audioknihy"
 
 #: data/interfaces/bookstrap/author.html:33
 #: data/interfaces/bookstrap/author_detail.html:37
 #: data/interfaces/bookstrap/editauthor.html:35
-#: data/interfaces/modern/author.html:187
+#: data/interfaces/modern/author.html:188
+#: data/interfaces/modern/author_detail.html:182
 msgid "Remove Author"
 msgstr "Odstrániť autora"
 
@@ -861,7 +928,7 @@ msgstr "Zobraziť aktívne"
 #: data/interfaces/bookstrap/author.html:43
 #: data/interfaces/bookstrap/author.html:45
 #: data/interfaces/bookstrap/members.html:21
-#: data/interfaces/modern/author.html:245
+#: data/interfaces/modern/author.html:246
 msgid "Show Ignored"
 msgstr "Zobraziť ignorované"
 
@@ -870,6 +937,8 @@ msgstr "Zobraziť ignorované"
 #: data/interfaces/bookstrap/author_detail.html:201
 #: data/interfaces/bookstrap/editauthor.html:45
 #: data/interfaces/modern/author.html:157
+#: data/interfaces/modern/author_detail.html:143
+#: data/interfaces/modern/author_detail.html:237
 msgid "Following"
 msgstr "Sledovaný"
 
@@ -889,6 +958,7 @@ msgstr "Jaz."
 #: data/interfaces/bookstrap/author.html:93
 #: data/interfaces/bookstrap/author_detail.html:63
 #: data/interfaces/bookstrap/editauthor.html:61
+#: data/interfaces/modern/author_detail.html:174
 msgid "rss feed of recent ebooks"
 msgstr "RSS kanál nedávnych e-kníh"
 
@@ -900,6 +970,7 @@ msgstr "LazyLibrarian – najnovšie e-knihy"
 #: data/interfaces/bookstrap/author.html:97
 #: data/interfaces/bookstrap/author_detail.html:66
 #: data/interfaces/bookstrap/editauthor.html:64
+#: data/interfaces/modern/author_detail.html:177
 msgid "rss feed of recent audiobooks"
 msgstr "RSS kanál nedávnych audiokníh"
 
@@ -908,7 +979,8 @@ msgstr "RSS kanál nedávnych audiokníh"
 #: data/interfaces/bookstrap/book_detail.html:11
 #: data/interfaces/bookstrap/comicissues.html:28
 #: data/interfaces/bookstrap/members.html:31
-#: data/interfaces/modern/author.html:167
+#: data/interfaces/modern/author.html:168
+#: data/interfaces/modern/author_detail.html:153
 #: data/interfaces/modern/book_detail.html:168
 #: data/interfaces/modern/issues.html:112
 #: data/interfaces/modern/issues.html:125
@@ -955,12 +1027,14 @@ msgstr "Amazon (vyhľadávanie)"
 #: data/interfaces/bookstrap/author.html:161
 #: data/interfaces/bookstrap/author_detail.html:106
 #: data/interfaces/modern/author.html:76
+#: data/interfaces/modern/author_detail.html:84
 msgid "Manual search"
 msgstr "Ručné vyhľadávanie"
 
 #: data/interfaces/bookstrap/author.html:163
 #: data/interfaces/bookstrap/author_detail.html:108
 #: data/interfaces/modern/author.html:78
+#: data/interfaces/modern/author_detail.html:86
 #, python-format
 msgid "Wishlist search %(name)s"
 msgstr "Vyhľadávanie v zozname želaní %(name)s"
@@ -968,6 +1042,7 @@ msgstr "Vyhľadávanie v zozname želaní %(name)s"
 #: data/interfaces/bookstrap/author.html:165
 #: data/interfaces/bookstrap/author_detail.html:110
 #: data/interfaces/modern/author.html:80
+#: data/interfaces/modern/author_detail.html:88
 #, python-format
 msgid "Import %(name)s from alternate folder"
 msgstr "Import %(name)s z alternatívneho priečinka"
@@ -985,6 +1060,7 @@ msgstr "Import %(name)s z alternatívneho priečinka"
 #: data/interfaces/bookstrap/author_detail.html:116
 #: data/interfaces/bookstrap/author_detail.html:118
 #: data/interfaces/modern/author.html:82
+#: data/interfaces/modern/author_detail.html:91
 #, python-format
 msgid "%(source)s search"
 msgstr "Vyhľadávanie %(source)s"
@@ -992,6 +1068,7 @@ msgstr "Vyhľadávanie %(source)s"
 #: data/interfaces/bookstrap/author.html:183
 #: data/interfaces/bookstrap/author_detail.html:120
 #: data/interfaces/modern/author.html:84
+#: data/interfaces/modern/author_detail.html:93
 msgid "CSV import"
 msgstr "Import CSV"
 
@@ -999,13 +1076,15 @@ msgstr "Import CSV"
 #: data/interfaces/bookstrap/author_detail.html:122
 #: data/interfaces/bookstrap/managebooks.html:17
 #: data/interfaces/modern/author.html:86
-#: data/interfaces/modern/managebooks.html:105
+#: data/interfaces/modern/author_detail.html:95
+#: data/interfaces/modern/managebooks.html:106
 msgid "Calibre Sync"
 msgstr "Synchronizácia s Calibre"
 
 #: data/interfaces/bookstrap/author.html:189
 #: data/interfaces/bookstrap/author_detail.html:126
 #: data/interfaces/modern/author.html:88
+#: data/interfaces/modern/author_detail.html:99
 #, python-format
 msgid "Import author of %(title)s"
 msgstr "Import autora diela %(title)s"
@@ -1013,6 +1092,7 @@ msgstr "Import autora diela %(title)s"
 #: data/interfaces/bookstrap/author.html:193
 #: data/interfaces/bookstrap/author_detail.html:130
 #: data/interfaces/modern/author.html:90
+#: data/interfaces/modern/author_detail.html:103
 #, python-format
 msgid "Search for series %(name)s"
 msgstr "Hľadať sériu %(name)s"
@@ -1027,6 +1107,9 @@ msgstr "Kniha bola pridaná skôr, než sa začal zaznamenávať dôvod"
 #: data/interfaces/bookstrap/editauthor.html:101
 #: data/interfaces/bookstrap/editseries.html:30
 #: data/interfaces/modern/author.html:113
+#: data/interfaces/modern/author_detail.html:228
+#: data/interfaces/modern/editauthor.html:99
+#: data/interfaces/modern/editseries.html:60
 msgid "Added by:"
 msgstr "Pridal:"
 
@@ -1036,6 +1119,8 @@ msgstr "Pridal:"
 #: data/interfaces/bookstrap/author_detail.html:164
 #: data/interfaces/bookstrap/editauthor.html:91
 #: data/interfaces/modern/author.html:107
+#: data/interfaces/modern/author_detail.html:199
+#: data/interfaces/modern/editauthor.html:87
 msgid "Born:"
 msgstr "Narodenie:"
 
@@ -1043,11 +1128,13 @@ msgstr "Narodenie:"
 #: data/interfaces/bookstrap/author_detail.html:159
 #: data/interfaces/bookstrap/editauthor.html:95
 #: data/interfaces/modern/author.html:110
+#: data/interfaces/modern/author_detail.html:202
+#: data/interfaces/modern/editauthor.html:91
 msgid "Died:"
 msgstr "Úmrtie:"
 
 #: data/interfaces/bookstrap/author.html:215
-#: data/interfaces/modern/author.html:201
+#: data/interfaces/modern/author.html:202
 msgid "Fetching information for this author ..."
 msgstr "Načítavajú sa informácie o autorovi..."
 
@@ -1076,15 +1163,15 @@ msgstr "Označiť vybrané e-knihy ako"
 
 #: data/interfaces/bookstrap/author.html:272
 #: data/interfaces/bookstrap/managebooks.html:148
-#: data/interfaces/modern/author.html:300
-#: data/interfaces/modern/managebooks.html:35
+#: data/interfaces/modern/author.html:301
+#: data/interfaces/modern/managebooks.html:36
 msgid "eBook Wanted"
 msgstr "E-kniha: Hľadané"
 
 #: data/interfaces/bookstrap/author.html:274
 #: data/interfaces/bookstrap/managebooks.html:151
-#: data/interfaces/modern/author.html:300
-#: data/interfaces/modern/managebooks.html:37
+#: data/interfaces/modern/author.html:301
+#: data/interfaces/modern/managebooks.html:38
 msgid "Audio Wanted"
 msgstr "Audio: Hľadané"
 
@@ -1097,12 +1184,12 @@ msgid "Both Have"
 msgstr "Obidve: V knižnici"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "eBook Have"
 msgstr "E-kniha: V knižnici"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "Audio Have"
 msgstr "Audio: V knižnici"
 
@@ -1111,12 +1198,12 @@ msgid "Both Ignored"
 msgstr "Obidve: Ignorované"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "eBook Ignored"
 msgstr "E-kniha: Ingnorované"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "Audio Ignored"
 msgstr "Audio: Ignorované"
 
@@ -1125,12 +1212,12 @@ msgid "Both Skipped"
 msgstr "Obidve: Preskočené"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "eBook Skipped"
 msgstr "E-kniha: Preskočené"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:300
+#: data/interfaces/modern/author.html:301
 msgid "Audio Skipped"
 msgstr "Audio: Preskočené"
 
@@ -1139,7 +1226,8 @@ msgstr "Audio: Preskočené"
 #: data/interfaces/bookstrap/managebooks.html:165
 #: data/interfaces/bookstrap/members.html:80
 #: data/interfaces/bookstrap/series.html:130
-#: data/interfaces/modern/managebooks.html:44
+#: data/interfaces/modern/books.html:245
+#: data/interfaces/modern/managebooks.html:45
 msgid "Unread"
 msgstr "Neprečítané"
 
@@ -1149,8 +1237,9 @@ msgstr "Neprečítané"
 #: data/interfaces/bookstrap/managebooks.html:166
 #: data/interfaces/bookstrap/members.html:81
 #: data/interfaces/bookstrap/series.html:131
-#: data/interfaces/modern/managebooks.html:31
-#: data/interfaces/modern/managebooks.html:44
+#: data/interfaces/modern/books.html:246
+#: data/interfaces/modern/managebooks.html:32
+#: data/interfaces/modern/managebooks.html:45
 msgid "Read"
 msgstr "Prečítané"
 
@@ -1160,8 +1249,9 @@ msgstr "Prečítané"
 #: data/interfaces/bookstrap/managebooks.html:167
 #: data/interfaces/bookstrap/members.html:82
 #: data/interfaces/bookstrap/series.html:132
-#: data/interfaces/modern/managebooks.html:31
-#: data/interfaces/modern/managebooks.html:44
+#: data/interfaces/modern/books.html:247
+#: data/interfaces/modern/managebooks.html:32
+#: data/interfaces/modern/managebooks.html:45
 msgid "To Read"
 msgstr "Na prečítanie"
 
@@ -1171,8 +1261,9 @@ msgstr "Na prečítanie"
 #: data/interfaces/bookstrap/managebooks.html:168
 #: data/interfaces/bookstrap/members.html:83
 #: data/interfaces/bookstrap/series.html:133
-#: data/interfaces/modern/managebooks.html:31
-#: data/interfaces/modern/managebooks.html:44
+#: data/interfaces/modern/books.html:248
+#: data/interfaces/modern/managebooks.html:32
+#: data/interfaces/modern/managebooks.html:45
 msgid "Reading"
 msgstr "Čítam"
 
@@ -1182,15 +1273,17 @@ msgstr "Čítam"
 #: data/interfaces/bookstrap/managebooks.html:169
 #: data/interfaces/bookstrap/members.html:84
 #: data/interfaces/bookstrap/series.html:134
-#: data/interfaces/modern/managebooks.html:31
-#: data/interfaces/modern/managebooks.html:44
+#: data/interfaces/modern/books.html:249
+#: data/interfaces/modern/managebooks.html:32
+#: data/interfaces/modern/managebooks.html:45
 msgid "Abandoned"
 msgstr "Nedočítané"
 
 #: data/interfaces/bookstrap/author.html:352
 #: data/interfaces/bookstrap/author_detail.html:78
 #: data/interfaces/bookstrap/editauthor.html:264
-#: data/interfaces/modern/author.html:316
+#: data/interfaces/modern/author.html:317
+#: data/interfaces/modern/author_detail.html:338
 msgid "Are you sure you want to permanently delete the author?"
 msgstr "Naozaj chcete natrvalo vymazať autora?"
 
@@ -1201,26 +1294,34 @@ msgstr "Naozaj chcete natrvalo vymazať autora?"
 #: data/interfaces/bookstrap/books.html:216
 #: data/interfaces/bookstrap/books.html:225
 #: data/interfaces/bookstrap/books.html:232
-#: data/interfaces/modern/books.html:195 data/interfaces/modern/books.html:202
+#: data/interfaces/modern/books.html:215 data/interfaces/modern/books.html:222
 msgid "Request"
 msgstr "Požiadať"
 
 #: data/interfaces/bookstrap/author_detail.html:10
 #: data/interfaces/bookstrap/author_detail.html:213
 #: data/interfaces/bookstrap/editauthor.html:10
-#: data/interfaces/modern/author.html:206
+#: data/interfaces/modern/author.html:207
+#: data/interfaces/modern/author_detail.html:127
+#: data/interfaces/modern/author_detail.html:248
+#: data/interfaces/modern/editauthor.html:72
+#: data/interfaces/modern/editseries.html:68
 msgid "Books"
 msgstr "Knihy"
 
 #: data/interfaces/bookstrap/author_detail.html:149
+#: data/interfaces/modern/author_detail.html:119
+#: data/interfaces/modern/author_detail.html:120
 msgid "Also known as:"
 msgstr "Známy aj ako:"
 
 #: data/interfaces/bookstrap/author_detail.html:161
+#: data/interfaces/modern/author_detail.html:205
 msgid "Age at death:"
 msgstr "Vek pri úmrtí:"
 
 #: data/interfaces/bookstrap/author_detail.html:166
+#: data/interfaces/modern/author_detail.html:205
 msgid "Age:"
 msgstr "Vek:"
 
@@ -1228,19 +1329,23 @@ msgstr "Vek:"
 #: data/interfaces/bookstrap/managebooks.html:64
 #: data/interfaces/bookstrap/manageissues.html:17
 #: data/interfaces/bookstrap/series.html:73
+#: data/interfaces/modern/author_detail.html:207
 msgid "Status:"
 msgstr "Stav:"
 
 #: data/interfaces/bookstrap/author_detail.html:172
+#: data/interfaces/modern/author_detail.html:208
 msgid "Books:"
 msgstr "Knihy:"
 
 #: data/interfaces/bookstrap/author_detail.html:172
+#: data/interfaces/modern/author_detail.html:209
 #, python-format
 msgid "%(have)s / %(total)s total (%(unignored)s not ignored)"
 msgstr "%(have)s / %(total)s celkom (%(unignored)s neignorovaných)"
 
 #: data/interfaces/bookstrap/author_detail.html:173
+#: data/interfaces/modern/author_detail.html:210
 #, python-format
 msgid "%(count)s eBook"
 msgid_plural "%(count)s eBooks"
@@ -1249,6 +1354,7 @@ msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
 
 #: data/interfaces/bookstrap/author_detail.html:174
+#: data/interfaces/modern/author_detail.html:211
 #, python-format
 msgid "%(count)s AudioBook"
 msgid_plural "%(count)s AudioBooks"
@@ -1258,76 +1364,93 @@ msgstr[2] "%(count)s audiokníh"
 
 #: data/interfaces/bookstrap/author_detail.html:177
 #: data/interfaces/bookstrap/book_detail.html:72
+#: data/interfaces/modern/author_detail.html:214
 #: data/interfaces/modern/book_detail.html:64
 msgid "eBook status:"
 msgstr "Stav e-knihy:"
 
 #: data/interfaces/bookstrap/author_detail.html:184
 #: data/interfaces/bookstrap/book_detail.html:74
+#: data/interfaces/modern/author_detail.html:221
 #: data/interfaces/modern/book_detail.html:64
 msgid "AudioBook status:"
 msgstr "Stav audioknihy:"
 
 #: data/interfaces/bookstrap/author_detail.html:195
+#: data/interfaces/modern/author_detail.html:231
 msgid "Added:"
 msgstr "Pridané:"
 
 #: data/interfaces/bookstrap/author_detail.html:198
+#: data/interfaces/modern/author_detail.html:234
 msgid "Last updated:"
 msgstr "Naposledy aktualizované:"
 
 #: data/interfaces/bookstrap/author_detail.html:201
 #: data/interfaces/bookstrap/editbook.html:109
+#: data/interfaces/modern/author_detail.html:237
+#: data/interfaces/modern/editbook.html:44
 msgid "GoodReads:"
 msgstr "GoodReads:"
 
 #: data/interfaces/bookstrap/author_detail.html:204
+#: data/interfaces/modern/author_detail.html:240
 msgid "Locked:"
 msgstr "Uzamknuté:"
 
 #: data/interfaces/bookstrap/author_detail.html:204
+#: data/interfaces/modern/author_detail.html:240
 msgid "settings are manually locked and won't be overwritten by refresh"
 msgstr "nastavenia sú ručne uzamknuté a obnovenie ich neprepíše"
 
 #: data/interfaces/bookstrap/author_detail.html:211
 #: data/interfaces/bookstrap/book_detail.html:88
+#: data/interfaces/modern/author_detail.html:244
 #: data/interfaces/modern/book_detail.html:216
 msgid "Sources"
 msgstr "Zdroje"
-
-#: data/interfaces/bookstrap/author_detail.html:213
-msgid "Overlap"
-msgstr "Prekrytie"
-
-#: data/interfaces/bookstrap/author_detail.html:213
-#: data/interfaces/bookstrap/book_detail.html:90
-#: data/interfaces/bookstrap/editauthor.html:132
-msgid "Source"
-msgstr "Zdroj"
 
 #: data/interfaces/bookstrap/author_detail.html:213
 #: data/interfaces/bookstrap/book_detail.html:90
 #: data/interfaces/bookstrap/editauthor.html:132
 #: data/interfaces/bookstrap/history.html:32
 #: data/interfaces/bookstrap/history.html:46
+#: data/interfaces/modern/author_detail.html:247
 msgid "ID"
 msgstr "ID"
 
 #: data/interfaces/bookstrap/author_detail.html:213
 #: data/interfaces/bookstrap/book_detail.html:90
+#: data/interfaces/bookstrap/editauthor.html:132
+#: data/interfaces/modern/author_detail.html:247
+msgid "Source"
+msgstr "Zdroj"
+
+#: data/interfaces/bookstrap/author_detail.html:213
+#: data/interfaces/bookstrap/book_detail.html:90
 #: data/interfaces/bookstrap/editauthor.html:156
+#: data/interfaces/modern/author_detail.html:247
+#: data/interfaces/modern/editauthor.html:191
 msgid "Link"
 msgstr "Odkaz"
 
+#: data/interfaces/bookstrap/author_detail.html:213
+#: data/interfaces/modern/author_detail.html:248
+msgid "Overlap"
+msgstr "Prekrytie"
+
 #: data/interfaces/bookstrap/author_detail.html:222
+#: data/interfaces/modern/author_detail.html:254
 msgid "Preferred for metadata merge"
 msgstr "Uprednostnený pri zlučovaní metadát"
 
 #: data/interfaces/bookstrap/author_detail.html:230
+#: data/interfaces/modern/author_detail.html:271
 msgid "not fetched yet"
 msgstr "ešte nenačítané"
 
 #: data/interfaces/bookstrap/author_detail.html:233
+#: data/interfaces/modern/author_detail.html:65
 #, python-format
 msgid "Books by this author with a %(source)s id"
 msgstr "Knihy tohto autora s ID zo zdroja %(source)s"
@@ -1335,60 +1458,76 @@ msgstr "Knihy tohto autora s ID zo zdroja %(source)s"
 #: data/interfaces/bookstrap/author_detail.html:234
 #: data/interfaces/bookstrap/author_detail.html:250
 #: data/interfaces/bookstrap/author_detail.html:276
+#: data/interfaces/modern/author_detail.html:275
 msgid "Of those, how many also have an id from at least one other source"
 msgstr "Koľko z nich má ID aj z aspoň jedného ďalšieho zdroja"
 
 #: data/interfaces/bookstrap/author_detail.html:246
 #: data/interfaces/bookstrap/author_detail.html:266
+#: data/interfaces/modern/author_detail.html:68
+#: data/interfaces/modern/author_detail.html:74
 msgid "no author ID (search by name)"
 msgstr "bez ID autora (vyhľadávanie podľa mena)"
 
 #: data/interfaces/bookstrap/author_detail.html:249
+#: data/interfaces/modern/author_detail.html:69
 msgid "Books by this author with a GoogleBooks id"
 msgstr "Knihy tohto autora s ID z GoogleBooks"
 
 #: data/interfaces/bookstrap/author_detail.html:263
+#: data/interfaces/modern/author_detail.html:257
 msgid "Manually linked Author Central page"
 msgstr "Ručne prepojená stránka Author Central"
 
 #: data/interfaces/bookstrap/author_detail.html:266
+#: data/interfaces/modern/author_detail.html:74
 msgid "manually linked"
 msgstr "ručne prepojené"
 
 #: data/interfaces/bookstrap/author_detail.html:275
+#: data/interfaces/modern/author_detail.html:76
 msgid "Books by this author with a captured ASIN"
 msgstr "Knihy tohto autora so zisteným ASIN"
 
 #: data/interfaces/bookstrap/author_detail.html:286
+#: data/interfaces/modern/author_detail.html:285
 msgid "No sources linked yet"
 msgstr "Zatiaľ nie sú prepojené žiadne zdroje"
 
 #: data/interfaces/bookstrap/author_detail.html:296
+#: data/interfaces/modern/author_detail.html:292
 msgid "Most recent book on record"
 msgstr "Najnovšia evidovaná kniha"
 
 #: data/interfaces/bookstrap/author_detail.html:307
+#: data/interfaces/modern/author_detail.html:302
 msgid "View on source"
 msgstr "Zobraziť v zdroji"
 
 #: data/interfaces/bookstrap/author_detail.html:316
+#: data/interfaces/modern/author_detail.html:311
 msgid "Date:"
 msgstr "Dátum:"
 
 #: data/interfaces/bookstrap/author_detail.html:327
+#: data/interfaces/modern/author_detail.html:193
 msgid "Librarian Note:"
 msgstr "Poznámka knihovníka:"
 
 #: data/interfaces/bookstrap/author_detail.html:334
 #: data/interfaces/bookstrap/author_detail.html:343
+#: data/interfaces/modern/author_detail.html:318
+#: data/interfaces/modern/author_detail.html:323
 msgid "About"
 msgstr "O autorovi"
 
 #: data/interfaces/bookstrap/author_detail.html:343
+#: data/interfaces/modern/author_detail.html:323
 msgid "by source"
 msgstr "podľa zdroja"
 
 #: data/interfaces/bookstrap/author_detail.html:344
+#: data/interfaces/modern/author_detail.html:324
 msgid ""
 "Each linked source's own text, shown as-is, one after another - not "
 "intelligently merged."
@@ -1398,14 +1537,18 @@ msgstr ""
 
 #: data/interfaces/bookstrap/base.html:32
 #: data/interfaces/bookstrap/config.html:77
-#: data/interfaces/modern/modern_base.html:107
+#: data/interfaces/modern/modern_base.html:109
+#: data/interfaces/modern/users.html:50
 msgid "Automatic (browser language)"
 msgstr "Automaticky (podľa prehliadača)"
 
 #: data/interfaces/bookstrap/base.html:32
 #: data/interfaces/bookstrap/users.html:77
 #: data/interfaces/bookstrap/users.html:81
-#: data/interfaces/modern/modern_base.html:107
+#: data/interfaces/modern/modern_base.html:109
+#: data/interfaces/modern/profile.html:24 data/interfaces/modern/users.html:45
+#: data/interfaces/modern/users.html:50 data/interfaces/modern/users.html:53
+#: data/interfaces/modern/users.html:263
 msgid "Default"
 msgstr "Predvolené"
 
@@ -1462,24 +1605,28 @@ msgstr "Vymazať"
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
-#: data/interfaces/modern/author.html:309 data/interfaces/modern/books.html:221
+#: data/interfaces/modern/author.html:310 data/interfaces/modern/books.html:251
 #: data/interfaces/modern/comics.html:176
-#: data/interfaces/modern/config.html:261 data/interfaces/modern/index.html:197
-#: data/interfaces/modern/issues.html:184
+#: data/interfaces/modern/config.html:278
+#: data/interfaces/modern/editauthor.html:241
+#: data/interfaces/modern/editcomic.html:90
+#: data/interfaces/modern/index.html:197 data/interfaces/modern/issues.html:184
 #: data/interfaces/modern/magazines.html:172
-#: data/interfaces/modern/managebooks.html:161
+#: data/interfaces/modern/managebooks.html:162
+#: data/interfaces/modern/manageissues.html:103
 #: data/interfaces/modern/members.html:194
-#: data/interfaces/modern/series.html:197
+#: data/interfaces/modern/searchresults.html:208
+#: data/interfaces/modern/series.html:197 data/interfaces/modern/users.html:233
 msgid "Cancel"
 msgstr "Zrušiť"
 
 #: data/interfaces/bookstrap/base.html:209
-#: data/interfaces/modern/config.html:245
+#: data/interfaces/modern/config.html:262
 msgid "Are you sure you want to restart LazyLibrarian?"
 msgstr "Naozaj chcete reštartovať LazyLibrarian?"
 
 #: data/interfaces/bookstrap/base.html:210
-#: data/interfaces/modern/config.html:246
+#: data/interfaces/modern/config.html:263
 msgid "Are you sure you want to shutdown LazyLibrarian?"
 msgstr "Naozaj chcete vypnúť LazyLibrarian?"
 
@@ -1488,7 +1635,7 @@ msgid "Detailed"
 msgstr "Podrobné"
 
 #: data/interfaces/bookstrap/base.html:225
-#: data/interfaces/modern/author.html:345 data/interfaces/modern/books.html:244
+#: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:276
 #: data/interfaces/modern/members.html:105
 msgid "Compact"
 msgstr "Kompaktné"
@@ -1498,7 +1645,7 @@ msgid "Grid"
 msgstr "Mriežka"
 
 #: data/interfaces/bookstrap/base.html:226
-#: data/interfaces/modern/author.html:345 data/interfaces/modern/books.html:244
+#: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:276
 #: data/interfaces/modern/comics.html:78 data/interfaces/modern/index.html:91
 #: data/interfaces/modern/issues.html:87
 #: data/interfaces/modern/magazines.html:76
@@ -1512,22 +1659,22 @@ msgid "View:"
 msgstr "Náhľad:"
 
 #: data/interfaces/bookstrap/base.html:394
-#: data/interfaces/modern/modern_base.html:271
+#: data/interfaces/modern/modern_base.html:274
 msgid "Toggle navigation"
 msgstr "Prepnúť navigáciu"
 
 #: data/interfaces/bookstrap/base.html:414
 #: data/interfaces/bookstrap/config.html:122
 #: data/interfaces/bookstrap/config.html:2301
-#: data/interfaces/modern/modern_base.html:12 lazylibrarian/webServe.py:809
-#: lazylibrarian/webServe.py:880
+#: data/interfaces/modern/modern_base.html:14 lazylibrarian/webServe.py:814
+#: lazylibrarian/webServe.py:885
 msgid "Authors"
 msgstr "Autori"
 
 #: data/interfaces/bookstrap/base.html:419
 #: data/interfaces/bookstrap/config.html:122
 #: data/interfaces/bookstrap/config.html:136
-#: data/interfaces/modern/modern_base.html:14 lazylibrarian/webServe.py:3630
+#: data/interfaces/modern/modern_base.html:16 lazylibrarian/webServe.py:3640
 msgid "eBooks"
 msgstr "E-knihy"
 
@@ -1538,7 +1685,7 @@ msgstr "Audio"
 #: data/interfaces/bookstrap/base.html:435
 #: data/interfaces/bookstrap/config.html:123
 #: data/interfaces/bookstrap/config.html:137
-#: data/interfaces/modern/modern_base.html:18 lazylibrarian/webServe.py:3607
+#: data/interfaces/modern/modern_base.html:20 lazylibrarian/webServe.py:3617
 msgid "AudioBooks"
 msgstr "Audioknihy"
 
@@ -1550,7 +1697,7 @@ msgstr "Časop."
 #: data/interfaces/bookstrap/config.html:123
 #: data/interfaces/bookstrap/config.html:138
 #: data/interfaces/bookstrap/config.html:2725
-#: data/interfaces/modern/modern_base.html:20 lazylibrarian/webServe.py:6717
+#: data/interfaces/modern/modern_base.html:22 lazylibrarian/webServe.py:6744
 msgid "Magazines"
 msgstr "Časopisy"
 
@@ -1558,50 +1705,50 @@ msgstr "Časopisy"
 #: data/interfaces/bookstrap/config.html:124
 #: data/interfaces/bookstrap/config.html:139
 #: data/interfaces/bookstrap/config.html:2747
-#: data/interfaces/modern/modern_base.html:22 lazylibrarian/webServe.py:6007
-#: lazylibrarian/webServe.py:6368
+#: data/interfaces/modern/modern_base.html:24 lazylibrarian/webServe.py:6034
+#: lazylibrarian/webServe.py:6395
 msgid "Comics"
 msgstr "Komiksy"
 
 #: data/interfaces/bookstrap/base.html:461
 #: data/interfaces/bookstrap/base.html:463
-#: data/interfaces/modern/modern_base.html:24
+#: data/interfaces/modern/modern_base.html:26
 msgid "Manage"
 msgstr "Správa"
 
 #: data/interfaces/bookstrap/base.html:467
-#: data/interfaces/modern/modern_base.html:26 lazylibrarian/webServe.py:8390
+#: data/interfaces/modern/modern_base.html:28 lazylibrarian/webServe.py:8422
 msgid "History"
 msgstr "História"
 
 #: data/interfaces/bookstrap/base.html:470
 #: data/interfaces/bookstrap/config.html:238
-#: data/interfaces/modern/modern_base.html:28
+#: data/interfaces/modern/modern_base.html:30
 msgid "Logs"
 msgstr "Záznamy"
 
 #: data/interfaces/bookstrap/base.html:473
-#: data/interfaces/modern/modern_base.html:318
+#: data/interfaces/modern/modern_base.html:321
 msgid "Config"
 msgstr "Nastavenia"
 
 #: data/interfaces/bookstrap/base.html:476
 #: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/base.html:691
-#: data/interfaces/modern/modern_base.html:69
-#: data/interfaces/modern/modern_base.html:301 lazylibrarian/webServe.py:7951
+#: data/interfaces/modern/modern_base.html:71
+#: data/interfaces/modern/modern_base.html:304 lazylibrarian/webServe.py:7983
 msgid "What's new"
 msgstr "Čo je nové"
 
 #: data/interfaces/bookstrap/base.html:483
-#: data/interfaces/modern/modern_base.html:323
+#: data/interfaces/modern/modern_base.html:326
 msgid "Help"
 msgstr "Pomocník"
 
 #: data/interfaces/bookstrap/base.html:486
 #: data/interfaces/bookstrap/base.html:487
-#: data/interfaces/modern/modern_base.html:288
-#: data/interfaces/modern/modern_base.html:292
+#: data/interfaces/modern/modern_base.html:291
+#: data/interfaces/modern/modern_base.html:295
 #, fuzzy
 #| msgid "Interface language:"
 msgid "Interface language"
@@ -1626,12 +1773,12 @@ msgstr "Rovnaký ako rozhranie"
 #: data/interfaces/bookstrap/base.html:505
 #: data/interfaces/bookstrap/config.html:455
 #: data/interfaces/bookstrap/config.html:537
-#: data/interfaces/modern/modern_base.html:326
+#: data/interfaces/modern/modern_base.html:329
 msgid "User"
 msgstr "Používateľ"
 
 #: data/interfaces/bookstrap/base.html:508
-#: data/interfaces/modern/modern_base.html:329
+#: data/interfaces/modern/modern_base.html:332
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
@@ -1640,12 +1787,12 @@ msgid "Go to top"
 msgstr "Na začiatok"
 
 #: data/interfaces/bookstrap/base.html:531
-#: data/interfaces/modern/modern_base.html:36
+#: data/interfaces/modern/modern_base.html:38
 msgid "LazyLibrarian Telemetry"
 msgstr "Telemetria LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:532
-#: data/interfaces/modern/modern_base.html:37
+#: data/interfaces/modern/modern_base.html:39
 msgid ""
 "LazyLibrarian has the ability to send basic information about the "
 "installation, how it is configured, and how it is used to a server. This "
@@ -1662,7 +1809,7 @@ msgid "Enable Telemetry"
 msgstr "Zapnúť telemetriu"
 
 #: data/interfaces/bookstrap/base.html:533
-#: data/interfaces/modern/modern_base.html:40
+#: data/interfaces/modern/modern_base.html:42
 msgid "Turn on"
 msgstr "Zapnúť"
 
@@ -1671,32 +1818,32 @@ msgid "Ask me again later"
 msgstr "Opýtať sa neskôr"
 
 #: data/interfaces/bookstrap/base.html:534
-#: data/interfaces/modern/modern_base.html:40
+#: data/interfaces/modern/modern_base.html:42
 msgid "Maybe Later"
 msgstr "Možno neskôr"
 
 #: data/interfaces/bookstrap/base.html:537
-#: data/interfaces/modern/modern_base.html:62
+#: data/interfaces/modern/modern_base.html:64
 msgid "LazyLibrarian Update"
 msgstr "Aktualizácia LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:539
-#: data/interfaces/modern/modern_base.html:45
+#: data/interfaces/modern/modern_base.html:47
 msgid "You are running an unknown version of lazylibrarian"
 msgstr "Používate neznámu verziu LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:541
-#: data/interfaces/modern/modern_base.html:47
+#: data/interfaces/modern/modern_base.html:49
 msgid "You are running an unknown version via source install"
 msgstr "Používate neznámu verziu nainštalovanú zo zdrojového kódu"
 
 #: data/interfaces/bookstrap/base.html:544
-#: data/interfaces/modern/modern_base.html:50
+#: data/interfaces/modern/modern_base.html:52
 msgid "Unable to get the latest version from git"
 msgstr "Nepodarilo sa zistiť najnovšiu verziu z gitu"
 
 #: data/interfaces/bookstrap/base.html:546
-#: data/interfaces/modern/modern_base.html:52
+#: data/interfaces/modern/modern_base.html:54
 msgid ""
 "Running a local updated version. Push changes to git or rollback to Master "
 "release"
@@ -1705,7 +1852,7 @@ msgstr ""
 "verziu z vetvy Master"
 
 #: data/interfaces/bookstrap/base.html:549
-#: data/interfaces/modern/modern_base.html:54
+#: data/interfaces/modern/modern_base.html:56
 #, python-format
 msgid "New version available. You are one commit behind."
 msgid_plural "New version available. You are %(count)d commits behind."
@@ -1714,7 +1861,7 @@ msgstr[1] "Je dostupná nová verzia. Zaostávate o %(count)d commity."
 msgstr[2] "Je dostupná nová verzia. Zaostávate o %(count)d commitov."
 
 #: data/interfaces/bookstrap/base.html:553
-#: data/interfaces/modern/modern_base.html:63
+#: data/interfaces/modern/modern_base.html:65
 msgid "Manual update is required"
 msgstr "Vyžaduje sa ručná aktualizácia"
 
@@ -1724,7 +1871,8 @@ msgstr "Aktualizovať na najnovšiu verziu"
 
 #: data/interfaces/bookstrap/base.html:557
 #: data/interfaces/bookstrap/profile.html:84
-#: data/interfaces/modern/modern_base.html:60
+#: data/interfaces/modern/modern_base.html:62
+#: data/interfaces/modern/profile.html:117
 msgid "Update"
 msgstr "Aktualizovať"
 
@@ -1733,12 +1881,12 @@ msgid "Ignore the update message for 24 hours"
 msgstr "Skryť upozornenie na aktualizáciu na 24 hodín"
 
 #: data/interfaces/bookstrap/base.html:564
-#: data/interfaces/modern/modern_base.html:61
+#: data/interfaces/modern/modern_base.html:63
 msgid "Ignore"
 msgstr "Ignorovať"
 
 #: data/interfaces/bookstrap/base.html:592
-#: data/interfaces/modern/modern_base.html:87
+#: data/interfaces/modern/modern_base.html:89
 #, python-format
 msgid ""
 "LazyLibrarian is only %(percent)s%% translated into %(language)s. You can "
@@ -1749,7 +1897,7 @@ msgstr ""
 "programovať."
 
 #: data/interfaces/bookstrap/base.html:596
-#: data/interfaces/modern/modern_base.html:91
+#: data/interfaces/modern/modern_base.html:93
 #, python-format
 msgid ""
 "LazyLibrarian is not available in %(language)s yet. You can help translate "
@@ -1759,33 +1907,44 @@ msgstr ""
 "prekladom môžete na Hosted Weblate – nie je potrebné programovať."
 
 #: data/interfaces/bookstrap/base.html:603
-#: data/interfaces/modern/modern_base.html:96
+#: data/interfaces/modern/modern_base.html:98
 msgid "Help translate"
 msgstr "Pomôcť s prekladom"
 
 #: data/interfaces/bookstrap/base.html:604
-#: data/interfaces/modern/modern_base.html:97
+#: data/interfaces/modern/modern_base.html:99
 msgid "No thanks"
 msgstr "Nie, ďakujem"
 
 #: data/interfaces/bookstrap/base.html:607
-#: data/interfaces/modern/modern_base.html:94
+#: data/interfaces/modern/modern_base.html:96
 msgid "Translate LazyLibrarian"
 msgstr "Preložiť LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:628
-#: data/interfaces/modern/author.html:343
+#: data/interfaces/modern/author.html:344
+#: data/interfaces/modern/author_detail.html:361
 #: data/interfaces/modern/book_detail.html:265
-#: data/interfaces/modern/books.html:243 data/interfaces/modern/comics.html:214
+#: data/interfaces/modern/books.html:275 data/interfaces/modern/comics.html:214
+#: data/interfaces/modern/dlresult.html:48
+#: data/interfaces/modern/editauthor.html:241
+#: data/interfaces/modern/editbook.html:245
+#: data/interfaces/modern/editcomic.html:117
+#: data/interfaces/modern/editissue.html:90
+#: data/interfaces/modern/editseries.html:121
 #: data/interfaces/modern/history.html:155
 #: data/interfaces/modern/index.html:239 data/interfaces/modern/issues.html:212
-#: data/interfaces/modern/logs.html:103
+#: data/interfaces/modern/login.html:78 data/interfaces/modern/logs.html:103
 #: data/interfaces/modern/magazines.html:210
-#: data/interfaces/modern/managebooks.html:200
+#: data/interfaces/modern/managebooks.html:201
+#: data/interfaces/modern/manageissues.html:122
 #: data/interfaces/modern/members.html:211
-#: data/interfaces/modern/modern_base.html:407
-#: data/interfaces/modern/modern_base.html:421
-#: data/interfaces/modern/series.html:221
+#: data/interfaces/modern/modern_base.html:409
+#: data/interfaces/modern/modern_base.html:423
+#: data/interfaces/modern/profile.html:146
+#: data/interfaces/modern/register.html:53
+#: data/interfaces/modern/searchresults.html:245
+#: data/interfaces/modern/series.html:221 data/interfaces/modern/users.html:263
 msgid "Something went wrong, try again"
 msgstr ""
 
@@ -1812,7 +1971,7 @@ msgid "Not now"
 msgstr "Nesledovaný"
 
 #: data/interfaces/bookstrap/base.html:687
-#: data/interfaces/modern/modern_base.html:67
+#: data/interfaces/modern/modern_base.html:69
 #, python-format
 msgid "One change since you last looked:"
 msgid_plural "%(count)d changes since you last looked:"
@@ -1821,12 +1980,12 @@ msgstr[1] "%(count)d zmeny od vašej poslednej návštevy:"
 msgstr[2] "%(count)d zmien od vašej poslednej návštevy:"
 
 #: data/interfaces/bookstrap/base.html:692
-#: data/interfaces/modern/modern_base.html:69
+#: data/interfaces/modern/modern_base.html:71
 msgid "Dismiss"
 msgstr "Zavrieť"
 
 #: data/interfaces/bookstrap/base.html:695
-#: data/interfaces/modern/modern_base.html:66
+#: data/interfaces/modern/modern_base.html:68
 msgid "LazyLibrarian updated"
 msgstr "LazyLibrarian bol aktualizovaný"
 
@@ -1837,13 +1996,14 @@ msgid "Check Version"
 msgstr "Kontrola verzie"
 
 #: data/interfaces/bookstrap/base.html:760
-#: data/interfaces/modern/modern_base.html:387
+#: data/interfaces/modern/modern_base.html:391
 msgid "Are you sure you want to logout?"
 msgstr "Naozaj sa chcete odhlásiť?"
 
 #: data/interfaces/bookstrap/book_detail.html:14
 #: data/interfaces/bookstrap/editbook.html:11
 #: data/interfaces/modern/book_detail.html:171
+#: data/interfaces/modern/editbook.html:55
 msgid "Refresh Book"
 msgstr "Obnoviť knihu"
 
@@ -1863,6 +2023,7 @@ msgstr "Séria:"
 
 #: data/interfaces/bookstrap/book_detail.html:46
 #: data/interfaces/bookstrap/editbook.html:71
+#: data/interfaces/modern/editbook.html:94
 msgid "Genre:"
 msgstr "Žáner:"
 
@@ -1884,16 +2045,19 @@ msgstr "Hodnotenie:"
 
 #: data/interfaces/bookstrap/book_detail.html:65
 #: data/interfaces/bookstrap/editbook.html:91
+#: data/interfaces/modern/editbook.html:104
 msgid "Language:"
 msgstr "Jazyk:"
 
 #: data/interfaces/bookstrap/book_detail.html:68
 #: data/interfaces/bookstrap/editbook.html:76
+#: data/interfaces/modern/editbook.html:99
 msgid "Narrator:"
 msgstr "Rozprávač:"
 
 #: data/interfaces/bookstrap/book_detail.html:78
 #: data/interfaces/bookstrap/editbook.html:101
+#: data/interfaces/modern/editbook.html:113
 msgid "ISBN:"
 msgstr "ISBN:"
 
@@ -1947,6 +2111,7 @@ msgid "Snatched"
 msgstr "Stiahnuté zo zdroja"
 
 #: data/interfaces/bookstrap/books.html:310
+#: data/interfaces/modern/books.html:283
 #, python-format
 msgid "Are you sure you want to permanently delete the selected book?"
 msgid_plural ""
@@ -1980,6 +2145,10 @@ msgstr "Vybrané čísla:"
 #: data/interfaces/bookstrap/issues.html:52
 #: data/interfaces/bookstrap/issues.html:72
 #: data/interfaces/bookstrap/manageissues.html:32
+#: data/interfaces/modern/config.html:956
+#: data/interfaces/modern/editissue.html:44
+#: data/interfaces/modern/manageissues.html:54
+#: data/interfaces/modern/manageissues.html:122
 msgid "Issue"
 msgstr "Číslo"
 
@@ -1991,12 +2160,13 @@ msgstr "Číslo"
 #: data/interfaces/bookstrap/issues.html:74
 #: data/interfaces/bookstrap/magazines.html:92
 #: data/interfaces/bookstrap/magazines.html:116
-#: data/interfaces/modern/author.html:342 data/interfaces/modern/books.html:241
+#: data/interfaces/modern/author.html:343 data/interfaces/modern/books.html:272
 #: data/interfaces/modern/comics.html:213 data/interfaces/modern/index.html:238
 #: data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:209
-#: data/interfaces/modern/managebooks.html:199
+#: data/interfaces/modern/managebooks.html:200
 #: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:220
 msgid "Select"
 msgstr "Vybrať"
@@ -2007,7 +2177,7 @@ msgstr "Vybrať"
 #: data/interfaces/bookstrap/magazines.html:178
 #: data/interfaces/bookstrap/members.html:149
 #: data/interfaces/bookstrap/members.html:165
-#: data/interfaces/modern/author.html:279 data/interfaces/modern/books.html:189
+#: data/interfaces/modern/author.html:280 data/interfaces/modern/books.html:209
 #: data/interfaces/modern/comics.html:150
 #: data/interfaces/modern/issues.html:150
 #: data/interfaces/modern/members.html:168 lazylibrarian/i18n.py:395
@@ -2034,11 +2204,19 @@ msgstr[2] "Naozaj chcete natrvalo vymazať %(count)s vybraných čísel?"
 #: data/interfaces/bookstrap/comicresults.html:18
 #: data/interfaces/bookstrap/manualsearch.html:18
 #: data/interfaces/bookstrap/searchresults.html:54
+#: data/interfaces/modern/comicresults.html:54
+#: data/interfaces/modern/comicresults.html:66
+#: data/interfaces/modern/manualsearch.html:62
+#: data/interfaces/modern/manualsearch.html:80
+#: data/interfaces/modern/searchresults.html:139
+#: data/interfaces/modern/searchresults.html:247
 msgid "Match"
 msgstr "Zhoda"
 
 #: data/interfaces/bookstrap/comicresults.html:20
 #: data/interfaces/modern/book_detail.html:82
+#: data/interfaces/modern/comicresults.html:56
+#: data/interfaces/modern/config.html:956
 msgid "Publisher"
 msgstr "Vydavateľ"
 
@@ -2047,11 +2225,15 @@ msgstr "Vydavateľ"
 #: data/interfaces/bookstrap/history.html:48
 #: data/interfaces/bookstrap/manageissues.html:31
 #: data/interfaces/bookstrap/manualsearch.html:22
+#: data/interfaces/modern/comicresults.html:57
+#: data/interfaces/modern/manualsearch.html:64
 msgid "Date"
 msgstr "Dátum"
 
 #: data/interfaces/bookstrap/comicresults.html:66
 #: data/interfaces/bookstrap/manualsearch.html:66
+#: data/interfaces/modern/comicresults.html:94
+#: data/interfaces/modern/manualsearch.html:106
 msgid "No results found"
 msgstr "Nenašli sa žiadne výsledky"
 
@@ -2059,12 +2241,14 @@ msgstr "Nenašli sa žiadne výsledky"
 #: data/interfaces/bookstrap/comics.html:34
 #: data/interfaces/bookstrap/editcomic.html:22
 #: data/interfaces/modern/comics.html:188
+#: data/interfaces/modern/editcomic.html:46
 msgid "Comic Title"
 msgstr "Názov komiksu"
 
 #: data/interfaces/bookstrap/comics.html:37
 #: data/interfaces/bookstrap/comics.html:39
 #: data/interfaces/modern/comics.html:92 data/interfaces/modern/comics.html:195
+#: data/interfaces/modern/editcomic.html:42
 #: data/interfaces/modern/history.html:160
 #: data/interfaces/modern/issues.html:73 lazylibrarian/notifiers/__init__.py:79
 msgid "Comic"
@@ -2216,7 +2400,13 @@ msgstr ""
 #: data/interfaces/bookstrap/editissue.html:38
 #: data/interfaces/bookstrap/editmag.html:24
 #: data/interfaces/bookstrap/editseries.html:41
-#: data/interfaces/modern/config.html:235
+#: data/interfaces/modern/config.html:252
+#: data/interfaces/modern/editauthor.html:157
+#: data/interfaces/modern/editbook.html:221
+#: data/interfaces/modern/editcomic.html:68
+#: data/interfaces/modern/editissue.html:74
+#: data/interfaces/modern/editmag.html:50
+#: data/interfaces/modern/editseries.html:82
 msgid "Save changes"
 msgstr "Uložiť zmeny"
 
@@ -2241,7 +2431,7 @@ msgid "Processing"
 msgstr "Spracovanie"
 
 #: data/interfaces/bookstrap/config.html:55
-#: data/interfaces/modern/modern_base.html:342
+#: data/interfaces/modern/modern_base.html:346
 msgid "Notifications"
 msgstr "Oznámenia"
 
@@ -2681,7 +2871,8 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:1150
 #: data/interfaces/bookstrap/config.html:3146
 #: data/interfaces/bookstrap/login.html:20
-#: data/interfaces/bookstrap/users.html:33
+#: data/interfaces/bookstrap/users.html:33 data/interfaces/modern/login.html:24
+#: data/interfaces/modern/login.html:57 data/interfaces/modern/users.html:97
 msgid "Username"
 msgstr "Používateľské meno"
 
@@ -2697,7 +2888,8 @@ msgstr "Heslo"
 #: data/interfaces/bookstrap/config.html:3330
 #: data/interfaces/bookstrap/login.html:24
 #: data/interfaces/bookstrap/profile.html:69
-#: data/interfaces/bookstrap/users.html:58
+#: data/interfaces/bookstrap/users.html:58 data/interfaces/modern/login.html:29
+#: data/interfaces/modern/profile.html:90 data/interfaces/modern/users.html:123
 msgid "Password"
 msgstr "Heslo"
 
@@ -3902,6 +4094,7 @@ msgstr "Typy"
 #: data/interfaces/bookstrap/config.html:3463
 #: data/interfaces/bookstrap/profile.html:64
 #: data/interfaces/bookstrap/users.html:96
+#: data/interfaces/modern/profile.html:82 data/interfaces/modern/users.html:166
 #: lazylibrarian/notifiers/telegram.py:72
 msgid "Test"
 msgstr "Test"
@@ -4159,6 +4352,7 @@ msgstr "hostiteľ zlibrary"
 #: data/interfaces/bookstrap/config.html:2975
 #: data/interfaces/bookstrap/config.html:3157
 #: data/interfaces/bookstrap/profile.html:20
+#: data/interfaces/modern/login.html:61 data/interfaces/modern/profile.html:51
 msgid "Email"
 msgstr "E-mail"
 
@@ -4858,6 +5052,7 @@ msgstr ""
 
 #: data/interfaces/bookstrap/config.html:2633
 #: data/interfaces/bookstrap/users.html:50
+#: data/interfaces/modern/users.html:113 data/interfaces/modern/users.html:115
 msgid "Permissions"
 msgstr "Oprávnenia"
 
@@ -5532,6 +5727,7 @@ msgstr "Všeobecné vyhľadávanie:"
 #: data/interfaces/bookstrap/config.html:3502
 #: data/interfaces/bookstrap/config.html:3591
 #: data/interfaces/bookstrap/editbook.html:24
+#: data/interfaces/modern/editbook.html:41
 msgid "General Search"
 msgstr "Všeobecné vyhľadávanie"
 
@@ -6289,7 +6485,7 @@ msgstr "Repozitár: %(repo)s"
 msgid "Updated: %(date)s"
 msgstr "Aktualizované: %(date)s"
 
-#: data/interfaces/bookstrap/config.html:4190 lazylibrarian/webServe.py:7937
+#: data/interfaces/bookstrap/config.html:4190 lazylibrarian/webServe.py:7969
 #, python-format
 msgid "Branch: %(branch)s"
 msgstr "Vetva: %(branch)s"
@@ -6496,6 +6692,8 @@ msgid "Submitted telemetry data"
 msgstr "Odoslané údaje telemetrie"
 
 #: data/interfaces/bookstrap/coverwall.html:8
+#: data/interfaces/modern/coverwall.html:49
+#: data/interfaces/modern/coverwall.html:50
 msgid "Columns"
 msgstr "Stĺpce"
 
@@ -6507,55 +6705,75 @@ msgstr "Stĺpce"
 #: data/interfaces/bookstrap/coverwall.html:60
 #: data/interfaces/bookstrap/editauthor.html:212
 #: data/interfaces/bookstrap/editbook.html:180
+#: data/interfaces/modern/coverwall.html:61
+#: data/interfaces/modern/coverwall.html:63
+#: data/interfaces/modern/editauthor.html:131
+#: data/interfaces/modern/editbook.html:186
 msgid "cover"
 msgstr "obálka"
 
 #: data/interfaces/bookstrap/dlresult.html:27
 #: data/interfaces/bookstrap/history.html:74
+#: data/interfaces/modern/dlresult.html:27
 #: data/interfaces/modern/history.html:126
 msgid "Mark Failed"
 msgstr "Označiť ako neúspešné"
 
 #: data/interfaces/bookstrap/editauthor.html:11
 #: data/interfaces/bookstrap/editbook.html:9
+#: data/interfaces/modern/author.html:166
+#: data/interfaces/modern/editauthor.html:73
+#: data/interfaces/modern/editbook.html:53
 msgid "Detail"
 msgstr "Podrobnosti"
 
 #: data/interfaces/bookstrap/editauthor.html:76
 #: data/interfaces/bookstrap/editbook.html:7
+#: data/interfaces/modern/editauthor.html:140
+#: data/interfaces/modern/editbook.html:69
+#: data/interfaces/modern/editbook.html:195
 msgid "Searching, please wait..."
 msgstr "Prebieha vyhľadávanie, čakajte..."
 
 #: data/interfaces/bookstrap/editauthor.html:86
+#: data/interfaces/modern/editauthor.html:83
 msgid "Author Name:"
 msgstr "Meno autora:"
 
 #: data/interfaces/bookstrap/editauthor.html:87
+#: data/interfaces/modern/editauthor.html:84
 msgid "Author Name"
 msgstr "Meno autora"
 
 #: data/interfaces/bookstrap/editauthor.html:92
+#: data/interfaces/modern/editauthor.html:88
 msgid "Born (yyyy/mm/dd)"
 msgstr "Narodený (rrrr/mm/dd)"
 
 #: data/interfaces/bookstrap/editauthor.html:96
+#: data/interfaces/modern/editauthor.html:92
 msgid "Died (yyyy/mm/dd)"
 msgstr "Zomrel (rrrr/mm/dd)"
 
 #: data/interfaces/bookstrap/editauthor.html:102
 #: data/interfaces/bookstrap/editseries.html:31
+#: data/interfaces/modern/editauthor.html:100
+#: data/interfaces/modern/editseries.html:61
 msgid "Reason for inclusion"
 msgstr "Dôvod zaradenia"
 
 #: data/interfaces/bookstrap/editauthor.html:105
+#: data/interfaces/modern/editauthor.html:95
 msgid "AKA:"
 msgstr "Tiež známy ako:"
 
 #: data/interfaces/bookstrap/editauthor.html:111
+#: data/interfaces/modern/editauthor.html:103
 msgid "Amazon Author Page:"
 msgstr "Stránka autora na Amazone:"
 
 #: data/interfaces/bookstrap/editauthor.html:112
+#: data/interfaces/modern/editauthor.html:105
 msgid ""
 "https://www.amazon.com/stores/.../author/... - no free lookup exists for "
 "this, paste it if you find it"
@@ -6564,45 +6782,57 @@ msgstr ""
 "vyhľadávanie, ak odkaz nájdete, vložte ho sem"
 
 #: data/interfaces/bookstrap/editauthor.html:117
+#: data/interfaces/modern/editauthor.html:164
 msgid "Source IDs:"
 msgstr "ID zdrojov:"
 
 #: data/interfaces/bookstrap/editauthor.html:132
+#: data/interfaces/modern/editauthor.html:175
+#: data/interfaces/modern/editauthor.html:180
 msgid "Primary"
 msgstr "Hlavný"
 
 #: data/interfaces/bookstrap/editauthor.html:150
+#: data/interfaces/modern/editauthor.html:187
 #, python-format
 msgid "Search %(source)s"
 msgstr "Hľadať v %(source)s"
 
 #: data/interfaces/bookstrap/editauthor.html:153
+#: data/interfaces/modern/editauthor.html:188
+#: data/interfaces/modern/editauthor.html:189
 msgid "or enter ID"
 msgstr "alebo zadajte ID"
 
 #: data/interfaces/bookstrap/editauthor.html:159
+#: data/interfaces/modern/editauthor.html:183
 #, python-format
 msgid "%(source)s not enabled"
 msgstr "%(source)s nie je povolené"
 
 #: data/interfaces/bookstrap/editauthor.html:173
+#: data/interfaces/modern/editauthor.html:198
 msgid "Search for additional titles (book search only, no author linking):"
 msgstr ""
 "Hľadať ďalšie tituly (iba vyhľadávanie kníh, bez prepojenia s autorom):"
 
 #: data/interfaces/bookstrap/editauthor.html:176
+#: data/interfaces/modern/editauthor.html:63
 msgid "Search Google Books"
 msgstr "Hľadať v Knihách Google"
 
 #: data/interfaces/bookstrap/editauthor.html:180
+#: data/interfaces/modern/editauthor.html:63
 msgid "Search DNB"
 msgstr "Hľadať v DNB"
 
 #: data/interfaces/bookstrap/editauthor.html:184
+#: data/interfaces/modern/editauthor.html:64
 msgid "Search BN"
 msgstr "Hľadať v BN"
 
 #: data/interfaces/bookstrap/editauthor.html:191
+#: data/interfaces/modern/editauthor.html:111
 msgid "Author Description"
 msgstr "Popis autora"
 
@@ -6611,18 +6841,26 @@ msgstr "Popis autora"
 #: data/interfaces/bookstrap/editcomic.html:35
 #: data/interfaces/bookstrap/profile.html:80
 #: data/interfaces/bookstrap/users.html:114
+#: data/interfaces/modern/editauthor.html:112
+#: data/interfaces/modern/editbook.html:174
+#: data/interfaces/modern/editcomic.html:61
+#: data/interfaces/modern/profile.html:112
+#: data/interfaces/modern/users.html:185
 msgid "Nothing to see here..."
 msgstr "Nie je tu nič na zobrazenie..."
 
 #: data/interfaces/bookstrap/editauthor.html:195
+#: data/interfaces/modern/editauthor.html:116
 msgid "Current Image:"
 msgstr "Aktuálny obrázok:"
 
 #: data/interfaces/bookstrap/editauthor.html:197
+#: data/interfaces/modern/editauthor.html:145
 msgid "New Image file or URL"
 msgstr "Nový obrázok (súbor alebo URL)"
 
 #: data/interfaces/bookstrap/editauthor.html:198
+#: data/interfaces/modern/editauthor.html:146
 msgid ""
 "Filenames must be full path to file or a URL, or put none to remove author "
 "image"
@@ -6631,6 +6869,7 @@ msgstr ""
 "autora odstránite"
 
 #: data/interfaces/bookstrap/editauthor.html:198
+#: data/interfaces/modern/editauthor.html:146
 msgid "Filename and URL need to end with .jpg/.jpeg/.png/.webp"
 msgstr "Názov súboru a URL musia končiť na .jpg/.jpeg/.png/.webp"
 
@@ -6639,28 +6878,36 @@ msgid "Change image to:"
 msgstr "Zmeniť obrázok na:"
 
 #: data/interfaces/bookstrap/editauthor.html:222
+#: data/interfaces/modern/editauthor.html:126
 msgid "No change"
 msgstr "Bez zmeny"
 
 #: data/interfaces/bookstrap/editauthor.html:223
+#: data/interfaces/modern/editauthor.html:144
 msgid "File/URL"
 msgstr "Súbor/URL"
 
 #: data/interfaces/bookstrap/editauthor.html:231
 #: data/interfaces/bookstrap/editbook.html:200
+#: data/interfaces/modern/editauthor.html:139
+#: data/interfaces/modern/editbook.html:194
 msgid "Find Images"
 msgstr "Nájsť obrázky"
 
 #: data/interfaces/bookstrap/editauthor.html:243
 #: data/interfaces/bookstrap/editbook.html:221
+#: data/interfaces/modern/editauthor.html:153
+#: data/interfaces/modern/editbook.html:217
 msgid "Lock settings"
 msgstr "Zamknúť nastavenia"
 
 #: data/interfaces/bookstrap/editauthor.html:285
+#: data/interfaces/modern/editauthor.html:243
 msgid "Enter an ID first"
 msgstr "Najprv zadajte ID"
 
 #: data/interfaces/bookstrap/editauthor.html:287
+#: data/interfaces/modern/editauthor.html:244
 #, python-format
 msgid ""
 "Link this author to %(source)s id \"%(id)s\"? This is not verified against "
@@ -6671,37 +6918,45 @@ msgstr ""
 
 #: data/interfaces/bookstrap/editauthor.html:290
 #: data/interfaces/bookstrap/editauthor.html:317
+#: data/interfaces/modern/editauthor.html:242
 msgid "Yes, link it"
 msgstr "Áno, prepojiť"
 
 #: data/interfaces/bookstrap/editauthor.html:299
 #: data/interfaces/bookstrap/editauthor.html:326
+#: data/interfaces/modern/editauthor.html:248
 msgid "Link failed - check the logs"
 msgstr "Prepojenie zlyhalo – pozrite si záznamy"
 
 #: data/interfaces/bookstrap/editauthor.html:311
+#: data/interfaces/modern/editauthor.html:245
 #, python-format
 msgid "No match found on %(source)s"
 msgstr "Na %(source)s sa nenašla žiadna zhoda"
 
 #: data/interfaces/bookstrap/editauthor.html:313
+#: data/interfaces/modern/editauthor.html:246
 #, python-format
 msgid "Found on %(source)s: \"%(name)s\" (id: %(id)s)"
 msgstr "Nájdené na %(source)s: „%(name)s“ (ID: %(id)s)"
 
 #: data/interfaces/bookstrap/editauthor.html:315
+#: data/interfaces/modern/editauthor.html:246
 msgid "Link this author to that entry?"
 msgstr "Prepojiť tohto autora s týmto záznamom?"
 
 #: data/interfaces/bookstrap/editauthor.html:333
+#: data/interfaces/modern/editauthor.html:248
 msgid "Search failed - check the logs"
 msgstr "Vyhľadávanie zlyhalo – pozrite si záznamy"
 
 #: data/interfaces/bookstrap/editauthor.html:342
+#: data/interfaces/modern/editauthor.html:249
 msgid "Failed to set primary source - check the logs"
 msgstr "Nepodarilo sa nastaviť hlavný zdroj – pozrite si záznamy"
 
 #: data/interfaces/bookstrap/editauthor.html:348
+#: data/interfaces/modern/editauthor.html:247
 #, python-format
 msgid ""
 "Remove the %(source)s link for this author? You can search and re-link it "
@@ -6711,54 +6966,67 @@ msgstr ""
 "môžete vyhľadať a prepojiť znova."
 
 #: data/interfaces/bookstrap/editauthor.html:350
+#: data/interfaces/modern/editauthor.html:242
 msgid "Yes, remove"
 msgstr "Áno, odstrániť"
 
 #: data/interfaces/bookstrap/editauthor.html:359
+#: data/interfaces/modern/editauthor.html:249
 msgid "Remove failed - check the logs"
 msgstr "Odstránenie zlyhalo – pozrite si záznamy"
 
 #: data/interfaces/bookstrap/editbook.html:19
+#: data/interfaces/modern/editbook.html:61
 msgid "Searches:"
 msgstr "Vyhľadávania:"
 
 #: data/interfaces/bookstrap/editbook.html:21
+#: data/interfaces/modern/editbook.html:41
 msgid "eBook Title/Author"
 msgstr "Názov/autor e-knihy"
 
 #: data/interfaces/bookstrap/editbook.html:22
+#: data/interfaces/modern/editbook.html:41
 msgid "eBook Title"
 msgstr "Názov e-knihy"
 
 #: data/interfaces/bookstrap/editbook.html:23
+#: data/interfaces/modern/editbook.html:41
 msgid "eBook Author"
 msgstr "Autor e-knihy"
 
 #: data/interfaces/bookstrap/editbook.html:26
+#: data/interfaces/modern/editbook.html:43
 msgid "Audio Title/Author"
 msgstr "Názov/autor audioknihy"
 
 #: data/interfaces/bookstrap/editbook.html:27
+#: data/interfaces/modern/editbook.html:43
 msgid "Audio Title"
 msgstr "Názov audioknihy"
 
 #: data/interfaces/bookstrap/editbook.html:28
+#: data/interfaces/modern/editbook.html:43
 msgid "Audio Author"
 msgstr "Autor audioknihy"
 
 #: data/interfaces/bookstrap/editbook.html:47
+#: data/interfaces/modern/editbook.html:86
 msgid "Change author to:"
 msgstr "Zmeniť autora na:"
 
 #: data/interfaces/bookstrap/editbook.html:63
+#: data/interfaces/modern/editbook.html:78
 msgid "Book Title:"
 msgstr "Názov knihy:"
 
 #: data/interfaces/bookstrap/editbook.html:67
+#: data/interfaces/modern/editbook.html:82
 msgid "Subtitle:"
 msgstr "Podtitul:"
 
 #: data/interfaces/bookstrap/editbook.html:72
+#: data/interfaces/modern/editbook.html:95
 msgid "Comma separated list of genres"
 msgstr "Zoznam žánrov oddelených čiarkou"
 
@@ -6767,50 +7035,63 @@ msgid "Audiobook narrator"
 msgstr "Rozprávač audioknihy"
 
 #: data/interfaces/bookstrap/editbook.html:81
+#: data/interfaces/modern/editbook.html:127
 msgid "Added by"
 msgstr "Pridal"
 
 #: data/interfaces/bookstrap/editbook.html:82
+#: data/interfaces/modern/editbook.html:128
 msgid "Reason for adding/rejecting"
 msgstr "Dôvod pridania/zamietnutia"
 
 #: data/interfaces/bookstrap/editbook.html:86
+#: data/interfaces/modern/editbook.html:131
 msgid "Import from"
 msgstr "Importovať z"
 
 #: data/interfaces/bookstrap/editbook.html:87
+#: data/interfaces/modern/editbook.html:132
 msgid "Manual import folder"
 msgstr "Priečinok na ručný import"
 
 #: data/interfaces/bookstrap/editbook.html:95
+#: data/interfaces/modern/editbook.html:108
 msgid "Publication Date:"
 msgstr "Dátum vydania:"
 
 #: data/interfaces/bookstrap/editbook.html:96
+#: data/interfaces/modern/editbook.html:109
+#: data/interfaces/modern/editbook.html:110
 msgid "Publication Date (YYYY or YYYY-MM-DD)"
 msgstr "Dátum vydania (RRRR alebo RRRR-MM-DD)"
 
 #: data/interfaces/bookstrap/editbook.html:102
+#: data/interfaces/modern/editbook.html:114
 msgid "ISBN10 or ISBN13"
 msgstr "ISBN10 alebo ISBN13"
 
 #: data/interfaces/bookstrap/editbook.html:105
+#: data/interfaces/modern/editbook.html:117
 msgid "WorkID:"
 msgstr "WorkID:"
 
 #: data/interfaces/bookstrap/editbook.html:113
+#: data/interfaces/modern/editbook.html:44
 msgid "OpenLibrary:"
 msgstr "OpenLibrary:"
 
 #: data/interfaces/bookstrap/editbook.html:117
+#: data/interfaces/modern/editbook.html:44
 msgid "GoogleBooks:"
 msgstr "GoogleBooks:"
 
 #: data/interfaces/bookstrap/editbook.html:121
+#: data/interfaces/modern/editbook.html:44
 msgid "HardCover:"
 msgstr "HardCover:"
 
 #: data/interfaces/bookstrap/editbook.html:129
+#: data/interfaces/modern/editbook.html:142
 #, python-format
 msgid "Book Series %(number)s"
 msgstr "Séria kníh %(number)s"
@@ -6819,88 +7100,115 @@ msgstr "Séria kníh %(number)s"
 #: data/interfaces/bookstrap/editbook.html:150
 #: data/interfaces/bookstrap/editseries.html:22
 #: data/interfaces/bookstrap/series.html:111
+#: data/interfaces/modern/editbook.html:143
+#: data/interfaces/modern/editbook.html:163
+#: data/interfaces/modern/editseries.html:53
 #: data/interfaces/modern/series.html:109
 msgid "Series Name"
 msgstr "Názov série"
 
 #: data/interfaces/bookstrap/editbook.html:134
 #: data/interfaces/bookstrap/editbook.html:160
+#: data/interfaces/modern/editbook.html:146
+#: data/interfaces/modern/editbook.html:147
+#: data/interfaces/modern/editbook.html:166
+#: data/interfaces/modern/editbook.html:167
 msgid "Number"
 msgstr "Číslo"
 
 #: data/interfaces/bookstrap/editbook.html:139
+#: data/interfaces/modern/editbook.html:152
 msgid "Add to Existing Author Series:"
 msgstr "Pridať do existujúcej série autora:"
 
 #: data/interfaces/bookstrap/editbook.html:149
+#: data/interfaces/modern/editbook.html:162
 msgid "New Series"
 msgstr "Nová séria"
 
 #: data/interfaces/bookstrap/editbook.html:165
+#: data/interfaces/modern/editbook.html:173
 msgid "Book Description"
 msgstr "Popis knihy"
 
 #: data/interfaces/bookstrap/editbook.html:188
+#: data/interfaces/modern/editbook.html:181
 msgid "Change cover to:"
 msgstr "Zmeniť obálku na:"
 
 #: data/interfaces/bookstrap/editbook.html:204
+#: data/interfaces/modern/editbook.html:202
 msgid "OPF Fields"
 msgstr "Polia OPF"
 
 #: data/interfaces/bookstrap/editcomic.html:21
+#: data/interfaces/modern/editcomic.html:45
 msgid "Comic Title:"
 msgstr "Názov komiksu:"
 
 #: data/interfaces/bookstrap/editcomic.html:25
+#: data/interfaces/modern/editcomic.html:49
 msgid "Comic ID:"
 msgstr "ID komiksu:"
 
 #: data/interfaces/bookstrap/editcomic.html:26
+#: data/interfaces/modern/editcomic.html:50
 msgid "Comic ID"
 msgstr "ID komiksu"
 
 #: data/interfaces/bookstrap/editcomic.html:30
+#: data/interfaces/modern/editcomic.html:53
 msgid "Aka:"
 msgstr "Tiež známy ako:"
 
 #: data/interfaces/bookstrap/editcomic.html:31
+#: data/interfaces/modern/editcomic.html:54
 msgid "Alternate IDs"
 msgstr "Alternatívne ID"
 
 #: data/interfaces/bookstrap/editcomic.html:34
+#: data/interfaces/modern/editcomic.html:60
 msgid "Comic Description"
 msgstr "Popis komiksu"
 
-#: data/interfaces/bookstrap/editcomic.html:41
+#: data/interfaces/bookstrap/editcomic.html:42
+#: data/interfaces/modern/editcomic.html:73
+#: data/interfaces/modern/editcomic.html:84
 msgid "Delete Comic"
 msgstr "Vymazať komiks"
 
-#: data/interfaces/bookstrap/editcomic.html:58
+#: data/interfaces/bookstrap/editcomic.html:60
+#: data/interfaces/modern/editcomic.html:87
 msgid "Are you sure you want to permanently delete the comic?"
 msgstr "Naozaj chcete natrvalo vymazať komiks?"
 
 #: data/interfaces/bookstrap/editissue.html:20
+#: data/interfaces/modern/editissue.html:47
 msgid "Magazine Title:"
 msgstr "Názov časopisu:"
 
 #: data/interfaces/bookstrap/editissue.html:24
+#: data/interfaces/modern/editissue.html:51
 msgid "Issue Date/Num:"
 msgstr "Dátum/číslo vydania:"
 
 #: data/interfaces/bookstrap/editissue.html:25
+#: data/interfaces/modern/editissue.html:52
 msgid "Date/Num"
 msgstr "Dátum/číslo"
 
 #: data/interfaces/bookstrap/editissue.html:28
+#: data/interfaces/modern/editissue.html:59
 msgid "PDF Tags"
 msgstr "Značky PDF"
 
 #: data/interfaces/bookstrap/editmag.html:19
+#: data/interfaces/modern/editmag.html:42
 msgid "New Magazine Title:"
 msgstr "Nový názov časopisu:"
 
 #: data/interfaces/bookstrap/editmag.html:93
+#: data/interfaces/modern/editmag.html:102
 msgid "Issues Renamed"
 msgstr "Čísla boli premenované"
 
@@ -6909,38 +7217,50 @@ msgstr "Čísla boli premenované"
 #: data/interfaces/bookstrap/magazines.html:349
 #: data/interfaces/bookstrap/searchresults.html:303
 #: data/interfaces/bookstrap/series.html:327
+#: data/interfaces/modern/editmag.html:103
+#: data/interfaces/modern/searchresults.html:248
 msgid "Operation Complete"
 msgstr "Operácia dokončená"
 
 #: data/interfaces/bookstrap/editseries.html:21
+#: data/interfaces/modern/editseries.html:52
 msgid "Series Name:"
 msgstr "Názov série:"
 
 #: data/interfaces/bookstrap/editseries.html:25
+#: data/interfaces/modern/editseries.html:56
 msgid "Series ID:"
 msgstr "ID série:"
 
 #: data/interfaces/bookstrap/editseries.html:26
+#: data/interfaces/modern/editseries.html:57
 msgid "Series ID"
 msgstr "ID série"
 
 #: data/interfaces/bookstrap/editseries.html:42
+#: data/interfaces/modern/editseries.html:85
 msgid "Delete Series"
 msgstr "Vymazať sériu"
 
 #: data/interfaces/bookstrap/editseries.html:59
+#: data/interfaces/modern/editseries.html:93
 msgid "Are you sure you want to permanently delete the series?"
 msgstr "Naozaj chcete natrvalo vymazať sériu?"
 
 #: data/interfaces/bookstrap/formlogin.html:27
+#: data/interfaces/modern/formlogin.html:28
+#: data/interfaces/modern/formlogin.html:29
 msgid "username"
 msgstr "používateľské meno"
 
 #: data/interfaces/bookstrap/formlogin.html:30
+#: data/interfaces/modern/formlogin.html:33
+#: data/interfaces/modern/formlogin.html:34
 msgid "password"
 msgstr "heslo"
 
 #: data/interfaces/bookstrap/formlogin.html:33
+#: data/interfaces/modern/formlogin.html:37
 msgid "Sign in"
 msgstr "Prihlásiť sa"
 
@@ -6971,6 +7291,7 @@ msgstr "Počet stiahnutí"
 
 #: data/interfaces/bookstrap/history.html:31
 #: data/interfaces/bookstrap/history.html:45
+#: data/interfaces/modern/manualsearch.html:68
 msgid "Type"
 msgstr "Typ"
 
@@ -6979,8 +7300,10 @@ msgstr "Typ"
 #: data/interfaces/bookstrap/manageissues.html:33
 #: data/interfaces/bookstrap/manageissues.html:46
 #: data/interfaces/bookstrap/manualsearch.html:20
-#: data/interfaces/modern/config.html:454
+#: data/interfaces/modern/config.html:481
 #: data/interfaces/modern/history.html:57
+#: data/interfaces/modern/manageissues.html:55
+#: data/interfaces/modern/manualsearch.html:65
 msgid "Provider"
 msgstr "Poskytovateľ"
 
@@ -6988,6 +7311,7 @@ msgstr "Poskytovateľ"
 #: data/interfaces/bookstrap/history.html:49
 #: data/interfaces/bookstrap/manualsearch.html:21
 #: data/interfaces/modern/history.html:58
+#: data/interfaces/modern/manualsearch.html:63
 msgid "Size"
 msgstr "Veľkosť"
 
@@ -7000,6 +7324,7 @@ msgid "Download "
 msgstr "Stiahnuť "
 
 #: data/interfaces/bookstrap/history.html:77
+#: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/history.html:157
 msgid "Marked Failed"
 msgstr "Označené ako neúspešné"
@@ -7048,6 +7373,7 @@ msgstr "Hlavný autor alebo všetci spoluautori"
 #: data/interfaces/bookstrap/searchresults.html:17
 #: data/interfaces/bookstrap/series.html:46
 #: data/interfaces/modern/index.html:212
+#: data/interfaces/modern/searchresults.html:123
 msgid "Title / Author / ISBN"
 msgstr "Názov / autor / ISBN"
 
@@ -7068,6 +7394,7 @@ msgstr "Prebieha obnova autorov..."
 #: data/interfaces/bookstrap/series.html:62
 #: data/interfaces/bookstrap/series.html:66
 #: data/interfaces/modern/index.html:240
+#: data/interfaces/modern/searchresults.html:153
 msgid "Search in progress ..."
 msgstr "Prebieha vyhľadávanie..."
 
@@ -7143,7 +7470,7 @@ msgstr "Importovať čísla"
 #: data/interfaces/bookstrap/issues.html:14
 #: data/interfaces/bookstrap/magazines.html:16
 #: data/interfaces/modern/issues.html:117
-#: data/interfaces/modern/magazines.html:97 lazylibrarian/webServe.py:7214
+#: data/interfaces/modern/magazines.html:97 lazylibrarian/webServe.py:7246
 msgid "Past Issues"
 msgstr "Staršie čísla"
 
@@ -7180,19 +7507,21 @@ msgstr "Aktualizácia čísla"
 msgid "Scanning Magazine Issues"
 msgstr "Prehľadávajú sa čísla časopisu"
 
-#: data/interfaces/bookstrap/login.html:14
+#: data/interfaces/bookstrap/login.html:14 data/interfaces/modern/login.html:19
 msgid "LazyLibrarian User Login"
 msgstr "Prihlásenie používateľa LazyLibrarian"
 
-#: data/interfaces/bookstrap/login.html:30 lazylibrarian/webServe.py:686
+#: data/interfaces/bookstrap/login.html:30 data/interfaces/modern/login.html:34
+#: data/interfaces/modern/register.html:46 lazylibrarian/webServe.py:686
 msgid "Login"
 msgstr "Prihlásiť sa"
 
-#: data/interfaces/bookstrap/login.html:38
+#: data/interfaces/bookstrap/login.html:38 data/interfaces/modern/login.html:42
+#: data/interfaces/modern/login.html:69
 msgid "Reset Password"
 msgstr "Obnoviť heslo"
 
-#: data/interfaces/bookstrap/login.html:40
+#: data/interfaces/bookstrap/login.html:40 data/interfaces/modern/login.html:44
 msgid "Register"
 msgstr "Registrovať sa"
 
@@ -7200,11 +7529,11 @@ msgstr "Registrovať sa"
 msgid "User Login"
 msgstr "Prihlásenie používateľa"
 
-#: data/interfaces/bookstrap/login.html:80
+#: data/interfaces/bookstrap/login.html:80 data/interfaces/modern/login.html:55
 msgid "Please enter your email address for confirmation"
 msgstr "Na potvrdenie zadajte svoju e-mailovú adresu"
 
-#: data/interfaces/bookstrap/login.html:88
+#: data/interfaces/bookstrap/login.html:88 data/interfaces/modern/login.html:51
 msgid "Password Reset"
 msgstr "Obnovenie hesla"
 
@@ -7321,6 +7650,7 @@ msgstr "Názov časopisu"
 
 #: data/interfaces/bookstrap/magazines.html:40
 #: data/interfaces/bookstrap/magazines.html:42
+#: data/interfaces/modern/editmag.html:40
 #: data/interfaces/modern/history.html:160
 #: data/interfaces/modern/issues.html:73
 #: data/interfaces/modern/magazines.html:89
@@ -7369,53 +7699,53 @@ msgstr[1] "Naozaj chcete natrvalo vymazať %(count)s vybrané časopisy?"
 msgstr[2] "Naozaj chcete natrvalo vymazať %(count)s vybraných časopisov?"
 
 #: data/interfaces/bookstrap/managebooks.html:13
-#: data/interfaces/modern/managebooks.html:85
+#: data/interfaces/modern/managebooks.html:86
 msgid "Import eBooks"
 msgstr "Importovať e-knihy"
 
 #: data/interfaces/bookstrap/managebooks.html:14
-#: data/interfaces/modern/managebooks.html:86
+#: data/interfaces/modern/managebooks.html:87
 msgid "Include eBooks"
 msgstr "Zahrnúť e-knihy"
 
 #: data/interfaces/bookstrap/managebooks.html:20
-#: data/interfaces/modern/managebooks.html:88
+#: data/interfaces/modern/managebooks.html:89
 msgid "Import AudioBooks"
 msgstr "Importovať audioknihy"
 
 #: data/interfaces/bookstrap/managebooks.html:21
-#: data/interfaces/modern/managebooks.html:89
+#: data/interfaces/modern/managebooks.html:90
 msgid "Include AudioBooks"
 msgstr "Zahrnúť audioknihy"
 
 #: data/interfaces/bookstrap/managebooks.html:23
-#: data/interfaces/modern/managebooks.html:91
+#: data/interfaces/modern/managebooks.html:92
 msgid "WishLists"
 msgstr "Zoznamy želaní"
 
 #: data/interfaces/bookstrap/managebooks.html:25
-#: data/interfaces/modern/managebooks.html:93
+#: data/interfaces/modern/managebooks.html:94
 msgid "Import CSV"
 msgstr "Importovať CSV"
 
 #: data/interfaces/bookstrap/managebooks.html:27
-#: data/interfaces/modern/managebooks.html:94
+#: data/interfaces/modern/managebooks.html:95
 msgid "Export CSV"
 msgstr "Exportovať CSV"
 
 #: data/interfaces/bookstrap/managebooks.html:30
-#: data/interfaces/modern/managebooks.html:99
+#: data/interfaces/modern/managebooks.html:100
 msgid "Goodreads Sync"
 msgstr "Synchronizácia s Goodreads"
 
 #: data/interfaces/bookstrap/managebooks.html:34
-#: data/interfaces/modern/managebooks.html:102
+#: data/interfaces/modern/managebooks.html:103
 msgid "HardCover Sync"
 msgstr "Synchronizácia s HardCover"
 
 #: data/interfaces/bookstrap/managebooks.html:41
-#: data/interfaces/modern/author.html:228
-#: data/interfaces/modern/managebooks.html:66
+#: data/interfaces/modern/author.html:229
+#: data/interfaces/modern/managebooks.html:67
 #: data/interfaces/modern/members.html:110
 msgid "Library"
 msgstr "Knižnica"
@@ -7426,8 +7756,8 @@ msgstr "Prebieha synchronizácia, čakajte..."
 
 #: data/interfaces/bookstrap/managebooks.html:107
 #: data/interfaces/bookstrap/managebooks.html:131
-#: data/interfaces/modern/managebooks.html:63
-#: data/interfaces/modern/managebooks.html:199
+#: data/interfaces/modern/managebooks.html:64
+#: data/interfaces/modern/managebooks.html:200
 msgid "Listed"
 msgstr "Zaradené"
 
@@ -7437,27 +7767,27 @@ msgid "Delay"
 msgstr "Oneskorenie"
 
 #: data/interfaces/bookstrap/managebooks.html:135
-#: data/interfaces/modern/managebooks.html:199
+#: data/interfaces/modern/managebooks.html:200
 msgid "Last Search"
 msgstr "Posledné hľadanie"
 
 #: data/interfaces/bookstrap/managebooks.html:156
-#: data/interfaces/modern/managebooks.html:39
+#: data/interfaces/modern/managebooks.html:40
 msgid "both Wanted"
 msgstr "obe hľadané"
 
 #: data/interfaces/bookstrap/managebooks.html:172
-#: data/interfaces/modern/managebooks.html:46
+#: data/interfaces/modern/managebooks.html:47
 msgid "No Delay"
 msgstr "Bez oneskorenia"
 
 #: data/interfaces/bookstrap/managebooks.html:208
-#: data/interfaces/modern/managebooks.html:203
+#: data/interfaces/modern/managebooks.html:204
 msgid "CSV Export Result"
 msgstr "Výsledok exportu CSV"
 
 #: data/interfaces/bookstrap/managebooks.html:225
-#: data/interfaces/modern/managebooks.html:204
+#: data/interfaces/modern/managebooks.html:205
 msgid "Goodreads Sync Result"
 msgstr "Výsledok synchronizácie s Goodreads"
 
@@ -7477,12 +7807,12 @@ msgstr ""
 "Vyžaduje sa potvrdenie synchronizácie s HardCover pre viacerých používateľov"
 
 #: data/interfaces/bookstrap/managebooks.html:258
-#: data/interfaces/modern/managebooks.html:201
+#: data/interfaces/modern/managebooks.html:202
 msgid "HardCover Sync Confirmation Required"
 msgstr "Vyžaduje sa potvrdenie synchronizácie s HardCover"
 
 #: data/interfaces/bookstrap/managebooks.html:267
-#: data/interfaces/modern/managebooks.html:202
+#: data/interfaces/modern/managebooks.html:203
 msgid "Ignore Updates"
 msgstr "Ignorovať aktualizácie"
 
@@ -7496,7 +7826,7 @@ msgid "Proceed with All Users"
 msgstr "Pokračovať pre všetkých používateľov"
 
 #: data/interfaces/bookstrap/managebooks.html:280
-#: data/interfaces/modern/managebooks.html:202
+#: data/interfaces/modern/managebooks.html:203
 msgid "Proceed"
 msgstr "Pokračovať"
 
@@ -7509,7 +7839,7 @@ msgid "Current User"
 msgstr "Aktuálny používateľ"
 
 #: data/interfaces/bookstrap/managebooks.html:401
-#: data/interfaces/modern/managebooks.html:201
+#: data/interfaces/modern/managebooks.html:202
 msgid "HardCover Sync Result"
 msgstr "Výsledok synchronizácie s HardCover"
 
@@ -7548,16 +7878,17 @@ msgid "HardCover Multi-User Sync Complete"
 msgstr "Synchronizácia s HardCover pre viacerých používateľov dokončená"
 
 #: data/interfaces/bookstrap/managebooks.html:488
-#: data/interfaces/modern/managebooks.html:204
+#: data/interfaces/modern/managebooks.html:205
 msgid "Calibre Sync Result"
 msgstr "Výsledok synchronizácie s Calibre"
 
 #: data/interfaces/bookstrap/managebooks.html:503
-#: data/interfaces/modern/managebooks.html:203
+#: data/interfaces/modern/managebooks.html:204
 msgid "CSV Import Info"
 msgstr "Informácie o importe CSV"
 
 #: data/interfaces/bookstrap/manageissues.html:44
+#: data/interfaces/modern/manageissues.html:53
 msgid "NZB Date"
 msgstr "Dátum NZB"
 
@@ -7566,14 +7897,17 @@ msgid "Issue Date"
 msgstr "Dátum čísla"
 
 #: data/interfaces/bookstrap/manageissues.html:53
+#: data/interfaces/modern/manageissues.html:98
 msgid "Change selected magazines to:"
 msgstr "Zmeniť vybrané časopisy na:"
 
 #: data/interfaces/bookstrap/manageissues.html:100
+#: data/interfaces/modern/manageissues.html:93
 msgid "No matching issues found"
 msgstr "Nenašli sa žiadne zodpovedajúce čísla"
 
 #: data/interfaces/bookstrap/manualsearch.html:39
+#: data/interfaces/modern/manualsearch.html:89
 msgid "Snatch"
 msgstr "Stiahnuť"
 
@@ -7602,7 +7936,7 @@ msgstr "Označiť vybrané"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:61
-#: data/interfaces/modern/author.html:344
+#: data/interfaces/modern/author.html:345
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/history.html:160
 #: data/interfaces/modern/members.html:112 lazylibrarian/i18n.py:397
@@ -7612,7 +7946,7 @@ msgstr "E-kniha"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:67
-#: data/interfaces/modern/author.html:344
+#: data/interfaces/modern/author.html:345
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/book_detail.html:132
 #: data/interfaces/modern/history.html:160
@@ -7637,96 +7971,120 @@ msgstr "Označiť vybrané audioknihy"
 msgid "as"
 msgstr "ako"
 
-#: data/interfaces/bookstrap/members.html:136 lazylibrarian/webServe.py:3895
+#: data/interfaces/bookstrap/members.html:136 lazylibrarian/webServe.py:3911
 msgid "Manual"
 msgstr "Ručne"
 
 #: data/interfaces/bookstrap/profile.html:8
+#: data/interfaces/modern/profile.html:39
 msgid "LazyLibrarian User Profile"
 msgstr "Profil používateľa LazyLibrarian"
 
 #: data/interfaces/bookstrap/profile.html:16
 #: data/interfaces/bookstrap/register.html:20
 #: data/interfaces/bookstrap/users.html:37
+#: data/interfaces/modern/profile.html:47
+#: data/interfaces/modern/register.html:21
+#: data/interfaces/modern/users.html:101
 msgid "Full Name"
 msgstr "Celé meno"
 
 #: data/interfaces/bookstrap/profile.html:24
+#: data/interfaces/modern/profile.html:55
 msgid "Send To (eg kindle)"
 msgstr "Odoslať na (napr. Kindle)"
 
 #: data/interfaces/bookstrap/profile.html:28
 #: data/interfaces/bookstrap/users.html:76
+#: data/interfaces/modern/profile.html:63 data/interfaces/modern/users.html:151
 msgid "Theme"
 msgstr "Motív"
 
 #: data/interfaces/bookstrap/profile.html:42
+#: data/interfaces/modern/profile.html:43
 #, python-format
 msgid "Username (UserID=%(userid)s)"
 msgstr "Používateľské meno (UserID=%(userid)s)"
 
 #: data/interfaces/bookstrap/profile.html:46
 #: data/interfaces/bookstrap/users.html:72
+#: data/interfaces/modern/profile.html:71 data/interfaces/modern/users.html:144
 msgid "Preferred BookType to open/email"
 msgstr "Preferovaný typ knihy na otvorenie/odoslanie e-mailom"
 
 #: data/interfaces/bookstrap/profile.html:60
 #: data/interfaces/bookstrap/users.html:92
+#: data/interfaces/modern/profile.html:79 data/interfaces/modern/users.html:163
 msgid "HardCover Token"
 msgstr "Token HardCover"
 
 #: data/interfaces/bookstrap/profile.html:62
 #: data/interfaces/bookstrap/users.html:94
+#: data/interfaces/modern/profile.html:81 data/interfaces/modern/users.html:165
 msgid "Bearer token"
 msgstr "Token typu Bearer"
 
 #: data/interfaces/bookstrap/profile.html:71
+#: data/interfaces/modern/profile.html:92
 msgid "Leave empty to keep existing password"
 msgstr "Ak chcete ponechať súčasné heslo, nechajte prázdne"
 
 #: data/interfaces/bookstrap/profile.html:74
+#: data/interfaces/modern/profile.html:95
 msgid "Confirm Password"
 msgstr "Potvrdiť heslo"
 
 #: data/interfaces/bookstrap/profile.html:76
+#: data/interfaces/modern/profile.html:98
 msgid "If changing password, enter new password  again here"
 msgstr "Ak meníte heslo, zadajte nové heslo ešte raz"
 
 #: data/interfaces/bookstrap/profile.html:79
+#: data/interfaces/modern/profile.html:104
 msgid "Subscriptions (for information only)"
 msgstr "Odbery (len pre informáciu)"
 
 #: data/interfaces/bookstrap/profile.html:113
 #: data/interfaces/bookstrap/users.html:324
+#: data/interfaces/modern/profile.html:147
+#: data/interfaces/modern/users.html:264
 msgid "Update User"
 msgstr "Aktualizovať používateľa"
 
 #: data/interfaces/bookstrap/profile.html:132
 #: data/interfaces/bookstrap/users.html:195
+#: data/interfaces/modern/profile.html:147
+#: data/interfaces/modern/users.html:264
 msgid "Test HardCover Token"
 msgstr "Otestovať token HardCover"
 
 #: data/interfaces/bookstrap/register.html:12
+#: data/interfaces/modern/register.html:16
 msgid "Please complete this short form and press \"Submit\""
 msgstr "Vyplňte tento krátky formulár a stlačte „Odoslať“"
 
 #: data/interfaces/bookstrap/register.html:13
+#: data/interfaces/modern/register.html:17
 msgid "Your message will be reviewed and you will receive a reply by email"
 msgstr "Vašu správu preskúmame a odpoveď dostanete e-mailom"
 
 #: data/interfaces/bookstrap/register.html:24
+#: data/interfaces/modern/register.html:25
 msgid "Username (if already registered)"
 msgstr "Používateľské meno (ak ste už zaregistrovaný)"
 
 #: data/interfaces/bookstrap/register.html:28
+#: data/interfaces/modern/register.html:29
 msgid "Email Address (required for reply)"
 msgstr "E-mailová adresa (potrebná pre odpoveď)"
 
 #: data/interfaces/bookstrap/register.html:34
+#: data/interfaces/modern/register.html:33
 msgid "Message to Admin (optional)"
 msgstr "Správa pre správcu (nepovinné)"
 
 #: data/interfaces/bookstrap/register.html:40
+#: data/interfaces/modern/register.html:38
 msgid "Submit"
 msgstr "Odoslať"
 
@@ -7736,28 +8094,37 @@ msgstr "Registrácia používateľa"
 
 #: data/interfaces/bookstrap/searchresults.html:19
 #: data/interfaces/bookstrap/series.html:48
+#: data/interfaces/modern/searchresults.html:123
+#: data/interfaces/modern/searchresults.html:125
 msgid "Search for book"
 msgstr "Hľadať knihu"
 
 #: data/interfaces/bookstrap/searchresults.html:52
+#: data/interfaces/modern/searchresults.html:144
 msgid "Rating count"
 msgstr "Počet hodnotení"
 
 #: data/interfaces/bookstrap/searchresults.html:53
+#: data/interfaces/modern/comicresults.html:76
 msgid "Add"
 msgstr "Pridať"
 
 #: data/interfaces/bookstrap/searchresults.html:79
+#: data/interfaces/modern/searchresults.html:84
 msgid "Have Author"
 msgstr "Autor v knižnici"
 
-#: data/interfaces/bookstrap/searchresults.html:83 lazylibrarian/i18n.py:397
+#: data/interfaces/bookstrap/searchresults.html:83
+#: data/interfaces/modern/searchresults.html:86 lazylibrarian/i18n.py:397
 msgid "Loading"
 msgstr "Načítava sa"
 
 #: data/interfaces/bookstrap/searchresults.html:87
 #: data/interfaces/bookstrap/searchresults.html:91
 #: data/interfaces/bookstrap/searchresults.html:197
+#: data/interfaces/modern/searchresults.html:88
+#: data/interfaces/modern/searchresults.html:90
+#: data/interfaces/modern/searchresults.html:198
 msgid "Add Author"
 msgstr "Pridať autora"
 
@@ -7769,27 +8136,33 @@ msgstr "Neznámy"
 
 #: data/interfaces/bookstrap/searchresults.html:128
 #: data/interfaces/bookstrap/searchresults.html:156
+#: data/interfaces/modern/searchresults.html:68
 msgid "Add Book"
 msgstr "Pridať knihu"
 
 #: data/interfaces/bookstrap/searchresults.html:147
 #: data/interfaces/bookstrap/searchresults.html:162
+#: data/interfaces/modern/searchresults.html:68
 msgid "Add Audio"
 msgstr "Pridať audio"
 
 #: data/interfaces/bookstrap/searchresults.html:195
+#: data/interfaces/modern/searchresults.html:196
 msgid "Change selected items to:"
 msgstr "Zmeniť vybrané položky na:"
 
 #: data/interfaces/bookstrap/searchresults.html:198
+#: data/interfaces/modern/searchresults.html:200
 msgid "Want eBook"
 msgstr "Chcem e-knihu"
 
 #: data/interfaces/bookstrap/searchresults.html:199
+#: data/interfaces/modern/searchresults.html:203
 msgid "Want Audio"
 msgstr "Chcem audio"
 
 #: data/interfaces/bookstrap/searchresults.html:200
+#: data/interfaces/modern/searchresults.html:206
 msgid "Want eBook and Audio"
 msgstr "Chcem e-knihu aj audio"
 
@@ -7842,18 +8215,19 @@ msgid "No series found"
 msgstr "Nenašli sa žiadne série"
 
 #: data/interfaces/bookstrap/shutdown.html:38
+#: data/interfaces/modern/shutdown.html:23
 msgid "Server is taking longer than expected to respond. Check the log."
 msgstr "Server odpovedá dlhšie, než sa očakávalo. Skontrolujte záznam."
 
-#: data/interfaces/bookstrap/users.html:14
+#: data/interfaces/bookstrap/users.html:14 data/interfaces/modern/users.html:78
 msgid "Select user"
 msgstr "Vybrať používateľa"
 
-#: data/interfaces/bookstrap/users.html:16
+#: data/interfaces/bookstrap/users.html:16 data/interfaces/modern/users.html:80
 msgid "-- add a new user --"
 msgstr "-- pridať nového používateľa --"
 
-#: data/interfaces/bookstrap/users.html:23
+#: data/interfaces/bookstrap/users.html:23 data/interfaces/modern/users.html:69
 msgid "Import/Export Users/edit feeds"
 msgstr "Import/export používateľov / úprava kanálov"
 
@@ -7866,103 +8240,128 @@ msgid "Export"
 msgstr "Exportovať"
 
 #: data/interfaces/bookstrap/users.html:27
+#: data/interfaces/modern/users.html:194
 msgid "Feeds"
 msgstr "Kanály"
 
 #: data/interfaces/bookstrap/users.html:41
+#: data/interfaces/modern/users.html:105
 msgid "Email (for messages)"
 msgstr "E-mail (pre správy)"
 
 #: data/interfaces/bookstrap/users.html:45
+#: data/interfaces/modern/users.html:109
 msgid "Send To (eg kindle email)"
 msgstr "Odoslať na (napr. e-mail Kindle)"
 
-#: data/interfaces/bookstrap/users.html:52 lazylibrarian/emailtemplates.py:94
+#: data/interfaces/bookstrap/users.html:52 data/interfaces/modern/users.html:42
+#: lazylibrarian/emailtemplates.py:94
 msgid "Admin"
 msgstr "Správca"
 
-#: data/interfaces/bookstrap/users.html:53 lazylibrarian/emailtemplates.py:96
+#: data/interfaces/bookstrap/users.html:53 data/interfaces/modern/users.html:42
+#: lazylibrarian/emailtemplates.py:96
 msgid "Friend"
 msgstr "Priateľ"
 
-#: data/interfaces/bookstrap/users.html:54 lazylibrarian/emailtemplates.py:98
+#: data/interfaces/bookstrap/users.html:54 data/interfaces/modern/users.html:43
+#: lazylibrarian/emailtemplates.py:98
 msgid "Guest"
 msgstr "Hosť"
 
 #: data/interfaces/bookstrap/users.html:59
+#: data/interfaces/modern/users.html:263
 msgid "keep existing password"
 msgstr "ponechať súčasné heslo"
 
 #: data/interfaces/bookstrap/users.html:60
+#: data/interfaces/modern/users.html:127 data/interfaces/modern/users.html:128
 msgid "Generate Password"
 msgstr "Vygenerovať heslo"
 
 #: data/interfaces/bookstrap/users.html:64
+#: data/interfaces/modern/users.html:136
 msgid "Calibre Read Column"
 msgstr "Stĺpec Calibre „Prečítané“"
 
 #: data/interfaces/bookstrap/users.html:68
+#: data/interfaces/modern/users.html:140
 msgid "Calibre ToRead Column"
 msgstr "Stĺpec Calibre „Na prečítanie“"
 
 #: data/interfaces/bookstrap/users.html:80
+#: data/interfaces/modern/users.html:157
 msgid "UI Language"
 msgstr "Jazyk rozhrania"
 
 #: data/interfaces/bookstrap/users.html:84
+#: data/interfaces/modern/users.html:175
 msgid "UserID"
 msgstr "UserID"
 
 #: data/interfaces/bookstrap/users.html:88
+#: data/interfaces/modern/users.html:176
 msgid "HardCoverID"
 msgstr "HardCoverID"
 
 #: data/interfaces/bookstrap/users.html:101
+#: data/interfaces/modern/users.html:177
 msgid "Last Login"
 msgstr "Posledné prihlásenie"
 
 #: data/interfaces/bookstrap/users.html:105
+#: data/interfaces/modern/users.html:178
 msgid "Logins"
 msgstr "Prihlásenia"
 
 #: data/interfaces/bookstrap/users.html:109
+#: data/interfaces/modern/users.html:179
 msgid "Downloads"
 msgstr "Stiahnuté"
 
 #: data/interfaces/bookstrap/users.html:113
+#: data/interfaces/modern/users.html:181
 msgid "Subscriptions"
 msgstr "Odbery"
 
 #: data/interfaces/bookstrap/users.html:118
+#: data/interfaces/modern/users.html:191 data/interfaces/modern/users.html:234
 msgid "Save"
 msgstr "Uložiť"
 
 #: data/interfaces/bookstrap/users.html:213
+#: data/interfaces/modern/users.html:265
 msgid "No wishlists found"
 msgstr "Nenašli sa žiadne zoznamy želaní"
 
 #: data/interfaces/bookstrap/users.html:216
+#: data/interfaces/modern/users.html:264
 msgid "User Feeds"
 msgstr "Kanály používateľa"
 
 #: data/interfaces/bookstrap/users.html:224
+#: data/interfaces/modern/users.html:265
 msgid "Updated User"
 msgstr "Používateľ bol aktualizovaný"
 
 #: data/interfaces/bookstrap/users.html:243
+#: data/interfaces/modern/users.html:73 data/interfaces/modern/users.html:265
 msgid "Export Users"
 msgstr "Exportovať používateľov"
 
 #: data/interfaces/bookstrap/users.html:258
+#: data/interfaces/modern/users.html:74 data/interfaces/modern/users.html:266
 msgid "Import Users"
 msgstr "Importovať používateľov"
 
 #: data/interfaces/bookstrap/users.html:273
+#: data/interfaces/modern/users.html:267
 #, python-format
 msgid "Are you sure you want to permanently delete %(user)s?"
 msgstr "Naozaj chcete natrvalo vymazať používateľa %(user)s?"
 
 #: data/interfaces/bookstrap/users.html:289
+#: data/interfaces/modern/users.html:266
 msgid "Delete User"
 msgstr "Vymazať používateľa"
 
@@ -8012,41 +8411,50 @@ msgid "All changes on GitLab"
 msgstr "Všetky zmeny na GitLabe"
 
 #: data/interfaces/modern/author.html:159
+#: data/interfaces/modern/author_detail.html:145
 #, fuzzy
 #| msgid "Following"
 msgid "Follow"
 msgstr "Sledovaný"
 
 #: data/interfaces/modern/author.html:164
+#: data/interfaces/modern/author_detail.html:150
 #: data/interfaces/modern/book_detail.html:163
-#: data/interfaces/modern/comics.html:96 data/interfaces/modern/history.html:66
-#: data/interfaces/modern/index.html:110 data/interfaces/modern/issues.html:100
-#: data/interfaces/modern/logs.html:65 data/interfaces/modern/magazines.html:93
+#: data/interfaces/modern/books.html:159 data/interfaces/modern/comics.html:96
+#: data/interfaces/modern/history.html:66 data/interfaces/modern/index.html:110
+#: data/interfaces/modern/issues.html:100 data/interfaces/modern/logs.html:65
+#: data/interfaces/modern/magazines.html:93
+#: data/interfaces/modern/managebooks.html:83
 #: data/interfaces/modern/members.html:123
 #: data/interfaces/modern/series.html:121
 msgid "More"
 msgstr ""
 
-#: data/interfaces/modern/author.html:180 data/interfaces/modern/index.html:131
+#: data/interfaces/modern/author.html:181
+#: data/interfaces/modern/author_detail.html:166
+#: data/interfaces/modern/index.html:131
 #, fuzzy
 #| msgid "Include configuration summary"
 msgid "Include contributors"
 msgstr "Zahrnúť súhrn konfigurácie"
 
-#: data/interfaces/modern/author.html:182 data/interfaces/modern/index.html:133
+#: data/interfaces/modern/author.html:183
+#: data/interfaces/modern/author_detail.html:168
+#: data/interfaces/modern/index.html:133
 #, fuzzy
 #| msgid "Errors:"
 msgid "Primary authors only"
 msgstr "Chyby:"
 
-#: data/interfaces/modern/author.html:212
-#: data/interfaces/modern/managebooks.html:57
+#: data/interfaces/modern/author.html:213
+#: data/interfaces/modern/editseries.html:70
+#: data/interfaces/modern/managebooks.html:58
 #, fuzzy
 #| msgid "Filters"
 msgid "Filter books"
 msgstr "Filtre"
 
-#: data/interfaces/modern/author.html:214 data/interfaces/modern/books.html:121
+#: data/interfaces/modern/author.html:215 data/interfaces/modern/books.html:124
 #: data/interfaces/modern/comics.html:74 data/interfaces/modern/index.html:87
 #: data/interfaces/modern/issues.html:83
 #: data/interfaces/modern/magazines.html:72
@@ -8057,70 +8465,78 @@ msgstr "Filtre"
 msgid "View"
 msgstr "Náhľad:"
 
-#: data/interfaces/modern/author.html:222 data/interfaces/modern/books.html:129
+#: data/interfaces/modern/author.html:223 data/interfaces/modern/books.html:132
+#: data/interfaces/modern/comicresults.html:53
 #: data/interfaces/modern/comics.html:80 data/interfaces/modern/history.html:53
 #: data/interfaces/modern/index.html:93 data/interfaces/modern/issues.html:89
-#: data/interfaces/modern/logs.html:50 data/interfaces/modern/magazines.html:78
-#: data/interfaces/modern/managebooks.html:59
+#: data/interfaces/modern/magazines.html:78
+#: data/interfaces/modern/managebooks.html:60
+#: data/interfaces/modern/manageissues.html:51
+#: data/interfaces/modern/manualsearch.html:61
+#: data/interfaces/modern/searchresults.html:138
 #: data/interfaces/modern/series.html:108
 msgid "Sort"
 msgstr ""
 
-#: data/interfaces/modern/author.html:283 data/interfaces/modern/books.html:193
+#: data/interfaces/modern/author.html:284 data/interfaces/modern/books.html:213
 #: data/interfaces/modern/members.html:177
 #, fuzzy
 #| msgid "Search"
 msgid "Search now"
 msgstr "Hľadať"
 
-#: data/interfaces/modern/author.html:297 data/interfaces/modern/books.html:216
-#: data/interfaces/modern/managebooks.html:156
+#: data/interfaces/modern/author.html:298 data/interfaces/modern/books.html:236
+#: data/interfaces/modern/managebooks.html:157
 #: data/interfaces/modern/members.html:188
 #, fuzzy
 #| msgid "Selected issues:"
 msgid "Selected books"
 msgstr "Vybrané čísla:"
 
-#: data/interfaces/modern/author.html:342
+#: data/interfaces/modern/author.html:343
 #: data/interfaces/modern/book_detail.html:264
 #, fuzzy
 #| msgid "Show Ignored"
 msgid "Show more"
 msgstr "Zobraziť ignorované"
 
-#: data/interfaces/modern/author.html:342
+#: data/interfaces/modern/author.html:343
 #: data/interfaces/modern/book_detail.html:264
 #, fuzzy
 #| msgid "Show All"
 msgid "Show less"
 msgstr "Zobraziť všetko"
 
-#: data/interfaces/modern/author.html:342 data/interfaces/modern/books.html:241
+#: data/interfaces/modern/author.html:343 data/interfaces/modern/books.html:272
+#: data/interfaces/modern/comics.html:213
+#: data/interfaces/modern/editauthor.html:241
+#: data/interfaces/modern/history.html:156
+#: data/interfaces/modern/index.html:238 data/interfaces/modern/issues.html:211
+#: data/interfaces/modern/logs.html:103
+#: data/interfaces/modern/magazines.html:209
+#: data/interfaces/modern/managebooks.html:200
+#: data/interfaces/modern/manageissues.html:123
+#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/searchresults.html:245
+#: data/interfaces/modern/series.html:220
+msgid "Done"
+msgstr ""
+
+#: data/interfaces/modern/author.html:343 data/interfaces/modern/books.html:272
 #: data/interfaces/modern/comics.html:213
 #: data/interfaces/modern/history.html:155
 #: data/interfaces/modern/index.html:238 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/logs.html:103
 #: data/interfaces/modern/magazines.html:209
-#: data/interfaces/modern/managebooks.html:199
+#: data/interfaces/modern/managebooks.html:200
+#: data/interfaces/modern/manageissues.html:122
 #: data/interfaces/modern/series.html:220
 msgid "That is all"
 msgstr ""
 
-#: data/interfaces/modern/author.html:342 data/interfaces/modern/books.html:241
-#: data/interfaces/modern/comics.html:213
-#: data/interfaces/modern/history.html:156
-#: data/interfaces/modern/index.html:238 data/interfaces/modern/issues.html:211
-#: data/interfaces/modern/logs.html:103
-#: data/interfaces/modern/magazines.html:209
-#: data/interfaces/modern/managebooks.html:199
-#: data/interfaces/modern/members.html:210
-#: data/interfaces/modern/series.html:220
-msgid "Done"
-msgstr ""
-
-#: data/interfaces/modern/author.html:343
+#: data/interfaces/modern/author.html:344
 #: data/interfaces/modern/book_detail.html:264
-#: data/interfaces/modern/books.html:242 data/interfaces/modern/comics.html:215
+#: data/interfaces/modern/books.html:274 data/interfaces/modern/comics.html:215
 #: data/interfaces/modern/magazines.html:211
 #: data/interfaces/modern/members.html:211
 #, fuzzy
@@ -8128,14 +8544,15 @@ msgstr ""
 msgid "Searching..."
 msgstr "Prebieha vyhľadávanie..."
 
-#: data/interfaces/modern/author.html:343 data/interfaces/modern/books.html:242
-#: data/interfaces/modern/managebooks.html:200
+#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:274
+#: data/interfaces/modern/managebooks.html:201
 #: data/interfaces/modern/members.html:210
 msgid "Select at least one book first"
 msgstr ""
 
-#: data/interfaces/modern/author.html:345 data/interfaces/modern/books.html:244
-#: data/interfaces/modern/comics.html:76 data/interfaces/modern/issues.html:85
+#: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:276
+#: data/interfaces/modern/comics.html:76 data/interfaces/modern/config.html:870
+#: data/interfaces/modern/issues.html:85
 #: data/interfaces/modern/magazines.html:74
 #: data/interfaces/modern/members.html:103
 #: data/interfaces/modern/series.html:104
@@ -8144,12 +8561,14 @@ msgstr ""
 msgid "Covers"
 msgstr "Obálka"
 
-#: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:249
+#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:281
 #: data/interfaces/modern/comics.html:216 data/interfaces/modern/index.html:241
 #: data/interfaces/modern/issues.html:214
 #: data/interfaces/modern/magazines.html:212
-#: data/interfaces/modern/managebooks.html:205
+#: data/interfaces/modern/managebooks.html:206
+#: data/interfaces/modern/manageissues.html:124
 #: data/interfaces/modern/members.html:212
+#: data/interfaces/modern/searchresults.html:251
 #: data/interfaces/modern/series.html:222
 #, fuzzy, python-format
 #| msgid "%(count)s eBook"
@@ -8160,8 +8579,8 @@ msgstr[0] "%(count)s e-kniha"
 msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
 
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:250
-#: data/interfaces/modern/managebooks.html:206
+#: data/interfaces/modern/author.html:348 data/interfaces/modern/books.html:282
+#: data/interfaces/modern/managebooks.html:207
 #: data/interfaces/modern/members.html:213
 #, fuzzy, python-format
 #| msgid "%(count)s eBook"
@@ -8210,6 +8629,12 @@ msgid "ISBN"
 msgstr "ISBN:"
 
 #: data/interfaces/modern/book_detail.html:97
+#: data/interfaces/modern/editauthor.html:67
+#: data/interfaces/modern/editbook.html:48
+#: data/interfaces/modern/editcomic.html:34
+#: data/interfaces/modern/editissue.html:35
+#: data/interfaces/modern/editmag.html:34
+#: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
 msgid "Back"
 msgstr ""
@@ -8219,52 +8644,71 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-#: data/interfaces/modern/books.html:149
+#: data/interfaces/modern/books.html:156
 #, fuzzy
 #| msgid "Search when added"
 msgid "Search wanted"
 msgstr "Hľadať po pridaní"
 
-#: data/interfaces/modern/books.html:200
+#: data/interfaces/modern/books.html:220
 #: data/interfaces/modern/members.html:172
 #, fuzzy
 #| msgid "Wanted"
 msgid "Want"
 msgstr "Hľadané"
 
-#: data/interfaces/modern/books.html:245
+#: data/interfaces/modern/books.html:277
 #, fuzzy
 #| msgid "Search"
 msgid "Search in:"
 msgstr "Hľadať"
 
-#: data/interfaces/modern/books.html:245
+#: data/interfaces/modern/books.html:277
 msgid "Title, author and series"
 msgstr ""
 
-#: data/interfaces/modern/books.html:247
+#: data/interfaces/modern/books.html:279
 #, fuzzy
 #| msgid "%(author)s Series"
 msgid "Title, author, series"
 msgstr "Série autora %(author)s"
 
-#: data/interfaces/modern/books.html:247
+#: data/interfaces/modern/books.html:279
 #, fuzzy
 #| msgid "Search issues"
 msgid "Search titles"
 msgstr "Hľadať čísla"
 
-#: data/interfaces/modern/books.html:248
+#: data/interfaces/modern/books.html:280
 #, fuzzy
 #| msgid "Search for author/book"
 msgid "Search authors"
 msgstr "Hľadať autora alebo knihu"
 
-#: data/interfaces/modern/books.html:248
+#: data/interfaces/modern/books.html:280
 #, fuzzy
 #| msgid "Search issues"
 msgid "Search series"
 msgstr "Hľadať čísla"
+
+#: data/interfaces/modern/comicresults.html:94
+#: data/interfaces/modern/manualsearch.html:106
+#: data/interfaces/modern/searchresults.html:246
+#, fuzzy
+#| msgid "No matching issues found"
+msgid "No matching results"
+msgstr "Nenašli sa žiadne zodpovedajúce čísla"
+
+#: data/interfaces/modern/comicresults.html:95
+#: data/interfaces/modern/manualsearch.html:107
+#: data/interfaces/modern/searchresults.html:250
+#, fuzzy, python-format
+#| msgid "%(author)s Series"
+msgid "%(count)s result"
+msgid_plural "%(count)s results"
+msgstr[0] "Série autora %(author)s"
+msgstr[1] "Série autora %(author)s"
+msgstr[2] "Série autora %(author)s"
 
 #: data/interfaces/modern/comics.html:72
 #, fuzzy
@@ -8324,52 +8768,53 @@ msgstr[0] "%(count)s e-kniha"
 msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
 
-#: data/interfaces/modern/config.html:208
+#: data/interfaces/modern/config.html:225
 #, fuzzy
 #| msgid "Lock settings"
 msgid "Search settings"
 msgstr "Zamknúť nastavenia"
 
-#: data/interfaces/modern/config.html:211
+#: data/interfaces/modern/config.html:228
 #, fuzzy
 #| msgid "Settings page:"
 msgid "Settings sections"
 msgstr "Stránka nastavení:"
 
-#: data/interfaces/modern/config.html:222
+#: data/interfaces/modern/config.html:239
 msgid "Accent color:"
 msgstr ""
 
-#: data/interfaces/modern/config.html:229
+#: data/interfaces/modern/config.html:246
 msgid ""
 "Buttons, links and highlights of the modern interface. Dark mode uses a "
 "lighter shade of it."
 msgstr ""
 
-#: data/interfaces/modern/config.html:233
-#: data/interfaces/modern/config.html:352
+#: data/interfaces/modern/config.html:250
+#: data/interfaces/modern/config.html:369
+#: data/interfaces/modern/editbook.html:245
 #, fuzzy
 #| msgid "No changes made"
 msgid "All changes saved"
 msgstr "Nevykonali sa žiadne zmeny"
 
-#: data/interfaces/modern/config.html:234
+#: data/interfaces/modern/config.html:251
 msgid "Discard"
 msgstr ""
 
-#: data/interfaces/modern/config.html:352
+#: data/interfaces/modern/config.html:369
 #, fuzzy
 #| msgid "Save changes"
 msgid "Unsaved changes"
 msgstr "Uložiť zmeny"
 
-#: data/interfaces/modern/config.html:352
+#: data/interfaces/modern/config.html:369
 #, fuzzy
 #| msgid "Save changes"
 msgid "You have unsaved changes"
 msgstr "Uložiť zmeny"
 
-#: data/interfaces/modern/config.html:353
+#: data/interfaces/modern/config.html:370
 #, fuzzy, python-format
 #| msgid "%(count)s eBook"
 #| msgid_plural "%(count)s eBooks"
@@ -8379,39 +8824,236 @@ msgstr[0] "%(count)s e-kniha"
 msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
 
-#: data/interfaces/modern/config.html:353
+#: data/interfaces/modern/config.html:370
 #, fuzzy
 #| msgid "No series found"
 msgid "No settings found"
 msgstr "Nenašli sa žiadne série"
 
-#: data/interfaces/modern/config.html:454
+#: data/interfaces/modern/config.html:393
+#, fuzzy
+#| msgid "Information Sources"
+msgid "Info Sources"
+msgstr "Zdroje informácií"
+
+#: data/interfaces/modern/config.html:481
 #, fuzzy
 #| msgid "Enable rss"
 msgid "Enabled"
 msgstr "Povoliť rss"
 
-#: data/interfaces/modern/config.html:454
+#: data/interfaces/modern/config.html:481
 msgid "Show or hide details"
 msgstr ""
 
-#: data/interfaces/modern/config.html:455
+#: data/interfaces/modern/config.html:482
 #, fuzzy
 #| msgid "WishLists"
 msgid "Word Lists"
 msgstr "Zoznamy želaní"
 
-#: data/interfaces/modern/config.html:455
+#: data/interfaces/modern/config.html:482
 #, fuzzy
 #| msgid "eBook Size Limits"
 msgid "Size Limits"
 msgstr "Obmedzenia veľkosti e-kníh"
 
-#: data/interfaces/modern/history.html:54 data/interfaces/modern/logs.html:51
+#: data/interfaces/modern/config.html:752
+#, fuzzy
+#| msgid "Search Match Ratio:"
+msgid "Search and Matching"
+msgstr "Pomer zhody pri vyhľadávaní:"
+
+#: data/interfaces/modern/config.html:771
+#, fuzzy
+#| msgid "Language Maintenance:"
+msgid "Maintenance"
+msgstr "Údržba jazykov:"
+
+#: data/interfaces/modern/config.html:775
+#, fuzzy
+#| msgid "Update"
+msgid "Updates"
+msgstr "Aktualizovať"
+
+#: data/interfaces/modern/config.html:820
+#, fuzzy
+#| msgid "Language Maintenance:"
+msgid "Language Detection"
+msgstr "Údržba jazykov:"
+
+#: data/interfaces/modern/config.html:822
+msgid "Magazine Titles"
+msgstr "Názvy časopisov"
+
+#: data/interfaces/modern/config.html:823
+#, fuzzy
+#| msgid "Importing"
+msgid "Sorting"
+msgstr "Import"
+
+#: data/interfaces/modern/config.html:865
+#, fuzzy
+#| msgid "Database Stats"
+msgid "Book Databases"
+msgstr "Štatistiky databázy"
+
+#: data/interfaces/modern/config.html:867
+msgid "National Libraries"
+msgstr ""
+
+#: data/interfaces/modern/config.html:868
+msgid "Audiobooks, Comics and Light Novels"
+msgstr ""
+
+#: data/interfaces/modern/config.html:910
+msgid "Needs user accounts, switch them on under Access Control"
+msgstr ""
+
+#: data/interfaces/modern/config.html:945
+msgid "Insert at the cursor"
+msgstr ""
+
+#: data/interfaces/modern/config.html:948
+#, fuzzy
+#| msgid "Show author surname first"
+msgid "Author, surname first"
+msgstr "Zobraziť najprv priezvisko autora"
+
+#: data/interfaces/modern/config.html:949
+#, fuzzy
+#| msgid "%(author)s Series"
+msgid "Title for sorting"
+msgstr "Série autora %(author)s"
+
+#: data/interfaces/modern/config.html:949
+#, fuzzy
+#| msgid "Series Name"
+msgid "Series (pattern)"
+msgstr "Názov série"
+
+#: data/interfaces/modern/config.html:950
+#, fuzzy
+#| msgid "Series Name"
+msgid "Series name"
+msgstr "Názov série"
+
+#: data/interfaces/modern/config.html:950
+#, fuzzy
+#| msgid "Series Name"
+msgid "Series number"
+msgstr "Názov série"
+
+#: data/interfaces/modern/config.html:950
+#, fuzzy
+#| msgid "Format for issue dates"
+msgid "Formatted series name"
+msgstr "Formát dátumov čísel"
+
+#: data/interfaces/modern/config.html:951
+#, fuzzy
+#| msgid "Book Series %(number)s"
+msgid "Formatted series number"
+msgstr "Séria kníh %(number)s"
+
+#: data/interfaces/modern/config.html:951
+#, fuzzy
+#| msgid "Book Series %(number)s"
+msgid "Padded series number"
+msgstr "Séria kníh %(number)s"
+
+#: data/interfaces/modern/config.html:952
+#, fuzzy
+#| msgid "Publication Date:"
+msgid "Publication year"
+msgstr "Dátum vydania:"
+
+#: data/interfaces/modern/config.html:952
+#, fuzzy
+#| msgid "Series Name"
+msgid "Series year"
+msgstr "Názov série"
+
+#: data/interfaces/modern/config.html:952
+msgid "Abridged"
+msgstr ""
+
+#: data/interfaces/modern/config.html:953
+#, fuzzy
+#| msgctxt "series status"
+#| msgid "Partial"
+msgid "Part"
+msgstr "Čiastočné"
+
+#: data/interfaces/modern/config.html:953
+#, fuzzy
+#| msgid "Number of lines"
+msgid "Number of parts"
+msgstr "Počet riadkov"
+
+#: data/interfaces/modern/config.html:953
+msgid "$ sign"
+msgstr ""
+
+#: data/interfaces/modern/config.html:954
+#, fuzzy
+#| msgid "Issue Update"
+msgid "Issue date"
+msgstr "Aktualizácia čísla"
+
+#: data/interfaces/modern/config.html:954
+msgid "Year"
+msgstr ""
+
+#: data/interfaces/modern/config.html:954
+#, fuzzy
+#| msgid "Columns"
+msgid "Volume"
+msgstr "Stĺpce"
+
+#: data/interfaces/modern/config.html:955
+#, fuzzy
+#| msgid "Issues Renamed"
+msgid "Issue number"
+msgstr "Čísla boli premenované"
+
+#: data/interfaces/modern/config.html:955
+#, fuzzy
+#| msgid "Month Names"
+msgid "Month name"
+msgstr "Názvy mesiacov"
+
+#: data/interfaces/modern/config.html:955
+#, fuzzy
+#| msgid "Month %(number)s"
+msgid "Month number"
+msgstr "Mesiac %(number)s"
+
+#: data/interfaces/modern/config.html:956
+#, fuzzy
+#| msgid "Days"
+msgid "Day"
+msgstr "Dni"
+
+#: data/interfaces/modern/dlresult.html:48
+#: data/interfaces/modern/history.html:157
+#, fuzzy
+#| msgid "Delete"
+msgid "Deleted"
+msgstr "Vymazať"
+
+#: data/interfaces/modern/dlresult.html:49
+#: data/interfaces/modern/history.html:159
+#, fuzzy
+#| msgid "Delete from sabnzbd history"
+msgid "Delete this history entry?"
+msgstr "Vymazať z histórie SABnzbd"
+
+#: data/interfaces/modern/history.html:54 data/interfaces/modern/logs.html:104
 msgid "Newest"
 msgstr ""
 
-#: data/interfaces/modern/history.html:55 data/interfaces/modern/logs.html:52
+#: data/interfaces/modern/history.html:55 data/interfaces/modern/logs.html:104
 msgid "Oldest"
 msgstr ""
 
@@ -8421,12 +9063,6 @@ msgstr ""
 msgid "Download"
 msgstr "Stiahnuť "
 
-#: data/interfaces/modern/history.html:157
-#, fuzzy
-#| msgid "Delete"
-msgid "Deleted"
-msgstr "Vymazať"
-
 #: data/interfaces/modern/history.html:158
 msgid "Clear this part of the history?"
 msgstr ""
@@ -8434,12 +9070,6 @@ msgstr ""
 #: data/interfaces/modern/history.html:158
 msgid "Clear all history? Snatched books go back to Wanted."
 msgstr ""
-
-#: data/interfaces/modern/history.html:159
-#, fuzzy
-#| msgid "Delete from sabnzbd history"
-msgid "Delete this history entry?"
-msgstr "Vymazať z histórie SABnzbd"
 
 #: data/interfaces/modern/history.html:161
 #, fuzzy, python-format
@@ -8581,6 +9211,7 @@ msgid "Sending..."
 msgstr "Seeduje sa"
 
 #: data/interfaces/modern/issues.html:215
+#: data/interfaces/modern/manageissues.html:125
 #, fuzzy, python-format
 #| msgid "%(count)s eBook"
 #| msgid_plural "%(count)s eBooks"
@@ -8589,6 +9220,10 @@ msgid_plural "%(count)s issues"
 msgstr[0] "%(count)s e-kniha"
 msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
+
+#: data/interfaces/modern/login.html:107 lazylibrarian/webServe.py:1779
+msgid "Password reset, check your email"
+msgstr "Heslo bolo obnovené, skontrolujte svoj e-mail"
 
 #: data/interfaces/modern/logs.html:62
 msgid "Thread, file and line"
@@ -8654,14 +9289,15 @@ msgstr[0] "%(count)s e-kniha"
 msgstr[1] "%(count)s e-knihy"
 msgstr[2] "%(count)s e-kníh"
 
-#: data/interfaces/modern/managebooks.html:74
+#: data/interfaces/modern/managebooks.html:76
+#: data/interfaces/modern/manageissues.html:58
 #, fuzzy
 #| msgid "Select"
 msgid "Select all"
 msgstr "Vybrať"
 
-#: data/interfaces/modern/managebooks.html:81
-msgid "Tools"
+#: data/interfaces/modern/manageissues.html:123
+msgid "Remove the selected issues from past issues?"
 msgstr ""
 
 #: data/interfaces/modern/members.html:84
@@ -8692,49 +9328,49 @@ msgstr "Zobraziť neaktívnych autorov"
 msgid "Show ignored books"
 msgstr "Zobraziť ignorované"
 
-#: data/interfaces/modern/modern_base.html:113
+#: data/interfaces/modern/modern_base.html:115
 #, fuzzy
 #| msgid "Same as the interface"
 msgid "Welcome to the new interface"
 msgstr "Rovnaký ako rozhranie"
 
-#: data/interfaces/modern/modern_base.html:115
+#: data/interfaces/modern/modern_base.html:117
 msgid ""
 "This is the new LazyLibrarian interface, still in beta. Pages it does not "
 "have yet open in the classic one. You can go back to the classic interface "
 "at any time from the menu."
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:117
+#: data/interfaces/modern/modern_base.html:119
 msgid "Got it"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:118
+#: data/interfaces/modern/modern_base.html:120
 #, fuzzy
 #| msgid "Back to Automatic"
 msgid "Back to classic"
 msgstr "Späť na automatické"
 
-#: data/interfaces/modern/modern_base.html:280
+#: data/interfaces/modern/modern_base.html:283
 #, fuzzy
 #| msgid "Bootswatch Theme:"
 msgid "Switch theme"
 msgstr "Téma Bootswatch:"
 
-#: data/interfaces/modern/modern_base.html:321
+#: data/interfaces/modern/modern_base.html:324
 #, fuzzy
 #| msgid "Same as the interface"
 msgid "Classic interface"
 msgstr "Rovnaký ako rozhranie"
 
-#: data/interfaces/modern/modern_base.html:360
+#: data/interfaces/modern/modern_base.html:364
 #, fuzzy, python-format
 #| msgid "Changed %(count)s feed"
 #| msgid_plural "Changed %(count)s feeds"
 msgid "and %(count)s more"
 msgstr "Zmenený %(count)s kanál"
 
-#: data/interfaces/modern/modern_base.html:422
+#: data/interfaces/modern/modern_base.html:424
 #, fuzzy, python-format
 #| msgid "%(name)s notification failed"
 msgid "%(count)s more notification"
@@ -8742,6 +9378,22 @@ msgid_plural "%(count)s more notifications"
 msgstr[0] "Oznámenie %(name)s zlyhalo"
 msgstr[1] "Oznámenie %(name)s zlyhalo"
 msgstr[2] "Oznámenie %(name)s zlyhalo"
+
+#: data/interfaces/modern/profile.html:99
+#: data/interfaces/modern/profile.html:146 lazylibrarian/webServe.py:1228
+msgid "Passwords do not match"
+msgstr "Heslá sa nezhodujú"
+
+#: data/interfaces/modern/register.html:53 lazylibrarian/webServe.py:1423
+msgid "Message sent to admin, you will receive a reply by email"
+msgstr "Správa bola odoslaná správcovi, odpoveď dostanete e-mailom"
+
+#: data/interfaces/modern/searchresults.html:249
+#, fuzzy
+#| msgid "%(count)s eBook"
+#| msgid_plural "%(count)s eBooks"
+msgid "Nothing selected"
+msgstr "%(count)s e-kniha"
 
 #: data/interfaces/modern/series.html:100
 #, fuzzy
@@ -9038,6 +9690,18 @@ msgstr "Waleština"
 msgid "Yiddish"
 msgstr "Jidiš"
 
+#. TRANSLATORS: series name of the sample book in the name pattern examples, as
+#. published in your language
+#: lazylibrarian/bookrename.py:776
+msgid "The Lord of the Rings"
+msgstr ""
+
+#. TRANSLATORS: title of the sample book in the name pattern examples, as
+#. published in your language
+#: lazylibrarian/bookrename.py:779
+msgid "The Fellowship of the Ring"
+msgstr ""
+
 #: lazylibrarian/deluge.py:684
 #, python-format
 msgid ""
@@ -9320,27 +9984,23 @@ msgstr "Aktualizácia databázy"
 msgid "Redirected"
 msgstr "Presmerované"
 
-#: lazylibrarian/webServe.py:812 lazylibrarian/webServe.py:5806
+#: lazylibrarian/webServe.py:817 lazylibrarian/webServe.py:5822
 msgid "Inactive Authors"
 msgstr "Neaktívni autori"
 
-#: lazylibrarian/webServe.py:814
+#: lazylibrarian/webServe.py:819
 msgid "Ignored Authors"
 msgstr "Ignorovaní autori"
 
-#: lazylibrarian/webServe.py:838
+#: lazylibrarian/webServe.py:843
 msgid "User Profile"
 msgstr "Profil používateľa"
 
-#: lazylibrarian/webServe.py:1165
+#: lazylibrarian/webServe.py:1170
 msgid "User Registration / Contact form"
 msgstr "Registrácia používateľa / kontaktný formulár"
 
-#: lazylibrarian/webServe.py:1223
-msgid "Passwords do not match"
-msgstr "Heslá sa nezhodujú"
-
-#: lazylibrarian/webServe.py:1225
+#: lazylibrarian/webServe.py:1230
 msgid ""
 "Password must be at least 8 characters long\n"
 "and not contain spaces"
@@ -9348,31 +10008,31 @@ msgstr ""
 "Heslo musí mať aspoň 8 znakov\n"
 "a nesmie obsahovať medzery"
 
-#: lazylibrarian/webServe.py:1239
+#: lazylibrarian/webServe.py:1244
 msgid "Unable to change username: already exists"
 msgstr "Používateľské meno sa nepodarilo zmeniť: už existuje"
 
-#: lazylibrarian/webServe.py:1323 lazylibrarian/webServe.py:1729
+#: lazylibrarian/webServe.py:1328 lazylibrarian/webServe.py:1739
 #, python-format
 msgid "Updated user details: %(fields)s"
 msgstr "Údaje používateľa boli aktualizované: %(fields)s"
 
-#: lazylibrarian/webServe.py:1324 lazylibrarian/webServe.py:1446
-#: lazylibrarian/webServe.py:1731
+#: lazylibrarian/webServe.py:1329 lazylibrarian/webServe.py:1453
+#: lazylibrarian/webServe.py:1741
 msgid "No changes made"
 msgstr "Nevykonali sa žiadne zmeny"
 
-#: lazylibrarian/webServe.py:1343
+#: lazylibrarian/webServe.py:1348
 #, python-format
 msgid "IP address [%(ip)s] is blocked"
 msgstr "IP adresa [%(ip)s] je zablokovaná"
 
-#: lazylibrarian/webServe.py:1387
+#: lazylibrarian/webServe.py:1392
 msgid "Too many failed attempts. Reset password or retry after 1 hour"
 msgstr ""
 "Príliš veľa neúspešných pokusov. Obnovte heslo alebo to skúste znova o hodinu"
 
-#: lazylibrarian/webServe.py:1390
+#: lazylibrarian/webServe.py:1395
 #, python-format
 msgid "Wrong password entered. You have %(count)s attempt left"
 msgid_plural "Wrong password entered. You have %(count)s attempts left"
@@ -9380,27 +10040,23 @@ msgstr[0] "Zadali ste nesprávne heslo. Zostáva vám %(count)s pokus"
 msgstr[1] "Zadali ste nesprávne heslo. Zostávajú vám %(count)s pokusy"
 msgstr[2] "Zadali ste nesprávne heslo. Zostáva vám %(count)s pokusov"
 
-#: lazylibrarian/webServe.py:1397
+#: lazylibrarian/webServe.py:1402
 msgid "Invalid user or password."
 msgstr "Neplatný používateľ alebo heslo."
 
-#: lazylibrarian/webServe.py:1418
-msgid "Message sent to admin, you will receive a reply by email"
-msgstr "Správa bola odoslaná správcovi, odpoveď dostanete e-mailom"
-
-#: lazylibrarian/webServe.py:1420
+#: lazylibrarian/webServe.py:1425
 msgid "Message not sent, please try again later"
 msgstr "Správu sa nepodarilo odoslať, skúste to neskôr"
 
-#: lazylibrarian/webServe.py:1421
+#: lazylibrarian/webServe.py:1426
 msgid "No message sent, no return email address"
 msgstr "Správa sa neodoslala, chýba e-mailová adresa pre odpoveď"
 
-#: lazylibrarian/webServe.py:1438
+#: lazylibrarian/webServe.py:1444
 msgid "Manage User Accounts"
 msgstr "Správa používateľských účtov"
 
-#: lazylibrarian/webServe.py:1475
+#: lazylibrarian/webServe.py:1484
 #, python-format
 msgid "Changed %(count)s feed"
 msgid_plural "Changed %(count)s feeds"
@@ -9408,320 +10064,317 @@ msgstr[0] "Zmenený %(count)s kanál"
 msgstr[1] "Zmenené %(count)s kanály"
 msgstr[2] "Zmenených %(count)s kanálov"
 
-#: lazylibrarian/webServe.py:1527
+#: lazylibrarian/webServe.py:1537
 msgid "Unable to delete last administrator"
 msgstr "Posledného správcu nie je možné vymazať"
 
-#: lazylibrarian/webServe.py:1529
+#: lazylibrarian/webServe.py:1539
 #, python-format
 msgid "User %(user)s deleted"
 msgstr "Používateľ %(user)s bol vymazaný"
 
-#: lazylibrarian/webServe.py:1530
+#: lazylibrarian/webServe.py:1540
 msgid "User not found"
 msgstr "Používateľ sa nenašiel"
 
-#: lazylibrarian/webServe.py:1531
+#: lazylibrarian/webServe.py:1541
 msgid "No user!"
 msgstr "Žiadny používateľ!"
 
-#: lazylibrarian/webServe.py:1578
+#: lazylibrarian/webServe.py:1588
 #, python-format
 msgid "New user NOT added: %(reason)s"
 msgstr "Nový používateľ NEBOL pridaný: %(reason)s"
 
-#: lazylibrarian/webServe.py:1581
+#: lazylibrarian/webServe.py:1591
 msgid "No username given"
 msgstr "Nezadané používateľské meno"
 
-#: lazylibrarian/webServe.py:1586 lazylibrarian/webServe.py:1637
+#: lazylibrarian/webServe.py:1596 lazylibrarian/webServe.py:1647
 msgid "Username already exists"
 msgstr "Používateľské meno už existuje"
 
-#: lazylibrarian/webServe.py:1590
+#: lazylibrarian/webServe.py:1600
 msgid "No fullname given"
 msgstr "Nezadané celé meno"
 
-#: lazylibrarian/webServe.py:1594
+#: lazylibrarian/webServe.py:1604
 msgid "No email given"
 msgstr "Nezadaný e-mail"
 
-#: lazylibrarian/webServe.py:1598 lazylibrarian/webServe.py:1655
+#: lazylibrarian/webServe.py:1608 lazylibrarian/webServe.py:1665
 msgid "Invalid email given"
 msgstr "Zadaný neplatný e-mail"
 
-#: lazylibrarian/webServe.py:1603
+#: lazylibrarian/webServe.py:1613
 msgid "No permissions or invalid permissions given"
 msgstr "Nezadané alebo neplatné oprávnenia"
 
-#: lazylibrarian/webServe.py:1606
+#: lazylibrarian/webServe.py:1616
 msgid "No password given"
 msgstr "Nezadané heslo"
 
-#: lazylibrarian/webServe.py:1620
+#: lazylibrarian/webServe.py:1630
 #, python-format
 msgid "New user added: %(user)s: %(perm)s"
 msgstr "Pridaný nový používateľ: %(user)s: %(perm)s"
 
-#: lazylibrarian/webServe.py:1622
+#: lazylibrarian/webServe.py:1632
 #, python-format
 msgid "Email sent to %(email)s"
 msgstr "E-mail bol odoslaný na %(email)s"
 
-#: lazylibrarian/webServe.py:1627
+#: lazylibrarian/webServe.py:1637
 msgid "New user NOT added"
 msgstr "Nový používateľ NEBOL pridaný"
 
-#: lazylibrarian/webServe.py:1627 lazylibrarian/webServe.py:1772
+#: lazylibrarian/webServe.py:1637 lazylibrarian/webServe.py:1782
 #, python-format
 msgid "Failed to send email to %(email)s"
 msgstr "E-mail sa nepodarilo odoslať na %(email)s"
 
-#: lazylibrarian/webServe.py:1661
+#: lazylibrarian/webServe.py:1671
 msgid "Invalid sendto email given"
 msgstr "Zadaná neplatná e-mailová adresa na odosielanie"
 
-#: lazylibrarian/webServe.py:1723
+#: lazylibrarian/webServe.py:1733
 msgid "Unable to remove last administrator"
 msgstr "Posledného správcu nie je možné odstrániť"
 
-#: lazylibrarian/webServe.py:1752
+#: lazylibrarian/webServe.py:1762
 msgid "Email does not match our records"
 msgstr "E-mail sa nezhoduje s našimi záznamami"
 
-#: lazylibrarian/webServe.py:1754
+#: lazylibrarian/webServe.py:1764
 msgid "No email address registered"
 msgstr "Nie je zaregistrovaná žiadna e-mailová adresa"
 
-#: lazylibrarian/webServe.py:1756 lazylibrarian/webServe.py:4193
+#: lazylibrarian/webServe.py:1766 lazylibrarian/webServe.py:4209
 msgid "No email address supplied"
 msgstr "Nebola zadaná e-mailová adresa"
 
-#: lazylibrarian/webServe.py:1758
+#: lazylibrarian/webServe.py:1768
 msgid "Unknown username"
 msgstr "Neznáme používateľské meno"
 
-#: lazylibrarian/webServe.py:1760
+#: lazylibrarian/webServe.py:1770
 msgid "Who are you?"
 msgstr "Kto ste?"
 
-#: lazylibrarian/webServe.py:1769
-msgid "Password reset, check your email"
-msgstr "Heslo bolo obnovené, skontrolujte svoj e-mail"
-
-#: lazylibrarian/webServe.py:1777
+#: lazylibrarian/webServe.py:1787
 #, python-format
 msgid "Password not reset: %(reason)s"
 msgstr "Heslo nebolo obnovené: %(reason)s"
 
-#: lazylibrarian/webServe.py:1824
+#: lazylibrarian/webServe.py:1834
 msgid "Edit Series"
 msgstr "Upraviť sériu"
 
-#: lazylibrarian/webServe.py:2059
+#: lazylibrarian/webServe.py:2069
 #, python-format
 msgid "%(author)s Series"
 msgstr "Série autora %(author)s"
 
-#: lazylibrarian/webServe.py:2280
+#: lazylibrarian/webServe.py:2290
 #, python-format
 msgid "Mark Series '%(action)s' completed."
 msgstr "Označenie sérií ako „%(action)s“ dokončené."
 
-#: lazylibrarian/webServe.py:2456
+#: lazylibrarian/webServe.py:2466
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: lazylibrarian/webServe.py:2472
+#: lazylibrarian/webServe.py:2482
 msgid "Please set a contact email so users can make requests"
 msgstr "Nastavte kontaktný e-mail, aby mohli používatelia posielať požiadavky"
 
-#: lazylibrarian/webServe.py:2475
+#: lazylibrarian/webServe.py:2485
 msgid "Contact email looks invalid, please check"
 msgstr "Kontaktný e-mail vyzerá neplatne, skontrolujte ho"
 
-#: lazylibrarian/webServe.py:2479
+#: lazylibrarian/webServe.py:2489
 msgid "The default admin user is \"admin\" and password is \"admin\""
 msgstr "Predvolený používateľ správcu je „admin“ a heslo je „admin“"
 
-#: lazylibrarian/webServe.py:2480
+#: lazylibrarian/webServe.py:2490
 msgid "This is insecure, please change it on Config -> User Admin"
 msgstr "Toto je nezabezpečené, zmeňte to v Nastavenia -> Správa používateľov"
 
-#: lazylibrarian/webServe.py:2711
+#: lazylibrarian/webServe.py:2721
 msgid "User Accounts"
 msgstr "Používateľské účty"
 
-#: lazylibrarian/webServe.py:2795
+#: lazylibrarian/webServe.py:2805
 #, python-format
 msgid "Search Results: \"%(query)s\""
 msgstr "Výsledky hľadania: „%(query)s“"
 
-#: lazylibrarian/webServe.py:2899
+#: lazylibrarian/webServe.py:2909
 #, python-format
 msgid "Mark Authors '%(action)s' completed."
 msgstr "Označenie autorov ako „%(action)s“ dokončené."
 
-#: lazylibrarian/webServe.py:3521
+#: lazylibrarian/webServe.py:3531
 #, python-format
 msgid "%(library)s Search Results: \"%(query)s\""
 msgstr "Výsledky hľadania v knižnici %(library)s: „%(query)s“"
 
-#: lazylibrarian/webServe.py:4146
+#: lazylibrarian/webServe.py:4162
 msgid "Request Error"
 msgstr "Chyba požiadavky"
 
-#: lazylibrarian/webServe.py:4185
+#: lazylibrarian/webServe.py:4201
 msgid "Message sent"
 msgstr "Správa bola odoslaná"
 
-#: lazylibrarian/webServe.py:4186
+#: lazylibrarian/webServe.py:4202
 msgid "You will receive a reply by email"
 msgstr "Odpoveď dostanete e-mailom"
 
-#: lazylibrarian/webServe.py:4189
+#: lazylibrarian/webServe.py:4205
 msgid "Message not sent"
 msgstr "Správa nebola odoslaná"
 
-#: lazylibrarian/webServe.py:4190
+#: lazylibrarian/webServe.py:4206
 msgid "Please try again later"
 msgstr "Skúste to znova neskôr"
 
-#: lazylibrarian/webServe.py:4192
+#: lazylibrarian/webServe.py:4208
 msgid "Unable to send message"
 msgstr "Správu sa nepodarilo odoslať"
 
-#: lazylibrarian/webServe.py:4195
+#: lazylibrarian/webServe.py:4211
 msgid "Unknown user"
 msgstr "Neznámy používateľ"
 
-#: lazylibrarian/webServe.py:4198
+#: lazylibrarian/webServe.py:4214
 msgid "Nobody logged in?"
 msgstr "Nikto nie je prihlásený?"
 
-#: lazylibrarian/webServe.py:4511
+#: lazylibrarian/webServe.py:4527
 msgid "Please select which part to email"
 msgstr "Vyberte, ktorú časť odoslať e-mailom"
 
-#: lazylibrarian/webServe.py:4513
+#: lazylibrarian/webServe.py:4529
 msgid "Please select which part to download"
 msgstr "Vyberte, ktorú časť stiahnuť"
 
-#: lazylibrarian/webServe.py:4557
+#: lazylibrarian/webServe.py:4573
 #, python-format
 msgid "Not available as %(type)s, only %(types)s"
 msgstr "Nie je dostupné ako %(type)s, iba %(types)s"
 
-#: lazylibrarian/webServe.py:4560
+#: lazylibrarian/webServe.py:4576
 msgid "Not Available"
 msgstr "Nedostupné"
 
-#: lazylibrarian/webServe.py:4566
+#: lazylibrarian/webServe.py:4582
 msgid "Please select format to email"
 msgstr "Vyberte formát na odoslanie e-mailom"
 
-#: lazylibrarian/webServe.py:4568
+#: lazylibrarian/webServe.py:4584
 msgid "Please select format to download"
 msgstr "Vyberte formát na stiahnutie"
 
-#: lazylibrarian/webServe.py:4575
+#: lazylibrarian/webServe.py:4591
 msgid "Choose Type"
 msgstr "Vyberte typ"
 
-#: lazylibrarian/webServe.py:4623
+#: lazylibrarian/webServe.py:4639
 msgid "Edit Author"
 msgstr "Upraviť autora"
 
-#: lazylibrarian/webServe.py:5096
+#: lazylibrarian/webServe.py:5112
 msgid "Edit Book"
 msgstr "Upraviť knihu"
 
-#: lazylibrarian/webServe.py:5419
+#: lazylibrarian/webServe.py:5435
 #, python-format
 msgid "Mark Results '%(action)s' completed."
 msgstr "Označenie výsledkov ako „%(action)s“ dokončené."
 
-#: lazylibrarian/webServe.py:5648
+#: lazylibrarian/webServe.py:5664
 #, python-format
 msgid "Mark Books '%(action)s' completed."
 msgstr "Označenie kníh ako „%(action)s“ dokončené."
 
-#: lazylibrarian/webServe.py:5699 lazylibrarian/webServe.py:5743
-#: lazylibrarian/webServe.py:5770 lazylibrarian/webServe.py:5852
+#: lazylibrarian/webServe.py:5715 lazylibrarian/webServe.py:5759
+#: lazylibrarian/webServe.py:5786 lazylibrarian/webServe.py:5868
+#: lazylibrarian/webServe.py:5893
 #, python-format
 msgid "%(title)s (Top %(count)s)"
 msgstr "%(title)s (Top %(count)s)"
 
-#: lazylibrarian/webServe.py:5756
+#: lazylibrarian/webServe.py:5772
 msgid "Recently Downloaded Books"
 msgstr "Nedávno stiahnuté knihy"
 
-#: lazylibrarian/webServe.py:5759
+#: lazylibrarian/webServe.py:5775
 msgid "Recently Added Books"
 msgstr "Nedávno pridané knihy"
 
-#: lazylibrarian/webServe.py:5803
+#: lazylibrarian/webServe.py:5819
 msgid "Active/Wanted Authors"
 msgstr "Aktívni/hľadaní autori"
 
-#: lazylibrarian/webServe.py:5848
+#: lazylibrarian/webServe.py:5864
 msgid "Recent AudioBooks"
 msgstr "Nedávne audioknihy"
 
-#: lazylibrarian/webServe.py:5914
+#: lazylibrarian/webServe.py:5935
 msgid "Edit Comic"
 msgstr "Upraviť komiks"
 
-#: lazylibrarian/webServe.py:6734
+#: lazylibrarian/webServe.py:6761
 #, python-format
 msgid "Rename Magazine %(title)s"
 msgstr "Premenovať časopis %(title)s"
 
-#: lazylibrarian/webServe.py:6753
+#: lazylibrarian/webServe.py:6780
 msgid "Insufficient information, need Old and New Title"
 msgstr "Nedostatok informácií, je potrebný starý aj nový názov"
 
-#: lazylibrarian/webServe.py:6755
+#: lazylibrarian/webServe.py:6782
 #, python-format
 msgid "Title for %(title)s unchanged"
 msgstr "Názov pre %(title)s sa nezmenil"
 
-#: lazylibrarian/webServe.py:6759
+#: lazylibrarian/webServe.py:6786
 msgid "Invalid new title, unable to rename"
 msgstr "Neplatný nový názov, premenovanie nie je možné"
 
-#: lazylibrarian/webServe.py:6764
+#: lazylibrarian/webServe.py:6791
 #, python-format
 msgid "Title %(title)s already exists, unable to rename"
 msgstr "Názov %(title)s už existuje, premenovanie nie je možné"
 
-#: lazylibrarian/webServe.py:6776
+#: lazylibrarian/webServe.py:6803
 #, python-format
 msgid "Renamed %(old)s to %(new)s"
 msgstr "%(old)s bolo premenované na %(new)s"
 
-#: lazylibrarian/webServe.py:6821
+#: lazylibrarian/webServe.py:6848
 msgid "Rename completed."
 msgstr "Premenovanie dokončené."
 
-#: lazylibrarian/webServe.py:6953
+#: lazylibrarian/webServe.py:6980
 msgid "Edit Issue"
 msgstr "Upraviť číslo"
 
-#: lazylibrarian/webServe.py:7563 lazylibrarian/webServe.py:7808
+#: lazylibrarian/webServe.py:7595 lazylibrarian/webServe.py:7840
 #, python-format
 msgid "Operation '%(action)s' completed."
 msgstr "Operácia „%(action)s“ dokončená."
 
-#: lazylibrarian/webServe.py:7919
+#: lazylibrarian/webServe.py:7951
 msgid "LazyLibrarian status is unknown"
 msgstr "Stav LazyLibrarian je neznámy"
 
-#: lazylibrarian/webServe.py:7923
+#: lazylibrarian/webServe.py:7955
 msgid "LazyLibrarian is up to date"
 msgstr "LazyLibrarian je aktuálny"
 
-#: lazylibrarian/webServe.py:7925
+#: lazylibrarian/webServe.py:7957
 #, python-format
 msgid "LazyLibrarian is behind by %(count)s commit"
 msgid_plural "LazyLibrarian is behind by %(count)s commits"
@@ -9729,154 +10382,154 @@ msgstr[0] "LazyLibrarian zaostáva o %(count)s commit"
 msgstr[1] "LazyLibrarian zaostáva o %(count)s commity"
 msgstr[2] "LazyLibrarian zaostáva o %(count)s commitov"
 
-#: lazylibrarian/webServe.py:7931
+#: lazylibrarian/webServe.py:7963
 msgid "Update needs manual installation"
 msgstr "Aktualizáciu je potrebné nainštalovať ručne"
 
-#: lazylibrarian/webServe.py:7933
+#: lazylibrarian/webServe.py:7965
 msgid "LazyLibrarian version is unknown"
 msgstr "Verzia LazyLibrarian je neznáma"
 
-#: lazylibrarian/webServe.py:7934
+#: lazylibrarian/webServe.py:7966
 #, python-format
 msgid "Your version (%(version)s) is not recognized at %(repo)s"
 msgstr "Vaša verzia (%(version)s) sa v repozitári %(repo)s nenašla"
 
-#: lazylibrarian/webServe.py:8000
+#: lazylibrarian/webServe.py:8032
 msgid "LazyLibrarian is updating..."
 msgstr "LazyLibrarian sa aktualizuje..."
 
-#: lazylibrarian/webServe.py:8001
+#: lazylibrarian/webServe.py:8033
 msgid "Updating"
 msgstr "Prebieha aktualizácia"
 
-#: lazylibrarian/webServe.py:8191
+#: lazylibrarian/webServe.py:8223
 #, python-format
 msgid "Importing csv (background task) from %(file)s"
 msgstr "Importuje sa CSV (úloha na pozadí) zo súboru %(file)s"
 
-#: lazylibrarian/webServe.py:8195
+#: lazylibrarian/webServe.py:8227
 #, python-format
 msgid "No %(library)s CSV file in [%(folder)s]"
 msgstr "V [%(folder)s] sa nenašiel žiadny súbor CSV pre %(library)s"
 
-#: lazylibrarian/webServe.py:8199
+#: lazylibrarian/webServe.py:8231
 #, python-format
 msgid "Unable to complete the import: %(error)s"
 msgstr "Import sa nepodarilo dokončiť: %(error)s"
 
-#: lazylibrarian/webServe.py:8203
+#: lazylibrarian/webServe.py:8235
 msgid "CSV import is already running"
 msgstr "Import CSV už prebieha"
 
-#: lazylibrarian/webServe.py:8226
+#: lazylibrarian/webServe.py:8258
 msgid "LazyLibrarian is closed"
 msgstr "LazyLibrarian je zatvorený"
 
-#: lazylibrarian/webServe.py:8227
+#: lazylibrarian/webServe.py:8259
 msgid "Close library"
 msgstr "Zatvoriť knižnicu"
 
-#: lazylibrarian/webServe.py:8237
+#: lazylibrarian/webServe.py:8269
 msgid "LazyLibrarian is reopening..."
 msgstr "LazyLibrarian sa znova otvára..."
 
-#: lazylibrarian/webServe.py:8238
+#: lazylibrarian/webServe.py:8270
 msgid "Reopen library"
 msgstr "Znova otvoriť knižnicu"
 
-#: lazylibrarian/webServe.py:8347
+#: lazylibrarian/webServe.py:8379
 msgid "Log"
 msgstr "Záznam"
 
-#: lazylibrarian/webServe.py:8579
+#: lazylibrarian/webServe.py:8611
 msgid "BookID not found"
 msgstr "BookID sa nenašlo"
 
-#: lazylibrarian/webServe.py:8581
+#: lazylibrarian/webServe.py:8613
 msgid "No Description"
 msgstr "Bez popisu"
 
-#: lazylibrarian/webServe.py:8593
+#: lazylibrarian/webServe.py:8625
 #, python-format
 msgid "Reason: %(reason)s"
 msgstr "Dôvod: %(reason)s"
 
-#: lazylibrarian/webServe.py:8605
+#: lazylibrarian/webServe.py:8637
 #, python-format
 msgid "Title: %(value)s"
 msgstr "Názov: %(value)s"
 
-#: lazylibrarian/webServe.py:8606
+#: lazylibrarian/webServe.py:8638
 #, python-format
 msgid "Type: %(value)s"
 msgstr "Typ: %(value)s"
 
-#: lazylibrarian/webServe.py:8607
+#: lazylibrarian/webServe.py:8639
 #, python-format
 msgid "Date: %(value)s"
 msgstr "Dátum: %(value)s"
 
-#: lazylibrarian/webServe.py:8608
+#: lazylibrarian/webServe.py:8640
 #, python-format
 msgid "Size: %(value)s Mb"
 msgstr "Veľkosť: %(value)s MB"
 
-#: lazylibrarian/webServe.py:8609
+#: lazylibrarian/webServe.py:8641
 #, python-format
 msgid "Provider: %(value)s"
 msgstr "Poskytovateľ: %(value)s"
 
-#: lazylibrarian/webServe.py:8610
+#: lazylibrarian/webServe.py:8642
 #, python-format
 msgid "Downloader: %(value)s"
 msgstr "Sťahovač: %(value)s"
 
-#: lazylibrarian/webServe.py:8611
+#: lazylibrarian/webServe.py:8643
 #, python-format
 msgid "DownloadID: %(value)s"
 msgstr "DownloadID: %(value)s"
 
-#: lazylibrarian/webServe.py:8612
+#: lazylibrarian/webServe.py:8644
 #, python-format
 msgid "URL: %(value)s"
 msgstr "URL: %(value)s"
 
-#: lazylibrarian/webServe.py:8616
+#: lazylibrarian/webServe.py:8648
 #, python-format
 msgid "File: %(value)s"
 msgstr "Súbor: %(value)s"
 
-#: lazylibrarian/webServe.py:8620
+#: lazylibrarian/webServe.py:8652
 #, python-format
 msgid "Error: %(value)s"
 msgstr "Chyba: %(value)s"
 
-#: lazylibrarian/webServe.py:8872
+#: lazylibrarian/webServe.py:8904
 #, python-format
 msgid "%(name)s test FAILED, bad parameter: %(param)s"
 msgstr "Test %(name)s ZLYHAL, chybný parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:8877
+#: lazylibrarian/webServe.py:8909
 #, python-format
 msgid "%(name)s test FAILED, check debug log"
 msgstr "Test %(name)s ZLYHAL, pozrite si ladiaci záznam"
 
-#: lazylibrarian/webServe.py:8879
+#: lazylibrarian/webServe.py:8911
 #, python-format
 msgid "%(name)s test PASSED"
 msgstr "Test %(name)s ÚSPEŠNÝ"
 
-#: lazylibrarian/webServe.py:8885
+#: lazylibrarian/webServe.py:8917
 #, python-format
 msgid "%(name)s test PASSED, found %(result)s"
 msgstr "Test %(name)s ÚSPEŠNÝ, nájdené: %(result)s"
 
-#: lazylibrarian/webServe.py:8888
+#: lazylibrarian/webServe.py:8920
 msgid "Invalid or missing name in testprovider"
 msgstr "Neplatný alebo chýbajúci názov v testprovider"
 
-#: lazylibrarian/webServe.py:8900
+#: lazylibrarian/webServe.py:8932
 #, python-format
 msgid "Cleared %(count)s blocked provider"
 msgid_plural "Cleared %(count)s blocked providers"
@@ -9884,7 +10537,7 @@ msgstr[0] "Odblokovaný %(count)s poskytovateľ"
 msgstr[1] "Odblokovaní %(count)s poskytovatelia"
 msgstr[2] "Odblokovaných %(count)s poskytovateľov"
 
-#: lazylibrarian/webServe.py:8931
+#: lazylibrarian/webServe.py:8963
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
@@ -9892,175 +10545,175 @@ msgstr[0] "Počítadlo stiahnutí vymazané pre %(count)s poskytovateľa"
 msgstr[1] "Počítadlo stiahnutí vymazané pre %(count)s poskytovateľov"
 msgstr[2] "Počítadlo stiahnutí vymazané pre %(count)s poskytovateľov"
 
-#: lazylibrarian/webServe.py:8952
+#: lazylibrarian/webServe.py:8984
 msgid "No downloads"
 msgstr "Žiadne stiahnutia"
 
-#: lazylibrarian/webServe.py:8960
+#: lazylibrarian/webServe.py:8992
 msgid "Calibre Sync is already running"
 msgstr "Synchronizácia s Calibre už prebieha"
 
-#: lazylibrarian/webServe.py:8969
+#: lazylibrarian/webServe.py:9001
 msgid "No userid found"
 msgstr "Nenašlo sa žiadne userid"
 
-#: lazylibrarian/webServe.py:9068 lazylibrarian/webServe.py:9134
-#: lazylibrarian/webServe.py:9156 lazylibrarian/webServe.py:9183
-#: lazylibrarian/webServe.py:9220 lazylibrarian/webServe.py:9247
-#: lazylibrarian/webServe.py:9274 lazylibrarian/webServe.py:9301
-#: lazylibrarian/webServe.py:9327 lazylibrarian/webServe.py:9585
-#: lazylibrarian/webServe.py:9681 lazylibrarian/webServe.py:9719
-#: lazylibrarian/webServe.py:9755 lazylibrarian/webServe.py:9798
-#: lazylibrarian/webServe.py:9839 lazylibrarian/webServe.py:9878
-#: lazylibrarian/webServe.py:9914 lazylibrarian/webServe.py:9932
-#: lazylibrarian/webServe.py:9968 lazylibrarian/webServe.py:9990
-#: lazylibrarian/webServe.py:10003
+#: lazylibrarian/webServe.py:9100 lazylibrarian/webServe.py:9166
+#: lazylibrarian/webServe.py:9188 lazylibrarian/webServe.py:9215
+#: lazylibrarian/webServe.py:9252 lazylibrarian/webServe.py:9279
+#: lazylibrarian/webServe.py:9306 lazylibrarian/webServe.py:9333
+#: lazylibrarian/webServe.py:9359 lazylibrarian/webServe.py:9617
+#: lazylibrarian/webServe.py:9713 lazylibrarian/webServe.py:9751
+#: lazylibrarian/webServe.py:9787 lazylibrarian/webServe.py:9830
+#: lazylibrarian/webServe.py:9871 lazylibrarian/webServe.py:9910
+#: lazylibrarian/webServe.py:9946 lazylibrarian/webServe.py:9964
+#: lazylibrarian/webServe.py:10000 lazylibrarian/webServe.py:10022
+#: lazylibrarian/webServe.py:10035
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr "%(name)s zlyhalo, chybný parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9091
+#: lazylibrarian/webServe.py:9123
 msgid "Key verification successful"
 msgstr "Kľúč bol úspešne overený"
 
-#: lazylibrarian/webServe.py:9092
+#: lazylibrarian/webServe.py:9124
 msgid "Unable to verify key"
 msgstr "Kľúč sa nepodarilo overiť"
 
-#: lazylibrarian/webServe.py:9093
+#: lazylibrarian/webServe.py:9125
 msgid "No key provided"
 msgstr "Nebol zadaný žiadny kľúč"
 
-#: lazylibrarian/webServe.py:9102
+#: lazylibrarian/webServe.py:9134
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr "Tweet bol odoslaný, na Twitteri si overte, či sa zobrazil"
 
-#: lazylibrarian/webServe.py:9103
+#: lazylibrarian/webServe.py:9135
 msgid "Error sending tweet"
 msgstr "Chyba pri odosielaní tweetu"
 
-#: lazylibrarian/webServe.py:9132 lazylibrarian/webServe.py:9245
-#: lazylibrarian/webServe.py:9272 lazylibrarian/webServe.py:9299
+#: lazylibrarian/webServe.py:9164 lazylibrarian/webServe.py:9277
+#: lazylibrarian/webServe.py:9304 lazylibrarian/webServe.py:9331
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr "Testovacie oznámenie %(name)s bolo úspešne odoslané"
 
-#: lazylibrarian/webServe.py:9135 lazylibrarian/webServe.py:9248
-#: lazylibrarian/webServe.py:9275 lazylibrarian/webServe.py:9302
+#: lazylibrarian/webServe.py:9167 lazylibrarian/webServe.py:9280
+#: lazylibrarian/webServe.py:9307 lazylibrarian/webServe.py:9334
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr "Testovacie oznámenie %(name)s zlyhalo"
 
-#: lazylibrarian/webServe.py:9154 lazylibrarian/webServe.py:9181
-#: lazylibrarian/webServe.py:9218 lazylibrarian/webServe.py:9329
+#: lazylibrarian/webServe.py:9186 lazylibrarian/webServe.py:9213
+#: lazylibrarian/webServe.py:9250 lazylibrarian/webServe.py:9361
 #, python-format
 msgid "%(name)s notification successful"
 msgstr "Oznámenie %(name)s bolo úspešné"
 
-#: lazylibrarian/webServe.py:9157 lazylibrarian/webServe.py:9184
-#: lazylibrarian/webServe.py:9221 lazylibrarian/webServe.py:9325
+#: lazylibrarian/webServe.py:9189 lazylibrarian/webServe.py:9216
+#: lazylibrarian/webServe.py:9253 lazylibrarian/webServe.py:9357
 #, python-format
 msgid "%(name)s notification failed"
 msgstr "Oznámenie %(name)s zlyhalo"
 
-#: lazylibrarian/webServe.py:9348
+#: lazylibrarian/webServe.py:9380
 msgid "Custom notification failed"
 msgstr "Vlastné oznámenie zlyhalo"
 
-#: lazylibrarian/webServe.py:9350
+#: lazylibrarian/webServe.py:9382
 #, python-format
 msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr "Vlastné oznámenie zlyhalo, chybný parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9352
+#: lazylibrarian/webServe.py:9384
 msgid "Custom notification successful"
 msgstr "Vlastné oznámenie bolo úspešné"
 
-#: lazylibrarian/webServe.py:9410
+#: lazylibrarian/webServe.py:9442
 msgid "Email notification failed"
 msgstr "E-mailové oznámenie zlyhalo"
 
-#: lazylibrarian/webServe.py:9412
+#: lazylibrarian/webServe.py:9444
 #, python-format
 msgid "Email notification failed, bad parameter: %(param)s"
 msgstr "E-mailové oznámenie zlyhalo, chybný parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9414
+#: lazylibrarian/webServe.py:9446
 msgid "Email notification successful, check your email"
 msgstr "E-mailové oznámenie bolo úspešné, skontrolujte svoj e-mail"
 
-#: lazylibrarian/webServe.py:9542
+#: lazylibrarian/webServe.py:9574
 msgid "Manage AudioBooks"
 msgstr "Spravovať audioknihy"
 
-#: lazylibrarian/webServe.py:9542
+#: lazylibrarian/webServe.py:9574
 msgid "Manage eBooks"
 msgstr "Spravovať e-knihy"
 
-#: lazylibrarian/webServe.py:9606
+#: lazylibrarian/webServe.py:9638
 msgid "Deluge: Daemon connection successful"
 msgstr "Deluge: pripojenie k démonu bolo úspešné"
 
-#: lazylibrarian/webServe.py:9612
+#: lazylibrarian/webServe.py:9644
 msgid "Deluge daemon seems to have no labels set"
 msgstr "Zdá sa, že démon Deluge nemá nastavené žiadne štítky"
 
-#: lazylibrarian/webServe.py:9622
+#: lazylibrarian/webServe.py:9654
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr "Štítok [%(label)s] bol pridaný"
 
-#: lazylibrarian/webServe.py:9626
+#: lazylibrarian/webServe.py:9658
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr "Štítok [%(label)s] je platný"
 
-#: lazylibrarian/webServe.py:9632
+#: lazylibrarian/webServe.py:9664
 msgid "Deluge: Daemon connection FAILED"
 msgstr "Deluge: pripojenie k démonu ZLYHALO"
 
-#: lazylibrarian/webServe.py:9635
+#: lazylibrarian/webServe.py:9667
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr "Skontrolujte nastavenia HOST a PORT démona Deluge"
 
-#: lazylibrarian/webServe.py:9637
+#: lazylibrarian/webServe.py:9669
 msgid "Invalid USERNAME or PASSWORD"
 msgstr "Neplatné POUŽÍVATEĽSKÉ MENO alebo HESLO"
 
-#: lazylibrarian/webServe.py:9952 lazylibrarian/webServe.py:9975
+#: lazylibrarian/webServe.py:9984 lazylibrarian/webServe.py:10007
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr "Nájdená verzia %(version)s aplikácie %(name)s"
 
-#: lazylibrarian/webServe.py:9955 lazylibrarian/webServe.py:9977
+#: lazylibrarian/webServe.py:9987 lazylibrarian/webServe.py:10009
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr "%(command)s zlyhal: %(error)s"
 
-#: lazylibrarian/webServe.py:10008
+#: lazylibrarian/webServe.py:10040
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr "Predspracovanie vrátilo %(rc)s: res[%(res)s] err[%(err)s]"
 
-#: lazylibrarian/webServe.py:10011
+#: lazylibrarian/webServe.py:10043
 msgid "No preprocessor set in config"
 msgstr "V konfigurácii nie je nastavený žiadny preprocesor"
 
-#: lazylibrarian/webServe.py:10065
+#: lazylibrarian/webServe.py:10097
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr "Súbor %(file)s bol odoslaný e-mailom na %(addresses)s"
 
-#: lazylibrarian/webServe.py:10069
+#: lazylibrarian/webServe.py:10101
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr "Súbor %(file)s sa nepodarilo odoslať e-mailom na %(addresses)s"
 
-#: lazylibrarian/webServe.py:10071
+#: lazylibrarian/webServe.py:10103
 msgid "Send file"
 msgstr "Odoslať súbor"
 
-#: lazylibrarian/webServe.py:10127
+#: lazylibrarian/webServe.py:10159
 msgid "Thank you for enabling Telemetry"
 msgstr "Ďakujeme, že ste povolili telemetriu"
 
@@ -10069,9 +10722,6 @@ msgstr "Ďakujeme, že ste povolili telemetriu"
 
 #~ msgid "Author Names and Titles"
 #~ msgstr "Mená autorov a názvy"
-
-#~ msgid "Magazine Titles"
-#~ msgstr "Názvy časopisov"
 
 #~ msgid "Show eBooks"
 #~ msgstr "Zobraziť e-knihy"
@@ -10209,9 +10859,6 @@ msgstr "Ďakujeme, že ste povolili telemetriu"
 #~ msgid "Season Names"
 #~ msgstr "Názvy ročných období"
 
-#~ msgid "Month Names"
-#~ msgstr "Názvy mesiacov"
-
 #~ msgid "Martinus:"
 #~ msgstr "Martinus:"
 
@@ -10271,9 +10918,6 @@ msgstr "Ďakujeme, že ste povolili telemetriu"
 
 #~ msgid "Format for column dates"
 #~ msgstr "Formát dátumov v stĺpcoch"
-
-#~ msgid "Format for issue dates"
-#~ msgstr "Formát dátumov čísel"
 
 #~ msgid "$d Day of the month as a number"
 #~ msgstr "$d Deň v mesiaci ako číslo"
