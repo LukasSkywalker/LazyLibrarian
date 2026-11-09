@@ -455,7 +455,7 @@ def serve_template(templatename, **kwargs):
         adminlogger.debug(f"Request cookie: {str(cherrypy.request.cookie)}")
         if not CONFIG.get_bool('USER_ACCOUNTS'):
             adminlogger.debug("User accounts are NOT active")
-            perm = lazylibrarian.perm_admin
+            perm = lazylibrarian.perm_all
             try:
                 template = _hplookup.get_template(templatename)
             except (AttributeError, KeyError):
@@ -745,26 +745,31 @@ class WebInterface:
 
     @staticmethod
     def check_permitted(required_perm, redirect_unauth=False):
+        if not CONFIG.get_bool('USER_ACCOUNTS'):
+            return
         adminlogger = logging.getLogger('special.admin')
         userid = ''
-        if not CONFIG.get_bool('USER_ACCOUNTS'):
-            perm = lazylibrarian.perm_admin
-        else:
-            perm = 0
-            cookie = cherrypy.request.cookie
-            if cookie and 'll_uid' in list(cookie.keys()):
-                cookie_userid = cookie['ll_uid'].value
-                db = database.DBConnection()
-                res = db.match('SELECT * from users where UserID=?', (cookie_userid,))
-                if res:
-                    perm = check_int(res['Perms'], 0)
-                    userid = res['UserID']
-                else:
-                    adminlogger.debug(f"No match for userid [{cookie_userid}]")
-                    clear_our_cookies()
-                db.close()
+        perm = 0
+        cookie = cherrypy.request.cookie
+        if cookie and 'll_uid' in list(cookie.keys()):
+            cookie_userid = cookie['ll_uid'].value
+            db = database.DBConnection()
+            res = db.match('SELECT * from users where UserID=?', (cookie_userid,))
+            if res:
+                perm = check_int(res['Perms'], 0)
+                userid = res['UserID']
+            else:
+                adminlogger.debug(f"No match for userid [{cookie_userid}]")
+                clear_our_cookies()
+            db.close()
 
-        if perm & required_perm:
+        # Check all required permission bits are set
+        # (normally we are only sent one bit to check, eg perm_config or perm_edit)
+        if (perm & required_perm) == required_perm:
+            return
+        # for book + audio, we only need one valid to pass
+        if required_perm == (lazylibrarian.perm_ebook + lazylibrarian.perm_audio) and \
+            (perm & required_perm) in [lazylibrarian.perm_ebook, lazylibrarian.perm_audio]:
             return
 
         if redirect_unauth and not userid and CONFIG.get_bool('USER_ACCOUNTS') and not CONFIG.get_bool('PROXY_AUTH'):
@@ -1423,7 +1428,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def user_admin(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         self.label_thread('USERADMIN')
         db = database.DBConnection()
         try:
@@ -1441,7 +1446,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def update_feeds(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         if 'value' in kwargs and kwargs['value'] == '':
             # cancel or [x] pressed
@@ -1481,7 +1486,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def user_feeds(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         user = kwargs['user']
         if user:
@@ -1513,7 +1518,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def admin_delete(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         db = database.DBConnection()
         try:
             user = kwargs['user']
@@ -1540,7 +1545,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def get_user_profile(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         db = database.DBConnection()
         match = db.match('SELECT * from users where UserName=?', (kwargs['user'],))
         if match:
@@ -1571,7 +1576,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def admin_users(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         db = database.DBConnection()
 
@@ -2299,7 +2304,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def save_filters(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         self.label_thread('WEBSERVER')
         savedir = DIRS.DATADIR
         mags = dump_table('magazines', savedir)
@@ -2309,7 +2314,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def save_users(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         self.label_thread('WEBSERVER')
         savedir = DIRS.DATADIR
         users = dump_table('users', savedir)
@@ -2319,7 +2324,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def load_filters(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         self.label_thread('WEBSERVER')
         savedir = DIRS.DATADIR
         mags = restore_table('magazines', savedir)
@@ -2329,7 +2334,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def load_users(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         self.label_thread('WEBSERVER')
         savedir = DIRS.DATADIR
         users = restore_table('users', savedir)
@@ -3659,7 +3664,7 @@ class WebInterface:
             userid = None
             userprefs = 0
             if not CONFIG.get_bool('USER_ACCOUNTS'):
-                perm = lazylibrarian.perm_admin
+                perm = lazylibrarian.perm_all
             else:
                 perm = 0
                 cookie = cherrypy.request.cookie
@@ -4423,7 +4428,7 @@ class WebInterface:
         # we need to check the user priveleges and see if they can download the book
         db = database.DBConnection()
         if not CONFIG.get_bool('USER_ACCOUNTS'):
-            perm = lazylibrarian.perm_admin
+            perm = lazylibrarian.perm_all
             preftype = ''
         else:
             perm = 0
@@ -6865,7 +6870,7 @@ class WebInterface:
             CONFIG.set_int('DISPLAYLENGTH', displaylength)
 
             if not CONFIG.get_bool('USER_ACCOUNTS'):
-                perm = lazylibrarian.perm_admin
+                perm = lazylibrarian.perm_all
             else:
                 perm = 0
                 cookie = cherrypy.request.cookie
@@ -8245,7 +8250,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def shutdown(self):
-        self.check_permitted(lazylibrarian.perm_admin, redirect_unauth=True)
+        self.check_permitted(lazylibrarian.perm_config, redirect_unauth=True)
         self.label_thread('SHUTDOWN')
         # lazylibrarian.config_write()
         remove_file(os.path.join(DIRS.CACHEDIR, 'alive.png'))
@@ -8257,7 +8262,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def restart(self):
-        self.check_permitted(lazylibrarian.perm_admin, redirect_unauth=True)
+        self.check_permitted(lazylibrarian.perm_config, redirect_unauth=True)
         self.label_thread('RESTART')
         remove_file(os.path.join(DIRS.CACHEDIR, 'alive.png'))
         lazylibrarian.SIGNAL = 'restart'
@@ -8268,7 +8273,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def show_jobs(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         # show the current status of LL cron jobs
         resultlist = show_jobs()
@@ -8280,7 +8285,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def show_apprise(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         logger = logging.getLogger(__name__)
         # show the available notifiers
@@ -8300,7 +8305,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def show_stats(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         # show some database status info
         resultlist = show_stats()
@@ -8312,13 +8317,13 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def restart_jobs(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         restart_jobs(command=SchedulerCommand.RESTART)
 
     @cherrypy.expose
     @require_auth()
     def stop_jobs(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         restart_jobs(command=SchedulerCommand.STOP)
 
     # LOGGING ###########################################################
@@ -8326,7 +8331,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def clear_log(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         LOGCONFIG.clear_ui_log()
         logger.info('Screen log cleared')
@@ -8342,7 +8347,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def delete_logs(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         result = LOGCONFIG.delete_log_files(CONFIG['LOGDIR'])
         logger.info(result)
@@ -8918,7 +8923,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def clearblocked(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         logger = logging.getLogger(__name__)
         # clear any currently blocked providers
@@ -8940,7 +8945,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def cleardownloads(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         logger = logging.getLogger(__name__)
         # clear download counters
@@ -8961,7 +8966,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def showdownloads(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         # show provider download totals
         result = ''
@@ -9358,7 +9363,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def test_custom(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         thread_name("WEBSERVER")
         fail = ''
@@ -9453,13 +9458,13 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def generate_ro_api(self):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         return self.generate_api(ro=True)
 
     @cherrypy.expose
     @require_auth()
     def generate_api(self, ro=False):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         logger = logging.getLogger(__name__)
         api_key = hashlib.sha224(str(random.getrandbits(256)).encode('utf-8')).hexdigest()[0:32]
         if ro:
@@ -9948,7 +9953,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def test_ffmpeg(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         thread_name("WEBSERVER")
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         postprocesslogger = logging.getLogger('special.postprocess')
@@ -9985,7 +9990,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def test_ebook_convert(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         thread_name("WEBSERVER")
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         if 'prg' in kwargs and kwargs['prg']:
@@ -10007,7 +10012,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def test_calibredb(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         thread_name("WEBSERVER")
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         if 'prg' in kwargs and kwargs['prg']:
@@ -10020,7 +10025,7 @@ class WebInterface:
     @cherrypy.expose
     @require_auth()
     def test_preprocessor(self, **kwargs):
-        self.check_permitted(lazylibrarian.perm_admin)
+        self.check_permitted(lazylibrarian.perm_config)
         thread_name("WEBSERVER")
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
         if 'prg' in kwargs and kwargs['prg']:
