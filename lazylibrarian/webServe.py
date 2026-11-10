@@ -3688,7 +3688,9 @@ class WebInterface:
                    "booksub,booklink,workpage,bookauthors.authorid,seriesdisplay,booklibrary,audiostatus,audiolibrary, "
                    "group_concat(series.seriesid || '~' || series.seriesname || ' #' || member.seriesnum, '^') "
                    "as series, bookgenre,bookadded,scanresult,lt_workid, "
-                   "group_concat(series.seriesname || ' #' || member.seriesnum, '; ') as altsub "
+                   "group_concat(series.seriesname || ' #' || member.seriesnum, '; ') as altsub, "
+                   "(SELECT Time FROM failedsearch WHERE failedsearch.BookID=books.BookID "
+                   "AND failedsearch.Library=?) as lastsearch "
                    "FROM books,authors,bookauthors "
                    "LEFT OUTER JOIN member ON (bookauthors.BookID = member.BookID and bookauthors.bookid=books.bookid) "
                    "LEFT OUTER JOIN series ON (member.SeriesID = series.SeriesID) "
@@ -3710,7 +3712,8 @@ class WebInterface:
             status_type = 'books.status'
             if library == 'AudioBook':
                 status_type = 'audiostatus'
-            args = []
+            # the first placeholder is the failedsearch library in the select list
+            args = [library or 'eBook']
 
             if kwargs['source'] == "Manage":
                 if kwargs['whichStatus'] == 'ToRead':
@@ -3852,6 +3855,8 @@ class WebInterface:
                         sortcolumn = 14
                     else:
                         sortcolumn = 5
+                elif sortcolumn == 15 and kwargs['source'] == "Manage":  # last search, modern interface
+                    sortcolumn = 22
                 elif sortcolumn == 7:  # added or listed
                     if kwargs['source'] == "Manage":
                         sortcolumn = 18
@@ -3865,7 +3870,9 @@ class WebInterface:
 
                 serversidelogger.debug(f"final sortcolumn {sortcolumn}")
 
-                if sortcolumn in [12, 13, 15, 18]:  # series, dates
+                if sortcolumn == 22:  # last search time, never searched counts as oldest
+                    filtered.sort(key=lambda y: check_float(y[22], 0.0), reverse=sSortDir_0 == "desc")
+                elif sortcolumn in [12, 13, 15, 18]:  # series, dates
                     self.natural_sort(filtered, key=lambda y: y[sortcolumn] if y[sortcolumn] is not None else '',
                                       reverse=sSortDir_0 == "desc")
                 elif sortcolumn in [2]:  # title
@@ -3980,8 +3987,8 @@ class WebInterface:
                                row[5], row[16], flag]
 
                     if kwargs['source'] == "Manage":
-                        cmd = "SELECT Time,Interval,Count from failedsearch WHERE Bookid=? AND Library='eBook'"
-                        searches = db.match(cmd, (row[6],))
+                        cmd = "SELECT Time,Interval,Count from failedsearch WHERE Bookid=? AND Library=?"
+                        searches = db.match(cmd, (row[6], library))
                         if searches:
                             thisrow.append(f"{searches['Count']}/{searches['Interval']}")
                             try:
