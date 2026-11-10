@@ -178,7 +178,7 @@ ${bk.headIncludes()}
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${_('Close') | h}" x-show="!resultBusy"></button>
       </div>
       <div class="modal-body">
-        <div class="d-flex align-items-center gap-2" x-show="resultBusy"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>${_('Processing...')}</div>
+        <div x-show="resultBusy"><div class="d-flex align-items-center gap-2"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>${_('Processing...')}</div></div>
         <div class="llmg-out" x-show="!resultBusy" x-text="resultText"></div>
       </div>
       <div class="modal-footer" x-show="!resultBusy">
