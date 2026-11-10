@@ -45,6 +45,12 @@
     <link rel="shortcut icon" type="image/png"  href="images/ll.ico">
     <link rel="apple-touch-icon" href="images/ll.png">
     <link rel="manifest" href="images/manifest.json">
+    <script type="text/javascript">
+      // the service worker lets the interface be installed as an app, browsers only allow it over https or on localhost
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+      }
+    </script>
     <link rel="stylesheet" type="text/css" href="css/datatables.min.css"/>
     %if lazylibrarian.BOOKSTRAP_THEMELIST:
     <link id="theme" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/${style}/bootstrap.min.css" rel="stylesheet">
