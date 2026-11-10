@@ -115,6 +115,9 @@
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="selecting ? stopSelect() : (selecting = true)"
             x-text="selecting ? T.done : T.select"></button>
     %endif
+    %if perm&lazylibrarian.perm_search and not authorid:
+    ${self.add_button()}
+    %endif
     %if not authorid:
     <div class="dropdown">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
@@ -196,6 +199,10 @@
     %endif
     <button type="button" class="btn btn-sm btn-link" @click="stopSelect()">${_('Cancel')}</button>
   </div>
+  %endif
+
+  %if perm&lazylibrarian.perm_search and not authorid:
+  ${self.add_modal('series', series=True)}
   %endif
 
   <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="margin-bottom: 64px">

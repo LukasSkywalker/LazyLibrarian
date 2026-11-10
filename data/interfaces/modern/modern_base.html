@@ -527,25 +527,36 @@
       <i class="fa fa-plus" aria-hidden="true"></i> ${_('Add')}
     </button>
 </%def>
-<%def name="add_modal(source='index')">
+<%def name="add_modal(source='index', series=False)">
   <div class="modal fade" id="ll-add" tabindex="-1" aria-labelledby="ll-add-title" aria-hidden="true" x-data="{adding: false}"
        @shown-bs-modal.dot="$refs.searchfor.focus()">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-      <form action="search" method="get" @submit="adding = true">
+      <form action="${'add_series_id' if series else 'search'}" method="get" @submit="adding = true">
         <div class="modal-header border-0 pb-0">
-          <h2 class="modal-title h5" id="ll-add-title">${_('Add')}</h2>
+          <h2 class="modal-title h5" id="ll-add-title">${_('Add series') if series else _('Add')}</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${_('Close') | h}"></button>
         </div>
         <div class="modal-body">
+          %if series:
+          <label for="ll-searchfor" class="form-label small text-body-secondary">${_('Series ID or link')}</label>
+          <input type="text" class="form-control" id="ll-searchfor" name="seriesid" required x-ref="searchfor"
+                 placeholder="${_('HC12345 / GR12345 / OL12345') | h}" autocomplete="off" aria-describedby="ll-add-help">
+          <div id="ll-add-help" class="form-text">${_('A Hardcover, Goodreads or LibraryThing series ID, or a Goodreads or LibraryThing series link.')}</div>
+          %else:
           <label for="ll-searchfor" class="form-label small text-body-secondary">${_('Search for author/book')}</label>
           <input type="search" class="form-control" id="ll-searchfor" name="searchfor" required x-ref="searchfor"
                  placeholder="${_('Title / Author / ISBN') | h}" autocomplete="off">
           <input type="hidden" name="btnsearch" value="${source | h}">
+          %endif
         </div>
         <div class="modal-footer border-0 pt-0">
           <button type="submit" class="btn btn-ll rounded-pill" :disabled="adding">
             <span class="spinner-border spinner-border-sm me-1" x-show="adding" x-cloak aria-hidden="true"></span>
+            %if series:
+            <i class="fa fa-plus me-1" x-show="!adding" aria-hidden="true"></i>${_('Add')}
+            %else:
             <i class="fa fa-search me-1" x-show="!adding" aria-hidden="true"></i>${_('Search')}
+            %endif
           </button>
         </div>
       </form>

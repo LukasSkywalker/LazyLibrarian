@@ -16,6 +16,7 @@ import base64
 import contextlib
 import datetime
 import hashlib
+import html
 import json
 import logging
 import os
@@ -81,9 +82,12 @@ from lazylibrarian.booklanguages import (
 )
 from lazylibrarian.bookrename import name_vars
 from lazylibrarian.bookwork import (
+    SERIES_SOURCES,
+    add_series_by_id,
     add_series_members,
     delete_empty_series,
     language_from_words,
+    parse_series_id,
     set_series,
 )
 from lazylibrarian.cache import ImageType, cache_img, gr_xml_request
@@ -2155,6 +2159,29 @@ class WebInterface:
 
     @cherrypy.expose
     @require_auth()
+    def add_series_id(self, seriesid=''):
+        """ Add a series by id or url (HC123, GR123, OL123, a goodreads/librarything series link) """
+        self.check_permitted(lazylibrarian.perm_search, redirect_unauth=True)
+        self.label_thread('ADDSERIES')
+        title = i18n.gettext('Add series')
+        series_id = parse_series_id(seriesid)
+        if not series_id:
+            return serve_template(templatename="response.html", prefix="", title=title, timer=0,
+                                  message=i18n.gettext('Not a series id or link: "%(series)s". Use an id like '
+                                                       'HC12345, GR12345 or OL12345, or a Goodreads or '
+                                                       'LibraryThing series link.') % {'series': html.escape(seriesid)})
+        seriesname = add_series_by_id(series_id, reason=f'WebServer add_series_id {series_id}')
+        if not seriesname:
+            return serve_template(templatename="response.html", prefix="", title=title, timer=0,
+                                  message=i18n.gettext('Series %(series)s was not found at %(source)s') %
+                                  {'series': series_id, 'source': SERIES_SOURCES.get(series_id[:2], series_id[:2])})
+        return serve_template(templatename="response.html", prefix="", title=title, timer=5,
+                              message=i18n.gettext('Added series "%(series)s". Its books are being fetched '
+                                                   'in the background and will appear on the Series page '
+                                                   'when they are imported.') % {'series': html.escape(seriesname)})
+
+    @cherrypy.expose
+    @require_auth()
     @cherrypy.tools.json_out()
     def mark_series_ajax(self, action=None, redirect=None, **args):
         # redirect is an explicit param (not left in **args) for the same reason
@@ -2745,6 +2772,9 @@ class WebInterface:
         if searchfor.lower().startswith('bookid:'):
             self.add_book(searchfor[7:])
             return None
+        if searchfor.lower().startswith('seriesid:'):
+            lazylibrarian.SEARCHING = 0
+            return self.add_series_id(searchfor[9:])
         authid_key = 'AuthorID'
         bookid_key = 'BookID'
 
