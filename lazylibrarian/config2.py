@@ -642,9 +642,17 @@ class LLConfigHandler(ConfigDict):
 
     def use_direct(self) -> int:
         """ Returns number of enabled direct book providers """
-        count = self.count_in_use('GEN')
-        for item in ['BOK', 'ANNA', 'SLSK', 'WEBSHARE']:
-            if self.get_bool(item) and not BLOCKHANDLER.is_blocked(item):
+        # The search code blocks direct providers under their provider name (GEN_n, zlibrary, annas...),
+        # not their host or config key, so check the blocklist with the same name or a blocked
+        # provider still counts as active and the search logs "No direct providers are available".
+        count = 0
+        for provider in self.get_array('GEN') or []:
+            if provider['HOST'] and provider.get_bool('ENABLED') and \
+                    not BLOCKHANDLER.is_blocked(provider['NAME']):
+                count += 1
+        for item, blockname in [('BOK', 'zlibrary'), ('ANNA', 'annas'), ('SLSK', 'soulseek'),
+                                ('WEBSHARE', 'webshare')]:
+            if self.get_bool(item) and not BLOCKHANDLER.is_blocked(blockname):
                 count += 1
         return count
 
