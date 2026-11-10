@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-10 16:41+0000\n"
+"POT-Creation-Date: 2026-11-10 16:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: data/interfaces/modern/issues.html:119
 #: data/interfaces/modern/magazines.html:99
 #: data/interfaces/modern/magazines.html:144
-#: data/interfaces/modern/modern_base.html:558
+#: data/interfaces/modern/modern_base.html:566
 msgid "Search"
 msgstr ""
 
@@ -405,7 +405,7 @@ msgstr ""
 #: data/interfaces/bookstrap/author.html:313
 #: data/interfaces/bookstrap/author.html:329
 #: data/interfaces/bookstrap/author_detail.html:41
-#: data/interfaces/bookstrap/base.html:426
+#: data/interfaces/bookstrap/base.html:432
 #: data/interfaces/bookstrap/books.html:88
 #: data/interfaces/bookstrap/books.html:109
 #: data/interfaces/bookstrap/config.html:122
@@ -583,7 +583,7 @@ msgstr[1] ""
 #: data/interfaces/bookstrap/audio.html:297
 #: data/interfaces/bookstrap/author.html:355
 #: data/interfaces/bookstrap/author_detail.html:80
-#: data/interfaces/bookstrap/base.html:763
+#: data/interfaces/bookstrap/base.html:769
 #: data/interfaces/bookstrap/books.html:316
 #: data/interfaces/bookstrap/comicissues.html:185
 #: data/interfaces/bookstrap/comics.html:268
@@ -597,7 +597,7 @@ msgstr[1] ""
 #: data/interfaces/modern/author.html:320
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
-#: data/interfaces/modern/modern_base.html:394
+#: data/interfaces/modern/modern_base.html:402
 #: data/interfaces/modern/users.html:228
 msgid "Yes"
 msgstr ""
@@ -605,7 +605,7 @@ msgstr ""
 #: data/interfaces/bookstrap/audio.html:301
 #: data/interfaces/bookstrap/author.html:359
 #: data/interfaces/bookstrap/author_detail.html:81
-#: data/interfaces/bookstrap/base.html:767
+#: data/interfaces/bookstrap/base.html:773
 #: data/interfaces/bookstrap/books.html:320
 #: data/interfaces/bookstrap/comicissues.html:189
 #: data/interfaces/bookstrap/comics.html:272
@@ -622,14 +622,14 @@ msgstr ""
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
-#: data/interfaces/modern/modern_base.html:393
+#: data/interfaces/modern/modern_base.html:401
 #: data/interfaces/modern/users.html:227
 msgid "No"
 msgstr ""
 
 #: data/interfaces/bookstrap/audio.html:330
 #: data/interfaces/bookstrap/author.html:619
-#: data/interfaces/bookstrap/base.html:150
+#: data/interfaces/bookstrap/base.html:156
 #: data/interfaces/bookstrap/books.html:349
 #: data/interfaces/bookstrap/editmag.html:57
 #: data/interfaces/bookstrap/index.html:343
@@ -705,7 +705,7 @@ msgstr ""
 
 #: data/interfaces/bookstrap/audio.html:371
 #: data/interfaces/bookstrap/author.html:660
-#: data/interfaces/bookstrap/base.html:205
+#: data/interfaces/bookstrap/base.html:211
 #: data/interfaces/bookstrap/books.html:390
 #: data/interfaces/bookstrap/editmag.html:107
 #: data/interfaces/bookstrap/editmag.html:127
@@ -758,9 +758,9 @@ msgstr ""
 #: data/interfaces/bookstrap/audio.html:390
 #: data/interfaces/bookstrap/author.html:606
 #: data/interfaces/bookstrap/author.html:679
-#: data/interfaces/bookstrap/base.html:723
-#: data/interfaces/bookstrap/base.html:748
-#: data/interfaces/bookstrap/base.html:927
+#: data/interfaces/bookstrap/base.html:729
+#: data/interfaces/bookstrap/base.html:754
+#: data/interfaces/bookstrap/base.html:933
 #: data/interfaces/bookstrap/books.html:409
 #: data/interfaces/bookstrap/choosetype.html:48
 #: data/interfaces/bookstrap/config_functions.js:172
@@ -842,9 +842,9 @@ msgstr ""
 #: data/interfaces/modern/magazines.html:180
 #: data/interfaces/modern/managebooks.html:178
 #: data/interfaces/modern/managebooks.html:188
-#: data/interfaces/modern/modern_base.html:382
-#: data/interfaces/modern/modern_base.html:423
-#: data/interfaces/modern/modern_base.html:537
+#: data/interfaces/modern/modern_base.html:390
+#: data/interfaces/modern/modern_base.html:431
+#: data/interfaces/modern/modern_base.html:545
 #: data/interfaces/modern/profile.html:126
 #: data/interfaces/modern/profile.html:130
 #: data/interfaces/modern/response.html:18
@@ -1539,56 +1539,56 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:142
+#: data/interfaces/bookstrap/base.html:148
 msgid "Filter: "
 msgstr ""
 
 #. TRANSLATORS: _MENU_ is replaced by the rows per page dropdown, keep it as it
 #. is
-#: data/interfaces/bookstrap/base.html:144
+#: data/interfaces/bookstrap/base.html:150
 msgid "_MENU_ rows per page"
 msgstr ""
 
 #. TRANSLATORS: _START_, _END_ and _TOTAL_ are replaced by numbers, keep them
 #. as they are
-#: data/interfaces/bookstrap/base.html:146
+#: data/interfaces/bookstrap/base.html:152
 msgid "Showing _START_ to _END_ of _TOTAL_ rows"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:147
+#: data/interfaces/bookstrap/base.html:153
 msgid "Showing 0 to 0 of 0 rows"
 msgstr ""
 
 #. TRANSLATORS: _MAX_ is replaced by a number, keep it as it is
-#: data/interfaces/bookstrap/base.html:149
+#: data/interfaces/bookstrap/base.html:155
 msgid "(filtered from _MAX_ total rows)"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:151
+#: data/interfaces/bookstrap/base.html:157
 msgid "Loading..."
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:153
+#: data/interfaces/bookstrap/base.html:159
 msgid "First"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:154
+#: data/interfaces/bookstrap/base.html:160
 msgid "Previous"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:155
+#: data/interfaces/bookstrap/base.html:161
 msgid "Next"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:156
+#: data/interfaces/bookstrap/base.html:162
 msgid "Last"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:173
+#: data/interfaces/bookstrap/base.html:179
 msgid "Clear"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:205
+#: data/interfaces/bookstrap/base.html:211
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
@@ -1607,31 +1607,31 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:209
+#: data/interfaces/bookstrap/base.html:215
 #: data/interfaces/modern/config.html:262
 msgid "Are you sure you want to restart LazyLibrarian?"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:210
+#: data/interfaces/bookstrap/base.html:216
 #: data/interfaces/modern/config.html:263
 msgid "Are you sure you want to shutdown LazyLibrarian?"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:225
+#: data/interfaces/bookstrap/base.html:231
 msgid "Detailed"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:225
+#: data/interfaces/bookstrap/base.html:231
 #: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:279
 #: data/interfaces/modern/members.html:105
 msgid "Compact"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:226
+#: data/interfaces/bookstrap/base.html:232
 msgid "Grid"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:226
+#: data/interfaces/bookstrap/base.html:232
 #: data/interfaces/modern/author.html:346 data/interfaces/modern/books.html:279
 #: data/interfaces/modern/comics.html:76 data/interfaces/modern/index.html:91
 #: data/interfaces/modern/issues.html:87
@@ -1641,16 +1641,16 @@ msgstr ""
 msgid "List"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:235
+#: data/interfaces/bookstrap/base.html:241
 msgid "View:"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:394
-#: data/interfaces/modern/modern_base.html:274
+#: data/interfaces/bookstrap/base.html:400
+#: data/interfaces/modern/modern_base.html:282
 msgid "Toggle navigation"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:414
+#: data/interfaces/bookstrap/base.html:420
 #: data/interfaces/bookstrap/config.html:122
 #: data/interfaces/bookstrap/config.html:2301
 #: data/interfaces/modern/modern_base.html:14 lazylibrarian/webServe.py:818
@@ -1658,29 +1658,29 @@ msgstr ""
 msgid "Authors"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:419
+#: data/interfaces/bookstrap/base.html:425
 #: data/interfaces/bookstrap/config.html:122
 #: data/interfaces/bookstrap/config.html:136
 #: data/interfaces/modern/modern_base.html:16 lazylibrarian/webServe.py:3670
 msgid "eBooks"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:434
+#: data/interfaces/bookstrap/base.html:440
 msgid "Audio"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:435
+#: data/interfaces/bookstrap/base.html:441
 #: data/interfaces/bookstrap/config.html:123
 #: data/interfaces/bookstrap/config.html:137
 #: data/interfaces/modern/modern_base.html:20 lazylibrarian/webServe.py:3647
 msgid "AudioBooks"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:445
+#: data/interfaces/bookstrap/base.html:451
 msgid "Mags"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:446
+#: data/interfaces/bookstrap/base.html:452
 #: data/interfaces/bookstrap/config.html:123
 #: data/interfaces/bookstrap/config.html:138
 #: data/interfaces/bookstrap/config.html:2725
@@ -1688,7 +1688,7 @@ msgstr ""
 msgid "Magazines"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:455
+#: data/interfaces/bookstrap/base.html:461
 #: data/interfaces/bookstrap/config.html:124
 #: data/interfaces/bookstrap/config.html:139
 #: data/interfaces/bookstrap/config.html:2747
@@ -1697,84 +1697,84 @@ msgstr ""
 msgid "Comics"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:461
-#: data/interfaces/bookstrap/base.html:463
+#: data/interfaces/bookstrap/base.html:467
+#: data/interfaces/bookstrap/base.html:469
 #: data/interfaces/modern/modern_base.html:26
 msgid "Manage"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:467
+#: data/interfaces/bookstrap/base.html:473
 #: data/interfaces/modern/modern_base.html:28 lazylibrarian/webServe.py:8459
 msgid "History"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:470
+#: data/interfaces/bookstrap/base.html:476
 #: data/interfaces/bookstrap/config.html:238
 #: data/interfaces/modern/modern_base.html:30
 msgid "Logs"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:473
-#: data/interfaces/modern/modern_base.html:321
+#: data/interfaces/bookstrap/base.html:479
+#: data/interfaces/modern/modern_base.html:329
 msgid "Config"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:476
-#: data/interfaces/bookstrap/base.html:477
-#: data/interfaces/bookstrap/base.html:691
+#: data/interfaces/bookstrap/base.html:482
+#: data/interfaces/bookstrap/base.html:483
+#: data/interfaces/bookstrap/base.html:697
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:304 lazylibrarian/webServe.py:8020
+#: data/interfaces/modern/modern_base.html:312 lazylibrarian/webServe.py:8020
 msgid "What's new"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:483
-#: data/interfaces/modern/modern_base.html:326
+#: data/interfaces/bookstrap/base.html:489
+#: data/interfaces/modern/modern_base.html:334
 msgid "Help"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:486
-#: data/interfaces/bookstrap/base.html:487
-#: data/interfaces/modern/modern_base.html:291
-#: data/interfaces/modern/modern_base.html:295
+#: data/interfaces/bookstrap/base.html:492
+#: data/interfaces/bookstrap/base.html:493
+#: data/interfaces/modern/modern_base.html:299
+#: data/interfaces/modern/modern_base.html:303
 msgid "Interface language"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:496
+#: data/interfaces/bookstrap/base.html:502
 msgid "Try the new interface (beta)"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:497
-#: data/interfaces/bookstrap/base.html:667
+#: data/interfaces/bookstrap/base.html:503
+#: data/interfaces/bookstrap/base.html:673
 msgid "New interface (beta)"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:499
-#: data/interfaces/bookstrap/base.html:500
+#: data/interfaces/bookstrap/base.html:505
+#: data/interfaces/bookstrap/base.html:506
 msgid "Back to the new interface"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:505
+#: data/interfaces/bookstrap/base.html:511
 #: data/interfaces/bookstrap/config.html:455
 #: data/interfaces/bookstrap/config.html:537
-#: data/interfaces/modern/modern_base.html:329
+#: data/interfaces/modern/modern_base.html:337
 msgid "User"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:508
-#: data/interfaces/modern/modern_base.html:332
+#: data/interfaces/bookstrap/base.html:514
+#: data/interfaces/modern/modern_base.html:340
 msgid "Logout"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:525
+#: data/interfaces/bookstrap/base.html:531
 msgid "Go to top"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:531
+#: data/interfaces/bookstrap/base.html:537
 #: data/interfaces/modern/modern_base.html:38
 msgid "LazyLibrarian Telemetry"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:532
+#: data/interfaces/bookstrap/base.html:538
 #: data/interfaces/modern/modern_base.html:39
 msgid ""
 "LazyLibrarian has the ability to send basic information about the "
@@ -1783,53 +1783,53 @@ msgid ""
 "parts nobody uses. All telemetry information is 100% anonymized."
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:533
-#: data/interfaces/bookstrap/base.html:719
+#: data/interfaces/bookstrap/base.html:539
+#: data/interfaces/bookstrap/base.html:725
 msgid "Enable Telemetry"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:533
+#: data/interfaces/bookstrap/base.html:539
 #: data/interfaces/modern/modern_base.html:42
 msgid "Turn on"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:534
+#: data/interfaces/bookstrap/base.html:540
 msgid "Ask me again later"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:534
+#: data/interfaces/bookstrap/base.html:540
 #: data/interfaces/modern/modern_base.html:42
 msgid "Maybe Later"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:537
+#: data/interfaces/bookstrap/base.html:543
 #: data/interfaces/modern/modern_base.html:64
 msgid "LazyLibrarian Update"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:539
+#: data/interfaces/bookstrap/base.html:545
 #: data/interfaces/modern/modern_base.html:47
 msgid "You are running an unknown version of lazylibrarian"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:541
+#: data/interfaces/bookstrap/base.html:547
 #: data/interfaces/modern/modern_base.html:49
 msgid "You are running an unknown version via source install"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:544
+#: data/interfaces/bookstrap/base.html:550
 #: data/interfaces/modern/modern_base.html:52
 msgid "Unable to get the latest version from git"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:546
+#: data/interfaces/bookstrap/base.html:552
 #: data/interfaces/modern/modern_base.html:54
 msgid ""
 "Running a local updated version. Push changes to git or rollback to "
 "Master release"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:549
+#: data/interfaces/bookstrap/base.html:555
 #: data/interfaces/modern/modern_base.html:56
 #, python-format
 msgid "New version available. You are one commit behind."
@@ -1837,32 +1837,32 @@ msgid_plural "New version available. You are %(count)d commits behind."
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/bookstrap/base.html:553
+#: data/interfaces/bookstrap/base.html:559
 #: data/interfaces/modern/modern_base.html:65
 msgid "Manual update is required"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:557
+#: data/interfaces/bookstrap/base.html:563
 msgid "Update to the latest release"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:557
+#: data/interfaces/bookstrap/base.html:563
 #: data/interfaces/bookstrap/profile.html:84
 #: data/interfaces/modern/modern_base.html:62
 #: data/interfaces/modern/profile.html:117
 msgid "Update"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:564
+#: data/interfaces/bookstrap/base.html:570
 msgid "Ignore the update message for 24 hours"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:564
+#: data/interfaces/bookstrap/base.html:570
 #: data/interfaces/modern/modern_base.html:63
 msgid "Ignore"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:592
+#: data/interfaces/bookstrap/base.html:598
 #: data/interfaces/modern/modern_base.html:89
 #, python-format
 msgid ""
@@ -1870,7 +1870,7 @@ msgid ""
 " help finish the translation on Hosted Weblate, no coding needed."
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:596
+#: data/interfaces/bookstrap/base.html:602
 #: data/interfaces/modern/modern_base.html:93
 #, python-format
 msgid ""
@@ -1878,22 +1878,22 @@ msgid ""
 "translate it on Hosted Weblate, no coding needed."
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:603
+#: data/interfaces/bookstrap/base.html:609
 #: data/interfaces/modern/modern_base.html:98
 msgid "Help translate"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:604
+#: data/interfaces/bookstrap/base.html:610
 #: data/interfaces/modern/modern_base.html:99
 msgid "No thanks"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:607
+#: data/interfaces/bookstrap/base.html:613
 #: data/interfaces/modern/modern_base.html:96
 msgid "Translate LazyLibrarian"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:628
+#: data/interfaces/bookstrap/base.html:634
 #: data/interfaces/modern/author.html:344
 #: data/interfaces/modern/author_detail.html:361
 #: data/interfaces/modern/book_detail.html:265
@@ -1911,8 +1911,8 @@ msgstr ""
 #: data/interfaces/modern/managebooks.html:209
 #: data/interfaces/modern/manageissues.html:122
 #: data/interfaces/modern/members.html:211
-#: data/interfaces/modern/modern_base.html:409
-#: data/interfaces/modern/modern_base.html:423
+#: data/interfaces/modern/modern_base.html:417
+#: data/interfaces/modern/modern_base.html:431
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
@@ -1920,27 +1920,27 @@ msgstr ""
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:647
+#: data/interfaces/bookstrap/base.html:653
 msgid ""
 "LazyLibrarian has a new interface: covers as cards, infinite scroll and a"
 " layout made for phones. Pages it does not have yet open in this one, and"
 " you can switch back at any time."
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:659
+#: data/interfaces/bookstrap/base.html:665
 #: data/interfaces/bookstrap/config.html:74
 msgid "Interface language:"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:662
+#: data/interfaces/bookstrap/base.html:668
 msgid "Try it"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:664
+#: data/interfaces/bookstrap/base.html:670
 msgid "Not now"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:687
+#: data/interfaces/bookstrap/base.html:693
 #: data/interfaces/modern/modern_base.html:69
 #, python-format
 msgid "One change since you last looked:"
@@ -1948,24 +1948,24 @@ msgid_plural "%(count)d changes since you last looked:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/bookstrap/base.html:692
+#: data/interfaces/bookstrap/base.html:698
 #: data/interfaces/modern/modern_base.html:71
 msgid "Dismiss"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:695
+#: data/interfaces/bookstrap/base.html:701
 #: data/interfaces/modern/modern_base.html:68
 msgid "LazyLibrarian updated"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:744
+#: data/interfaces/bookstrap/base.html:750
 #: data/interfaces/bookstrap/config.html:22
 #: data/interfaces/bookstrap/config_functions.js:946
 msgid "Check Version"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:760
-#: data/interfaces/modern/modern_base.html:391
+#: data/interfaces/bookstrap/base.html:766
+#: data/interfaces/modern/modern_base.html:399
 msgid "Are you sure you want to logout?"
 msgstr ""
 
@@ -2393,7 +2393,7 @@ msgid "Processing"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:55
-#: data/interfaces/modern/modern_base.html:346
+#: data/interfaces/modern/modern_base.html:354
 msgid "Notifications"
 msgstr ""
 
@@ -7118,13 +7118,13 @@ msgstr ""
 #: data/interfaces/bookstrap/index.html:39
 #: data/interfaces/bookstrap/searchresults.html:17
 #: data/interfaces/bookstrap/series.html:46
-#: data/interfaces/modern/modern_base.html:548
+#: data/interfaces/modern/modern_base.html:556
 #: data/interfaces/modern/searchresults.html:123
 msgid "Title / Author / ISBN"
 msgstr ""
 
 #: data/interfaces/bookstrap/index.html:41
-#: data/interfaces/modern/modern_base.html:546
+#: data/interfaces/modern/modern_base.html:554
 msgid "Search for author/book"
 msgstr ""
 
@@ -7842,9 +7842,9 @@ msgstr ""
 
 #: data/interfaces/bookstrap/searchresults.html:53
 #: data/interfaces/modern/comicresults.html:76
-#: data/interfaces/modern/modern_base.html:527
-#: data/interfaces/modern/modern_base.html:536
-#: data/interfaces/modern/modern_base.html:556
+#: data/interfaces/modern/modern_base.html:535
+#: data/interfaces/modern/modern_base.html:544
+#: data/interfaces/modern/modern_base.html:564
 msgid "Add"
 msgstr ""
 
@@ -8859,39 +8859,39 @@ msgstr ""
 msgid "Back to classic"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:283
+#: data/interfaces/modern/modern_base.html:291
 msgid "Switch theme"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:324
+#: data/interfaces/modern/modern_base.html:332
 msgid "Classic interface"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:364
+#: data/interfaces/modern/modern_base.html:372
 #, python-format
 msgid "and %(count)s more"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:424
+#: data/interfaces/modern/modern_base.html:432
 #, python-format
 msgid "%(count)s more notification"
 msgid_plural "%(count)s more notifications"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/modern_base.html:536 lazylibrarian/webServe.py:2166
+#: data/interfaces/modern/modern_base.html:544 lazylibrarian/webServe.py:2166
 msgid "Add series"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:541
+#: data/interfaces/modern/modern_base.html:549
 msgid "Series ID or link"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:543
+#: data/interfaces/modern/modern_base.html:551
 msgid "HC12345 / GR12345 / OL12345"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:544
+#: data/interfaces/modern/modern_base.html:552
 msgid ""
 "A Hardcover, Goodreads or LibraryThing series ID, or a Goodreads or "
 "LibraryThing series link."
