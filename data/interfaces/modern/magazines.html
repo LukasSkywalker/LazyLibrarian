@@ -139,7 +139,6 @@
           </template>
         </div>
         <div class="llm-status d-flex align-items-center gap-2 flex-wrap mt-auto pt-1">
-          <span class="badge rounded-pill llm-pill" :class="pillClass(m.status)" x-text="llStatus(m.status)"></span>
           <span class="badge rounded-pill llm-pill bg-secondary-subtle text-secondary-emphasis" x-show="m.magStatus === 'Paused'" x-text="llStatus('Paused')"></span>
           %if perm&lazylibrarian.perm_force:
           <template x-if="m.status === 'Wanted'"><button type="button" class="btn btn-link llm-act" data-do="search">${_('Search')}</button></template>
@@ -286,10 +285,6 @@ document.addEventListener('alpine:init', function () {
         this.$nextTick(function () {
           if (!self.done && self.$refs.sentinel.getBoundingClientRect().top < window.innerHeight + 400) { self.load(); }
         });
-      },
-      pillClass: function (s) {
-        return {Open: 'text-bg-success', Have: 'bg-success-subtle text-success-emphasis', Active: 'text-bg-success', Wanted: 'text-bg-warning',
-                Snatched: 'text-bg-info', Paused: 'bg-secondary-subtle text-secondary-emphasis'}[s] || 'bg-secondary-subtle text-secondary-emphasis';
       },
       open: function (m, e) {
         if (this.selecting) {

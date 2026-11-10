@@ -101,9 +101,7 @@
             x-text="selecting ? T.done : T.select"></button>
     %endif
     %if perm&lazylibrarian.perm_search:
-    <button type="button" class="btn btn-sm btn-ll rounded-pill" data-bs-toggle="modal" data-bs-target="#lla-add">
-      <i class="fa fa-plus" aria-hidden="true"></i> ${_('Add author')}
-    </button>
+    ${self.add_button()}
     %endif
     <div class="dropdown">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
@@ -199,28 +197,7 @@
   %endif
 
   %if perm&lazylibrarian.perm_search:
-  <div class="modal fade" id="lla-add" tabindex="-1" aria-labelledby="lla-add-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-      <form action="search" method="get" @submit="adding = true">
-        <div class="modal-header border-0 pb-0">
-          <h2 class="modal-title h5" id="lla-add-title">${_('Add author')}</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${_('Close') | h}"></button>
-        </div>
-        <div class="modal-body">
-          <label for="lla-searchfor" class="form-label small text-body-secondary">${_('Search for author/book')}</label>
-          <input type="search" class="form-control" id="lla-searchfor" name="searchfor" required
-                 placeholder="${_('Title / Author / ISBN') | h}" autocomplete="off">
-          <input type="hidden" name="btnsearch" value="index">
-        </div>
-        <div class="modal-footer border-0 pt-0">
-          <button type="submit" class="btn btn-ll rounded-pill" :disabled="adding">
-            <span class="spinner-border spinner-border-sm me-1" x-show="adding" x-cloak aria-hidden="true"></span>
-            <i class="fa fa-search me-1" x-show="!adding" aria-hidden="true"></i>${_('Search')}
-          </button>
-        </div>
-      </form>
-    </div></div>
-  </div>
+  ${self.add_modal()}
   %endif
 
   <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="margin-bottom: 64px">
@@ -266,7 +243,7 @@ document.addEventListener('alpine:init', function () {
   Alpine.data('llAuthors', function () {
     return {
       T: T, authors: [], total: 0, start_: 0, loading: false, done: false, gen: 0, busy: false, busyText: '',
-      q: '', sort: '2:asc', view: 'grid', selecting: false, sel: {}, toastText: '', adding: false, pollTimer: 0,
+      q: '', sort: '2:asc', view: 'grid', selecting: false, sel: {}, toastText: '', pollTimer: 0,
       get countText() { return this.total || this.done ? llNgettext(T.authors, this.total) : ''; },
       get selCount() { return Object.keys(this.sel).length; },
 
@@ -280,8 +257,6 @@ document.addEventListener('alpine:init', function () {
         ['q', 'sort'].forEach(function (k) { self.$watch(k, function () { self.reset(); }); });
         new IntersectionObserver(function (e) { if (e[0].isIntersecting) { self.load(); } }, {rootMargin: '400px'})
           .observe(this.$refs.sentinel);
-        var add = document.getElementById('lla-add');
-        if (add) { add.addEventListener('shown.bs.modal', function () { document.getElementById('lla-searchfor').focus(); }); }
         this.load();
       },
 
