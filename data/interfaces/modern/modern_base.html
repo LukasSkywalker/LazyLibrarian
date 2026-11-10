@@ -131,6 +131,14 @@
   <link rel="shortcut icon" type="image/png" href="images/ll.ico">
   <link rel="apple-touch-icon" href="images/ll.png">
   <link rel="manifest" href="images/manifest.json">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#212529" media="(prefers-color-scheme: dark)">
+  <script>
+    // the service worker lets the interface be installed as an app, browsers only allow it over https or on localhost
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    }
+  </script>
   <script>
     // light or dark: the choice made with the theme button, otherwise the system setting
     (function () {
