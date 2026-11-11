@@ -572,7 +572,9 @@ def two_months(word):
     # found in some magazine titles
     a = 0
     b = 0
-    cleanword = unaccented(word).lower()
+    # titles often have punctuation after the month, eg "13th November, 2026"
+    word = word.strip(' ,;:')
+    cleanword = unaccented(word).lower().strip(' ,.;:')
     for f in range(1, 13):
         for month in lazylibrarian.MONTHNAMES[0][f]:
             if word.startswith(month):
@@ -619,7 +621,9 @@ def month2num(month):
      - given a month name (long or short) in requested locales
      - or given a season name in the seasons dictionary
     """
-    cleanmonth = unaccented(month).lower()
+    # titles often have punctuation after the month, eg "13th November, 2026"
+    month = month.strip(' ,;:')
+    cleanmonth = unaccented(month).lower().strip(' ,.;:')
     for f in range(1, 13):
         if month in lazylibrarian.MONTHNAMES[0][f] or cleanmonth in lazylibrarian.MONTHNAMES[1][f]:
             return f
