@@ -36,6 +36,18 @@
     .llm-gen { padding: 6px; } .llm-gen .t { font-size: .72rem; } .llm-title { font-size: .78rem; } .llm-sub, .llm-tags { display: none; }
     .llm-pill { font-size: .58rem; padding: 2px 6px; } .llm-act { font-size: .66rem; } .llm-check { width: 22px; height: 22px; }
   }
+  /* compact: smaller covers, title and pause badge only */
+  .llm-v-compact.llm-grid { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 14px 12px; }
+  .llm-v-compact .llm-sub, .llm-v-compact .llm-tags, .llm-v-compact .llm-act { display: none !important; }
+  .llm-v-compact .llm-title { font-size: .8rem; -webkit-line-clamp: 1; }
+  .llm-v-compact .llm-gen { padding: 7px; } .llm-v-compact .llm-gen .t { font-size: .8rem; }
+  .llm-v-compact .llm-count { font-size: .6rem; padding: 1px 6px; right: 4px; bottom: 4px; }
+  .llm-v-compact .llm-check { width: 22px; height: 22px; top: 4px; right: 4px; }
+  @media (max-width: 480px) {
+    .llm-v-compact.llm-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 8px; }
+    .llm-v-compact .llm-title { font-size: .7rem; }
+    .llm-v-compact .llm-gen { padding: 5px; } .llm-v-compact .llm-gen .t { font-size: .6rem; }
+  }
   .llm-v-list.llm-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .llm-v-list .llm-card { display: grid; align-items: center; gap: 0 12px; padding: 6px 4px; border-bottom: 1px solid var(--bs-border-color-translucent);
                           grid-template-columns: 36px minmax(0, 1fr) auto; grid-template-areas: "cover title status" "cover sub status"; }
@@ -72,6 +84,8 @@
     <div class="btn-group btn-group-sm llm-views" role="group" aria-label="${_('View') | h}">
       <button type="button" class="btn" :class="view === 'grid' ? 'btn-secondary' : 'btn-outline-secondary'" :aria-pressed="view === 'grid'"
               @click="setView('grid')" title="${_('Covers') | h}" aria-label="${_('Covers') | h}"><i class="fa fa-th-large" aria-hidden="true"></i></button>
+      <button type="button" class="btn" :class="view === 'compact' ? 'btn-secondary' : 'btn-outline-secondary'" :aria-pressed="view === 'compact'"
+              @click="setView('compact')" title="${_('Compact') | h}" aria-label="${_('Compact') | h}"><i class="fa fa-th" aria-hidden="true"></i></button>
       <button type="button" class="btn" :class="view === 'list' ? 'btn-secondary' : 'btn-outline-secondary'" :aria-pressed="view === 'list'"
               @click="setView('list')" title="${_('List') | h}" aria-label="${_('List') | h}"><i class="fa fa-list" aria-hidden="true"></i></button>
     </div>
@@ -86,7 +100,7 @@
             x-text="selecting ? T.done : T.select"></button>
     %endif
     <button type="button" class="btn btn-sm btn-ll rounded-pill" data-bs-toggle="modal" data-bs-target="#llm-add">
-      <i class="fa fa-plus" aria-hidden="true"></i> ${_('Magazine')}
+      <i class="fa fa-plus" aria-hidden="true"></i> ${_('Add')}
     </button>
     <div class="dropdown">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
@@ -231,7 +245,7 @@ document.addEventListener('alpine:init', function () {
       get selCount() { return Object.keys(this.sel).length; },
       start: function () {
         var self = this;
-        try { var v = localStorage.getItem('llm-view'); if (v === 'grid' || v === 'list') { this.view = v; } } catch (e) {}
+        try { var v = localStorage.getItem('llm-view'); if (v === 'grid' || v === 'compact' || v === 'list') { this.view = v; } } catch (e) {}
         try {
           var saved = JSON.parse(sessionStorage.getItem('llm-mags') || 'null');
           if (saved) { this.q = saved.q || ''; this.sort = saved.sort || this.sort; }
