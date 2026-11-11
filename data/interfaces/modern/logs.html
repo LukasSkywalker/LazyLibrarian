@@ -25,6 +25,17 @@
     .llg-lvl { grid-row: 1; }
     .llg-msg, .llg-src { grid-column: 1 / -1; }
   }
+  /* provider status strip: a chip per provider in use, red with the time left when it is blocked */
+  .llg-prov { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: .9rem; }
+  .llg-chip { display: inline-flex; align-items: center; gap: .4rem; max-width: 100%; font-size: .78rem; padding: .2rem .65rem;
+              border-radius: 999px; border: 1px solid var(--bs-border-color-translucent); background: var(--bs-tertiary-bg); }
+  .llg-chip > .llg-pname { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .llg-chip.bad { background: var(--bs-danger-bg-subtle); border-color: var(--bs-danger-border-subtle); color: var(--bs-danger-text-emphasis); cursor: help; }
+  .llg-dot { flex: 0 0 auto; width: .5rem; height: .5rem; border-radius: 50%; background: var(--bs-success); }
+  .llg-chip.bad .llg-dot { background: var(--bs-danger); }
+  .llg-chip .llg-left { font-variant-numeric: tabular-nums; opacity: .85; white-space: nowrap; }
+  .llg-chip button { border: 0; background: none; padding: 0 0 0 .1rem; color: inherit; line-height: 1; opacity: .7; }
+  .llg-chip button:hover, .llg-chip button:focus-visible { opacity: 1; }
   .llg-skel { height: 28px; border-bottom: 1px solid var(--bs-border-color-translucent); background: var(--bs-tertiary-bg); animation: llg-pulse 1.2s ease-in-out infinite; }
   @keyframes llg-pulse { 50% { opacity: .5; } }
   @media (prefers-reduced-motion: reduce) { .llg-skel { animation: none; } }
@@ -74,6 +85,23 @@
     </div>
   </div>
 
+  <div class="llg-prov" x-data="llProv" x-init="start()" x-show="items.length" x-cloak role="list" aria-label="${_('Provider status') | h}">
+    <template x-for="p in items" :key="p.key">
+      <span class="llg-chip" :class="p.block ? 'bad' : 'ok'" :title="p.tip" role="listitem">
+        <span class="llg-dot" aria-hidden="true"></span>
+        <span class="llg-pname" x-text="p.name"></span>
+        <span class="visually-hidden" x-text="p.block ? T.blocked : T.ok"></span>
+        <span class="llg-left" x-show="p.block" x-text="p.left"></span>
+        %if perm & lazylibrarian.perm_config:
+        <button type="button" x-show="p.block" @click="unblock(p)" :aria-label="T.unblock + ' ' + p.name" :title="T.unblock"><i class="fa fa-times" aria-hidden="true"></i></button>
+        %endif
+      </span>
+    </template>
+    %if perm & lazylibrarian.perm_config:
+    <a href="config" class="small link-secondary text-decoration-none ms-1" @click="settings($event)">${_('Providers')} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    %endif
+  </div>
+
   <div class="llg-list">
     <template x-for="l in lines" :key="l.k">
       <div class="llg-row" :class="['lv-' + l.level, l.open && 'open']" @click="if (!window.getSelection().toString()) { l.open = !l.open; }">
@@ -110,6 +138,49 @@ document.addEventListener('alpine:init', function () {
     return {k: ++seq, time: String(r[0] || ''), level: String(r[1] || ''), thread: r[2] || '', file: r[3] || '', method: r[4] || '',
             line: r[5] || '', msg: String(r[6] == null ? '' : r[6]), open: false};
   }
+
+  // provider status: the providers in use and anything on the blocklist, refreshed every minute
+  var TP = {ok: ${_js('OK')}, blocked: ${_js('Blocked')}, unblock: ${_js('Unblock')}, left: ${_js('Blocked for %(time)s')},
+            min: ${_jsn('%(count)s minute', '%(count)s minutes')}, hr: ${_jsn('%(count)s hour', '%(count)s hours')}};
+  function left(s) {
+    var m = Math.ceil(s / 60);
+    return m < 120 ? llNgettext(TP.min, m) : llNgettext(TP.hr, Math.round(m / 60));
+  }
+  Alpine.data('llProv', function () {
+    return {
+      T: TP, items: [],
+      start: function () {
+        var self = this;
+        this.load();
+        setInterval(function () { if (!document.hidden) { self.load(); } }, 60000);
+      },
+      load: function () {
+        var self = this;
+        fetch('provider_status', {cache: 'no-store',credentials: 'same-origin'}).then(function (r) { return r.json(); }).then(function (json) {
+          var item = function (key, name, b) {
+            var l = b ? left(b.remaining) : '';
+            return {key: key, name: name, block: b, left: l, unblockKey: b && b.key,
+                    tip: b ? TP.left.replace('%(time)s', l) + (b.reason ? ': ' + b.reason : '') : TP.ok};
+          };
+          var list = (json.providers || []).map(function (p) { return item(p.id, p.name, p.block); });
+          (json.other || []).forEach(function (b) { list.push(item('other:' + b.key, b.key, b)); });
+          // blocked first, the rest as configured
+          self.items = list.filter(function (p) { return p.block; }).concat(list.filter(function (p) { return !p.block; }));
+        }).catch(function () {});
+      },
+      unblock: function (p) {
+        var self = this, body = new FormData();
+        body.append('key', p.unblockKey);
+        fetch('unblock_provider', {method: 'POST', body: body, credentials: 'same-origin'}).then(function () { self.load(); }, function () { self.load(); });
+      },
+      // open the config page on its Providers section
+      settings: function (e) {
+        e.preventDefault();
+        var go = function () { window.location.href = 'config'; };
+        fetch('set_current_tabs?config_tab=4', {credentials: 'same-origin'}).then(go, go);
+      }
+    };
+  });
 
   Alpine.data('llLogs', function () {
     return {
