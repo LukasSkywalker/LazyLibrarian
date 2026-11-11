@@ -14,6 +14,7 @@
 #  along with Lazylibrarian.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import time
 import traceback
 
 from rapidfuzz import fuzz
@@ -396,8 +397,19 @@ def find_best_result(resultlist, book, searchtype, source):
                             score += 1
                             break
 
-                matches.append([score, new_value_dict, control_value_dict, res['priority'],
-                                check_int(res.get('seeders', 0), 0)])
+                if new_value_dict['NZBprov'] == 'annas' and not CONFIG['ANNA_KEY']:
+                    # annas downloads need a paid member key: without one, only note where the book
+                    # was found (shown on the book) and leave the snatch to the other providers
+                    if score >= CONFIG.get_int('MATCH_RATIO'):
+                        new_value_dict.update({"Status": "Failed", "completed": int(time.time()),
+                                               "DLResult": "Found on Annas Archive, downloads need a paid "
+                                                           "membership secret key"})
+                        db.upsert("wanted", new_value_dict, control_value_dict)
+                        logger.info(f"Found {new_value_dict['NZBtitle']} on Annas Archive, "
+                                    f"not downloading without a secret key")
+                else:
+                    matches.append([score, new_value_dict, control_value_dict, res['priority'],
+                                    check_int(res.get('seeders', 0), 0)])
 
         if matches:
             highest = max(matches, key=lambda s: (weighted_score(s), check_int(s[3], 0),

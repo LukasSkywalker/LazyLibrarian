@@ -191,6 +191,15 @@
           %else:
           <span class="badge rounded-pill ${pill.get(book.get(kstat[kind]), 'bg-secondary-subtle text-secondary-emphasis')}">${status_label(book.get(kstat[kind]) or '')}</span>
           %endif
+          %if book.get(kstat[kind]) not in ('Open', 'Have', 'Snatched', 'Processed'):
+            %for prov, reason, lib in [f for f in not_downloaded if f[2] == kind]:
+          <div class="small mt-2"><span class="badge rounded-pill ll-found" title="${_('Found, but not downloaded') | h}"><i class="fa fa-exclamation-triangle me-1" aria-hidden="true"></i>${prov | h}</span>
+            %if reason:
+            <span class="text-body-secondary">${reason | h}</span>
+            %endif
+          </div>
+            %endfor
+          %endif
         </div>
           %endif
         %endfor

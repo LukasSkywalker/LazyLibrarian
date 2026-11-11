@@ -3672,6 +3672,36 @@ class WebInterface:
         return serve_template(templatename="books.html", title=i18n.gettext('eBooks'), books=[],
                               languages=languages, booklang=booklang, user=user, email=email, book_filter=book_filter)
 
+    # book statuses where a provider that failed to download it no longer matters
+    HAVE_STATUSES = ('Open', 'Have', 'Snatched', 'Processed')
+    # direct providers are stored in the wanted table by their internal name
+    DIRECT_PROVIDER_NAMES = {'annas': "Anna's Archive", 'zlibrary': 'Z-Library', 'webshare': 'Webshare',
+                             'soulseek': 'Soulseek'}
+
+    @classmethod
+    def _found_not_downloaded(cls, db, bookids) -> dict:
+        """ For each bookid, the providers where a search found it but the download failed,
+            as [[provider display name, reason, library], ...], newest first, one per provider and library """
+        result = {}
+        bookids = [b for b in bookids if b]
+        if not bookids:
+            return result
+        for start in range(0, len(bookids), 500):  # stay below the sqlite variable limit
+            chunk = bookids[start:start + 500]
+            cmd = (f"SELECT BookID,NZBprov,DLResult,AuxInfo FROM wanted WHERE Status='Failed' "
+                   f"AND AuxInfo IN ('eBook','AudioBook') AND BookID IN ({','.join('?' * len(chunk))}) "
+                   f"ORDER BY completed DESC")
+            for item in db.select(cmd, tuple(chunk)):
+                prov = item['NZBprov'] or ''
+                if not prov:
+                    continue
+                name = cls.DIRECT_PROVIDER_NAMES.get(prov) or CONFIG.disp_name(prov)
+                entries = result.setdefault(item['BookID'], [])
+                if any(e[0] == name and e[2] == item['AuxInfo'] for e in entries):
+                    continue
+                entries.append([name, item['DLResult'] or '', item['AuxInfo']])
+        return result
+
     @cherrypy.expose
     @require_auth()
     @cherrypy.tools.json_out()
@@ -3922,6 +3952,9 @@ class WebInterface:
                 else:
                     rows = filtered[displaystart:(displaystart + displaylength)]
 
+                # providers that found a book but could not download it (eg annas without a secret key)
+                not_downloaded = self._found_not_downloaded(db, [row[6] for row in rows])
+
                 # now add html to the ones we want to display
                 data = []  # the masterlist to be filled with the html data
                 for row in rows:
@@ -3973,6 +4006,16 @@ class WebInterface:
 
                     if perm & lazylibrarian.perm_edit:
                         title = title + ' ' + editpage
+
+                    found = not_downloaded.get(row[6], [])
+                    # bookstrap shows the title html, the modern interface reads the list at the end of the row
+                    lib_status = row[14] if status_type == 'audiostatus' else row[5]
+                    if lib_status not in self.HAVE_STATUSES:
+                        for prov, reason, lib in found:
+                            if lib == library:
+                                tip = f"{i18n.gettext('Found, but not downloaded')}: {reason}".replace('"', '&quot;')
+                                title += (f' <span class="badge" style="background:#d9822b" title="{tip}">'
+                                          f'<i class="fa fa-exclamation-triangle"></i> {prov}</span>')
 
                     if CONFIG.get_bool('SHOW_GENRES') and bookgenre and bookgenre != 'Unknown':
                         arr = bookgenre.split(',')
@@ -4037,6 +4080,8 @@ class WebInterface:
 
                     thisrow.append(row[18])
                     thisrow.append(row[19])
+                    # always last, [[provider, reason, library], ...]
+                    thisrow.append(found)
                     data.append(thisrow)
 
                 rows = data
@@ -4991,6 +5036,7 @@ class WebInterface:
             book_series = [dict(s) for s in db.select(
                 "SELECT series.SeriesID, SeriesName, SeriesNum FROM member, series "
                 "WHERE member.SeriesID=series.SeriesID AND member.BookID=?", (bookid,))]
+        not_downloaded = self._found_not_downloaded(db, [bookid]).get(bookid, []) if book else []
         db.close()
         if not book:
             raise cherrypy.HTTPRedirect("books")
@@ -5020,6 +5066,7 @@ class WebInterface:
 
         return serve_template(templatename="book_detail.html", title=book['BookName'], book=book,
                               book_links=book_links, amazon_link=amazon_link, book_series=book_series,
+                              not_downloaded=not_downloaded,
                               library='AudioBook' if library == 'AudioBook' else 'eBook')
 
     @cherrypy.expose
