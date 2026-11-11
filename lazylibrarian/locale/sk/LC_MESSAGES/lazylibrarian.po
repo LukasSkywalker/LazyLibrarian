@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-11 21:34+0000\n"
+"POT-Creation-Date: 2026-11-11 21:37+0000\n"
 "PO-Revision-Date: 2026-11-09 17:47+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -9783,7 +9783,7 @@ msgstr "Sťahovanie zlyhalo"
 msgid "%(name)s login successful"
 msgstr "Prihlásenie do %(name)s bolo úspešné"
 
-#: lazylibrarian/telemetry.py:256
+#: lazylibrarian/telemetry.py:281
 #, python-format
 msgid ""
 "Server ID: %(id)s\n"
@@ -9796,12 +9796,12 @@ msgstr ""
 "Stav:\n"
 "%(status)s"
 
-#: lazylibrarian/telemetry.py:257
+#: lazylibrarian/telemetry.py:282
 #, python-format
 msgid "Error connecting to server: %(error)s"
 msgstr "Chyba pri pripájaní k serveru: %(error)s"
 
-#: lazylibrarian/telemetry.py:259
+#: lazylibrarian/telemetry.py:284
 msgid "Error connecting to server"
 msgstr "Chyba pri pripájaní k serveru"
 

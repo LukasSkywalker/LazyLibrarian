@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-11 21:34+0000\n"
+"POT-Creation-Date: 2026-11-11 21:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -9492,7 +9492,7 @@ msgstr ""
 msgid "%(name)s login successful"
 msgstr ""
 
-#: lazylibrarian/telemetry.py:256
+#: lazylibrarian/telemetry.py:281
 #, python-format
 msgid ""
 "Server ID: %(id)s\n"
@@ -9501,12 +9501,12 @@ msgid ""
 "%(status)s"
 msgstr ""
 
-#: lazylibrarian/telemetry.py:257
+#: lazylibrarian/telemetry.py:282
 #, python-format
 msgid "Error connecting to server: %(error)s"
 msgstr ""
 
-#: lazylibrarian/telemetry.py:259
+#: lazylibrarian/telemetry.py:284
 msgid "Error connecting to server"
 msgstr ""
 
