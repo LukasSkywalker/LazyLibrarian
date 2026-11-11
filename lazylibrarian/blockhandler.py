@@ -196,6 +196,16 @@ class BlockHandler:
             self._save_persisted_blocks()
         return False
 
+    def active_blocks(self) -> dict[str, dict]:
+        """ The blocks still in force, as {key: {'remaining': seconds, 'reason': text}} """
+        timenow = int(time.time())
+        result = {}
+        for key, line in self._provider_list.items():
+            remaining = int(line['resume']) - timenow
+            if remaining > 0:
+                result[key] = {'remaining': remaining, 'reason': line.get('reason', '')}
+        return result
+
     def get_text_list_of_blocks(self) -> str:
         result = ''
         for key, line in self._provider_list.items():

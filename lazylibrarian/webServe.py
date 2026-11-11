@@ -8979,6 +8979,58 @@ class WebInterface:
         logger.debug(result)
         return result
 
+    @staticmethod
+    def _provider_block_keys() -> dict[str, list[str]]:
+        """ For each provider block of the config form (by the prefix of its field ids, eg newznab_0, kat),
+            the blocklist keys that provider is blocked under """
+        cards = {}
+        for array, field in (('NEWZNAB', 'HOST'), ('TORZNAB', 'HOST'), ('RSS', 'HOST'), ('IRC', 'SERVER'),
+                             ('GEN', 'HOST')):
+            for index, provider in enumerate(CONFIG.providers(array)):
+                keys = [provider[field]]
+                if array == 'GEN':  # direct_gen blocks by the section name
+                    keys.append(provider['NAME'])
+                cards[f"{array.lower()}_{index}"] = keys
+        for prov in ('KAT', 'TPB', 'TDL', 'LIME', 'ABB'):  # by name, the parsers by host
+            cards[prov.lower()] = [prov, CONFIG[f'{prov}_HOST']]
+        cards['slsk'] = ['soulseek']
+        cards['anna'] = ['annas']
+        cards['webshare'] = ['webshare']
+        cards['bok'] = ['zlibrary', 'BOK']
+        return {prefix: [k for k in keys if k] for prefix, keys in cards.items()}
+
+    @cherrypy.expose
+    @require_auth()
+    def provider_status(self):
+        """ The blocklist as JSON for the provider cards of the modern config page: the block on each provider
+            ('cards', keyed by field id prefix, null when not blocked) and blocks on anything else ('other',
+            metadata sources and the like) """
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        blocks = BLOCKHANDLER.active_blocks()
+        lower = {k.lower(): k for k in blocks}
+        cards, matched = {}, set()
+        for prefix, keys in self._provider_block_keys().items():
+            cards[prefix] = None
+            for key in keys:
+                found = lower.get(key.lower())
+                if found:
+                    matched.add(found)
+                    if cards[prefix] is None:
+                        cards[prefix] = dict(blocks[found], key=found)
+        other = [dict(blocks[k], key=k) for k in sorted(blocks, key=str.lower) if k not in matched]
+        return json.dumps({'cards': cards, 'other': other})
+
+    @cherrypy.expose
+    @require_auth()
+    def unblock_provider(self, key=None):
+        """ Lift the block on one provider (a key from provider_status) """
+        self.check_permitted(lazylibrarian.perm_config)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        if key:
+            BLOCKHANDLER.remove_provider_entry(key)
+            logging.getLogger(__name__).debug(f'Unblocked {key}')
+        return 'ok'
+
     @cherrypy.expose
     @require_auth()
     def cleardownloads(self):
