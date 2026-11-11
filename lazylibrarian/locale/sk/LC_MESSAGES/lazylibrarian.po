@@ -10717,6 +10717,9 @@ msgstr "Odoslať súbor"
 msgid "Thank you for enabling Telemetry"
 msgstr "Ďakujeme, že ste povolili telemetriu"
 
+msgid "Found, but not downloaded"
+msgstr "Nájdené, ale nestiahnuté"
+
 #~ msgid "Auth:"
 #~ msgstr "Overenie:"
 
