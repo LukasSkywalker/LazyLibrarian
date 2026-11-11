@@ -72,6 +72,7 @@ from lazylibrarian.auth import (
 from lazylibrarian.blockhandler import BLOCKHANDLER
 from lazylibrarian.booklanguages import (
     anna_search_languages,
+    book_language_label,
     country_picker,
     language_filter_options,
     language_filter_sql,
@@ -403,6 +404,7 @@ def template_i18n():
     return {'_': i18n.gettext, '_js': i18n.gettext_js, '_jsn': i18n.ngettext_js, 'js': i18n.js_string,
             'ngettext': i18n.ngettext, 'pgettext': i18n.pgettext, 'js_plural': i18n.plural_expression,
             'status_label': i18n.status_label, 'status_labels': i18n.status_labels, 'ui_lang': lang,
+            'book_language_label': book_language_label,
             'ui_lang_auto': getattr(cherrypy.request, 'ui_lang_auto', False),
             'ui_langs': i18n.available_languages(), 'ui_lang_cookie': i18n.BROWSER_COOKIE}
 

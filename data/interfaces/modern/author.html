@@ -237,7 +237,7 @@ ${bk.headIncludes()}
       <option value="${page_url(lang='') | h}">${_('All')}</option>
       %for lg in languages:
         %if lg['BookLang']:
-      <option value="${page_url(lang=lg['BookLang']) | h}" ${'selected' if lg['BookLang'] == booklang else ''}>${lg['BookLang'] | h}</option>
+      <option value="${page_url(lang=lg['BookLang']) | h}" ${'selected' if lg['BookLang'] == booklang else ''}>${lg['label'] | h}</option>
         %endif
       %endfor
     </select>
