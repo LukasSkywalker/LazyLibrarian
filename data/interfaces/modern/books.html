@@ -140,7 +140,7 @@
             @change="window.location = '${'audio' if audio else 'books'}?booklang=' + encodeURIComponent($event.target.value)">
       <option value="">${_('All')}</option>
       %for language in languages:
-      <option value="${language['BookLang'] | h}" ${'selected' if language['BookLang'] == booklang else ''}>${language['BookLang']}</option>
+      <option value="${language['BookLang'] | h}" ${'selected' if language['BookLang'] == booklang else ''}>${language['label'] | h}</option>
       %endfor
     </select>
     %endif
@@ -168,9 +168,11 @@
     %endif
   </div>
 
-  <div class="alert alert-info d-flex align-items-center gap-2 py-2 small" role="status" x-show="scanning" x-cloak>
-    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    <span x-text="scanText || T.scanning"></span>
+  <div x-show="scanning" x-cloak role="status">
+    <div class="alert alert-info d-flex align-items-center gap-2 py-2 small">
+      <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      <span x-text="scanText || T.scanning"></span>
+    </div>
   </div>
 
   <div class="d-flex gap-2 llb-chips pb-1 mb-3" role="group" aria-label="${_('Status') | h}">
@@ -207,6 +209,7 @@
         </template>
         <div class="llb-status d-flex align-items-center gap-2 flex-wrap mt-auto pt-1">
           <span class="badge rounded-pill llb-pill" :class="pillClass(b.status)" x-text="llStatus(b.status)"></span>
+          <template x-for="fp in b.found" :key="fp.lib + fp.name"><span class="badge rounded-pill ll-found" :title="fp.tip"><i class="fa fa-exclamation-triangle me-1" aria-hidden="true"></i><span x-text="fp.name"></span></span></template>
           <template x-if="b.status === 'Wanted'">
             %if perm&lazylibrarian.perm_force:
             <button type="button" class="btn btn-link llb-act" data-do="search">${_('Search now')}</button>
@@ -300,6 +303,7 @@ document.addEventListener('alpine:init', function () {
     var img = r[1] || '';
     return {
       id: String(r[9]), title: title, author: author, authorId: r[8], status: String(r[11] || ''), series: series,
+      found: llFound(r, LIB, r[11]),
       cover: (img && !/nocover|no_cover|nophoto/i.test(img)) ? img : '', hue: hue(title + author)
     };
   }

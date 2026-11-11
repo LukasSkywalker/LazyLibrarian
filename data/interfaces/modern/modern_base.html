@@ -260,6 +260,10 @@
       .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1)::after { content: ""; order: 2; flex: 0 0 100%; margin-top: -.5rem; }
       .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1) > :is(select, .btn, .dropdown) { order: 3; }
     }
+    /* a provider found the book but could not download it (eg Anna's Archive without a secret key) */
+    .ll-found { font-size: .66rem; font-weight: 600; padding: 2px 7px; background: rgba(217,130,43,.16); color: #b7651a;
+                border: 1px solid rgba(217,130,43,.45); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+    [data-bs-theme="dark"] .ll-found { color: #f0a560; }
   </style>
   <script>
     // translation helpers, same contract as the bookstrap interface (see lazylibrarian/i18n.py)
@@ -270,6 +274,15 @@
     var llStatusLabels = ${js(status_labels())};
     function llStatus(s) {
       return String(s).replace(/^[A-Za-z]+/, function (w) { return llStatusLabels[w] || w; });
+    }
+    // get_books rows end with [[provider, reason, library], ...], the providers that found the book
+    // but failed to download it; only worth showing while the book is still missing
+    var llFoundText = ${_js('Found, but not downloaded')};
+    function llFound(r, lib, status) {
+      var f = r && r[r.length - 1];
+      if (!Array.isArray(f) || ['Open', 'Have', 'Snatched', 'Processed'].indexOf(String(status || '')) >= 0) { return []; }
+      return f.filter(function (x) { return x[2] === lib; })
+              .map(function (x) { return {name: x[0], lib: x[2], tip: llFoundText + ': ' + x[0] + (x[1] ? ' — ' + x[1] : '')}; });
     }
     function bookinfo(bookid, library) {
       window.location = 'book_detail?bookid=' + encodeURIComponent(bookid) + (library === 'AudioBook' ? '&library=AudioBook' : '');
