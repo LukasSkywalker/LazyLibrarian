@@ -168,9 +168,11 @@
     %endif
   </div>
 
-  <div class="alert alert-info d-flex align-items-center gap-2 py-2 small" role="status" x-show="scanning" x-cloak>
-    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    <span x-text="scanText || T.scanning"></span>
+  <div x-show="scanning" x-cloak role="status">
+    <div class="alert alert-info d-flex align-items-center gap-2 py-2 small">
+      <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      <span x-text="scanText || T.scanning"></span>
+    </div>
   </div>
 
   <div class="d-flex gap-2 llb-chips pb-1 mb-3" role="group" aria-label="${_('Status') | h}">
