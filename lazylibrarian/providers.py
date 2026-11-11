@@ -899,6 +899,10 @@ def iterate_over_direct_sites(book=None, search_type=None):
         if BLOCKHANDLER.is_blocked(provider):
             logger.debug('annas is BLOCKED')
             ignored = True
+        elif not CONFIG['ANNA_KEY']:
+            # downloads go through fast_download.json, which needs a paid member key
+            logger.warning("Ignoring annas: no ANNA_KEY set (downloads need a paid membership secret key)")
+            ignored = True
         elif search_type in ['book', 'shortbook', 'titlebook'] and \
                 'E' not in CONFIG[f"{prov}_DLTYPES"]:
             logger.debug(f"Ignoring {prov} for eBook")

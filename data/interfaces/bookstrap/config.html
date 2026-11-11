@@ -1972,6 +1972,12 @@
                         <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="${_('Member key for API access (paid members only)') | h}">
                         </span>
                       </div>
+                      % if CONFIG['ANNA'] and not CONFIG['ANNA_KEY']:
+                      <p class="help-block text-warning">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        ${_('Downloads from Annas Archive need a paid member key, without one this provider is skipped. For free direct downloads add a LibGen mirror (e.g. libgen.li) as a Generic (GEN) provider.')}
+                      </p>
+                      % endif
                       <div class="input-group">
                         <span class="input-group-addon">${_('Priority')}</span>
                         <input type="number" id="anna_dlpriority" name="anna_dlpriority" value="${CONFIG['ANNA_DLPRIORITY']}" class="form-control" placeholder="0">
