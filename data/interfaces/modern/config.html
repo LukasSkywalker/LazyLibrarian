@@ -87,7 +87,18 @@
     .llc fieldset:has(> [class*="col-"]) > .col-md-6 { flex-basis: 50%; } .llc fieldset:has(> [class*="col-"]) > .col-md-8 { flex-basis: 66.666%; }
   }
   .llc fieldset:has(> [class*="col-"]) > [class*="col-"] > .input-group:last-child { margin-bottom: 1.4rem; }
+  /* a section card holding columns (Usenet, rss server, provider types) keeps its edges where the other cards have
+     them, and its padding gives up the columns' gutter, so its content lines up with theirs */
+  .llc .tab-pane fieldset:is(:has(> legend), :has(> .section-body)):has(> [class*="col-"]) { margin-inline: 0; padding-inline: .6rem; }
+  .llc .tab-pane fieldset#rss_options:has(> [class*="col-"]) { margin-inline: 0 !important; padding-inline: .6rem !important; }
+  /* action buttons (Test, Sync now, Request authorization...): one row of small outlined pills under what they act on */
+  .llc .llc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 .9rem; }
+  .llc .form-group > .llc-actions:last-child, .llc .form-group > .llc-actions:has(+ .help-block[hidden]:last-child) { margin-bottom: 0; }
+  .llc .form-group > :is(input, select, textarea, .input-group, .llc-fgrid) + .llc-actions { margin-top: .5rem; }
   .llc .form-group { margin-bottom: .9rem; }
+  /* fields side by side (Host | Port, Username | Password) on one line even when a label takes two */
+  .llc .tab-pane .row > .form-group[class*="col-"] { display: flex; flex-direction: column; justify-content: flex-end; }
+  .llc .tab-pane .row > .form-group[class*="col-"] > label { align-self: flex-start; }
   /* provider cards: the rows of "label | field | label | field | button" made into a small form */
   .llc .llc-pcard > .llc-pbox { border: 1px solid var(--bs-border-color-translucent); border-radius: 12px; background: var(--bs-tertiary-bg); padding: .7rem .8rem .2rem; height: 100%; }
   .llc .llc-pcard.llc-off > .llc-pbox { opacity: .7; }
@@ -171,7 +182,8 @@
   .llc .searchlang-modes { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
   .llc #lang_refresh_options .help-block, .llc #config_langrefreshstatus { display: block; margin: .4rem 0 0 !important; }
   .llc .checkbox, .llc .radio { margin: 0 0 .55rem; }
-  .llc .row.checkbox { margin-bottom: .2rem; }
+  /* .checkbox's margin would take the row's negative gutter and indent its switches */
+  .llc .row.checkbox { margin: 0 calc(-.5 * var(--bs-gutter-x)) .2rem; }
   .llc .row.checkbox > [class*="col-"] { margin-bottom: .55rem; }
   .llc .checkbox label, .llc .radio label { display: inline-flex; align-items: center; gap: .6rem; font-weight: 400; font-size: .9rem; cursor: pointer; margin: 0; }
   /* checkboxes as switches */
@@ -221,7 +233,7 @@
   <div class="llc-layout">
     <aside class="llc-side">
       <div class="llc-search">
-        <i class="fa fa-search" aria-hidden="true"></i>
+        <i class="fa fa-filter" aria-hidden="true"></i>
         <input type="search" class="form-control form-control-sm" id="llc-q" placeholder="${_('Search settings') | h}" aria-label="${_('Search settings') | h}" autocomplete="off">
       </div>
       <div class="llc-hits" id="llc-hits" hidden></div>
@@ -373,7 +385,11 @@
     var h1 = form.querySelector(':scope > h1');
     if (h1) {
       var tools = document.getElementById('llc-tools');
-      h1.querySelectorAll('input[type="button"], button').forEach(function (b) { tools.appendChild(b); });
+      // one look for them all, as the action buttons in the sections (Blocked Providers came as a yellow warning)
+      h1.querySelectorAll('input[type="button"], button').forEach(function (b) {
+        b.classList.remove('btn-default', 'btn-primary', 'btn-warning', 'button'); b.classList.add('btn-sm', 'btn-outline-secondary');
+        tools.appendChild(b);
+      });
       var add = h1.querySelector('#add');
       if (add) { add.hidden = true; document.getElementById('llc-save').appendChild(add); add.setAttribute('form', 'llc-form'); }
       h1.remove();
@@ -620,6 +636,90 @@
         var ref = grid;
         extra.forEach(function (x) { ref.after(x); ref = x; });
         g.remove();
+      });
+    }
+
+    // Buttons: bookstrap mixes filled, outlined and warning buttons of three sizes, beside, under or in the middle
+    // of the fields. Here every action button is a small outlined pill (Save is the one filled button), the buttons
+    // next to each other share one row, and a row stands under what it acts on: a field, or the whole section for
+    // a download client's Test. Buttons in a field (show/hide, Generate, Test of an apprise url) sit at its right end.
+    function llcActions() {
+      var pane = form.querySelector('.tab-content');
+      var isBtn = function (n) {
+        return n && n.nodeType === 1 && n.matches('.btn') && !n.matches('.llc-token, .accent-swatch, .llc-pcaret, .secret-toggle, .langchip') &&
+          !n.closest('.input-group, .llc-ph, .llc-pblock, .searchlang-modes, .langpicker, .accent-picker, .help-block, .llc-actions');
+      };
+      var skippable = function (n) { return n && ((n.nodeType === 3 && !n.textContent.trim()) || (n.nodeType === 1 && n.matches('br'))); };
+      // an apprise notifier: "Name | field | S [] | D []" in one bar becomes the name field with the two switches
+      // under it, as in the other notifiers; the S and D get their words (Notify Snatch, Notify Download)
+      pane.querySelectorAll('input[id^="apprise_"][id$="_dispname"]').forEach(function (name) {
+        var g = name.closest('.input-group');
+        if (!g) { return; }
+        var first = g.querySelector('.input-group-text'), ff = document.createElement('div'), lb = document.createElement('label');
+        ff.className = 'form-group'; lb.className = 'control-label'; lb.htmlFor = name.id;
+        lb.textContent = first ? first.textContent.trim() : ''; ff.appendChild(lb); ff.appendChild(name);
+        var row = document.createElement('div'); row.className = 'row checkbox';
+        g.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+          var tip = window.bootstrap && bootstrap.Tooltip.getInstance(cb); if (tip) { tip.dispose(); }
+          var col = document.createElement('div'), l = document.createElement('label');
+          col.className = 'col-6'; l.htmlFor = cb.id; l.className = 'control-label';
+          l.appendChild(cb); l.appendChild(document.createTextNode(' ' + (cb.getAttribute('title') || cb.getAttribute('data-bs-original-title') || '')));
+          cb.removeAttribute('title'); cb.removeAttribute('data-toggle');
+          col.appendChild(l); row.appendChild(col);
+        });
+        g.replaceWith(ff); ff.after(row);
+      });
+      // a field's buttons: outlined like the show/hide eye, the apprise Test out of its box to the field's end
+      pane.querySelectorAll('.input-group .btn-primary, .input-group .btn-warning').forEach(function (b) {
+        b.classList.remove('btn-primary', 'btn-warning', 'active', 'btn-sm', 'button'); b.classList.add('btn-outline-secondary');
+        var box = b.parentElement;
+        if (box.matches('.input-group-text') && box.children.length === 1 && !box.textContent.replace(b.textContent, '').trim()) { box.replaceWith(b); }
+      });
+      pane.querySelectorAll('.input-group > .input-group-text').forEach(function (s) { if (!s.children.length && !s.textContent.trim()) { s.remove(); } });
+      // a field label bookstrap wrote as an input group box with no group around it (Telemetry server) is a label
+      pane.querySelectorAll('.form-group > .input-group-text').forEach(function (s) {
+        var input = s.nextElementSibling, lb = document.createElement('label');
+        lb.className = 'control-label'; lb.textContent = s.textContent.trim();
+        if (input && input.id) { lb.htmlFor = input.id; }
+        s.replaceWith(lb);
+      });
+      // runs of buttons become rows
+      pane.querySelectorAll('.btn').forEach(function (b) {
+        if (!isBtn(b)) { return; }
+        var run = [b], n = b.nextSibling;
+        while (n && (skippable(n) || isBtn(n))) { if (n.nodeType === 1 && n.matches('.btn')) { run.push(n); } n = n.nextSibling; }
+        var row = document.createElement('div'); row.className = 'llc-actions';
+        b.before(row);
+        run.forEach(function (x) {
+          x.classList.remove('btn-primary', 'btn-warning', 'btn-default', 'active', 'button'); x.classList.add('btn-sm', 'btn-outline-secondary');
+          var gap = x.nextSibling; if (skippable(gap) && gap.nodeType === 1) { gap.remove(); }
+          row.appendChild(x);
+        });
+        // the <br>s bookstrap put after them are spacing the row has already
+        while (skippable(row.nextSibling)) { var s = row.nextSibling; s.remove(); }
+      });
+      // a block holding nothing but a row of buttons joins the row just before it (Request oAuth1/2 + Test, Verify + Test)
+      var only = function (g) {
+        return g && g.matches('.form-group') && Array.prototype.every.call(g.children, function (c) { return c.matches('.llc-actions, br, .help-block[hidden]'); }) &&
+          g.querySelectorAll(':scope > .llc-actions').length === 1;
+      };
+      pane.querySelectorAll('.form-group > .llc-actions').forEach(function (row) {
+        var g = row.parentElement, prev = g.previousElementSibling;
+        if (!only(g) || !only(prev)) { return; }
+        var dst = prev.querySelector(':scope > .llc-actions');
+        while (row.firstChild) { dst.appendChild(row.firstChild); }
+        Array.prototype.slice.call(g.children).forEach(function (c) { if (c.matches('.help-block')) { prev.appendChild(c); } });
+        g.remove();
+      });
+      // a download client's Test acts on the whole section: it goes to its end, out of the column beside a field
+      form.querySelectorAll('#downloadsettings .llc-actions').forEach(function (row) {
+        if (!row.querySelector('[id^="test_"]')) { return; }
+        var fs = row.closest('fieldset'); if (!fs) { return; }
+        var body = fs.querySelector(':scope > .section-body') || fs, from = row.parentElement;
+        body.appendChild(row);
+        while (from && from !== body && !from.querySelector('input, select, textarea, button, label, .help-block')) {
+          var up = from.parentElement; from.remove(); from = up;
+        }
       });
     }
 
@@ -1022,6 +1122,7 @@
         if (t && t.nodeType === 3) { t.textContent = t.textContent.replace(/\s*:\s*$/, ''); }
       });
       llcFieldGrids();
+      llcActions();
       // the accent picker goes where the Bootswatch theme was; the theme select stays in the form, hidden, so its
       // value is saved unchanged
       var bso = document.getElementById('bookstrap_options'), tpl = document.getElementById('llc-accent-tpl');
@@ -1054,7 +1155,7 @@
       // help texts become (i) icons with a popover, next to their label or button, else next to the section heading
       form.querySelectorAll('.help-block:not(.help-keep)').forEach(function (help) {
         var anchor = null, prev = help.previousElementSibling;
-        while (prev && !anchor) { if (prev.matches('label, button, .control-label') && !prev.matches('.input-group-text')) { anchor = prev; } prev = prev.previousElementSibling; }
+        while (prev && !anchor) { if (prev.matches('label, button, .control-label, .llc-actions') && !prev.matches('.input-group-text')) { anchor = prev; } prev = prev.previousElementSibling; }
         if (!anchor) {
           var p = help.parentElement;
           while (p && p !== form && !anchor) { var lg = p.querySelector(':scope > legend'); if (lg) { anchor = lg; } p = p.parentElement; }

@@ -110,7 +110,7 @@
     <div class="input-group input-group-sm llb-search">
       <button type="button" class="btn llb-scope dropdown-toggle rounded-start-pill" data-bs-toggle="dropdown" aria-expanded="false"
               :title="T.searchIn + ' ' + scopeObj.label" :aria-label="T.searchIn + ' ' + scopeObj.label">
-        <i class="fa fa-search" aria-hidden="true"></i><span class="small" x-show="scope !== 'all'" x-text="scopeObj.label" x-cloak></span>
+        <i class="fa fa-filter" aria-hidden="true"></i><span class="small" x-show="scope !== 'all'" x-text="scopeObj.label" x-cloak></span>
       </button>
       <ul class="dropdown-menu">
         <template x-for="o in scopes" :key="o.id">

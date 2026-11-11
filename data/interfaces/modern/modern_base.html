@@ -252,6 +252,14 @@
     .ll-theme-btn .ll-t { display: none; }
     [data-ll-theme="auto"] .ll-theme-btn .ll-t-auto, [data-ll-theme="light"] .ll-theme-btn .ll-t-light,
     [data-ll-theme="dark"] .ll-theme-btn .ll-t-dark { display: inline; }
+    /* list page toolbars (title, count, filter, views, sort, Select, Add, More): on a narrow screen the same three
+       lines on every page instead of wherever the buttons happen to wrap: the title with the views, then sort and
+       the buttons, then the filter */
+    @media (max-width: 640px) {
+      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1) > .btn-group { order: 1; }
+      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1)::after { content: ""; order: 2; flex: 0 0 100%; margin-top: -.5rem; }
+      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1) > :is(select, .btn, .dropdown) { order: 3; }
+    }
   </style>
   <script>
     // translation helpers, same contract as the bookstrap interface (see lazylibrarian/i18n.py)
