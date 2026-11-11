@@ -8592,6 +8592,65 @@ class WebInterface:
         serversidelogger.debug(str(mydict))
         return mydict
 
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def get_downloads(self, **kwargs):
+        """ AJAX for the modern downloads panel and the bell: what is downloading now, with its progress,
+            and the latest downloads that finished """
+        self.check_permitted(lazylibrarian.perm_history)
+        self.label_thread('WEBSERVER')
+        logger = logging.getLogger(__name__)
+        active, recent = [], []
+        db = database.DBConnection()
+        # noinspection PyBroadException
+        try:
+            cols = "rowid,NZBtitle,AuxInfo,BookID,NZBprov,NZBdate,NZBsize,Status,Source,DownloadID,DLResult"
+
+            def to_item(row, progress):
+                aux = row['AuxInfo'] or ''
+                bookid = row['BookID'] or ''
+                item = {'rowid': row['rowid'], 'title': (row['NZBtitle'] or '').replace('.', ' '), 'author': '',
+                        'img': '', 'link': '', 'provider': CONFIG.disp_name((row['NZBprov'] or '').strip('/')),
+                        'size': row['NZBsize'] or '', 'status': row['Status'] or '', 'progress': progress,
+                        'date': row['NZBdate'] or '', 'result': row['DLResult'] or ''}
+                if aux in ['eBook', 'AudioBook']:
+                    item['kind'] = aux
+                    book = db.match('SELECT BookName,BookImg,AuthorName from books,authors '
+                                    'WHERE books.AuthorID=authors.AuthorID and BookID=?', (bookid,))
+                    if book:
+                        item['title'] = book['BookName'] or item['title']
+                        item['author'] = book['AuthorName'] or ''
+                        item['img'] = book['BookImg'] or ''
+                    item['link'] = f"book_detail?bookid={quote(bookid)}" + \
+                                   ('&library=AudioBook' if aux == 'AudioBook' else '')
+                elif aux == 'comic':
+                    item['kind'] = 'comic'
+                    item['link'] = f"open_comic?comicid={quote(bookid.split('_')[0])}"
+                else:
+                    item['kind'] = 'Magazine'
+                    item['author'] = aux
+                    item['link'] = f"open_mag?bookid={quote(bookid)}"
+                return item
+
+            rows = db.select(f"SELECT {cols} from wanted WHERE Status IN ('Snatched','Seeding') "
+                             "and BookID is not null ORDER BY rowid DESC LIMIT 50")
+            for count, row in enumerate(rows):
+                progress = -1
+                # asking the downloaders is slow, only the newest few get a live percentage
+                if row['Status'] == 'Snatched' and count < 10 and row['Source'] and row['DownloadID']:
+                    progress, _ = get_download_progress(row['Source'], make_unicode(row['DownloadID']))
+                active.append(to_item(row, progress))
+            # failed downloads are too common to be worth showing here, the history page has them
+            rows = db.select(f"SELECT {cols} from wanted WHERE Status='Processed' "
+                             "and BookID is not null ORDER BY rowid DESC LIMIT 15")
+            for row in rows:
+                recent.append(to_item(row, 100))
+        except Exception:
+            logger.error(f'Unhandled exception in get_downloads: {traceback.format_exc()}')
+        finally:
+            db.close()
+        return {'active': active, 'recent': recent}
 
     @cherrypy.expose
     @require_auth()

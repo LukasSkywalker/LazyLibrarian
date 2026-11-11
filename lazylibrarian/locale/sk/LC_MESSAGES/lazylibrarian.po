@@ -10963,3 +10963,18 @@ msgstr "Ďakujeme, že ste povolili telemetriu"
 #~ msgstr ""
 #~ "Ak necháte prázdne, vyhľadáva sa v importovaných jazykoch vyššie. "
 #~ "Časopisy a komiksy sa vyhľadávajú vo všetkých jazykoch."
+
+msgid "Downloading"
+msgstr "Sťahuje sa"
+
+msgid "Finished recently"
+msgstr "Nedávno dokončené"
+
+msgid "No notifications"
+msgstr "Žiadne oznámenia"
+
+msgid "Nothing is downloading"
+msgstr "Nič sa nesťahuje"
+
+msgid "Download client not reachable"
+msgstr "Klient na sťahovanie je nedostupný"
