@@ -8,7 +8,10 @@
 <%def name="headIncludes()">
 ${bk.headIncludes()}
 <style>
-  .llmg-row .llb-dates { grid-area: dates; font-size: .72rem; color: var(--bs-secondary-color); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .llmg-row .llb-dates { font-size: .72rem; color: var(--bs-secondary-color); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .llb-v-grid .llmg-row .llb-dates { margin-top: auto; padding-top: .25rem; }
+  .llb-v-compact .llmg-row .llb-dates { display: none; }
+  .llb-v-list .llmg-row .llb-dates { grid-area: dates; text-align: right; overflow: visible; }
   .llb-v-list .llmg-row { grid-template-columns: 28px minmax(0, max-content) minmax(0, 1fr) auto !important;
                           grid-template-areas: "cover title title dates" "cover author series dates" !important; }
   @media (max-width: 480px) {
@@ -49,6 +52,14 @@ ${bk.headIncludes()}
       <span class="input-group-text rounded-start-pill bg-transparent"><i class="fa fa-filter" aria-hidden="true"></i></span>
       <input type="search" id="llmg-q" class="form-control rounded-end-pill" x-model.debounce.300ms="q"
              placeholder="${_('Filter books') | h}" autocomplete="off" aria-label="${_('Filter books') | h}">
+    </div>
+    <div class="btn-group btn-group-sm llb-views" role="group" aria-label="${_('View') | h}">
+      <template x-for="v in views" :key="v.id">
+        <button type="button" class="btn" :class="view === v.id ? 'btn-secondary' : 'btn-outline-secondary'"
+                :aria-pressed="view === v.id" :title="v.label" :aria-label="v.label" @click="setView(v.id)">
+          <i class="fa" :class="v.icon" aria-hidden="true"></i>
+        </button>
+      </template>
     </div>
     <select id="llmg-sort" class="form-select form-select-sm w-auto rounded-pill" x-model="sort" aria-label="${_('Sort') | h}">
       <option value="2:asc">${_('Author')}</option>
@@ -111,13 +122,17 @@ ${bk.headIncludes()}
     %endfor
   </div>
 
-  <div class="llb-grid llb-v-list">
+  <div class="llb-grid" :class="'llb-v-' + view">
     <template x-for="b in books" :key="b.id">
-      <article class="llb-card llmg-row" :class="sel[b.id] && 'llb-sel'" tabindex="0"
+      <article class="llb-card llmg-row d-flex flex-column gap-1" :class="sel[b.id] && 'llb-sel'" tabindex="0"
                @click="open(b, $event)" @keydown.enter.prevent="open(b, $event)" @keydown.space.prevent="open(b, $event)">
         <div class="llb-cover">
           <template x-if="b.cover"><img loading="lazy" :src="b.cover" alt=""></template>
-          <template x-if="!b.cover"><div class="llb-gen" :style="'background:hsl(' + b.hue + ' 38% 32%)'"><span></span></div></template>
+          <template x-if="!b.cover">
+            <div class="llb-gen" :style="'background:hsl(' + b.hue + ' 38% 32%)'">
+              <span class="llb-ca" x-text="b.author"></span><span class="llb-ct" x-text="b.title"></span>
+            </div>
+          </template>
           <span class="llb-check" x-show="selecting" x-cloak aria-hidden="true"><i class="fa fa-check"></i></span>
         </div>
         <span class="llb-title" :title="b.title" x-text="b.title"></span>
@@ -205,6 +220,7 @@ document.addEventListener('alpine:init', function () {
   window.LIB = LIB;
   var QUERY = 'source=Manage&whichStatus=' + encodeURIComponent(${js(whichStatus or 'Wanted')}) + '&library=' + encodeURIComponent(LIB);
   var T = {
+    grid: ${_js('Covers')}, compact: ${_js('Compact')}, list: ${_js('List')},
     select: ${_js('Select')}, done: ${_js('Done')}, allShown: ${_js('That is all')}, listed: ${_js('Listed')}, lastSearch: ${_js('Last Search')},
     pickFirst: ${_js('Select at least one book first')}, failed: ${_js('Something went wrong, try again')},
     hcTitle: ${_js('HardCover Sync Result')}, hcConfirm: ${_js('HardCover Sync Confirmation Required')},
@@ -235,11 +251,15 @@ document.addEventListener('alpine:init', function () {
     return {
       T: T, books: [], total: 0, start_: 0, loading: false, done: false, gen: 0,
       q: '', sort: '2:asc', selecting: false, sel: {}, toastText: '', fmt: {eBook: LIB !== 'AudioBook', AudioBook: LIB === 'AudioBook'},
-      resultTitle: '', resultText: '', resultBusy: false, resultButtons: [],
+      resultTitle: '', resultText: '', resultBusy: false, resultButtons: [], view: 'list',
+      views: [{id: 'grid', icon: 'fa-th-large', label: T.grid}, {id: 'compact', icon: 'fa-th', label: T.compact},
+              {id: 'list', icon: 'fa-list', label: T.list}],
       get countText() { return this.total || this.done ? llNgettext(T.books, this.total) : ''; },
       get selCount() { return Object.keys(this.sel).length; },
       start: function () {
         var self = this;
+        // its own key: the manage page keeps the list view unless changed here
+        try { var v = localStorage.getItem('llmg-view'); if (v === 'grid' || v === 'compact' || v === 'list') { this.view = v; } } catch (e) {}
         try {
           var saved = JSON.parse(sessionStorage.getItem('llmg-manage') || 'null');
           if (saved) { this.q = saved.q || ''; this.sort = saved.sort || this.sort; }
@@ -288,6 +308,15 @@ document.addEventListener('alpine:init', function () {
         }
         if (e.target.closest('a')) { return; }
         bookinfo(b.id, LIB);
+      },
+      setView: function (v) {
+        this.view = v;
+        try { localStorage.setItem('llmg-view', v); } catch (e) {}
+        var self = this;
+        // a smaller view can leave the end of the list on screen, so fetch more if needed
+        this.$nextTick(function () {
+          if (!self.done && self.$refs.sentinel.getBoundingClientRect().top < window.innerHeight + 400) { self.load(); }
+        });
       },
       selectAll: function () {
         var all = {};
