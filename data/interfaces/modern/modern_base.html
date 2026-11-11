@@ -122,10 +122,8 @@
         notices = []
     # the downloads panel (what is downloading, with progress) and download notifications in the bell
     dl_ok = bool(perm & lazylibrarian.perm_history) and not bare
-    bell_ok = bool(perm & lazylibrarian.perm_config) or dl_ok
     hist_refresh = CONFIG.get_int('HIST_REFRESH')
     dl_refresh = max(hist_refresh, 5000) if hist_refresh else 10000
-    wn_count = len(lazylibrarian.WHATS_NEW or []) if perm & lazylibrarian.perm_config else 0
 %>
 <!doctype html>
 <html lang="${ui_lang}" data-bs-theme="light">
@@ -284,16 +282,10 @@
     .ll-dl-empty { padding: .6rem 1rem; font-size: .82rem; color: var(--bs-secondary-color); }
     @media (min-width: 1400px) { body.ll-dl-docked { padding-right: 360px; } body.ll-dl-docked .ll-notices { right: calc(360px + 1rem); } }
     @media (prefers-reduced-motion: reduce) { .ll-dl-p .bar i, .ll-dl-p .bar.ll-wait i { transition: none; animation: none; } }
-    /* the bell: download notifications and what's new */
-    .ll-bell-menu { width: min(340px, calc(100vw - 1.5rem)); padding: 0; overflow: hidden; }
-    .ll-bell-menu .ll-bell-h { display: flex; align-items: center; padding: .6rem .9rem; border-bottom: 1px solid var(--bs-border-color-translucent); font-weight: 650; font-size: .9rem; }
-    .ll-bell-list { max-height: min(60vh, 420px); overflow-y: auto; }
-    .ll-bell-menu .ll-dl-item { padding: .5rem .9rem; border-bottom: 1px solid var(--bs-border-color-translucent); }
-    .ll-bell-menu .ll-dl-item.ll-new { background: color-mix(in srgb, var(--ll-accent) 9%, transparent); }
-    .ll-bell-f { display: flex; flex-wrap: wrap; gap: .4rem; padding: .55rem .9rem; }
-    .ll-bell-f .btn { font-size: .78rem; padding: .2rem .7rem; }
-    .ll-dl-toasts { position: fixed; left: 1rem; bottom: 1rem; z-index: 1046; width: min(360px, calc(100vw - 2rem)); display: flex; flex-direction: column; gap: .5rem; }
-    @media (max-width: 575.98px) { .ll-dl-toasts { left: .75rem; right: .75rem; width: auto; bottom: calc(.75rem + env(safe-area-inset-bottom, 0px)); } }
+    .ll-dl .ll-dl-item.ll-new { background: color-mix(in srgb, var(--ll-accent) 9%, transparent); }
+    /* a dot on the download button: something finished since the panel was last opened */
+    .ll-quick .ll-dl-dot { position: absolute; right: 3px; bottom: 4px; width: 9px; height: 9px; border-radius: 50%;
+                           background: var(--bs-success); box-shadow: 0 0 0 2px var(--bs-body-bg); }
   </style>
   <script>
     // translation helpers, same contract as the bookstrap interface (see lazylibrarian/i18n.py)
@@ -355,54 +347,16 @@
                 aria-controls="ll-dl" title="${_('Downloads') | h}" aria-label="${_('Downloads') | h}">
           <i class="fa fa-download" aria-hidden="true"></i>
           <span class="badge rounded-pill text-bg-info" x-show="$store.dl.downloading" x-cloak x-text="$store.dl.downloading"></span>
+          <span class="ll-dl-dot" x-show="$store.dl.unread" x-cloak title="${_('Downloaded') | h}"></span>
         </button>
         %endif
-        %if bell_ok:
-        <div class="dropdown" x-data @shown-bs-dropdown.dot="$store.dl.markRead()" @hidden-bs-dropdown.dot="$store.dl.hl = []">
-          <button type="button" class="nav-link ll-bell${' active' if current == 'whatsnew' else ''}" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                  aria-expanded="false" title="${_('Notifications') | h}" aria-label="${_('Notifications') | h}">
-            <i class="fa fa-bell" aria-hidden="true"></i>
-            <span class="badge rounded-pill text-bg-danger" ${'' if wn_count else 'x-cloak'} x-show="$store.dl.badge"
-                  x-text="$store.dl.badge">${wn_count or ''}</span>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end ll-bell-menu">
-            <div class="ll-bell-h">${_('Notifications')}</div>
-            %if dl_ok:
-            <div class="ll-bell-list">
-              <template x-for="n in $store.dl.done" :key="n.rowid">
-                <a class="ll-dl-item" :class="(n.isNew || $store.dl.hl.indexOf(n.rowid) >= 0) && 'll-new'" :href="n.link || 'history'">
-                  <span class="ll-dl-thumb ll-sm" :class="n.status === 'Processed' ? 'll-ok' : 'll-bad'">
-                    <i class="fa" :class="n.status === 'Processed' ? 'fa-check' : 'fa-times'" aria-hidden="true"></i>
-                  </span>
-                  <span class="d-block" style="min-width:0">
-                    <span class="ll-dl-t" x-text="n.title"></span>
-                    <span class="ll-dl-m">
-                      <span x-text="n.status === 'Processed' ? $store.dl.T.downloaded : $store.dl.T.failed"></span>
-                      <span x-show="n.author" x-text="n.author"></span>
-                      <span x-text="$store.dl.ago(n.date)"></span>
-                    </span>
-                  </span>
-                </a>
-              </template>
-              <div class="ll-dl-empty" x-show="!$store.dl.done.length">${_('No notifications')}</div>
-            </div>
-            %endif
-            <div class="ll-bell-f">
-              %if dl_ok:
-              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="$store.dl.show()">
-                <i class="fa fa-download me-1" aria-hidden="true"></i>${_('Downloads')}</button>
-              %endif
-              %if perm & lazylibrarian.perm_config:
-              <a class="btn btn-sm btn-outline-secondary rounded-pill" href="whats_new">
-                <i class="fa fa-star me-1" aria-hidden="true"></i>${_("What's new")}
-                %if wn_count:
-                <span class="badge rounded-pill text-bg-danger ms-1">${wn_count}</span>
-                %endif
-              </a>
-              %endif
-            </div>
-          </div>
-        </div>
+        %if perm & lazylibrarian.perm_config:
+        <a class="nav-link ll-bell${' active' if current == 'whatsnew' else ''}" href="whats_new" title="${_("What's new") | h}" aria-label="${_("What's new") | h}">
+          <i class="fa fa-bell" aria-hidden="true"></i>
+          %if lazylibrarian.WHATS_NEW:
+          <span class="badge rounded-pill text-bg-danger">${len(lazylibrarian.WHATS_NEW)}</span>
+          %endif
+        </a>
         %endif
       </div>
       <div class="collapse navbar-collapse order-lg-2" id="ll-mainnav">
@@ -483,7 +437,7 @@
 
       <h3>${_('Finished recently')}</h3>
       <template x-for="d in $store.dl.recent" :key="d.rowid">
-        <a class="ll-dl-item" :href="d.link || 'history'" :title="d.result">
+        <a class="ll-dl-item" :class="$store.dl.hl.indexOf(d.rowid) >= 0 && 'll-new'" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
             <template x-if="d.img"><img :src="d.img" alt="" loading="lazy" @error="d.img = ''"></template>
             <template x-if="!d.img"><i class="fa" :class="$store.dl.icon(d.kind)" aria-hidden="true"></i></template>
@@ -506,21 +460,6 @@
         <i class="fa fa-history me-1" aria-hidden="true"></i>${_('History')}</a></div>
     </div>
   </aside>
-  <div class="ll-dl-toasts" aria-live="polite" x-data>
-    <template x-for="t in $store.dl.toasts" :key="t.rowid">
-      <article class="ll-notice">
-        <span class="ll-notice-ic" :class="t.status === 'Processed' ? 'text-success' : 'text-danger'">
-          <i class="fa" :class="t.status === 'Processed' ? 'fa-check' : 'fa-times'" aria-hidden="true"></i></span>
-        <div>
-          <h2 x-text="t.status === 'Processed' ? $store.dl.T.downloaded : $store.dl.T.failed"></h2>
-          <div class="ll-notice-text"><a :href="t.link || 'history'" class="link-body-emphasis" x-text="t.title"></a>
-            <span x-show="t.author" x-text="' · ' + t.author"></span></div>
-        </div>
-        <button type="button" class="ll-notice-x" @click="$store.dl.unToast(t)" aria-label="${_('Close') | h}" title="${_('Close') | h}">
-          <i class="fa fa-times" aria-hidden="true"></i></button>
-      </article>
-    </template>
-  </div>
   %endif
 
   %if notices:
@@ -580,30 +519,25 @@
 
   <script src="js/bootstrap5.bundle.min.js"></script>
   ${next.javascriptIncludes()}
-  %if bell_ok:
+  %if dl_ok:
   <script>
-  // downloads panel, download notifications in the bell and a card when a download finishes, fed by get_downloads
+  // downloads panel and the dot on its button when something finished, fed by get_downloads
   document.addEventListener('alpine:init', function () {
-    var DL = ${'true' if dl_ok else 'false'}, REFRESH = ${dl_refresh}, IDLE = 60000, WIDE = 1400, LANG = ${js(ui_lang or 'en')};
-    var T = {downloaded: ${_js('Downloaded')}, failed: ${_js('Download failed')}, noClient: ${_js('Download client not reachable')},
+    var REFRESH = ${dl_refresh}, IDLE = 60000, WIDE = 1400, LANG = ${js(ui_lang or 'en')};
+    var T = {noClient: ${_js('Download client not reachable')},
              icons: {eBook: 'fa-book', AudioBook: 'fa-headphones', Magazine: 'fa-newspaper', comic: 'fa-images'}};
     function load(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
     function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
     var rtf = null, panel = null, panelWide = false;  // the bootstrap instance stays out of Alpine's reactivity
     try { rtf = new Intl.RelativeTimeFormat(LANG, {numeric: 'auto'}); } catch (e) {}
     Alpine.store('dl', {
-      T: T, active: [], recent: [], toasts: [], hl: [], loaded: false, open: false, known: null, timer: 0,
-      whatsNew: ${wn_count},
+      T: T, active: [], recent: [], hl: [], loaded: false, open: false, timer: 0,
       get downloading() { return this.active.filter(function (d) { return d.status === 'Snatched'; }).length; },
-      // only finished downloads are notified, failed ones are too common to be news (they stay in the panel)
-      get done() { return this.recent.filter(function (d) { return d.status === 'Processed'; }); },
-      get unread() { return this.recent.filter(function (d) { return d.isNew; }).length; },
-      get badge() { return this.whatsNew + this.unread; },
+      get unread() { return this.recent.some(function (d) { return d.isNew; }); },
       init: function () {
-        if (!DL) { return; }
         var self = this, el = document.getElementById('ll-dl');
-        el.addEventListener('shown.bs.offcanvas', function () { self.open = true; self.dock(); self.schedule(true); });
-        el.addEventListener('hidden.bs.offcanvas', function () { self.open = false; self.dock(); });
+        el.addEventListener('shown.bs.offcanvas', function () { self.open = true; self.dock(); self.markRead(); self.schedule(true); });
+        el.addEventListener('hidden.bs.offcanvas', function () { self.open = false; self.hl = []; self.dock(); });
         window.addEventListener('resize', function () { self.dock(); });
         document.addEventListener('visibilitychange', function () { if (!document.hidden) { self.schedule(true); } });
         // a panel left open stays open on the next page, without sliding in again
@@ -622,7 +556,6 @@
       },
       dock: function () { document.body.classList.toggle('ll-dl-docked', this.open && panelWide && window.innerWidth >= WIDE); },
       show: function () {
-        document.querySelectorAll('.ll-bell').forEach(function (b) { var d = bootstrap.Dropdown.getInstance(b); if (d) { d.hide(); } });
         save('ll-dl-open', true); this.inst().show();
       },
       hide: function () { save('ll-dl-open', false); this.inst().hide(); },
@@ -635,13 +568,10 @@
           var read = load('ll-dl-read'), recent = j.recent || [];
           // the first time ever, what finished before is not news
           if (!Array.isArray(read)) { read = recent.map(function (d) { return d.rowid; }); save('ll-dl-read', read); }
-          recent.forEach(function (d) { d.isNew = d.status === 'Processed' && read.indexOf(d.rowid) < 0; });
-          // a card for what finished while this page is open
-          if (self.known) {
-            recent.forEach(function (d) { if (d.isNew && self.known.indexOf(d.rowid) < 0) { self.toast(d); } });
-          }
-          self.known = recent.map(function (d) { return d.rowid; });
+          recent.forEach(function (d) { d.isNew = read.indexOf(d.rowid) < 0; });
           self.active = j.active || []; self.recent = recent; self.loaded = true;
+          // what finishes while the panel is open is seen right away, just highlighted
+          if (self.open) { self.markRead(); }
         }).catch(function () {}).finally(function () { self.schedule(false); });
       },
       schedule: function (now) {
@@ -656,16 +586,11 @@
       markRead: function () {
         var read = load('ll-dl-read');
         read = Array.isArray(read) ? read : [];
-        this.hl = this.recent.filter(function (d) { return d.isNew; }).map(function (d) { return d.rowid; });
+        var hl = this.hl;
+        this.recent.forEach(function (d) { if (d.isNew && hl.indexOf(d.rowid) < 0) { hl.push(d.rowid); } });
         this.recent.forEach(function (d) { if (read.indexOf(d.rowid) < 0) { read.push(d.rowid); } d.isNew = false; });
         save('ll-dl-read', read.slice(-200));
       },
-      toast: function (d) {
-        var self = this;
-        this.toasts.push(d);
-        setTimeout(function () { self.unToast(d); }, 9000);
-      },
-      unToast: function (d) { this.toasts = this.toasts.filter(function (t) { return t !== d; }); },
       icon: function (kind) { return T.icons[kind] || 'fa-book'; },
       size: function (s) { return /^[0-9.]+$/.test(String(s)) ? s + ' MB' : String(s); },
       ago: function (s) {
@@ -744,7 +669,6 @@
         var body = new URLSearchParams({version: VERSION});
         fetch('whats_new_seen', {method: 'POST', body: body, credentials: 'same-origin'}).then(function () {
           document.querySelectorAll('a[href="whats_new"] .badge').forEach(function (b) { b.remove(); });
-          if (window.Alpine && Alpine.store('dl')) { Alpine.store('dl').whatsNew = 0; }
         });
         dismiss(el, false);
       }
