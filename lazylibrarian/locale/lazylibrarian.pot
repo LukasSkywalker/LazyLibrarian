@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-11 15:46+0000\n"
+"POT-Creation-Date: 2026-11-11 21:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: data/interfaces/modern/issues.html:119
 #: data/interfaces/modern/magazines.html:113
 #: data/interfaces/modern/magazines.html:158
-#: data/interfaces/modern/modern_base.html:587
+#: data/interfaces/modern/modern_base.html:683
 msgid "Search"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr ""
 #: data/interfaces/modern/author.html:236
 #: data/interfaces/modern/book_detail.html:80
 #: data/interfaces/modern/books.html:139
-#: data/interfaces/modern/config.html:1059
+#: data/interfaces/modern/config.html:1149
 msgid "Language"
 msgstr ""
 
@@ -351,7 +351,7 @@ msgstr ""
 #: data/interfaces/bookstrap/series.html:91
 #: data/interfaces/bookstrap/series.html:110
 #: data/interfaces/modern/books.html:133 data/interfaces/modern/books.html:284
-#: data/interfaces/modern/config.html:1058
+#: data/interfaces/modern/config.html:1148
 #: data/interfaces/modern/editauthor.html:80
 #: data/interfaces/modern/history.html:86
 #: data/interfaces/modern/managebooks.html:65
@@ -389,7 +389,7 @@ msgstr ""
 #: data/interfaces/modern/books.html:284
 #: data/interfaces/modern/comicresults.html:55
 #: data/interfaces/modern/comics.html:79
-#: data/interfaces/modern/config.html:1058
+#: data/interfaces/modern/config.html:1148
 #: data/interfaces/modern/editissue.html:48
 #: data/interfaces/modern/editmag.html:43
 #: data/interfaces/modern/history.html:56
@@ -599,7 +599,7 @@ msgstr[1] ""
 #: data/interfaces/modern/author.html:321
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
-#: data/interfaces/modern/modern_base.html:423
+#: data/interfaces/modern/modern_base.html:455
 #: data/interfaces/modern/users.html:228
 msgid "Yes"
 msgstr ""
@@ -624,7 +624,7 @@ msgstr ""
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
-#: data/interfaces/modern/modern_base.html:422
+#: data/interfaces/modern/modern_base.html:454
 #: data/interfaces/modern/users.html:227
 msgid "No"
 msgstr ""
@@ -720,8 +720,10 @@ msgstr ""
 #: data/interfaces/bookstrap/members.html:260
 #: data/interfaces/bookstrap/searchresults.html:307
 #: data/interfaces/bookstrap/series.html:331
-#: data/interfaces/modern/config.html:294
+#: data/interfaces/modern/config.html:307
+#: data/interfaces/modern/config.html:609
 #: data/interfaces/modern/editmag.html:103
+#: data/interfaces/modern/modern_base.html:471
 #: data/interfaces/modern/searchresults.html:226
 msgid "OK"
 msgstr ""
@@ -836,7 +838,7 @@ msgstr ""
 #: data/interfaces/bookstrap/users.html:328
 #: data/interfaces/modern/choosetype.html:60
 #: data/interfaces/modern/comics.html:179
-#: data/interfaces/modern/config.html:294
+#: data/interfaces/modern/config.html:307
 #: data/interfaces/modern/dlresult.html:33
 #: data/interfaces/modern/history.html:111
 #: data/interfaces/modern/history.html:138 data/interfaces/modern/login.html:52
@@ -844,9 +846,9 @@ msgstr ""
 #: data/interfaces/modern/magazines.html:194
 #: data/interfaces/modern/managebooks.html:194
 #: data/interfaces/modern/managebooks.html:204
-#: data/interfaces/modern/modern_base.html:411
-#: data/interfaces/modern/modern_base.html:452
-#: data/interfaces/modern/modern_base.html:566
+#: data/interfaces/modern/modern_base.html:443
+#: data/interfaces/modern/modern_base.html:548
+#: data/interfaces/modern/modern_base.html:662
 #: data/interfaces/modern/profile.html:126
 #: data/interfaces/modern/profile.html:130
 #: data/interfaces/modern/response.html:18
@@ -1596,7 +1598,7 @@ msgstr ""
 #: data/interfaces/bookstrap/managebooks.html:262
 #: data/interfaces/modern/author.html:311 data/interfaces/modern/books.html:253
 #: data/interfaces/modern/comics.html:170
-#: data/interfaces/modern/config.html:294
+#: data/interfaces/modern/config.html:307
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editcomic.html:90
 #: data/interfaces/modern/index.html:195 data/interfaces/modern/issues.html:184
@@ -1610,12 +1612,12 @@ msgid "Cancel"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:215
-#: data/interfaces/modern/config.html:278
+#: data/interfaces/modern/config.html:291
 msgid "Are you sure you want to restart LazyLibrarian?"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:216
-#: data/interfaces/modern/config.html:279
+#: data/interfaces/modern/config.html:292
 msgid "Are you sure you want to shutdown LazyLibrarian?"
 msgstr ""
 
@@ -1651,7 +1653,7 @@ msgid "View:"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:400
-#: data/interfaces/modern/modern_base.html:303
+#: data/interfaces/modern/modern_base.html:320
 msgid "Toggle navigation"
 msgstr ""
 
@@ -1720,7 +1722,7 @@ msgid "Logs"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:479
-#: data/interfaces/modern/modern_base.html:350
+#: data/interfaces/modern/modern_base.html:382
 msgid "Config"
 msgstr ""
 
@@ -1728,19 +1730,19 @@ msgstr ""
 #: data/interfaces/bookstrap/base.html:483
 #: data/interfaces/bookstrap/base.html:697
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:333 lazylibrarian/webServe.py:8069
+#: data/interfaces/modern/modern_base.html:365 lazylibrarian/webServe.py:8069
 msgid "What's new"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:489
-#: data/interfaces/modern/modern_base.html:355
+#: data/interfaces/modern/modern_base.html:387
 msgid "Help"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:492
 #: data/interfaces/bookstrap/base.html:493
-#: data/interfaces/modern/modern_base.html:320
-#: data/interfaces/modern/modern_base.html:324
+#: data/interfaces/modern/modern_base.html:337
+#: data/interfaces/modern/modern_base.html:341
 msgid "Interface language"
 msgstr ""
 
@@ -1761,12 +1763,12 @@ msgstr ""
 #: data/interfaces/bookstrap/base.html:511
 #: data/interfaces/bookstrap/config.html:455
 #: data/interfaces/bookstrap/config.html:537
-#: data/interfaces/modern/modern_base.html:358
+#: data/interfaces/modern/modern_base.html:390
 msgid "User"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:514
-#: data/interfaces/modern/modern_base.html:361
+#: data/interfaces/modern/modern_base.html:393
 msgid "Logout"
 msgstr ""
 
@@ -1916,8 +1918,8 @@ msgstr ""
 #: data/interfaces/modern/managebooks.html:226
 #: data/interfaces/modern/manageissues.html:122
 #: data/interfaces/modern/members.html:211
-#: data/interfaces/modern/modern_base.html:438
-#: data/interfaces/modern/modern_base.html:452
+#: data/interfaces/modern/modern_base.html:534
+#: data/interfaces/modern/modern_base.html:548
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
@@ -1970,7 +1972,7 @@ msgid "Check Version"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:766
-#: data/interfaces/modern/modern_base.html:420
+#: data/interfaces/modern/modern_base.html:452
 msgid "Are you sure you want to logout?"
 msgstr ""
 
@@ -2117,7 +2119,7 @@ msgstr ""
 #: data/interfaces/bookstrap/issues.html:52
 #: data/interfaces/bookstrap/issues.html:72
 #: data/interfaces/bookstrap/manageissues.html:32
-#: data/interfaces/modern/config.html:1066
+#: data/interfaces/modern/config.html:1156
 #: data/interfaces/modern/editissue.html:44
 #: data/interfaces/modern/manageissues.html:54
 #: data/interfaces/modern/manageissues.html:122
@@ -2185,7 +2187,7 @@ msgstr ""
 #: data/interfaces/bookstrap/comicresults.html:20
 #: data/interfaces/modern/book_detail.html:82
 #: data/interfaces/modern/comicresults.html:56
-#: data/interfaces/modern/config.html:1066
+#: data/interfaces/modern/config.html:1156
 msgid "Publisher"
 msgstr ""
 
@@ -2367,7 +2369,7 @@ msgstr ""
 #: data/interfaces/bookstrap/editissue.html:38
 #: data/interfaces/bookstrap/editmag.html:24
 #: data/interfaces/bookstrap/editseries.html:41
-#: data/interfaces/modern/config.html:268
+#: data/interfaces/modern/config.html:281
 #: data/interfaces/modern/editauthor.html:157
 #: data/interfaces/modern/editbook.html:221
 #: data/interfaces/modern/editcomic.html:68
@@ -2390,6 +2392,7 @@ msgid "Downloaders"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:53
+#: data/interfaces/modern/modern_base.html:362
 msgid "Providers"
 msgstr ""
 
@@ -2398,7 +2401,7 @@ msgid "Processing"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:55
-#: data/interfaces/modern/modern_base.html:375
+#: data/interfaces/modern/modern_base.html:407
 msgid "Notifications"
 msgstr ""
 
@@ -7058,7 +7061,7 @@ msgstr ""
 #: data/interfaces/bookstrap/manageissues.html:33
 #: data/interfaces/bookstrap/manageissues.html:46
 #: data/interfaces/bookstrap/manualsearch.html:20
-#: data/interfaces/modern/config.html:501
+#: data/interfaces/modern/config.html:514
 #: data/interfaces/modern/history.html:57
 #: data/interfaces/modern/manageissues.html:55
 #: data/interfaces/modern/manualsearch.html:65
@@ -7130,13 +7133,13 @@ msgstr ""
 #: data/interfaces/bookstrap/index.html:39
 #: data/interfaces/bookstrap/searchresults.html:17
 #: data/interfaces/bookstrap/series.html:46
-#: data/interfaces/modern/modern_base.html:577
+#: data/interfaces/modern/modern_base.html:673
 #: data/interfaces/modern/searchresults.html:123
 msgid "Title / Author / ISBN"
 msgstr ""
 
 #: data/interfaces/bookstrap/index.html:41
-#: data/interfaces/modern/modern_base.html:575
+#: data/interfaces/modern/modern_base.html:671
 msgid "Search for author/book"
 msgstr ""
 
@@ -7854,9 +7857,9 @@ msgstr ""
 #: data/interfaces/modern/comicresults.html:76
 #: data/interfaces/modern/comics.html:90
 #: data/interfaces/modern/magazines.html:103
-#: data/interfaces/modern/modern_base.html:556
-#: data/interfaces/modern/modern_base.html:565
-#: data/interfaces/modern/modern_base.html:585
+#: data/interfaces/modern/modern_base.html:652
+#: data/interfaces/modern/modern_base.html:661
+#: data/interfaces/modern/modern_base.html:681
 msgid "Add"
 msgstr ""
 
@@ -8282,7 +8285,8 @@ msgid "Select at least one book first"
 msgstr ""
 
 #: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:282
-#: data/interfaces/modern/comics.html:74 data/interfaces/modern/config.html:980
+#: data/interfaces/modern/comics.html:74
+#: data/interfaces/modern/config.html:1070
 #: data/interfaces/modern/issues.html:85
 #: data/interfaces/modern/magazines.html:86
 #: data/interfaces/modern/managebooks.html:224
@@ -8357,7 +8361,7 @@ msgid "by"
 msgstr ""
 
 #: data/interfaces/modern/book_detail.html:196
-#: data/interfaces/modern/modern_base.html:280 lazylibrarian/webServe.py:4016
+#: data/interfaces/modern/modern_base.html:297 lazylibrarian/webServe.py:4016
 msgid "Found, but not downloaded"
 msgstr ""
 
@@ -8450,198 +8454,233 @@ msgid_plural "%(count)s comics"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:241
+#: data/interfaces/modern/config.html:254
 msgid "Search settings"
 msgstr ""
 
-#: data/interfaces/modern/config.html:244
+#: data/interfaces/modern/config.html:257
 msgid "Settings sections"
 msgstr ""
 
-#: data/interfaces/modern/config.html:255
+#: data/interfaces/modern/config.html:268
 msgid "Accent color:"
 msgstr ""
 
-#: data/interfaces/modern/config.html:262
+#: data/interfaces/modern/config.html:275
 msgid ""
 "Buttons, links and highlights of the modern interface. Dark mode uses a "
 "lighter shade of it."
 msgstr ""
 
-#: data/interfaces/modern/config.html:266
-#: data/interfaces/modern/config.html:385
+#: data/interfaces/modern/config.html:279
+#: data/interfaces/modern/config.html:398
 #: data/interfaces/modern/editbook.html:245
 msgid "All changes saved"
 msgstr ""
 
-#: data/interfaces/modern/config.html:267
+#: data/interfaces/modern/config.html:280
 msgid "Discard"
 msgstr ""
 
-#: data/interfaces/modern/config.html:385
+#: data/interfaces/modern/config.html:398
 msgid "Unsaved changes"
 msgstr ""
 
-#: data/interfaces/modern/config.html:385
+#: data/interfaces/modern/config.html:398
 msgid "You have unsaved changes"
 msgstr ""
 
-#: data/interfaces/modern/config.html:386
+#: data/interfaces/modern/config.html:399
 #, python-format
 msgid "%(count)s setting found"
 msgid_plural "%(count)s settings found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:386
+#: data/interfaces/modern/config.html:399
 msgid "No settings found"
 msgstr ""
 
-#: data/interfaces/modern/config.html:413
+#: data/interfaces/modern/config.html:426
 msgid "Info Sources"
 msgstr ""
 
-#: data/interfaces/modern/config.html:501
+#: data/interfaces/modern/config.html:514
 msgid "Enabled"
 msgstr ""
 
-#: data/interfaces/modern/config.html:501
+#: data/interfaces/modern/config.html:514
 msgid "Show or hide details"
 msgstr ""
 
-#: data/interfaces/modern/config.html:502
+#: data/interfaces/modern/config.html:515
 msgid "Word Lists"
 msgstr ""
 
-#: data/interfaces/modern/config.html:502
+#: data/interfaces/modern/config.html:515
 msgid "Size Limits"
 msgstr ""
 
-#: data/interfaces/modern/config.html:862
+#: data/interfaces/modern/config.html:609
+msgid "Blocked"
+msgstr ""
+
+#: data/interfaces/modern/config.html:609
+#: data/interfaces/modern/modern_base.html:471
+msgid "Unblock"
+msgstr ""
+
+#: data/interfaces/modern/config.html:610
+msgid "Other blocked sources"
+msgstr ""
+
+#: data/interfaces/modern/config.html:610
+#: data/interfaces/modern/modern_base.html:471
+#, python-format
+msgid "Blocked for %(time)s"
+msgstr ""
+
+#: data/interfaces/modern/config.html:611
+#: data/interfaces/modern/modern_base.html:473
+#, python-format
+msgid "%(count)s minute"
+msgid_plural "%(count)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: data/interfaces/modern/config.html:611
+#: data/interfaces/modern/modern_base.html:473
+#, python-format
+msgid "%(count)s hour"
+msgid_plural "%(count)s hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: data/interfaces/modern/config.html:952
 msgid "Search and Matching"
 msgstr ""
 
-#: data/interfaces/modern/config.html:881
+#: data/interfaces/modern/config.html:971
 msgid "Maintenance"
 msgstr ""
 
-#: data/interfaces/modern/config.html:885
+#: data/interfaces/modern/config.html:975
 msgid "Updates"
 msgstr ""
 
-#: data/interfaces/modern/config.html:930
+#: data/interfaces/modern/config.html:1020
 msgid "Language Detection"
 msgstr ""
 
-#: data/interfaces/modern/config.html:932
+#: data/interfaces/modern/config.html:1022
 msgid "Magazine Titles"
 msgstr ""
 
-#: data/interfaces/modern/config.html:933
+#: data/interfaces/modern/config.html:1023
 msgid "Sorting"
 msgstr ""
 
-#: data/interfaces/modern/config.html:975
+#: data/interfaces/modern/config.html:1065
 msgid "Book Databases"
 msgstr ""
 
-#: data/interfaces/modern/config.html:977
+#: data/interfaces/modern/config.html:1067
 msgid "National Libraries"
 msgstr ""
 
-#: data/interfaces/modern/config.html:978
+#: data/interfaces/modern/config.html:1068
 msgid "Audiobooks, Comics and Light Novels"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1020
+#: data/interfaces/modern/config.html:1110
 msgid "Needs user accounts, switch them on under Access Control"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1055
+#: data/interfaces/modern/config.html:1145
 msgid "Insert at the cursor"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1058
+#: data/interfaces/modern/config.html:1148
 msgid "Author, surname first"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1059
+#: data/interfaces/modern/config.html:1149
 msgid "Title for sorting"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1059
+#: data/interfaces/modern/config.html:1149
 msgid "Series (pattern)"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1060
+#: data/interfaces/modern/config.html:1150
 msgid "Series name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1060
+#: data/interfaces/modern/config.html:1150
 msgid "Series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1060
+#: data/interfaces/modern/config.html:1150
 msgid "Formatted series name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1061
+#: data/interfaces/modern/config.html:1151
 msgid "Formatted series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1061
+#: data/interfaces/modern/config.html:1151
 msgid "Padded series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1062
+#: data/interfaces/modern/config.html:1152
 msgid "Publication year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1062
+#: data/interfaces/modern/config.html:1152
 msgid "Series year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1062
+#: data/interfaces/modern/config.html:1152
 msgid "Abridged"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1063
+#: data/interfaces/modern/config.html:1153
 msgid "Part"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1063
+#: data/interfaces/modern/config.html:1153
 msgid "Number of parts"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1063
+#: data/interfaces/modern/config.html:1153
 msgid "$ sign"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1064
+#: data/interfaces/modern/config.html:1154
 msgid "Issue date"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1064
+#: data/interfaces/modern/config.html:1154
 msgid "Year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1064
+#: data/interfaces/modern/config.html:1154
 msgid "Volume"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1065
+#: data/interfaces/modern/config.html:1155
 msgid "Issue number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1065
+#: data/interfaces/modern/config.html:1155
 msgid "Month name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1065
+#: data/interfaces/modern/config.html:1155
 msgid "Month number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1066
+#: data/interfaces/modern/config.html:1156
 msgid "Day"
 msgstr ""
 
@@ -8878,39 +8917,51 @@ msgstr ""
 msgid "Back to classic"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:312
+#: data/interfaces/modern/modern_base.html:329
 msgid "Switch theme"
 msgstr ""
 
 #: data/interfaces/modern/modern_base.html:353
+#: data/interfaces/modern/modern_base.html:359
+msgid "Provider status"
+msgstr ""
+
+#: data/interfaces/modern/modern_base.html:385
 msgid "Classic interface"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:393
+#: data/interfaces/modern/modern_base.html:425
 #, python-format
 msgid "and %(count)s more"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:453
+#: data/interfaces/modern/modern_base.html:472
+#, python-format
+msgid "%(count)s provider blocked"
+msgid_plural "%(count)s providers blocked"
+msgstr[0] ""
+msgstr[1] ""
+
+#: data/interfaces/modern/modern_base.html:549
 #, python-format
 msgid "%(count)s more notification"
 msgid_plural "%(count)s more notifications"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/modern_base.html:565 lazylibrarian/webServe.py:2168
+#: data/interfaces/modern/modern_base.html:661 lazylibrarian/webServe.py:2168
 msgid "Add series"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:570
+#: data/interfaces/modern/modern_base.html:666
 msgid "Series ID or link"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:572
+#: data/interfaces/modern/modern_base.html:668
 msgid "HC12345 / GR12345 / OL12345"
 msgstr ""
 
-#: data/interfaces/modern/modern_base.html:573
+#: data/interfaces/modern/modern_base.html:669
 msgid ""
 "A Hardcover, Goodreads or LibraryThing series ID, or a Goodreads or "
 "LibraryThing series link."
@@ -10044,182 +10095,182 @@ msgid_plural "Cleared %(count)s blocked providers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lazylibrarian/webServe.py:9049
+#: lazylibrarian/webServe.py:9111
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lazylibrarian/webServe.py:9070
+#: lazylibrarian/webServe.py:9132
 msgid "No downloads"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9078
+#: lazylibrarian/webServe.py:9140
 msgid "Calibre Sync is already running"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9087
+#: lazylibrarian/webServe.py:9149
 msgid "No userid found"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9186 lazylibrarian/webServe.py:9252
-#: lazylibrarian/webServe.py:9274 lazylibrarian/webServe.py:9301
-#: lazylibrarian/webServe.py:9338 lazylibrarian/webServe.py:9365
-#: lazylibrarian/webServe.py:9392 lazylibrarian/webServe.py:9419
-#: lazylibrarian/webServe.py:9445 lazylibrarian/webServe.py:9703
-#: lazylibrarian/webServe.py:9799 lazylibrarian/webServe.py:9837
-#: lazylibrarian/webServe.py:9873 lazylibrarian/webServe.py:9916
-#: lazylibrarian/webServe.py:9957 lazylibrarian/webServe.py:9996
-#: lazylibrarian/webServe.py:10032 lazylibrarian/webServe.py:10050
-#: lazylibrarian/webServe.py:10086 lazylibrarian/webServe.py:10108
-#: lazylibrarian/webServe.py:10121
+#: lazylibrarian/webServe.py:9248 lazylibrarian/webServe.py:9314
+#: lazylibrarian/webServe.py:9336 lazylibrarian/webServe.py:9363
+#: lazylibrarian/webServe.py:9400 lazylibrarian/webServe.py:9427
+#: lazylibrarian/webServe.py:9454 lazylibrarian/webServe.py:9481
+#: lazylibrarian/webServe.py:9507 lazylibrarian/webServe.py:9765
+#: lazylibrarian/webServe.py:9861 lazylibrarian/webServe.py:9899
+#: lazylibrarian/webServe.py:9935 lazylibrarian/webServe.py:9978
+#: lazylibrarian/webServe.py:10019 lazylibrarian/webServe.py:10058
+#: lazylibrarian/webServe.py:10094 lazylibrarian/webServe.py:10112
+#: lazylibrarian/webServe.py:10148 lazylibrarian/webServe.py:10170
+#: lazylibrarian/webServe.py:10183
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9209
+#: lazylibrarian/webServe.py:9271
 msgid "Key verification successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9210
+#: lazylibrarian/webServe.py:9272
 msgid "Unable to verify key"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9211
+#: lazylibrarian/webServe.py:9273
 msgid "No key provided"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9220
+#: lazylibrarian/webServe.py:9282
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9221
+#: lazylibrarian/webServe.py:9283
 msgid "Error sending tweet"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9250 lazylibrarian/webServe.py:9363
-#: lazylibrarian/webServe.py:9390 lazylibrarian/webServe.py:9417
+#: lazylibrarian/webServe.py:9312 lazylibrarian/webServe.py:9425
+#: lazylibrarian/webServe.py:9452 lazylibrarian/webServe.py:9479
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9253 lazylibrarian/webServe.py:9366
-#: lazylibrarian/webServe.py:9393 lazylibrarian/webServe.py:9420
+#: lazylibrarian/webServe.py:9315 lazylibrarian/webServe.py:9428
+#: lazylibrarian/webServe.py:9455 lazylibrarian/webServe.py:9482
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9272 lazylibrarian/webServe.py:9299
-#: lazylibrarian/webServe.py:9336 lazylibrarian/webServe.py:9447
+#: lazylibrarian/webServe.py:9334 lazylibrarian/webServe.py:9361
+#: lazylibrarian/webServe.py:9398 lazylibrarian/webServe.py:9509
 #, python-format
 msgid "%(name)s notification successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9275 lazylibrarian/webServe.py:9302
-#: lazylibrarian/webServe.py:9339 lazylibrarian/webServe.py:9443
+#: lazylibrarian/webServe.py:9337 lazylibrarian/webServe.py:9364
+#: lazylibrarian/webServe.py:9401 lazylibrarian/webServe.py:9505
 #, python-format
 msgid "%(name)s notification failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9466
-msgid "Custom notification failed"
-msgstr ""
-
-#: lazylibrarian/webServe.py:9468
-#, python-format
-msgid "Custom notification failed, bad parameter: %(param)s"
-msgstr ""
-
-#: lazylibrarian/webServe.py:9470
-msgid "Custom notification successful"
-msgstr ""
-
 #: lazylibrarian/webServe.py:9528
-msgid "Email notification failed"
+msgid "Custom notification failed"
 msgstr ""
 
 #: lazylibrarian/webServe.py:9530
 #, python-format
-msgid "Email notification failed, bad parameter: %(param)s"
+msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr ""
 
 #: lazylibrarian/webServe.py:9532
+msgid "Custom notification successful"
+msgstr ""
+
+#: lazylibrarian/webServe.py:9590
+msgid "Email notification failed"
+msgstr ""
+
+#: lazylibrarian/webServe.py:9592
+#, python-format
+msgid "Email notification failed, bad parameter: %(param)s"
+msgstr ""
+
+#: lazylibrarian/webServe.py:9594
 msgid "Email notification successful, check your email"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9660
+#: lazylibrarian/webServe.py:9722
 msgid "Manage AudioBooks"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9660
+#: lazylibrarian/webServe.py:9722
 msgid "Manage eBooks"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9724
+#: lazylibrarian/webServe.py:9786
 msgid "Deluge: Daemon connection successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9730
+#: lazylibrarian/webServe.py:9792
 msgid "Deluge daemon seems to have no labels set"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9740
+#: lazylibrarian/webServe.py:9802
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9744
+#: lazylibrarian/webServe.py:9806
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9750
+#: lazylibrarian/webServe.py:9812
 msgid "Deluge: Daemon connection FAILED"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9753
+#: lazylibrarian/webServe.py:9815
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9755
+#: lazylibrarian/webServe.py:9817
 msgid "Invalid USERNAME or PASSWORD"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10070 lazylibrarian/webServe.py:10093
+#: lazylibrarian/webServe.py:10132 lazylibrarian/webServe.py:10155
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10073 lazylibrarian/webServe.py:10095
+#: lazylibrarian/webServe.py:10135 lazylibrarian/webServe.py:10157
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10126
+#: lazylibrarian/webServe.py:10188
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10129
+#: lazylibrarian/webServe.py:10191
 msgid "No preprocessor set in config"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10183
+#: lazylibrarian/webServe.py:10245
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10187
+#: lazylibrarian/webServe.py:10249
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10189
+#: lazylibrarian/webServe.py:10251
 msgid "Send file"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10245
+#: lazylibrarian/webServe.py:10307
 msgid "Thank you for enabling Telemetry"
 msgstr ""
 
