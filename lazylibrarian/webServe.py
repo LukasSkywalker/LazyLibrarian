@@ -9028,6 +9028,68 @@ class WebInterface:
         logger.debug(result)
         return result
 
+    @staticmethod
+    def _provider_block_keys() -> dict[str, dict]:
+        """ For each provider block of the config form (by the prefix of its field ids, eg newznab_0, kat),
+            the blocklist keys that provider is blocked under, its name and whether it is switched on """
+        cards = {}
+        for array, field in (('NEWZNAB', 'HOST'), ('TORZNAB', 'HOST'), ('RSS', 'HOST'), ('IRC', 'SERVER'),
+                             ('GEN', 'HOST')):
+            for index, provider in enumerate(CONFIG.providers(array)):
+                keys = [provider[field]]
+                if array == 'GEN':  # direct_gen blocks by the section name
+                    keys.append(provider['NAME'])
+                cards[f"{array.lower()}_{index}"] = {'keys': keys, 'enabled': provider.get_bool('ENABLED'),
+                                                     'name': provider['DISPNAME'] or CONFIG.disp_name(provider[field])}
+        for prov in ('KAT', 'TPB', 'TDL', 'LIME', 'ABB'):  # by name, the parsers by host
+            cards[prov.lower()] = {'keys': [prov, CONFIG[f'{prov}_HOST']], 'name': prov}
+        for prefix, prov, key, name in (('slsk', 'SLSK', 'soulseek', 'Soulseek'),
+                                        ('anna', 'ANNA', 'annas', "Anna's Archive"),
+                                        ('webshare', 'WEBSHARE', 'webshare', 'WebShare'),
+                                        ('bok', 'BOK', 'zlibrary', 'Z-Library')):
+            cards[prefix] = {'keys': [key, prov], 'name': name}
+        for prefix, card in cards.items():
+            card['keys'] = [k for k in card['keys'] if k]
+            if 'enabled' not in card:
+                card['enabled'] = CONFIG.get_bool(prefix.upper())
+        return cards
+
+    @cherrypy.expose
+    @require_auth()
+    def provider_status(self):
+        """ The blocklist as JSON for the modern interface: the block on each provider ('cards', keyed by the
+            config form's field id prefix, null when not blocked), the providers that are switched on or blocked
+            with their names ('providers', for the strip on the Logs page) and blocks on anything else ('other',
+            metadata sources and the like) """
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        blocks = BLOCKHANDLER.active_blocks()
+        lower = {k.lower(): k for k in blocks}
+        cards, providers, matched = {}, [], set()
+        for prefix, card in self._provider_block_keys().items():
+            cards[prefix] = None
+            for key in card['keys']:
+                found = lower.get(key.lower())
+                if found:
+                    matched.add(found)
+                    if cards[prefix] is None:
+                        cards[prefix] = dict(blocks[found], key=found)
+            if card['enabled'] or cards[prefix]:
+                providers.append({'id': prefix, 'name': card['name'], 'enabled': card['enabled'],
+                                  'block': cards[prefix]})
+        other = [dict(blocks[k], key=k) for k in sorted(blocks, key=str.lower) if k not in matched]
+        return json.dumps({'cards': cards, 'providers': providers, 'other': other})
+
+    @cherrypy.expose
+    @require_auth()
+    def unblock_provider(self, key=None):
+        """ Lift the block on one provider (a key from provider_status) """
+        self.check_permitted(lazylibrarian.perm_config)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        if key:
+            BLOCKHANDLER.remove_provider_entry(key)
+            logging.getLogger(__name__).debug(f'Unblocked {key}')
+        return 'ok'
+
     @cherrypy.expose
     @require_auth()
     def cleardownloads(self):

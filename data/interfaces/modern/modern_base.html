@@ -249,6 +249,23 @@
     .ll-quick .nav-link > .fa { margin: 0 !important; width: auto; }
     .ll-quick .nav-link.active { background: var(--bs-secondary-bg); }
     .ll-quick .badge { position: absolute; top: 1px; right: -2px; font-size: .58rem; padding: 2px 5px; }
+    /* provider status in the top bar (llProvStatus) */
+    .ll-prov-btn { background: none; border: 0; }
+    .ll-prov-dot { position: absolute; bottom: 7px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--bs-success);
+                   box-shadow: 0 0 0 2px var(--bs-body-bg); }
+    .ll-prov.ll-bad .ll-prov-dot { display: none; }
+    .ll-prov-menu { width: 340px; max-height: min(70vh, 520px); overflow-y: auto; }
+    /* on a phone the icon sits near the left edge, so the menu takes the width of the screen under the bar */
+    @media (max-width: 575.98px) {
+      .ll-prov-menu.show { position: fixed !important; inset: 52px .75rem auto .75rem !important; width: auto; transform: none !important; }
+    }
+    .ll-prov-row { display: flex; align-items: flex-start; gap: .55rem; padding: .35rem 1rem; font-size: .85rem; }
+    .ll-prov-row .ll-pd { flex: 0 0 auto; width: .5rem; height: .5rem; border-radius: 50%; margin-top: .42rem; background: var(--bs-success); }
+    .ll-prov-row.bad .ll-pd { background: var(--bs-danger); }
+    .ll-prov-row .ll-pt { flex: 1 1 auto; min-width: 0; }
+    .ll-prov-row .ll-pn { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ll-prov-row .ll-pr { display: block; font-size: .75rem; color: var(--bs-danger-text-emphasis); overflow-wrap: anywhere; }
+    .ll-prov-row .btn { flex: 0 0 auto; font-size: .72rem; padding: .05rem .55rem; }
     .ll-theme-btn .ll-t { display: none; }
     [data-ll-theme="auto"] .ll-theme-btn .ll-t-auto, [data-ll-theme="light"] .ll-theme-btn .ll-t-light,
     [data-ll-theme="dark"] .ll-theme-btn .ll-t-dark { display: inline; }
@@ -330,6 +347,21 @@
         </div>
         %endif
         %if perm & lazylibrarian.perm_config:
+        <%doc>provider status: a dot when every provider is fine, the number blocked in red, the list in the menu</%doc>
+        <div class="dropdown ll-prov" id="ll-prov" hidden>
+          <button type="button" class="nav-link ll-prov-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                  aria-label="${_('Provider status') | h}" title="${_('Provider status') | h}">
+            <i class="fa fa-server" aria-hidden="true"></i>
+            <span class="ll-prov-dot" aria-hidden="true"></span>
+            <span class="badge rounded-pill text-bg-danger" hidden></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end ll-prov-menu">
+            <h6 class="dropdown-header">${_('Provider status')}</h6>
+            <div class="ll-prov-list"></div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="config" data-ll-prov-config><i class="fa fa-cog fa-fw me-1" aria-hidden="true"></i>${_('Providers')}</a>
+          </div>
+        </div>
         <a class="nav-link ll-bell${' active' if current == 'whatsnew' else ''}" href="whats_new" title="${_("What's new") | h}" aria-label="${_("What's new") | h}">
           <i class="fa fa-bell" aria-hidden="true"></i>
           %if lazylibrarian.WHATS_NEW:
@@ -429,6 +461,70 @@
   <script src="js/bootstrap5.bundle.min.js"></script>
   ${next.javascriptIncludes()}
   <script defer src="js/alpine.min.js"></script>
+  %if not bare and perm & lazylibrarian.perm_config:
+  <script>
+    // provider status in the top bar: the providers in use and anything on the blocklist (provider_status in
+    // webServe.py), refreshed every minute and when the menu opens
+    (function () {
+      var box = document.getElementById('ll-prov');
+      if (!box) { return; }
+      var T = {ok: ${_js('OK')}, unblock: ${_js('Unblock')}, left: ${_js('Blocked for %(time)s')},
+               blocked: ${_jsn('%(count)s provider blocked', '%(count)s providers blocked')},
+               min: ${_jsn('%(count)s minute', '%(count)s minutes')}, hr: ${_jsn('%(count)s hour', '%(count)s hours')}};
+      var btn = box.querySelector('.ll-prov-btn'), badge = btn.querySelector('.badge'), list = box.querySelector('.ll-prov-list');
+      var label = btn.getAttribute('aria-label');
+      function left(s) {
+        var m = Math.ceil(s / 60);
+        return m < 120 ? llNgettext(T.min, m) : llNgettext(T.hr, Math.round(m / 60));
+      }
+      function row(name, b) {
+        var r = document.createElement('div'); r.className = 'll-prov-row' + (b ? ' bad' : '');
+        var dot = document.createElement('span'); dot.className = 'll-pd'; dot.setAttribute('aria-hidden', 'true');
+        var t = document.createElement('span'); t.className = 'll-pt';
+        var n = document.createElement('span'); n.className = 'll-pn'; n.textContent = name; t.appendChild(n);
+        r.appendChild(dot); r.appendChild(t);
+        if (b) {
+          var why = document.createElement('span'); why.className = 'll-pr';
+          why.textContent = T.left.replace('%(time)s', left(b.remaining)) + (b.reason ? ': ' + b.reason : '');
+          t.appendChild(why);
+          var u = document.createElement('button'); u.type = 'button'; u.className = 'btn btn-sm btn-outline-danger rounded-pill';
+          u.textContent = T.unblock; u.setAttribute('aria-label', T.unblock + ' ' + name);
+          u.addEventListener('click', function () {
+            var body = new FormData(); body.append('key', b.key); u.disabled = true;
+            fetch('unblock_provider', {method: 'POST', body: body, credentials: 'same-origin'}).then(load, load);
+          });
+          r.appendChild(u);
+        } else {
+          var ok = document.createElement('span'); ok.className = 'visually-hidden'; ok.textContent = T.ok; t.appendChild(ok);
+        }
+        return r;
+      }
+      function load() {
+        fetch('provider_status', {cache: 'no-store', credentials: 'same-origin'}).then(function (r) { return r.json(); }).then(function (json) {
+          var bad = [], good = [];
+          (json.providers || []).forEach(function (p) { (p.block ? bad : good).push([p.name, p.block]); });
+          (json.other || []).forEach(function (b) { bad.push([b.key, b]); });
+          list.textContent = '';
+          bad.concat(good).forEach(function (p) { list.appendChild(row(p[0], p[1])); });
+          box.hidden = !bad.length && !good.length;
+          box.classList.toggle('ll-bad', bad.length > 0);
+          badge.hidden = !bad.length; badge.textContent = bad.length;
+          var state = bad.length ? llNgettext(T.blocked, bad.length) : T.ok;
+          btn.title = label + ': ' + state; btn.setAttribute('aria-label', label + ': ' + state);
+        }).catch(function () {});
+      }
+      btn.addEventListener('show.bs.dropdown', load);
+      // the config page opens on its Providers section
+      box.querySelector('[data-ll-prov-config]').addEventListener('click', function (e) {
+        e.preventDefault();
+        var go = function () { window.location.href = 'config'; };
+        fetch('set_current_tabs?config_tab=4', {credentials: 'same-origin'}).then(go, go);
+      });
+      load();
+      setInterval(function () { if (!document.hidden) { load(); } }, 60000);
+    })();
+  </script>
+  %endif
   %if can_switch:
   <script>
     // the language menu, the classic interface link and the welcome notice, see switch_interface in webServe.py

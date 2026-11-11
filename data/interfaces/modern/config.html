@@ -110,6 +110,19 @@
   .llc .llc-ptitle { font-weight: 650; font-size: .95rem; margin-right: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .llc .llc-ptitle:empty::before { content: attr(data-empty); color: var(--bs-secondary-color); font-weight: 500; }
   .llc .llc-ph .btn { font-size: .75rem; padding: .15rem .65rem; }
+  /* provider status (llcProviderStatus): a badge after the name, the block's time, reason and Unblock under the header */
+  .llc .llc-pstat { flex: 0 0 auto; width: .6rem; height: .6rem; border-radius: 50%; margin-left: -.15rem; cursor: help; }
+  .llc .llc-pstat.llc-pok { background: var(--bs-success); }
+  .llc .llc-pstat.llc-pbad { background: var(--bs-danger); box-shadow: 0 0 0 3px var(--bs-danger-bg-subtle); }
+  .llc .llc-ptitle:has(+ .llc-pstat) { margin-right: 0; }
+  .llc .llc-ph > .llc-pstat { margin-right: auto; }
+  .llc .llc-pblock { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; font-size: .8rem; color: var(--bs-danger-text-emphasis);
+    background: var(--bs-danger-bg-subtle); border-radius: 8px; padding: .35rem .6rem; margin-bottom: .6rem; overflow-wrap: anywhere; }
+  .llc .llc-pblock > span { flex: 1 1 12rem; min-width: 0; }
+  .llc .llc-pblock .btn { font-size: .72rem; padding: .1rem .6rem; }
+  .llc .llc-pother { border: 1px solid var(--bs-danger-border-subtle); border-radius: 12px; padding: .6rem .8rem .1rem; margin-bottom: 1rem; }
+  .llc .llc-pother-h { font-weight: 650; font-size: .9rem; margin-bottom: .5rem; }
+  .llc .llc-pother .llc-pblock strong { flex: 0 0 auto; }
   .llc .llc-pon { display: inline-flex; align-items: center; gap: .4rem; margin: 0; font-size: .78rem; font-weight: 500; color: var(--bs-secondary-color); cursor: pointer; }
   /* folding: a provider card down to its header, a provider type section down to its heading; search shows all */
   .llc .llc-pcaret { border: 0; background: none; padding: 0 .1rem; color: var(--bs-secondary-color); line-height: 1; }
@@ -586,7 +599,83 @@
         rest.forEach(function (n) { if (n.nodeType === 1 && !n.matches('label.sr-only')) { box.appendChild(n); } else if (n.nodeType === 1) { n.remove(); } });
         block.appendChild(box);
         block.classList.add('llc-pcard');
+        block._llcHead = head; block._llcEnable = enable;
       });
+    }
+
+    // Provider status: a badge in each card's header (OK, or Blocked when the provider failed and is skipped for a
+    // while), the time left, the reason and an Unblock button under it; blocks on sources that have no card
+    // (metadata sites and the like) are listed at the top of Providers. Refreshed every minute.
+    var TS = {ok: ${_js('OK')}, blocked: ${_js('Blocked')}, unblock: ${_js('Unblock')},
+              left: ${_js('Blocked for %(time)s')}, other: ${_js('Other blocked sources')},
+              min: ${_jsn('%(count)s minute', '%(count)s minutes')}, hr: ${_jsn('%(count)s hour', '%(count)s hours')}};
+    function llcLeft(s) {
+      var m = Math.ceil(s / 60);
+      return m < 120 ? llNgettext(TS.min, m) : llNgettext(TS.hr, Math.round(m / 60));
+    }
+    function llcBlockNote(b, refresh) {
+      var note = document.createElement('div'); note.className = 'llc-pblock';
+      var txt = document.createElement('span');
+      txt.textContent = TS.left.replace('%(time)s', llcLeft(b.remaining)) + (b.reason ? ': ' + b.reason : '');
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'btn btn-sm btn-outline-danger rounded-pill'; btn.textContent = TS.unblock;
+      btn.addEventListener('click', function () {
+        var body = new FormData(); body.append('key', b.key); btn.disabled = true;
+        fetch('unblock_provider', {method: 'POST', body: body, credentials: 'same-origin'}).then(refresh, refresh);
+      });
+      note.appendChild(txt); note.appendChild(btn);
+      return note;
+    }
+    function llcProviderStatus() {
+      var cards = form.querySelectorAll('.llc-pcard'), data = null;
+      if (!cards.length) { return; }
+      function cardPrefix(card, prefixes) {
+        var best = '';
+        card.querySelectorAll('[id]').forEach(function (el) {
+          prefixes.forEach(function (p) { if ((el.id === p || el.id.indexOf(p + '_') === 0) && p.length > best.length) { best = p; } });
+        });
+        return best;
+      }
+      function paint() {
+        if (!data) { return; }
+        var prefixes = Object.keys(data.cards);
+        cards.forEach(function (card) {
+          var head = card._llcHead; if (!head) { return; }
+          if (card._llcPrefix === undefined) { card._llcPrefix = cardPrefix(card, prefixes); }
+          var old = head.querySelector('.llc-pstat'); if (old) { old.remove(); }
+          var oldNote = card.querySelector('.llc-pblock'); if (oldNote) { oldNote.remove(); }
+          if (!card._llcPrefix) { return; }
+          var b = data.cards[card._llcPrefix], on = !card._llcEnable || card._llcEnable.checked;
+          if (!b && !on) { return; }
+          var badge = document.createElement('span');
+          badge.className = 'llc-pstat ' + (b ? 'llc-pbad' : 'llc-pok');
+          // a dot, its words for screen readers and the tooltip
+          badge.setAttribute('role', 'img');
+          badge.title = b ? TS.left.replace('%(time)s', llcLeft(b.remaining)) + (b.reason ? ': ' + b.reason : '') : TS.ok;
+          badge.setAttribute('aria-label', b ? TS.blocked : TS.ok);
+          head.querySelector('.llc-ptitle').after(badge);
+          if (b) { head.after(llcBlockNote(b, load)); }
+          if (card._llcEnable && !card._llcWatch) { card._llcWatch = true; card._llcEnable.addEventListener('change', paint); }
+        });
+        var prov = document.getElementById('providers'); if (!prov) { return; }
+        var box = prov.querySelector('.llc-pother'); if (box) { box.remove(); }
+        if (!data.other.length) { return; }
+        box = document.createElement('div'); box.className = 'llc-pother';
+        var h = document.createElement('div'); h.className = 'llc-pother-h'; h.textContent = TS.other;
+        box.appendChild(h);
+        data.other.forEach(function (b) {
+          var row = llcBlockNote(b, load), name = document.createElement('strong');
+          name.textContent = b.key; row.insertBefore(name, row.firstChild);
+          box.appendChild(row);
+        });
+        prov.insertBefore(box, prov.firstChild);
+      }
+      function load() {
+        fetch('provider_status', {credentials: 'same-origin'}).then(function (r) { return r.json(); })
+          .then(function (json) { data = json; paint(); }).catch(function () {});
+      }
+      load();
+      setInterval(function () { if (!document.hidden) { load(); } }, 60000);
     }
 
     // "label | field | label | field | unit" input groups (Host/Port, Min/Max size, File/Directory permissions,
@@ -741,6 +830,7 @@
         if (!p.children.length && !p.textContent.trim()) { p.remove(); }
       });
       llcProviderCards();
+      llcProviderStatus();
       // provider type headings (Newznab, Torznab, rss...) carry their own show switch, so bookstrap leaves them
       // unfoldable; here the switch keeps working and a click anywhere else on the heading folds the section
       form.querySelectorAll('#providers fieldset > legend').forEach(function (lg) {
