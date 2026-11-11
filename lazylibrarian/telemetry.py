@@ -148,6 +148,8 @@ class LazyTelemetry:
             cfg_telemetry["params"] += "PRIMARY_OL "
         cfg_telemetry["params"] += f"UI_LANG_{_config['UI_LANGUAGE']} "
         cfg_telemetry["params"] += f"UI_LOOK_{_config['HTTP_LOOK']} "
+        for look in self.user_looks(_config):
+            cfg_telemetry["params"] += f"UI_LOOK_{look} "
 
         # Record whether these are configured differently from the default
         for key in ['GR_API', 'GB_API', 'OL_API', 'DNB_API', 'BN_API', 'DBK_API', 'RAN_API', 'HC_API', 'GR_SYNC', 'HC_SYNC', 'LT_DEVKEY',
@@ -162,6 +164,29 @@ class LazyTelemetry:
 
         # Count how many Apprise notifications are configured
         cfg_telemetry["APPRISE"] = _config.count_in_use('APPRISE')
+
+    @staticmethod
+    def user_looks(_config: LLConfigHandler) -> list:
+        """ With user accounts, each user can pick their own interface (users.Theme), which leaves
+        HTTP_LOOK as it is. Return the other interfaces users have picked, sorted, without counts
+        or user ids. An empty Theme means the global interface; otherwise it is look or look_style """
+        if not _config.get_bool('USER_ACCOUNTS'):
+            return []
+        try:
+            db = database.DBConnection()
+            try:
+                rows = db.select('SELECT DISTINCT Theme from users')
+            finally:
+                db.close()
+        except Exception:
+            return []
+        looks = set()
+        for row in rows:
+            look = (row['Theme'] or '').split('_', 1)[0]
+            if look in ('bookstrap', 'modern'):
+                looks.add(look)
+        looks.discard(_config['HTTP_LOOK'])
+        return sorted(looks)
 
     def record_usage_data(self, counter: str | None = None):
         usg = self.get_usage_telemetry()
