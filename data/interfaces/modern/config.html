@@ -92,6 +92,10 @@
   .llc .tab-pane fieldset:is(:has(> legend), :has(> .section-body)):has(> [class*="col-"]) { margin-inline: 0; padding-inline: .6rem; }
   .llc .tab-pane fieldset#rss_options:has(> [class*="col-"]) { margin-inline: 0 !important; padding-inline: .6rem !important; }
   /* action buttons (Test, Sync now, Request authorization...): one row of small outlined pills under what they act on */
+  /* an apprise notifier in a box like the other notifiers' sections (llcActions) */
+  .llc .llc-acard { border: 1px solid var(--bs-border-color-translucent); border-radius: 10px; background: var(--bs-tertiary-bg);
+                    padding: .8rem .9rem .1rem; height: 100%; }
+  .llc .llc-acard .input-group { margin-bottom: .8rem; }
   .llc .llc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 .9rem; }
   .llc .form-group > .llc-actions:last-child, .llc .form-group > .llc-actions:has(+ .help-block[hidden]:last-child) { margin-bottom: 0; }
   .llc .form-group > :is(input, select, textarea, .input-group, .llc-fgrid) + .llc-actions { margin-top: .5rem; }
@@ -667,7 +671,13 @@
           cb.removeAttribute('title'); cb.removeAttribute('data-toggle');
           col.appendChild(l); row.appendChild(col);
         });
+        var block = g.parentElement;
         g.replaceWith(ff); ff.after(row);
+        // each notifier in a box of its own, like the other notifiers' sections, so its fields read as one; the
+        // box goes inside the column, whose padding stays the gap between two boxes
+        var card = document.createElement('div'); card.className = 'llc-acard';
+        while (block.firstChild) { card.appendChild(block.firstChild); }
+        block.appendChild(card);
       });
       // a field's buttons: outlined like the show/hide eye, the apprise Test out of its box to the field's end
       pane.querySelectorAll('.input-group .btn-primary, .input-group .btn-warning').forEach(function (b) {
