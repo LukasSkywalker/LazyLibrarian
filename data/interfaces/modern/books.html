@@ -209,6 +209,7 @@
         </template>
         <div class="llb-status d-flex align-items-center gap-2 flex-wrap mt-auto pt-1">
           <span class="badge rounded-pill llb-pill" :class="pillClass(b.status)" x-text="llStatus(b.status)"></span>
+          <template x-for="fp in b.found" :key="fp.lib + fp.name"><span class="badge rounded-pill ll-found" :title="fp.tip"><i class="fa fa-exclamation-triangle me-1" aria-hidden="true"></i><span x-text="fp.name"></span></span></template>
           <template x-if="b.status === 'Wanted'">
             %if perm&lazylibrarian.perm_force:
             <button type="button" class="btn btn-link llb-act" data-do="search">${_('Search now')}</button>
@@ -302,6 +303,7 @@ document.addEventListener('alpine:init', function () {
     var img = r[1] || '';
     return {
       id: String(r[9]), title: title, author: author, authorId: r[8], status: String(r[11] || ''), series: series,
+      found: llFound(r, LIB, r[11]),
       cover: (img && !/nocover|no_cover|nophoto/i.test(img)) ? img : '', hue: hue(title + author)
     };
   }

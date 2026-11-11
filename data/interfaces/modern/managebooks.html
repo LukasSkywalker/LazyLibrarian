@@ -148,6 +148,7 @@ ${bk.headIncludes()}
         </template>
         <div class="llb-dates">
           <div x-text="b.date"></div>
+          <div x-show="b.found.length" class="d-flex flex-wrap gap-1"><template x-for="fp in b.found" :key="fp.lib + fp.name"><span class="badge rounded-pill ll-found" :title="fp.tip"><i class="fa fa-exclamation-triangle me-1" aria-hidden="true"></i><span x-text="fp.name"></span></span></template></div>
           <div x-show="b.listed" :title="T.listed" x-text="b.listed"></div>
           <div x-show="sort === '15:desc' && b.lastSearch" :title="T.lastSearch"><i class="fa fa-search me-1" aria-hidden="true"></i><span x-text="b.lastSearch"></span></div>
           %if show_delay:
@@ -242,7 +243,7 @@ document.addEventListener('alpine:init', function () {
     var listed = r[10] && r[10] !== 'null' ? r[10] : '';
     return {
       id: String(r[9]), title: title, author: r[2] || '', authorId: r[8], date: r[6] || '', listed: listed, series: series,
-      delay: r[14] || '', lastSearch: r[15] || '', cover: (img && !/nocover|no_cover|nophoto/i.test(img)) ? img : '', hue: hue(title)
+      delay: r[14] || '', lastSearch: r[15] || '', found: llFound(r, LIB, r[11]), cover: (img && !/nocover|no_cover|nophoto/i.test(img)) ? img : '', hue: hue(title)
     };
   }
   function textOf(html) { var t = document.createElement('div'); t.innerHTML = html || ''; return t.textContent; }
