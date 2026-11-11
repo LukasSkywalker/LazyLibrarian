@@ -77,7 +77,7 @@
     if not is_audio and book.get('BookPages') and str(book['BookPages']) != '0':
         facts.append((_('Pages'), book['BookPages']))
     if book.get('BookLang'):
-        facts.append((_('Language'), book['BookLang']))
+        facts.append((_('Language'), book_language_label(book['BookLang'])))
     if book.get('BookPub'):
         facts.append((_('Publisher'), book['BookPub']))
     if book.get('BookIsbn'):

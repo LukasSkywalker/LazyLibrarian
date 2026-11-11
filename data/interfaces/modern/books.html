@@ -140,7 +140,7 @@
             @change="window.location = '${'audio' if audio else 'books'}?booklang=' + encodeURIComponent($event.target.value)">
       <option value="">${_('All')}</option>
       %for language in languages:
-      <option value="${language['BookLang'] | h}" ${'selected' if language['BookLang'] == booklang else ''}>${language['BookLang']}</option>
+      <option value="${language['BookLang'] | h}" ${'selected' if language['BookLang'] == booklang else ''}>${language['label'] | h}</option>
       %endfor
     </select>
     %endif
