@@ -86,10 +86,35 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.assertIn('en', r['IMP_PREFLANG']['proposed'].split(', '))
         self.assertEqual(r['MONTH_LANGUAGE']['proposed'], 'sk_SK.UTF-8')
 
+    def test_gb_country_is_one_choice(self):
+        row = self.rows('SK')['GB_COUNTRY']
+        self.assertEqual(row['kind'], 'choice')
+        values = [c['value'] for c in row['choices']]
+        self.assertEqual(values[0], '')
+        self.assertIn('SK', values)
+        self.assertFalse(apply({'GB_COUNTRY': 'SK, CZ'}, self.config)['ok'])
+        self.assertTrue(apply({'GB_COUNTRY': 'sk'}, self.config)['ok'])
+        self.assertEqual(self.config['GB_COUNTRY'], 'SK')
+
+    def test_langid_buttons(self):
+        row = self.rows('SK')['LANGID_LANGUAGES']
+        self.assertEqual(row['kind'], 'langs')
+        self.assertIn('sk', row['proposed'].split(', '))
+        self.assertIn('de', row['proposed'].split(', '))  # other languages stay, so their books are recognised
+        self.assertTrue(all(len(b['codes']) == 1 for b in row['choices']))
+
+    def test_selects_like_the_config_page(self):
+        r = self.rows('SK')
+        for key in ('DATE_FORMAT', 'AUTHOR_DATE_FORMAT', 'DATE_LANG', 'PREF_MAGLANG'):
+            self.assertEqual(r[key]['kind'], 'choice', key)
+            values = [c['value'] for c in r[key]['choices']]
+            self.assertIn(r[key]['proposed'], values, key)
+            self.assertIn(r[key]['current'], values, key)
+
     def test_at_inherits_german(self):
         r = self.rows('AT')
         self.assertIs(r['DNB_API']['proposed'], True)
-        self.assertEqual(r['DATE_LANG']['proposed'], 'de_AT.UTF-8')
+        self.assertEqual(r['DATE_LANG']['proposed'], 'de_DE.UTF-8')  # the month table has German as de_DE
         self.assertEqual(r['MONTH_LANGUAGE']['proposed'], 'de_DE.UTF-8')
         self.assertTrue(r['IMP_PREFLANG']['proposed'].startswith('de, ger, deu, German'))
 

@@ -42,7 +42,14 @@
     return row.choices.filter(function (b) { return b.codes.some(function (c) { return c.toLowerCase() === code; }); })[0];
   }
 
+  // a choice is a plain value, or {value, label}
+  function option(c) { return typeof c === 'object' ? c : {value: c, label: c}; }
+
   function display(row, value) {
+    if (row.kind === 'choice') {
+      var match = row.choices.map(option).filter(function (c) { return c.value === value; })[0];
+      return match ? match.label || '—' : show(value);
+    }
     if (row.kind !== 'langs') { return show(value); }
     var labels = [];
     codeList(value).forEach(function (code) {
@@ -78,7 +85,7 @@
         .sort(function (a, b) { return position(a) - position(b); });
       var rest = row.choices.filter(function (b) { return position(b) < 0; });
       var shown = rest.filter(function (b) { return more || b.shown; });
-      var kids = selected.map(function (b, i) { return chip(b, true, i + 1); })
+      var kids = selected.map(function (b, i) { return chip(b, true, row.numbered === false ? 0 : i + 1); })
         .concat(shown.map(function (b) { return chip(b, false); }));
       if (shown.length < rest.length) {
         kids.push(el('button', {type: 'button', 'class': 'llw-link llw-small', text: t('show_langs') + ' (' + rest.length + ')',
@@ -170,7 +177,9 @@
       input = el('label', {'class': 'llw-switch'}, [check, ' ' + t('on')]);
     } else if (row.kind === 'choice') {
       var sel = el('select', {onchange: function () { setValue(row, sel.value); onchange(); }},
-        row.choices.map(function (c) { return el('option', {value: c, text: c, selected: c === s.value ? 'selected' : false}); }));
+        row.choices.map(option).map(function (c) {
+          return el('option', {value: c.value, text: c.label, selected: c.value === s.value ? 'selected' : false});
+        }));
       input = sel;
     } else if (row.kind === 'months') {
       input = el('span', {'class': 'llw-muted', text: row.proposed});
@@ -207,8 +216,8 @@
     if (editing[row.key] || row.kind === 'langs') { return formRow(row); }
     var s = state[row.key];
     var diff = s.value !== row.current
-      ? [el('span', {'class': 'llw-old', text: show(row.current)}), ' → ', el('strong', {text: show(s.value)})]
-      : [el('span', {text: show(row.current)})];
+      ? [el('span', {'class': 'llw-old', text: display(row, row.current)}), ' → ', el('strong', {text: display(row, s.value)})]
+      : [el('span', {text: display(row, row.current)})];
     return el('div', {'class': 'llw-row'}, [tickBox(row), el('div', {'class': 'llw-main'}, [
       el('div', {'class': 'llw-label'}, [row.label + ' ',
         row.kind === 'months' ? null : el('button', {type: 'button', 'class': 'llw-link llw-small', text: t('edit'),

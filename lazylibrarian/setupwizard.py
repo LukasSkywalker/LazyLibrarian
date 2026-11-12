@@ -15,7 +15,7 @@ import os
 
 import lazylibrarian
 from lazylibrarian import i18n
-from lazylibrarian.booklanguages import BOOK_LANGUAGES
+from lazylibrarian.booklanguages import BOOK_LANGUAGES, GB_COUNTRIES
 from lazylibrarian.formatter import unaccented
 from lazylibrarian.i18n import N_
 from lazylibrarian.monthlanguages import LANGUAGE_WORDS, MONTH_LANGUAGES
@@ -216,6 +216,74 @@ def _language_buttons(preflang: str, browser_langs) -> list:
             for lang in language_picker(preflang, browser)['languages']]
 
 
+def _gb_country_choices() -> list:
+    """ GoogleBooks takes one country: [{'value', 'label'}], automatic first, the code with the name
+        for the wizard's countries, like the select on the config page """
+    choices = [{'value': '', 'label': i18n.gettext('Automatic (where the server is)')}]
+    for code in GB_COUNTRIES:
+        name = COUNTRIES.get(code, {}).get('name')
+        choices.append({'value': code, 'label': f'{code} – {i18n.gettext(name)}' if name else code})
+    return choices
+
+
+def _langid_buttons(value: str, browser_langs) -> list:
+    """ Buttons for LANGID_LANGUAGES, one two letter code each: [{'label', 'codes', 'shown'}].
+        Shown before "Show all" are the selected ones and the browser's, codes no language has get their own """
+    selected = {code.lower() for code in _split(value)}
+    browser = {_parse_tag(tag)[0] for tag in browser_langs or []}
+    buttons = []
+    known = set()
+    for name, codes in BOOK_LANGUAGES:
+        code = codes[0]
+        if len(code) != 2:
+            continue
+        known.add(code.lower())
+        buttons.append({'label': i18n.gettext(name), 'codes': [code],
+                        'shown': code.lower() in selected or code.lower() in browser})
+    buttons += [{'label': code, 'codes': [code], 'shown': True} for code in _split(value) if code.lower() not in known]
+    buttons.sort(key=lambda b: b['label'].lower())
+    return buttons
+
+
+def _with_extra(choices: list, values: list) -> list:
+    """ Add values the list doesn't have, so the select can show the current and the proposed value """
+    have = {c['value'] for c in choices}
+    for value in values:
+        if value and value not in have:
+            have.add(value)
+            choices.insert(0, {'value': value, 'label': value})
+    return choices
+
+
+def _date_format_choices(values: list, date_lang: str) -> list:
+    """ The date formats of the config page select, each shown as today's date """
+    from lazylibrarian.formatter import DISPLAY_DATE_FORMATS, date_format_picker
+    picker = date_format_picker(values[-1], DISPLAY_DATE_FORMATS, datelang=date_lang)
+    choices = [{'value': fmt['format'], 'label': fmt['example']} for fmt in picker['formats']]
+    return _with_extra(choices, values)
+
+
+def _date_lang_choices(values: list) -> list:
+    """ The built-in month name languages and the country's own locale, like the Date Language select """
+    names = {loc: i18n.gettext(name) for loc, name, _months in MONTH_LANGUAGES}
+    choices = [{'value': loc, 'label': f'{names[loc]} ({loc})'} for loc in sorted(names, key=lambda x: names[x].lower())]
+    for value in values:
+        lang = value.split('_')[0].lower()
+        base = next((name for loc, name in names.items() if loc.split('_')[0].lower() == lang), '')
+        if value and value not in names:
+            choices.insert(0, {'value': value, 'label': f'{base} ({value})' if base else value})
+            names[value] = base
+    return choices
+
+
+def _maglang_choices(values: list) -> list:
+    """ The languages of the magazine language select, by name with the code """
+    from lazylibrarian.booklanguages import magazine_language_picker
+    choices = [{'value': lang['code'], 'label': f"{lang['label']} ({lang['code']})"}
+               for lang in magazine_language_picker('')['languages']]
+    return _with_extra(choices, values)
+
+
 def _month_table() -> list:
     return lazylibrarian.MONTHNAMES[0] if lazylibrarian.MONTHNAMES else []
 
@@ -245,7 +313,8 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
         sources.append(_row(config, prof['source'], N_('Local book database'), 'bool', True,
                             help_text=SOURCE_HELP.get(prof['source'], '')))
     if country != GENERIC:
-        sources.append(_row(config, 'GB_COUNTRY', N_('Country for Google Books results'), 'str', country))
+        sources.append(_row(config, 'GB_COUNTRY', N_('Country for Google Books results'), 'choice', country,
+                            _gb_country_choices(), current=config.get_str('GB_COUNTRY').strip().upper()))
 
     pref_head = []
     for code in [lang] + prof['also']:
@@ -256,8 +325,13 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
     books = [
         _row(config, 'IMP_PREFLANG', N_('Preferred book languages'), 'langs', ', '.join(pref),
              _language_buttons(', '.join(pref), browser_langs)),
-        _row(config, 'LANGID_LANGUAGES', N_('Languages to detect in book files'), 'csv', ', '.join(langid)),
+        _row(config, 'LANGID_LANGUAGES', N_('Languages to detect in book titles'), 'langs', ', '.join(langid),
+             _langid_buttons(', '.join(langid), browser_langs),
+             help_text=N_('When a source does not say the language of a book, it is guessed from the title, '
+                          'choosing only from these languages. Keep the languages you do not want too, '
+                          'so their books are recognised and left out.')),
     ]
+    books[-1]['numbered'] = False  # the order doesn't matter to the detection
 
     dates = []
     month_locale = prof['month_locale']
@@ -266,12 +340,18 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
         present = bool(table) and month_locale.lower() in [loc.lower() for loc in table[0]]
         dates.append(_row(config, MONTH_LANGUAGE, N_('Add month names'), 'months', month_locale,
                           current=month_locale if present else ''))
-    if prof['locale']:
-        dates.append(_row(config, 'DATE_LANG', N_('Language for dates'), 'str', prof['locale']))
+    # month names are looked up by DATE_LANG in the month table, so it is the language there, de_DE in Austria too
+    date_lang = month_locale or prof['locale'] or config.get_str('DATE_LANG')
+    if month_locale or prof['locale']:
+        dates.append(_row(config, 'DATE_LANG', N_('Language for dates'), 'choice', date_lang,
+                          _date_lang_choices([date_lang, config.get_str('DATE_LANG')])))
     for key, label in (('DATE_FORMAT', N_('Date format')), ('AUTHOR_DATE_FORMAT', N_('Author date format'))):
-        dates.append(_row(config, key, label, 'str', prof['date'] or config.get_str(key)))
+        proposed = prof['date'] or config.get_str(key)
+        dates.append(_row(config, key, label, 'choice', proposed,
+                          _date_format_choices([proposed, config.get_str(key)], date_lang)))
     if lang:
-        dates.append(_row(config, 'PREF_MAGLANG', N_('Preferred magazine language'), 'str', lang))
+        dates.append(_row(config, 'PREF_MAGLANG', N_('Preferred magazine language'), 'choice', lang,
+                          _maglang_choices([lang, config.get_str('PREF_MAGLANG')])))
     for key, label in (('ISSUE_NOUNS', N_('Words for issue numbers')),
                        ('VOLUME_NOUNS', N_('Words for volume numbers')),
                        ('MAG_NOUNS', N_('Other words allowed in magazine titles'))):
@@ -311,7 +391,7 @@ def _all_keys() -> frozenset:
 
 
 WIZARD_KEYS = _all_keys()
-_KIND = {'UI_LANGUAGE': 'choice', 'BOOK_API': 'choice', 'HTTP_LOOK': 'choice', 'ANNA': 'bool', 'BOK': 'bool',
+_KIND = {'UI_LANGUAGE': 'choice', 'BOOK_API': 'choice', 'HTTP_LOOK': 'choice', 'GB_COUNTRY': 'choice', 'ANNA': 'bool', 'BOK': 'bool',
          'DBK_API': 'bool', 'DNB_API': 'bool', 'BN_API': 'bool', MONTH_LANGUAGE: 'months'}
 _KIND.update({key: 'bool' for key, _label in TAB_KEYS})
 _BOOL_STRINGS = {'1': True, 'true': True, '0': False, 'false': False, '': False}
@@ -335,6 +415,10 @@ def _coerce(key: str, value, config):
         raise ValueError(f'{key}: unknown language {value}')
     if key == 'BOOK_API' and value not in BOOK_APIS:
         raise ValueError(f'{key}: unknown source {value}')
+    if key == 'GB_COUNTRY':
+        value = value.upper()
+        if value and value not in GB_COUNTRIES:
+            raise ValueError(f'{key}: unknown country {value}')
     if key == 'HTTP_LOOK' and value not in ('bookstrap', 'modern'):
         raise ValueError(f'{key}: unknown interface {value}')
     if key == MONTH_LANGUAGE:
