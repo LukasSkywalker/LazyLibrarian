@@ -1,0 +1,39 @@
+<%doc>
+  The setup wizard, included at the end of the body by bookstrap's base.html and modern's modern_base.html.
+  The dialog itself is built by data/js/setup_wizard.js, this only passes it the translated strings
+  and whether to offer it on a new install. Only someone allowed to change the config gets it.
+</%doc>
+<%def name="wizard(perm)">
+<%
+    import os
+    import lazylibrarian
+    from lazylibrarian import setupwizard
+    from lazylibrarian.filesystem import DIRS
+
+    def asset(name):
+        try:
+            return '%s?v=%d' % (name, os.path.getmtime(os.path.join(DIRS.PROG_DIR, 'data', name)))
+        except OSError:
+            return name
+%>
+%if perm & lazylibrarian.perm_config:
+<link href="${asset('css/setup_wizard.css')}" rel="stylesheet">
+<div id="llw-root" hidden data-autoopen="${'1' if setupwizard.should_autoopen() else '0'}"></div>
+<script>
+  window.LLW_T = {
+    title: ${_js('Setup Wizard')}, summary: ${_js('Summary')}, country: ${_js('Country')},
+    intro: ${_js('Typical settings for your country. Ticked rows are saved at the end, change or untick anything you want to keep as it is.')},
+    loading: ${_js('Loading...')}, current: ${_js('Now')}, on: ${_js('On')}, off: ${_js('Off')},
+    setting: ${_js('Setting')}, change: ${_js('Change')}, nothing: ${_js('Nothing is ticked, nothing will be changed.')},
+    back: ${_js('Back')}, next: ${_js('Next')}, skip: ${_js('Skip step')}, apply: ${_js('Apply')}, cancel: ${_js('Cancel')},
+    dismiss: ${_js("Don't show again")}, failed: ${_js('Something went wrong, try again')},
+    saved: ${_js('%(count)s settings changed.')},
+    auth: ${_js('The web interface has no username and password, anyone on your network can change the settings.')},
+    auth_link: ${_js('Set them on the Interface tab')},
+    folder_ok: ${_js('Folder found')}, folder_missing: ${_js('Folder not found')},
+    folder_not_writable: ${_js('Folder is not writable')}, folder_empty: ${_js('Not set')}
+  };
+</script>
+<script src="${asset('js/setup_wizard.js')}"></script>
+%endif
+</%def>

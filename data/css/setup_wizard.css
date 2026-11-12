@@ -1,0 +1,59 @@
+/* The setup wizard dialog, see data/js/setup_wizard.js. The modern interface's Bootstrap 5 variables give it
+   the light or dark colours, bookstrap (Bootstrap 3) has none and gets the light fallbacks. */
+.llw { width: min(720px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; display: none;
+       flex-direction: column; border: 1px solid var(--bs-border-color, #ccc); border-radius: 12px;
+       background: var(--bs-body-bg, #fff); color: var(--bs-body-color, #222); font-size: 14px;
+       box-shadow: 0 12px 40px rgba(0, 0, 0, .3); }
+.llw[open] { display: flex; }
+.llw::backdrop { background: rgba(0, 0, 0, .45); }
+.llw header, .llw footer { padding: 14px 18px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.llw header { border-bottom: 1px solid var(--bs-border-color, #ddd); }
+.llw footer { border-top: 1px solid var(--bs-border-color, #ddd); }
+.llw h2 { margin: 0; font-size: 18px; flex: 1 1 auto; color: inherit; }
+.llw-body { padding: 12px 18px; overflow-y: auto; flex: 1 1 auto; }
+.llw-steps { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.llw-steps li { width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; font-size: 12px;
+                background: var(--bs-tertiary-bg, #eee); color: var(--bs-secondary-color, #666); }
+.llw-steps li.llw-done { background: var(--bs-primary-bg-subtle, #cfe2ff); }
+.llw-steps li.llw-on { background: var(--bs-primary, #337ab7); color: #fff; }
+.llw-country { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-weight: 600; }
+.llw-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--bs-border-color-translucent, #eee); }
+.llw-row:last-child { border-bottom: 0; }
+.llw-tick { padding-top: 2px; margin: 0; }
+.llw-main { flex: 1 1 auto; min-width: 0; }
+.llw-label { font-weight: 600; }
+.llw-help, .llw-cur, .llw-muted { color: var(--bs-secondary-color, #777); font-size: 12px; }
+.llw-cur { overflow-wrap: anywhere; }
+.llw-edit { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.llw input[type=text], .llw select { flex: 1 1 auto; min-width: 0; max-width: 100%; padding: 5px 8px; font: inherit;
+       color: inherit; background: var(--bs-body-bg, #fff); border: 1px solid var(--bs-border-color, #bbb); border-radius: 6px; }
+.llw-switch { margin: 0; font-weight: normal; display: inline-flex; align-items: center; gap: 4px; }
+.llw-badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+             background: var(--bs-tertiary-bg, #eee); }
+.llw-badge.llw-ok { background: var(--bs-success-bg-subtle, #d1e7dd); color: var(--bs-success-text-emphasis, #0a3622); }
+.llw-badge.llw-missing, .llw-badge.llw-not_writable { background: var(--bs-warning-bg-subtle, #fff3cd);
+             color: var(--bs-warning-text-emphasis, #664d03); }
+.llw-note, .llw-error { padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; }
+.llw-note { background: var(--bs-info-bg-subtle, #cff4fc); color: var(--bs-info-text-emphasis, #055160); }
+.llw-error { background: var(--bs-danger-bg-subtle, #f8d7da); color: var(--bs-danger-text-emphasis, #58151c); }
+.llw-summary { width: 100%; border-collapse: collapse; background: transparent; }
+/* bootswatch themes colour every table, the dialog keeps its own colours */
+.llw .llw-summary tr, .llw .llw-summary th, .llw .llw-summary td { background: transparent !important; color: inherit !important; }
+.llw label, .llw p { color: inherit; }
+.llw-summary th, .llw-summary td { padding: 6px 4px; text-align: left; vertical-align: top;
+             border-bottom: 1px solid var(--bs-border-color-translucent, #eee); overflow-wrap: anywhere; }
+.llw-old { color: var(--bs-secondary-color, #777); text-decoration: line-through; }
+.llw-grow { flex: 1 1 auto; }
+.llw-btn { font: inherit; padding: 6px 14px; border-radius: 999px; cursor: pointer; color: inherit;
+           background: transparent; border: 1px solid var(--bs-border-color, #bbb); }
+.llw-btn:disabled { opacity: .5; cursor: default; }
+.llw-primary { background: var(--bs-primary, #337ab7); border-color: var(--bs-primary, #337ab7); color: #fff; }
+.llw-link { font: inherit; background: none; border: 0; padding: 0; color: var(--bs-link-color, #337ab7);
+            text-decoration: underline; cursor: pointer; }
+.llw-toast { position: fixed; z-index: 2000; left: 50%; bottom: 24px; transform: translateX(-50%); max-width: calc(100vw - 32px);
+             padding: 10px 18px; border-radius: 999px; background: #222; color: #fff; box-shadow: 0 6px 20px rgba(0, 0, 0, .3); }
+@media (max-width: 575.98px) {
+  .llw header, .llw footer, .llw-body { padding-left: 12px; padding-right: 12px; }
+  .llw-edit { flex-wrap: wrap; }
+  .llw-steps li { width: 20px; height: 20px; line-height: 20px; }
+}
