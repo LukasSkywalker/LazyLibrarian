@@ -1,0 +1,185 @@
+#  This file is part of Lazylibrarian.
+#
+# Purpose:
+#   Test the country presets and the saving of the setup wizard in setupwizard.py
+
+import copy
+import os
+from unittest import mock
+
+import lazylibrarian
+from lazylibrarian import i18n, setupwizard
+from lazylibrarian.filesystem import DIRS
+from lazylibrarian.setupwizard import (
+    COUNTRIES,
+    WIZARD_KEYS,
+    apply,
+    folder_status,
+    guess_country,
+    presets_for,
+    should_autoopen,
+)
+from unittests.unittesthelpers import LLTestCaseWithConfigandDIRS
+
+ENGLISH_ONLY = [['en_GB.UTF-8', 'en_GB.UTF-8']] + [[f'm{m}', f'm{m}'] for m in range(1, 13)]
+
+
+class SetupWizardTest(LLTestCaseWithConfigandDIRS):
+    def setUp(self):
+        super().setUp()
+        self.saved_months = lazylibrarian.MONTHNAMES
+        lazylibrarian.MONTHNAMES = [copy.deepcopy(ENGLISH_ONLY), []]
+        self.saved_values = {key: self.config[key] for key in ('ISSUE_NOUNS', 'EBOOK_DIR', 'DATE_LANG')}
+        patcher = mock.patch.object(self.config, 'save_config_and_backup_old')
+        self.save = patcher.start()
+        self.addCleanup(patcher.stop)
+        months = mock.patch('lazylibrarian.common.save_monthtable', return_value=True)
+        self.save_months = months.start()
+        self.addCleanup(months.stop)
+
+    def tearDown(self):
+        lazylibrarian.MONTHNAMES = self.saved_months
+        for key, value in self.saved_values.items():
+            self.config.set_str(key, value)
+        super().tearDown()
+
+    def rows(self, country, langs=()):
+        return {r['key']: r for s in presets_for(country, langs, self.config) for r in s['rows']}
+
+    # guessing the country
+
+    def test_guess_country(self):
+        self.assertEqual(guess_country(['sk-SK', 'en']), 'SK')
+        self.assertEqual(guess_country(['sk']), 'SK')
+        self.assertEqual(guess_country(['de-AT']), 'AT')
+        self.assertEqual(guess_country(['de']), 'DE')
+        self.assertEqual(guess_country(['en-US']), 'US')
+        self.assertEqual(guess_country(['en']), 'GB')
+        self.assertEqual(guess_country(['cs']), 'CZ')
+        self.assertEqual(guess_country(['et']), 'EE')
+
+    def test_guess_country_edge_cases(self):
+        for tags in ([], [''], ['x-klingon'], ['zh-Hant-TW'], ['pt-BR'], None):
+            self.assertIn(guess_country(tags), COUNTRIES)
+        self.assertEqual(guess_country(['SK-sk']), 'SK')
+        self.assertEqual(guess_country(['x-klingon', 'pl']), 'PL')
+
+    # presets
+
+    def test_sk_preset(self):
+        r = self.rows('SK')
+        self.assertIs(r['DBK_API']['proposed'], True)
+        self.assertEqual(r['DATE_LANG']['proposed'], 'sk_SK.UTF-8')
+        self.assertEqual(r['DATE_FORMAT']['proposed'], '$d.$m.$Y')
+        self.assertEqual(r['GB_COUNTRY']['proposed'], 'SK')
+        self.assertTrue(r['IMP_PREFLANG']['proposed'].startswith('sk, slo, slk, Slovak, cs'))
+        self.assertIn('en', r['IMP_PREFLANG']['proposed'].split(', '))
+        self.assertEqual(r['MONTH_LANGUAGE']['proposed'], 'sk_SK.UTF-8')
+
+    def test_at_inherits_german(self):
+        r = self.rows('AT')
+        self.assertIs(r['DNB_API']['proposed'], True)
+        self.assertEqual(r['DATE_LANG']['proposed'], 'de_AT.UTF-8')
+        self.assertEqual(r['MONTH_LANGUAGE']['proposed'], 'de_DE.UTF-8')
+        self.assertTrue(r['IMP_PREFLANG']['proposed'].startswith('de, ger, deu, German'))
+
+    def test_us_date_order(self):
+        self.assertEqual(self.rows('US')['DATE_FORMAT']['proposed'], '$m/$d/$Y')
+
+    def test_generic_follows_browser_and_keeps_dates(self):
+        r = self.rows('_generic', ['pt-BR'])
+        self.assertTrue(r['IMP_PREFLANG']['proposed'].startswith('pt, por'))
+        self.assertFalse(r['DATE_FORMAT']['changed'])
+        self.assertEqual(r['UI_LANGUAGE']['proposed'], 'auto')
+
+    def test_search_providers_never_proposed_on(self):
+        for code in COUNTRIES:
+            r = self.rows(code)
+            self.assertFalse(r['ANNA']['changed'])
+            self.assertFalse(r['BOK']['changed'])
+
+    def test_nouns_merged_without_duplicates(self):
+        self.config.set_csv('ISSUE_NOUNS', 'issue, iss, no, nr, #, n, cislo')
+        proposed = self.rows('CZ')['ISSUE_NOUNS']['proposed'].split(', ')
+        self.assertEqual(proposed[:6], ['issue', 'iss', 'no', 'nr', '#', 'n'])
+        self.assertEqual(proposed.count('cislo'), 1)
+
+    def test_preflang_keeps_other_languages(self):
+        self.config.set_csv('IMP_PREFLANG', 'en, eng, ja')
+        self.assertIn('ja', self.rows('SK')['IMP_PREFLANG']['proposed'].split(', '))
+
+    def test_ui_language_only_if_translated(self):
+        self.assertIn(self.rows('SK')['UI_LANGUAGE']['proposed'], ['auto'] + i18n.available_languages())
+        self.assertEqual(self.rows('_generic')['UI_LANGUAGE']['proposed'], 'auto')
+
+    def test_changed_flag(self):
+        for row in self.rows('SK').values():
+            self.assertEqual(row['changed'], row['proposed'] != row['current'])
+
+    def test_wizard_keys_cover_every_country(self):
+        for code in COUNTRIES:
+            self.assertLessEqual(set(self.rows(code)), WIZARD_KEYS)
+        self.assertNotIn('HTTP_PASS', WIZARD_KEYS)
+        self.assertNotIn('HTTP_USER', WIZARD_KEYS)
+
+    # saving
+
+    def test_apply_sets_values_and_done(self):
+        self.config.set_bool('SETUP_WIZARD_DONE', False)
+        res = apply({'DATE_LANG': 'sk_SK.UTF-8', 'DBK_API': True}, self.config)
+        self.assertTrue(res['ok'])
+        self.assertEqual(self.config['DATE_LANG'], 'sk_SK.UTF-8')
+        self.assertTrue(self.config.get_bool('DBK_API'))
+        self.assertTrue(self.config.get_bool('SETUP_WIZARD_DONE'))
+        self.save.assert_called_once()
+
+    def test_apply_rejects_unknown_key_saves_nothing(self):
+        before = self.config['DATE_LANG']
+        res = apply({'DATE_LANG': 'sk_SK.UTF-8', 'HTTP_PASS': 'x'}, self.config)
+        self.assertFalse(res['ok'])
+        self.assertIn('HTTP_PASS', res['error'])
+        self.assertEqual(self.config['DATE_LANG'], before)
+        self.save.assert_not_called()
+
+    def test_apply_bad_value_saves_nothing(self):
+        before = self.config['DATE_LANG']
+        res = apply({'DATE_LANG': 'sk_SK.UTF-8', 'MAG_TAB': 'notabool'}, self.config)
+        self.assertFalse(res['ok'])
+        self.assertEqual(self.config['DATE_LANG'], before)
+        self.save.assert_not_called()
+        self.assertFalse(apply({'HTTP_LOOK': 'nope'}, self.config)['ok'])
+        self.assertFalse(apply({'UI_LANGUAGE': 'xx'}, self.config)['ok'])
+
+    def test_reload_flag(self):
+        self.config.set_str('HTTP_LOOK', 'bookstrap')
+        self.config.set_bool('MAG_TAB', True)
+        self.assertFalse(apply({'DATE_FORMAT': '$d.$m.$Y'}, self.config)['reload'])
+        self.assertTrue(apply({'HTTP_LOOK': 'modern'}, self.config)['reload'])
+        self.assertTrue(apply({'MAG_TAB': False}, self.config)['reload'])
+
+    def test_month_language_added(self):
+        apply({'MONTH_LANGUAGE': 'sk_SK.UTF-8'}, self.config)
+        table = self.save_months.call_args[0][0]
+        self.assertEqual(table[0].count('sk_SK.UTF-8'), 2)
+        self.assertEqual(len(table), 13)
+        self.assertEqual(table[1][-2:], ['január', 'jan'])
+        self.assertEqual(lazylibrarian.MONTHNAMES[0][0], ENGLISH_ONLY[0])  # not changed in place
+
+    def test_month_language_not_added_twice(self):
+        lazylibrarian.MONTHNAMES[0][0] += ['sk_SK.UTF-8', 'sk_SK.UTF-8']
+        apply({'MONTH_LANGUAGE': 'sk_SK.UTF-8'}, self.config)
+        self.save_months.assert_not_called()
+
+    def test_folder_status(self):
+        self.assertEqual(folder_status(''), 'empty')
+        self.assertEqual(folder_status(os.path.join(DIRS.DATADIR, 'nope-xyz')), 'missing')
+        self.assertEqual(folder_status(DIRS.DATADIR), 'ok')
+
+    def test_should_autoopen_existing_install(self):
+        self.config.set_bool('SETUP_WIZARD_DONE', False)
+        self.config.set_str('EBOOK_DIR', '/books')
+        self.assertFalse(should_autoopen(self.config))
+        self.config.set_str('EBOOK_DIR', '')
+        self.assertTrue(should_autoopen(self.config))
+        setupwizard.dismiss(self.config)
+        self.assertFalse(should_autoopen(self.config))

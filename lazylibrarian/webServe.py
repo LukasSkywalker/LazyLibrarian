@@ -107,8 +107,8 @@ from lazylibrarian.common import (
     pwd_check,
     pwd_generator,
     run_script,
+    save_monthtable,
     set_readinglist,
-    validate_monthtable,
     zip_audio,
 )
 from lazylibrarian.config2 import CONFIG, wishlist_type
@@ -2593,22 +2593,8 @@ class WebInterface:
             new_months[0] = [lang for lang in new_months[0] for _ in range(2)]
         if new_months != lazylibrarian.MONTHNAMES[0]:
             logger.debug("MONTHNAMES has changed")
-            if not validate_monthtable(new_months):
+            if not save_monthtable(new_months):
                 logger.debug("New MONTHNAMES is not valid, ignoring")
-            else:
-                json_file = os.path.join(DIRS.DATADIR, 'monthnames.json')
-                with open(json_file, 'w', encoding='utf-8') as f:
-                    json.dump(new_months, f, ensure_ascii=False)
-
-                # Create a second copy of the monthnames without accents and lowercased to speed up matching
-                cleantable = []
-                for lyne in new_months:
-                    cleanlyne = []
-                    for itm in lyne:
-                        cleanlyne.append(unaccented(itm).lower().strip('.'))
-                    cleantable.append(cleanlyne)
-
-                lazylibrarian.MONTHNAMES = [new_months, cleantable]
 
         # now the season dictionary
         new_seasons = {}
