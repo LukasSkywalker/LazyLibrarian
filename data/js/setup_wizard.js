@@ -1,12 +1,16 @@
 /*  This file is part of Lazylibrarian.
  *  The setup wizard: typical settings for the user's country, see lazylibrarian/setupwizard.py.
  *  A native <dialog> without jQuery or Bootstrap, so the bookstrap (Bootstrap 3) and the modern
- *  (Bootstrap 5) interfaces share it. Strings come translated from setup_wizard.html as window.LLW_T.
+ *  (Bootstrap 5) interfaces share it.
+ *  Step 1 picks the language, which is switched at once like the language menu does, and the country.
+ *  The next steps only show what will change for them, already ticked, for the user to check.
+ *  The texts come from wizard_presets in the current language.
  */
 (function () {
   'use strict';
-  var T = window.LLW_T || {};
+  var T = {};
   var dlg = null, data = null, state = {}, step = 0, autoOpened = false, busy = false;
+  var langSwitched = false, showAll = {}, editing = {};
 
   function t(key) { return T[key] || key; }
 
@@ -28,18 +32,17 @@
     return value === '' || value === null || value === undefined ? '—' : String(value);
   }
 
+  function checkResponse(r) {
+    if (!r.ok) { throw new Error(r.status + ' ' + r.statusText); }
+    return r;
+  }
+
   function getJSON(url) {
-    return fetch(url, {credentials: 'same-origin'}).then(function (r) {
-      if (!r.ok) { throw new Error(r.status + ' ' + r.statusText); }
-      return r.json();
-    });
+    return fetch(url, {credentials: 'same-origin'}).then(checkResponse).then(function (r) { return r.json(); });
   }
 
   function post(url, body) {
-    return fetch(url, {method: 'POST', credentials: 'same-origin', body: new URLSearchParams(body)}).then(function (r) {
-      if (!r.ok) { throw new Error(r.status + ' ' + r.statusText); }
-      return r.json();
-    });
+    return fetch(url, {method: 'POST', credentials: 'same-origin', body: new URLSearchParams(body)}).then(checkResponse);
   }
 
   function toast(text) {
@@ -54,18 +57,31 @@
     return all;
   }
 
-  // the proposals of a newly loaded country replace the old ones, except where the user edited a row
+  // the proposals of a newly loaded country replace the old ones, except where the user edited or unticked a row
   function load(country) {
     var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).join(',');
     var url = 'wizard_presets?langs=' + encodeURIComponent(langs) + (country ? '&country=' + encodeURIComponent(country) : '');
     busy = true; render();
     return getJSON(url).then(function (res) {
-      data = res;
+      data = res; T = res.strings || {};
       rows().forEach(function (row) {
         var old = state[row.key];
         if (!old || !old.edited) { state[row.key] = {ticked: row.changed, value: row.proposed, edited: false}; }
       });
       busy = false; render();
+    }).catch(function (e) { busy = false; render(String(e)); });
+  }
+
+  // like the language menu: the browser shows the new language from now on, the wizard reloads its texts
+  function switchLanguage(lang) {
+    var choice = (data.languages || []).filter(function (l) { return l.code === lang; })[0] || {};
+    var country = data.country;
+    var countryLang = (data.languages || []).filter(function (l) { return l.country === country; })[0];
+    if (choice.country && (!countryLang || countryLang.code !== lang)) { country = choice.country; }
+    busy = true; render();
+    post('switch_interface', {lang: lang}).then(function () {
+      langSwitched = true;
+      return load(country);
     }).catch(function (e) { busy = false; render(String(e)); });
   }
 
@@ -85,37 +101,89 @@
     }, 400);
   }
 
-  function editor(row) {
-    var s = state[row.key];
-    var tick = function () { box.checked = s.ticked; };
-    var box = null, input;
+  // the control that changes a row's value
+  function control(row, onchange) {
+    var s = state[row.key], input, badge = null;
     if (row.kind === 'bool') {
-      input = el('input', {type: 'checkbox', role: 'switch', onchange: function () { setValue(row, input.checked); tick(); }});
-      input.checked = !!s.value;
-      input = el('label', {'class': 'llw-switch'}, [input, ' ' + t('on')]);
+      var check = el('input', {type: 'checkbox', role: 'switch', onchange: function () { setValue(row, check.checked); onchange(); }});
+      check.checked = !!s.value;
+      input = el('label', {'class': 'llw-switch'}, [check, ' ' + t('on')]);
     } else if (row.kind === 'choice') {
-      input = el('select', {onchange: function () { setValue(row, input.value); tick(); }},
+      var sel = el('select', {onchange: function () { setValue(row, sel.value); onchange(); }},
         row.choices.map(function (c) { return el('option', {value: c, text: c, selected: c === s.value ? 'selected' : false}); }));
+      input = sel;
     } else if (row.kind === 'months') {
       input = el('span', {'class': 'llw-muted', text: row.proposed});
     } else {
-      input = el('input', {type: 'text', value: s.value, spellcheck: 'false', oninput: function () {
-        setValue(row, input.value); tick(); if (badge) { folderBadge(row, badge); }
+      var text = el('input', {type: 'text', value: s.value, spellcheck: 'false', oninput: function () {
+        setValue(row, text.value); onchange(); if (badge) { folderBadge(row, badge); }
       }});
+      input = text;
+      if (row.kind === 'folder') { badge = el('span', {'class': 'llw-badge'}); folderBadge(row, badge); }
     }
-    var badge = row.kind === 'folder' ? el('span', {'class': 'llw-badge'}) : null;
-    if (badge) { folderBadge(row, badge); }
-    box = el('input', {type: 'checkbox', 'aria-label': row.label, onchange: function () { s.ticked = box.checked; }});
-    box.checked = s.ticked;
-    return el('div', {'class': 'llw-row' + (row.changed ? ' llw-changed' : '')}, [
-      el('label', {'class': 'llw-tick'}, [box]),
-      el('div', {'class': 'llw-main'}, [
-        el('div', {'class': 'llw-label', text: row.label}),
-        row.help ? el('div', {'class': 'llw-help', text: row.help}) : null,
-        el('div', {'class': 'llw-edit'}, [input, badge]),
-        el('div', {'class': 'llw-cur', text: t('current') + ': ' + show(row.current)})
-      ])
-    ]);
+    return el('div', {'class': 'llw-edit'}, [input, badge]);
+  }
+
+  function tickBox(row) {
+    var box = el('input', {type: 'checkbox', 'aria-label': row.label, onchange: function () { state[row.key].ticked = box.checked; }});
+    box.checked = state[row.key].ticked;
+    return el('label', {'class': 'llw-tick'}, [box]);
+  }
+
+  // a setting to fill in: the control, with the current value below
+  function formRow(row) {
+    var tick = tickBox(row);
+    var sync = function () { tick.firstChild.checked = state[row.key].ticked; };
+    return el('div', {'class': 'llw-row'}, [tick, el('div', {'class': 'llw-main'}, [
+      el('div', {'class': 'llw-label', text: row.label}),
+      row.help ? el('div', {'class': 'llw-help', text: row.help}) : null,
+      control(row, sync),
+      el('div', {'class': 'llw-cur', text: t('current') + ': ' + show(row.current)})
+    ])]);
+  }
+
+  // a change worked out for the country: old -> new, to check, and to edit only if wanted
+  function reviewRow(row) {
+    if (editing[row.key]) { return formRow(row); }
+    var s = state[row.key];
+    var diff = s.value !== row.current
+      ? [el('span', {'class': 'llw-old', text: show(row.current)}), ' → ', el('strong', {text: show(s.value)})]
+      : [el('span', {text: show(row.current)})];
+    return el('div', {'class': 'llw-row'}, [tickBox(row), el('div', {'class': 'llw-main'}, [
+      el('div', {'class': 'llw-label'}, [row.label + ' ',
+        row.kind === 'months' ? null : el('button', {type: 'button', 'class': 'llw-link llw-small', text: t('edit'),
+          onclick: function () { editing[row.key] = true; render(); }})]),
+      row.help ? el('div', {'class': 'llw-help', text: row.help}) : null,
+      el('div', {'class': 'llw-diff'}, diff)
+    ])]);
+  }
+
+  function languageStep() {
+    var langSel = el('select', {id: 'llw-lang', onchange: function () { switchLanguage(langSel.value); }},
+      data.languages.map(function (l) { return el('option', {value: l.code, text: l.label, selected: l.code === data.lang ? 'selected' : false}); }));
+    var sel = el('select', {id: 'llw-country', onchange: function () { load(sel.value); }},
+      data.countries.map(function (c) { return el('option', {value: c.code, text: c.label, selected: c.code === data.country ? 'selected' : false}); }));
+    return [
+      el('p', {'class': 'llw-muted', text: t('intro')}),
+      el('div', {'class': 'llw-pick'}, [el('label', {'for': 'llw-lang', text: t('language')}), langSel]),
+      el('div', {'class': 'llw-pick'}, [el('label', {'for': 'llw-country', text: t('country')}), sel])
+    ];
+  }
+
+  function reviewStep(s) {
+    var changed = s.rows.filter(function (row) { return row.changed || state[row.key].edited; });
+    var body = [el('p', {'class': 'llw-muted', text: changed.length ? t('review') : t('no_changes')})];
+    changed.forEach(function (row) { body.push(reviewRow(row)); });
+    var rest = s.rows.filter(function (row) { return changed.indexOf(row) < 0; });
+    if (rest.length) {
+      if (showAll[s.id]) {
+        rest.forEach(function (row) { body.push(reviewRow(row)); });
+      } else {
+        body.push(el('button', {type: 'button', 'class': 'llw-link llw-more', text: t('show_all') + ' (' + rest.length + ')',
+          onclick: function () { showAll[s.id] = true; render(); }}));
+      }
+    }
+    return body;
   }
 
   function summary() {
@@ -136,14 +204,13 @@
   function apply() {
     var values = {};
     rows().forEach(function (row) { if (state[row.key].ticked) { values[row.key] = state[row.key].value; } });
-    if (!Object.keys(values).length) { close(); return; }
     busy = true; render();
-    post('wizard_apply', {values: JSON.stringify(values)}).then(function (res) {
+    post('wizard_apply', {values: JSON.stringify(values)}).then(function (r) { return r.json(); }).then(function (res) {
       busy = false;
       if (!res.ok) { render(res.error || t('failed')); return; }
       var msg = t('saved').replace('%(count)s', res.changed.length);
       if (res.warnings && res.warnings.length) { msg += ' ' + res.warnings.join(' '); }
-      if (res.reload) { toast(msg); setTimeout(function () { location.reload(); }, 1200); return; }
+      if (res.reload || langSwitched) { toast(msg); setTimeout(function () { location.reload(); }, 1200); return; }
       close(); toast(msg);
     }).catch(function (e) { busy = false; render(String(e)); });
   }
@@ -155,41 +222,42 @@
     var body = [];
     if (busy || !data) {
       body.push(el('p', {'class': 'llw-muted', text: t('loading')}));
+    } else if (step === 0) {
+      body = languageStep();
     } else if (step < last) {
       var s = steps[step];
-      if (step === 0) {
-        var sel = el('select', {id: 'llw-country', onchange: function () { load(sel.value); }},
-          data.countries.map(function (c) { return el('option', {value: c.code, text: c.label, selected: c.code === data.country ? 'selected' : false}); }));
-        body.push(el('div', {'class': 'llw-country'}, [el('label', {'for': 'llw-country', text: t('country')}), sel]));
-        body.push(el('p', {'class': 'llw-muted', text: t('intro')}));
+      if (s.id === 'other') {
+        if (data.auth_missing) {
+          body.push(el('div', {'class': 'llw-note'}, [t('auth') + ' ', el('a', {href: 'config#interface', text: t('auth_link')})]));
+        }
+        s.rows.forEach(function (row) { body.push(formRow(row)); });
+      } else {
+        body = reviewStep(s);
       }
-      if (s.id === 'other' && data.auth_missing) {
-        body.push(el('div', {'class': 'llw-note'}, [t('auth') + ' ', el('a', {href: 'config#interface', text: t('auth_link')})]));
-      }
-      s.rows.forEach(function (row) { body.push(editor(row)); });
     } else {
       body = summary();
     }
     if (error) { body.unshift(el('div', {'class': 'llw-error', role: 'alert', text: error})); }
 
-    var title = !data ? t('title') : (step < last ? steps[step].title : t('summary'));
+    var title = !data ? (T.title || 'Setup Wizard') : (step < last ? steps[step].title : t('summary'));
     var dots = el('ol', {'class': 'llw-steps'}, steps.concat([{title: t('summary')}]).map(function (s, i) {
       return el('li', {'class': i === step ? 'llw-on' : (i < step ? 'llw-done' : ''), title: s.title, text: String(i + 1)});
     }));
+    var ready = !busy && data;
     var foot = [
       autoOpened ? el('button', {type: 'button', 'class': 'llw-link', text: t('dismiss'), onclick: function () {
         post('wizard_dismiss', {}).catch(function () {}); close();
       }}) : null,
       el('span', {'class': 'llw-grow'}),
       el('button', {type: 'button', 'class': 'llw-btn', text: t('cancel'), onclick: close}),
-      step > 0 ? el('button', {type: 'button', 'class': 'llw-btn', text: t('back'), disabled: busy ? 'disabled' : false,
+      step > 0 ? el('button', {type: 'button', 'class': 'llw-btn', text: t('back'), disabled: ready ? false : 'disabled',
         onclick: function () { step -= 1; render(); }}) : null,
-      step < last ? el('button', {type: 'button', 'class': 'llw-btn', text: t('skip'), disabled: busy || !data ? 'disabled' : false,
+      step > 0 && step < last ? el('button', {type: 'button', 'class': 'llw-btn', text: t('skip'), disabled: ready ? false : 'disabled',
         onclick: function () { steps[step].rows.forEach(function (row) { state[row.key].ticked = false; }); step += 1; render(); }}) : null,
       step < last
-        ? el('button', {type: 'button', 'class': 'llw-btn llw-primary', text: t('next'), disabled: busy || !data ? 'disabled' : false,
+        ? el('button', {type: 'button', 'class': 'llw-btn llw-primary', text: t('next'), disabled: ready ? false : 'disabled',
           onclick: function () { step += 1; render(); }})
-        : el('button', {type: 'button', 'class': 'llw-btn llw-primary', text: t('apply'), disabled: busy ? 'disabled' : false, onclick: apply})
+        : el('button', {type: 'button', 'class': 'llw-btn llw-primary', text: t('apply'), disabled: ready ? false : 'disabled', onclick: apply})
     ];
     dlg.replaceChildren(
       el('header', {}, [el('h2', {text: title}), dots]),
@@ -198,15 +266,19 @@
     );
   }
 
-  function close() { if (dlg && dlg.open) { dlg.close(); } }
+  // the page behind still shows the old language, reload it when the wizard switched it
+  function close() {
+    if (dlg && dlg.open) { dlg.close(); }
+  }
 
   function open(auto) {
     autoOpened = !!auto;
     if (!dlg) {
-      dlg = el('dialog', {'class': 'llw', 'aria-label': t('title')});
+      dlg = el('dialog', {'class': 'llw', 'aria-label': 'Setup Wizard'});
+      dlg.addEventListener('close', function () { if (langSwitched) { location.reload(); } });
       document.body.appendChild(dlg);
     }
-    step = 0; state = {}; data = null;
+    step = 0; state = {}; data = null; showAll = {}; editing = {}; langSwitched = false;
     render();
     if (dlg.showModal) { dlg.showModal(); } else { dlg.setAttribute('open', 'open'); }
     load('');

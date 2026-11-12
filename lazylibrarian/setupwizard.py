@@ -16,6 +16,7 @@ import os
 import lazylibrarian
 from lazylibrarian import i18n
 from lazylibrarian.booklanguages import BOOK_LANGUAGES
+from lazylibrarian.formatter import unaccented
 from lazylibrarian.i18n import N_
 from lazylibrarian.monthlanguages import LANGUAGE_WORDS, MONTH_LANGUAGES
 
@@ -89,13 +90,14 @@ def _split(value) -> list:
 
 
 def _merge(*lists) -> list:
-    """ Concatenate keeping the first of each item, compared without case """
+    """ Concatenate keeping the first of each item, compared without case and accents """
     seen = set()
     result = []
     for lst in lists:
         for itm in lst:
-            if itm.lower() not in seen:
-                seen.add(itm.lower())
+            key = unaccented(itm).lower()
+            if key not in seen:
+                seen.add(key)
                 result.append(itm)
     return result
 
@@ -118,8 +120,8 @@ def _month_locale(lang: str) -> str:
 
 def _parse_tag(tag: str) -> tuple:
     parts = [p for p in str(tag or '').strip().lower().replace('_', '-').split('-') if p]
-    if not parts:
-        return '', ''
+    if not parts or len(parts[0]) < 2 or not parts[0].isalpha():
+        return '', ''  # x-klingon, i-default, * are no language
     region = parts[-1] if len(parts) > 1 and len(parts[-1]) == 2 and parts[-1].isalpha() else ''
     return parts[0], region
 
@@ -180,15 +182,19 @@ def _month_table() -> list:
     return lazylibrarian.MONTHNAMES[0] if lazylibrarian.MONTHNAMES else []
 
 
-def presets_for(country: str, browser_langs=(), config=None) -> list:
+def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') -> list:
     """ The wizard steps for a country, each {'id', 'title', 'rows'}, every row
-        {'key', 'label', 'kind', 'current', 'proposed', 'choices', 'changed', 'help'} """
+        {'key', 'label', 'kind', 'current', 'proposed', 'choices', 'changed', 'help'}.
+        ui_lang is the language the user picked in the wizard, it becomes UI_LANGUAGE """
     config = _config(config)
     prof = profile(country, browser_langs)
     lang = prof['lang']
 
     ui_langs = ['auto'] + i18n.available_languages()
-    ui_proposed = lang if lang in ui_langs and country != GENERIC else 'auto'
+    if ui_lang in ui_langs:
+        ui_proposed = ui_lang
+    else:
+        ui_proposed = lang if lang in ui_langs and country != GENERIC else 'auto'
     language = [
         _row(config, 'UI_LANGUAGE', N_('Interface language'), 'choice', ui_proposed, ui_langs),
     ]
@@ -271,7 +277,7 @@ _KIND.update({key: 'bool' for key, _label in TAB_KEYS})
 _BOOL_STRINGS = {'1': True, 'true': True, '0': False, 'false': False, '': False}
 
 
-def _coerce(key: str, value):
+def _coerce(key: str, value, config):
     """ The value as the wizard saves it, or raise ValueError """
     kind = _KIND.get(key, 'str')
     if kind == 'bool':
@@ -291,8 +297,17 @@ def _coerce(key: str, value):
         raise ValueError(f'{key}: unknown source {value}')
     if key == 'HTTP_LOOK' and value not in ('bookstrap', 'modern'):
         raise ValueError(f'{key}: unknown interface {value}')
-    if key == MONTH_LANGUAGE and value not in [loc for loc, _n, _m in MONTH_LANGUAGES]:
-        raise ValueError(f'{key}: no built-in month names for {value}')
+    if key == MONTH_LANGUAGE:
+        if value not in [loc for loc, _n, _m in MONTH_LANGUAGES]:
+            raise ValueError(f'{key}: no built-in month names for {value}')
+        return value
+    item = config.get_item(key)
+    if item is None:
+        raise ValueError(f'{key}: unknown setting')
+    if item.get_force_lower():
+        value = value.lower()
+    if not item.is_valid_value(value):
+        raise ValueError(f'{i18n.gettext("Not a valid value")}: {key} = {value}')
     return value
 
 
@@ -337,8 +352,9 @@ def folder_status(path: str) -> str:
     return 'ok'
 
 
-def apply(values: dict, config=None) -> dict:
+def apply(values: dict, config=None, finish: bool = True) -> dict:
     """ Validate every value first, then set them all and save. Nothing is saved if any value is wrong.
+        finish marks the wizard done, so it is not offered on start again.
         Returns {'ok', 'changed', 'reload', 'warnings', 'error'} """
     logger = logging.getLogger(__name__)
     config = _config(config)
@@ -353,7 +369,7 @@ def apply(values: dict, config=None) -> dict:
     clean = {}
     try:
         for key, value in values.items():
-            clean[key.upper()] = _coerce(key.upper(), value)
+            clean[key.upper()] = _coerce(key.upper(), value, config)
     except ValueError as e:
         result['error'] = str(e)
         return result
@@ -366,8 +382,10 @@ def apply(values: dict, config=None) -> dict:
                 continue
             if config.set_from_ui(key, value):
                 result['changed'].append(key)
-        config.set_bool('SETUP_WIZARD_DONE', True)
-        config.save_config_and_backup_old()
+        if finish:
+            config.set_bool('SETUP_WIZARD_DONE', True)
+        # search providers switched on should start searching, like a save on the config page
+        config.save_config_and_backup_old(restart_jobs=True)
     except Exception as e:
         logger.error(f'Setup wizard could not save: {type(e).__name__} {e}')
         result['error'] = str(e)
@@ -394,4 +412,34 @@ def dismiss(config=None):
 def should_autoopen(config=None) -> bool:
     """ Offer the wizard on a new install only, an install with a library folder is set up already """
     config = _config(config)
-    return not config.get_bool('SETUP_WIZARD_DONE') and not config.get_str('EBOOK_DIR')
+    return (not config.get_bool('SETUP_WIZARD_DONE') and not config.get_str('EBOOK_DIR')
+            and not config.get_str('AUDIO_DIR'))
+
+
+def language_choices() -> list:
+    """ [{'code', 'label', 'country'}] for the language dropdown, country is the one the language suggests """
+    return [{'code': lang, 'label': i18n.language_name(lang), 'country': LANGUAGE_COUNTRY.get(lang, '')}
+            for lang in i18n.available_languages()]
+
+
+def ui_strings() -> dict:
+    """ The dialog's texts in the current UI language, so a language picked in the wizard shows at once """
+    _ = i18n.gettext
+    return {
+        'title': _('Setup Wizard'), 'summary': _('Summary'), 'country': _('Country'), 'language': _('Language'),
+        'intro': _('Pick your language and country. The next steps show what will be set for them, '
+                   'check it and untick anything you want to keep as it is.'),
+        'review': _('These settings will be changed for your country:'),
+        'no_changes': _('Nothing to change here, the settings already suit your country.'),
+        'show_all': _('Show unchanged settings too'), 'edit': _('Edit'),
+        'loading': _('Loading...'), 'current': _('Now'), 'on': _('On'), 'off': _('Off'),
+        'setting': _('Setting'), 'change': _('Change'), 'nothing': _('Nothing is ticked, nothing will be changed.'),
+        'back': _('Back'), 'next': _('Next'), 'skip': _('Skip step'), 'apply': _('Apply'), 'cancel': _('Cancel'),
+        'dismiss': _("Don't show again"), 'failed': _('Something went wrong, try again'),
+        'saved': _('%(count)s settings changed.'),
+        'auth': _('The web interface has no username and password, anyone on your network can change the '
+                  'settings.'),
+        'auth_link': _('Set them on the Interface tab'),
+        'folder_ok': _('Folder found'), 'folder_missing': _('Folder not found'),
+        'folder_not_writable': _('Folder is not writable'), 'folder_empty': _('Not set'),
+    }

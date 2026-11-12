@@ -26,6 +26,11 @@ class SetupWizardWebTest(LLTestCaseWithStartup):
         self.assertEqual(res['country'], 'SK')
         self.assertEqual([s['id'] for s in res['steps']], ['language', 'sources', 'books', 'dates', 'other'])
         self.assertIn('SK', [c['code'] for c in res['countries']])
+        self.assertIn('title', res['strings'])
+        self.assertIn(res['lang'], [lang['code'] for lang in res['languages']])
+
+    def test_repeated_params_use_first(self):
+        self.assertEqual(self.ws.wizard_presets(country=['PL', 'SK'], langs=['de', 'sk'])['country'], 'PL')
 
     def test_presets_given_country_wins(self):
         self.assertEqual(self.ws.wizard_presets(country='PL', langs='sk-SK')['country'], 'PL')
@@ -35,7 +40,9 @@ class SetupWizardWebTest(LLTestCaseWithStartup):
         with mock.patch('lazylibrarian.setupwizard.apply', return_value={'ok': True}) as ap:
             cherrypy.request.method = 'POST'
             self.ws.wizard_apply(values='{"DATE_FORMAT": "$d.$m.$Y"}')
-            ap.assert_called_once_with({'DATE_FORMAT': '$d.$m.$Y'})
+            ap.assert_called_once_with({'DATE_FORMAT': '$d.$m.$Y'}, finish=True)
+            self.ws.wizard_apply(values='{"UI_LANGUAGE": "en"}', finish='0')
+            ap.assert_called_with({'UI_LANGUAGE': 'en'}, finish=False)
 
     def test_apply_post_only(self):
         with mock.patch('lazylibrarian.setupwizard.apply') as ap:

@@ -410,6 +410,13 @@ def template_i18n():
             'ui_langs': i18n.available_languages(), 'ui_lang_cookie': i18n.BROWSER_COOKIE}
 
 
+def first_value(value):
+    """ A query parameter given twice arrives as a list, use the first """
+    if isinstance(value, list):
+        return value[0] if value else ''
+    return value
+
+
 def mark_summary(headline, passed, failed):
     """ Translated result summary for the mark_*_ajax handlers, headline is already translated """
     total = passed + failed
@@ -8052,35 +8059,41 @@ class WebInterface:
     @require_auth()
     @cherrypy.tools.json_out()
     def wizard_presets(self, country='', langs='', **kwargs):
-        """ The wizard steps for a country, guessed from the browser languages when not given """
+        """ The wizard steps for a country, guessed from the browser languages when not given.
+            The texts and the proposed UI_LANGUAGE follow the language of this request """
         self.check_permitted(lazylibrarian.perm_config)
+        country, langs = first_value(country), first_value(langs)
         browser_langs = [lang.strip() for lang in langs.split(',') if lang.strip()]
         if not browser_langs:
             browser_langs = i18n.parse_accept_language(cherrypy.request.headers.get('Accept-Language', ''))
         if country not in setupwizard.COUNTRIES:
             country = setupwizard.guess_country(browser_langs)
+        ui_lang = i18n.get_language()
         return {'country': country, 'countries': setupwizard.country_choices(),
-                'steps': setupwizard.presets_for(country, browser_langs),
+                'lang': ui_lang, 'languages': setupwizard.language_choices(), 'strings': setupwizard.ui_strings(),
+                'steps': setupwizard.presets_for(country, browser_langs, ui_lang=ui_lang),
                 'auth_missing': not (CONFIG['HTTP_USER'] and CONFIG['HTTP_PASS']) and
                 not CONFIG.get_bool('USER_ACCOUNTS')}
 
     @cherrypy.expose
     @require_auth()
     @cherrypy.tools.json_out()
-    def wizard_apply(self, values='{}', **kwargs):
-        """ Save the settings ticked in the wizard, values is a json object of setting: value """
+    def wizard_apply(self, values='{}', finish='1', **kwargs):
+        """ Save the settings ticked in the wizard, values is a json object of setting: value.
+            finish=0 saves without ending the wizard """
         self.check_permitted(lazylibrarian.perm_config)
         if cherrypy.request.method != 'POST':
             return {'ok': False, 'error': 'POST only'}
         try:
-            parsed = json.loads(values)
-        except ValueError as e:
+            parsed = json.loads(first_value(values))
+        except (TypeError, ValueError) as e:
             return {'ok': False, 'error': str(e)}
-        return setupwizard.apply(parsed)
+        return setupwizard.apply(parsed, finish=first_value(finish) != '0')
 
     @cherrypy.expose
     @require_auth()
     @cherrypy.tools.json_out()
+    @cherrypy.tools.allow(methods=['POST'])
     def wizard_dismiss(self, **kwargs):
         """ Don't offer the wizard on start again """
         self.check_permitted(lazylibrarian.perm_config)
@@ -8092,7 +8105,7 @@ class WebInterface:
     @cherrypy.tools.json_out()
     def wizard_check_folder(self, path='', **kwargs):
         self.check_permitted(lazylibrarian.perm_config)
-        return {'status': setupwizard.folder_status(path)}
+        return {'status': setupwizard.folder_status(first_value(path))}
 
     @cherrypy.expose
     @require_auth()

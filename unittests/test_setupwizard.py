@@ -10,6 +10,7 @@ from unittest import mock
 import lazylibrarian
 from lazylibrarian import i18n, setupwizard
 from lazylibrarian.filesystem import DIRS
+from lazylibrarian.formatter import ImportPrefs
 from lazylibrarian.setupwizard import (
     COUNTRIES,
     WIZARD_KEYS,
@@ -29,7 +30,9 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         super().setUp()
         self.saved_months = lazylibrarian.MONTHNAMES
         lazylibrarian.MONTHNAMES = [copy.deepcopy(ENGLISH_ONLY), []]
-        self.saved_values = {key: self.config[key] for key in ('ISSUE_NOUNS', 'EBOOK_DIR', 'DATE_LANG')}
+        # the config is shared by the whole class: put every value back, without the onchange callbacks
+        self.saved_values = {key: copy.deepcopy(item.value) for key, item in self.config.config.items()}
+        self.saved_langs = list(ImportPrefs.LANG_LIST)
         patcher = mock.patch.object(self.config, 'save_config_and_backup_old')
         self.save = patcher.start()
         self.addCleanup(patcher.stop)
@@ -40,7 +43,8 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
     def tearDown(self):
         lazylibrarian.MONTHNAMES = self.saved_months
         for key, value in self.saved_values.items():
-            self.config.set_str(key, value)
+            self.config.config[key].value = value
+        ImportPrefs.LANG_LIST = self.saved_langs
         super().tearDown()
 
     def rows(self, country, langs=()):
@@ -63,6 +67,12 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
             self.assertIn(guess_country(tags), COUNTRIES)
         self.assertEqual(guess_country(['SK-sk']), 'SK')
         self.assertEqual(guess_country(['x-klingon', 'pl']), 'PL')
+        self.assertEqual(guess_country(['*']), '_generic')
+
+    def test_generic_ignores_private_tags(self):
+        r = self.rows('_generic', ['x-klingon', 'i-default'])
+        self.assertTrue(r['IMP_PREFLANG']['proposed'].startswith('en'))
+        self.assertNotIn('PREF_MAGLANG', r)
 
     # presets
 
@@ -92,6 +102,11 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.assertFalse(r['DATE_FORMAT']['changed'])
         self.assertEqual(r['UI_LANGUAGE']['proposed'], 'auto')
 
+    def test_picked_ui_language_wins(self):
+        lang = next((code for code in i18n.available_languages() if code != 'sk'), 'en')
+        rows = {r['key']: r for s in presets_for('SK', (), self.config, ui_lang=lang) for r in s['rows']}
+        self.assertEqual(rows['UI_LANGUAGE']['proposed'], lang)
+
     def test_search_providers_never_proposed_on(self):
         for code in COUNTRIES:
             r = self.rows(code)
@@ -103,6 +118,10 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         proposed = self.rows('CZ')['ISSUE_NOUNS']['proposed'].split(', ')
         self.assertEqual(proposed[:6], ['issue', 'iss', 'no', 'nr', '#', 'n'])
         self.assertEqual(proposed.count('cislo'), 1)
+
+    def test_nouns_accented_word_not_added_again(self):
+        self.config.set_csv('ISSUE_NOUNS', 'issue, číslo')
+        self.assertNotIn('cislo', self.rows('CZ')['ISSUE_NOUNS']['proposed'].split(', '))
 
     def test_preflang_keeps_other_languages(self):
         self.config.set_csv('IMP_PREFLANG', 'en, eng, ja')
@@ -150,6 +169,19 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.assertFalse(apply({'HTTP_LOOK': 'nope'}, self.config)['ok'])
         self.assertFalse(apply({'UI_LANGUAGE': 'xx'}, self.config)['ok'])
 
+    def test_apply_bad_csv_saves_nothing(self):
+        before = self.config['DATE_LANG']
+        res = apply({'DATE_LANG': 'sk_SK.UTF-8', 'IMP_PREFLANG': 'sk, cs,'}, self.config)
+        self.assertFalse(res['ok'])
+        self.assertIn('IMP_PREFLANG', res['error'])
+        self.assertEqual(self.config['DATE_LANG'], before)
+        self.save.assert_not_called()
+
+    def test_apply_without_finish(self):
+        self.config.set_bool('SETUP_WIZARD_DONE', False)
+        self.assertTrue(apply({'DATE_FORMAT': '$d.$m.$Y'}, self.config, finish=False)['ok'])
+        self.assertFalse(self.config.get_bool('SETUP_WIZARD_DONE'))
+
     def test_reload_flag(self):
         self.config.set_str('HTTP_LOOK', 'bookstrap')
         self.config.set_bool('MAG_TAB', True)
@@ -180,6 +212,9 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.config.set_str('EBOOK_DIR', '/books')
         self.assertFalse(should_autoopen(self.config))
         self.config.set_str('EBOOK_DIR', '')
+        self.config.set_str('AUDIO_DIR', '/audio')
+        self.assertFalse(should_autoopen(self.config))
+        self.config.set_str('AUDIO_DIR', '')
         self.assertTrue(should_autoopen(self.config))
         setupwizard.dismiss(self.config)
         self.assertFalse(should_autoopen(self.config))

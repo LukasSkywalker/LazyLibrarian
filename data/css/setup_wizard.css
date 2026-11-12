@@ -16,7 +16,11 @@
                 background: var(--bs-tertiary-bg, #eee); color: var(--bs-secondary-color, #666); }
 .llw-steps li.llw-done { background: var(--bs-primary-bg-subtle, #cfe2ff); }
 .llw-steps li.llw-on { background: var(--bs-primary, #337ab7); color: #fff; }
-.llw-country { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-weight: 600; }
+.llw-pick { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.llw-pick label { flex: 0 0 90px; margin: 0; font-weight: 600; }
+.llw-diff { overflow-wrap: anywhere; margin-top: 2px; }
+.llw-small { font-size: 12px; margin-left: 4px; }
+.llw-more { display: inline-block; margin-top: 10px; font-size: 13px; }
 .llw-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--bs-border-color-translucent, #eee); }
 .llw-row:last-child { border-bottom: 0; }
 .llw-tick { padding-top: 2px; margin: 0; }
