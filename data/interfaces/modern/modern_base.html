@@ -845,6 +845,18 @@
 <%def name="headIncludes()"></%def>
 <%def name="javascriptIncludes()"></%def>
 <%doc>
+  Links to other services (Config > Interface > Menu Links) as items of a page's "..." menu, see menulinks.py.
+  links is a list of (href, icon, name); divider puts a line above them when the menu has other items.
+</%doc>
+<%def name="ext_link_items(links, divider=True)">
+        %if links and divider:
+        <li><hr class="dropdown-divider"></li>
+        %endif
+        %for href, icon, name in links:
+        <li><a class="dropdown-item" href="${href | h}" target="_blank" rel="noopener noreferrer"><i class="fa ${icon} fa-fw me-2" aria-hidden="true"></i>${name | h}<i class="fa fa-external-link-alt ms-2 small opacity-50" aria-hidden="true"></i></a></li>
+        %endfor
+</%def>
+<%doc>
   "Add" on the authors, eBooks and audiobooks pages: one search for an author, a title or an ISBN,
   call add_button() in the toolbar and add_modal() once in the page, both only with perm_search.
 </%doc>

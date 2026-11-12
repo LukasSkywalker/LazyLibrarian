@@ -67,6 +67,15 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigStr('General', 'MODERN_ACCENT', ''),  # accent colour of the modern interface (#rrggbb), empty is the default
     ConfigStr('General', 'UI_LANGUAGE', 'auto'),  # 'auto' follows the browser's Accept-Language, or a code like 'en'
     ConfigStr('General', 'NOTIFY_LANGUAGE', ''),  # empty uses UI_LANGUAGE, or the language last shown when 'auto'
+    # optional links to other services in the menu, an empty address hides the link, see menulinks.py
+    ConfigBool('MenuLinks', 'MENU_LINKS', 1),
+    ConfigStr('MenuLinks', 'LINK_AUDIOBOOKSHELF_URL', ''),
+    ConfigStr('MenuLinks', 'LINK_CALIBRE_URL', ''),
+    ConfigStr('MenuLinks', 'LINK_CALIBRE_NAME', ''),
+    ConfigStr('MenuLinks', 'LINK_DOWNLOADS_URL', ''),
+    ConfigStr('MenuLinks', 'LINK_CUSTOM_URL', ''),
+    ConfigStr('MenuLinks', 'LINK_CUSTOM_NAME', ''),
+    ConfigStr('MenuLinks', 'LINK_CUSTOM_PAGE', 'history'),  # books, audio, history or logs: the page whose "..." menu has it
     ConfigBool('General', 'SERIES_TAB', 1),
     ConfigBool('General', 'AUDIO_TAB', 1),
     ConfigBool('General', 'EBOOK_TAB', 1),
