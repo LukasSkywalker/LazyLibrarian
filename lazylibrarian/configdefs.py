@@ -74,7 +74,7 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigStr('MenuLinks', 'LINK_DOWNLOADS_URL', ''),
     ConfigStr('MenuLinks', 'LINK_CUSTOM_URL', ''),
     ConfigStr('MenuLinks', 'LINK_CUSTOM_NAME', ''),
-    ConfigStr('MenuLinks', 'LINK_CUSTOM_PAGE', 'history'),  # books, audio or history: the page whose "..." menu has it
+    ConfigStr('MenuLinks', 'LINK_CUSTOM_PAGE', 'history'),  # books, audio, history or logs: the page whose "..." menu has it
     ConfigBool('General', 'SERIES_TAB', 1),
     ConfigBool('General', 'AUDIO_TAB', 1),
     ConfigBool('General', 'EBOOK_TAB', 1),

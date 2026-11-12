@@ -169,7 +169,7 @@
                       <label for="menu_links" class="control-label">
                         <input type="checkbox" id="menu_links" name="menu_links" value="1" ${checked} />
                         ${_('Show links to other services')}</label>
-                      <span class="help-block">${_('Links in the "..." menu of the pages of the modern interface: to the services below that have an address, and to your download clients (History) and Prowlarr (History), at the addresses set for them in Downloaders and Providers. Turning it off hides the links and keeps the addresses.')}</span>
+                      <span class="help-block">${_('Links in the "..." menu of the pages of the modern interface: to the services below that have an address, and to your download clients and Prowlarr (Logs), at the addresses set for them in Downloaders and Providers. Turning it off hides the links and keeps the addresses.')}</span>
                     </div>
                     </div>
                     <%
@@ -219,7 +219,7 @@
                     <div class="form-group">
                       <label for="link_custom_page" class="control-label">${_('In the "..." menu of:')}</label>
                       <select id="link_custom_page" name="link_custom_page" class="form-control">
-                        %for page_id, page_label in [('books', _('eBooks')), ('audio', _('AudioBooks')), ('history', _('History'))]:
+                        %for page_id, page_label in [('books', _('eBooks')), ('audio', _('AudioBooks')), ('history', _('History')), ('logs', _('Logs'))]:
                         <option value="${page_id}"${' selected' if CONFIG['LINK_CUSTOM_PAGE'] == page_id else ''}>${page_label}</option>
                         %endfor
                       </select>

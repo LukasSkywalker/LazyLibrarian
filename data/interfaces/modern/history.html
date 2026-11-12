@@ -39,7 +39,7 @@
     can_status = bool(perm & lazylibrarian.perm_status)
     can_edit = bool(perm & lazylibrarian.perm_edit)
     from lazylibrarian.menulinks import menu_links
-    ext_links = menu_links(perm, ['LINK_DOWNLOADER', 'LINK_DOWNLOADS', 'LINK_PROWLARR'], 'history')
+    ext_links = menu_links(perm, ['LINK_DOWNLOADS'], 'history')
 %>
 <div x-data="llHistory" x-init="start()">
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">

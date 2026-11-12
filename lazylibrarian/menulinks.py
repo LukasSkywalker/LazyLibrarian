@@ -157,7 +157,7 @@ def prowlarr_urls(arrays=('NEWZNAB', 'TORZNAB')) -> list:
     return urls
 
 
-CUSTOM_PAGES = ('books', 'audio', 'history')
+CUSTOM_PAGES = ('books', 'audio', 'history', 'logs')
 
 
 def custom_link(page=None) -> list:
@@ -172,7 +172,7 @@ def custom_link(page=None) -> list:
 def menu_links(perm: int, only=None, page=None) -> list:
     """ The links to show for a user with these permissions, as (href, icon, name),
         only those in the list of keys (eg ['LINK_CALIBRE']) when it is given, and the link of your own
-        when it is set for this page (books, audio or history) """
+        when it is set for this page (books, audio, history or logs) """
     if not perm or not CONFIG.get_bool('MENU_LINKS'):
         return []
     admin = bool(perm & lazylibrarian.perm_config)
