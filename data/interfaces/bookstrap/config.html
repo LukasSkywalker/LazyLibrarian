@@ -8,7 +8,17 @@
     from lazylibrarian.notifiers import APPRISE_VER
     from lazylibrarian import MONTHNAMES, SEASONS
     from lazylibrarian import i18n
+    from lazylibrarian.menulinks import client_urls, prowlarr_urls
 %>
+<%doc>
+  A button that opens a service in a new tab, at the address saved in the config (see menulinks.py),
+  next to its Test button. Nothing while there is no address.
+</%doc>
+<%def name="open_service(url, name)">
+%if url:
+<a class="button btn btn-sm btn-default" href="${url | h}" target="_blank" rel="noopener noreferrer" title="${url | h}"><i class="fa fa-external-link-alt"></i> ${_('Open %(name)s') % {'name': name}}</a>
+%endif
+</%def>
 <%def name="headerIncludes()">
 <div id="subhead_container">
     <div id="subhead_menu">
@@ -150,6 +160,72 @@
                     %for group_label, boxes in appearance_groups:
                     ${enable_grid(boxes, group_label)}
                     %endfor
+                  </fieldset>
+                  <fieldset>
+                    <legend>${_('Menu Links')}</legend>
+                    <div class="row checkbox">
+                    <div class="col-md-12">
+                      <% checked = 'checked="checked"' if CONFIG['MENU_LINKS'] else '' %>
+                      <label for="menu_links" class="control-label">
+                        <input type="checkbox" id="menu_links" name="menu_links" value="1" ${checked} />
+                        ${_('Show links to other services')}</label>
+                      <span class="help-block">${_('Links in the "..." menu of the pages of the modern interface: to the services below that have an address, and to your download clients (History) and Prowlarr (History), at the addresses set for them in Downloaders and Providers. Turning it off hides the links and keeps the addresses.')}</span>
+                    </div>
+                    </div>
+                    <%
+                      everyone = _('Shown to every user who is logged in.')
+                      admins = _('Shown only to users who can change the config.')
+                      # (setting, label, example address, help, name example, name help)
+                      menu_link_rows = [
+                        ('link_audiobookshelf', _('Audiobookshelf address:'), 'http://192.168.1.10:13378',
+                         _('Audiobookshelf, the server that streams your audiobooks and podcasts. In the modern interface it is in the "..." menu of AudioBooks.') + ' ' + everyone, None, None),
+                        ('link_calibre', _('Calibre address:'), 'http://192.168.1.10:8083',
+                         _('The web interface of your Calibre library: the Calibre content server, Calibre-Web or Calibre-Web Automated. In the modern interface it is in the "..." menu of eBooks.') + ' ' + everyone,
+                         'Calibre-Web', _('The name of the link in the menu, Calibre if left empty.')),
+                        ('link_downloads', _('Downloaded files address:'), 'http://192.168.1.10:8081',
+                         _('Browsers do not open local folders from a web page, so use a web file manager, such as File Browser, '
+                           'that shows the download folder. In the modern interface it is in the "..." menu of History.') + ' ' + admins, None, None),
+                      ]
+                    %>
+                    <fieldset id="menu_links_options">
+                    %for prefix, label, example, help, name_example, name_help in menu_link_rows:
+                    <div class="form-group">
+                      <label for="${prefix}_url" class="control-label">${label}</label>
+                      <input type="text" id="${prefix}_url" name="${prefix}_url" value="${CONFIG[prefix.upper() + '_URL'] | h}"
+                             class="form-control" placeholder="${example}">
+                      <span class="help-block">${help} ${_('The address as your browser reaches it, the link is not shown while it is empty.')}</span>
+                    </div>
+                    %if name_example:
+                    <div class="form-group">
+                      <label for="${prefix}_name" class="control-label">${_('Name in the menu:')}</label>
+                      <input type="text" id="${prefix}_name" name="${prefix}_name" value="${CONFIG[prefix.upper() + '_NAME'] | h}"
+                             class="form-control" placeholder="${name_example}">
+                      <span class="help-block">${name_help}</span>
+                    </div>
+                    %endif
+                    %endfor
+                    <div class="form-group">
+                      <label for="link_custom_url" class="control-label">${_('Your own link, address:')}</label>
+                      <input type="text" id="link_custom_url" name="link_custom_url" value="${CONFIG['LINK_CUSTOM_URL'] | h}"
+                             class="form-control" placeholder="http://192.168.1.10:9000">
+                      <span class="help-block">${_('Any other page you want at hand, for example Readarr, Kavita or your NAS.')} ${admins} ${_('The address as your browser reaches it, the link is not shown while it is empty.')}</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="link_custom_name" class="control-label">${_('Name in the menu:')}</label>
+                      <input type="text" id="link_custom_name" name="link_custom_name" value="${CONFIG['LINK_CUSTOM_NAME'] | h}"
+                             class="form-control" placeholder="${_('My link') | h}">
+                      <span class="help-block">${_('The name of the link in the menu, the host name of the address if left empty.')}</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="link_custom_page" class="control-label">${_('In the "..." menu of:')}</label>
+                      <select id="link_custom_page" name="link_custom_page" class="form-control">
+                        %for page_id, page_label in [('books', _('eBooks')), ('audio', _('AudioBooks')), ('history', _('History'))]:
+                        <option value="${page_id}"${' selected' if CONFIG['LINK_CUSTOM_PAGE'] == page_id else ''}>${page_label}</option>
+                        %endfor
+                      </select>
+                      <span class="help-block">${_('The page whose "..." menu has your link, in the modern interface.')}</span>
+                    </div>
+                    </fieldset>
                   </fieldset>
                   <fieldset>
                     <legend>${_('Display Date Formats')}</legend>
@@ -1074,6 +1150,7 @@
                         </div>
                         <div class="col-md-6">
                           <button class="button btn btn-sm btn-primary" type="button" value="Test SABnzbd" id="test_sabnzbd"><i class="fa fa-list-ul"></i> ${_('Test SABnzbd')}</button>
+                          ${open_service(client_urls().get('SABnzbd'), 'SABnzbd')}
                           <br>
                         </div>
                       </div>
@@ -1130,6 +1207,7 @@
                       <div class="row">
                       <div class="col-md-6">
                         <button class="button btn btn-sm btn-primary" type="button" value="Test NZBget" id="test_nzbget"><i class="fa fa-list-ul"></i> ${_('Test NZBget')}</button>
+                          ${open_service(client_urls().get('NZBGet'), 'NZBGet')}
                         <br>
                         <br>
                       </div>
@@ -1187,6 +1265,7 @@
                       <div class="row">
                       <div class="col-md-6">
                         <button class="button btn btn-sm btn-primary" type="button" value="Test Synology" id="test_synology"><i class="fa fa-list-ul"></i> ${_('Test Synology')}</button>
+                          ${open_service(client_urls().get('Download Station'), 'Download Station')}
                         <br>
                         <br>
                       </div>
@@ -1279,6 +1358,7 @@
                       </div>
                       <div class="col-md-6">
                         <button class="button btn btn-sm btn-primary" type="button" value="Test Deluge" id="test_deluge"><i class="fa fa-list-ul"></i> ${_('Test Deluge')}</button>
+                          ${open_service(client_urls().get('Deluge'), 'Deluge')}
                         <br>
                         <br>
                       </div>
@@ -1329,6 +1409,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <button class="button btn btn-sm btn-primary" type="button" value="Test Transmission" id="test_transmission"><i class="fa fa-list-ul"></i> ${_('Test Transmission')}</button>
+                          ${open_service(client_urls().get('Transmission'), 'Transmission')}
                         <br>
                         <br>
                       </div>
@@ -1419,6 +1500,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <button class="button btn btn-sm btn-primary" type="button" value="Test uTorrent" id="test_utorrent"><i class="fa fa-list-ul"></i> ${_('Test uTorrent')}</button>
+                          ${open_service(client_urls().get('uTorrent'), 'uTorrent')}
                         <br>
                         <br>
                       </div>
@@ -1470,6 +1552,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <button class="button btn btn-sm btn-primary" type="button" value="Test qBittorrent" id="test_qbittorrent"><i class="fa fa-list-ul"></i> ${_('Test qBittorrent')}</button>
+                          ${open_service(client_urls().get('qBittorrent'), 'qBittorrent')}
                           <br>
                           <br>
                         </div>
@@ -1569,6 +1652,9 @@
                       <label for="show_newz_prov" class="fa">  ${_('Newznab Providers')} </label>
                   </legend>
                   <fieldset id="newz_prov">
+                  %for prowlarr in prowlarr_urls(['NEWZNAB']):
+                  <div class="col-md-12 form-group llc-prowlarr">${open_service(prowlarr, 'Prowlarr')}</div>
+                  %endfor
                    %for provider in CONFIG.providers('NEWZNAB'):
                       <% checked = 'checked="checked"' if provider.get_bool('ENABLED') else '' %>
                   <div class="col-md-4 form-group">
@@ -1620,6 +1706,9 @@
                       <label for="show_torz_prov" class="fa">  ${_('Torznab Providers')} </label>
                   </legend>
                   <fieldset id="torz_prov">
+                  %for prowlarr in prowlarr_urls(['TORZNAB']):
+                  <div class="col-md-12 form-group llc-prowlarr">${open_service(prowlarr, 'Prowlarr')}</div>
+                  %endfor
                   %for provider in CONFIG.providers('TORZNAB'):
                       <% checked = 'checked="checked"' if provider.get_bool('ENABLED') else '' %>
                   <div class="col-md-4 form-group">
@@ -4323,8 +4412,8 @@
         });
 
         $('.tab-content').on('click keydown', 'legend.section-toggle', function (e) {
-            // the help icon in a heading shows its popover, it doesn't collapse the section
-            if ($(e.target).closest('.help-icon').length) { return; }
+            // the help icon in a heading shows its popover, a button (Test) does its job, neither collapses the section
+            if ($(e.target).closest('.help-icon, .btn').length) { return; }
             if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) { return; }
             e.preventDefault();
             var legend = $(this);

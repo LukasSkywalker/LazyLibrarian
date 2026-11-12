@@ -69,6 +69,9 @@
   .llc legend { float: left; width: 100%; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--bs-secondary-color);
                 margin: 0 0 .75rem; padding: 0; border: 0; display: flex; align-items: center; gap: .35rem; }
   .llc legend.section-toggle { cursor: pointer; user-select: none; }
+  /* a download client's Test in its heading, as on a provider card */
+  .llc legend .llc-ltest + .llc-ltest { margin-left: 0 !important; }
+  .llc legend .llc-ltest { margin-left: auto; font-size: .75rem; padding: .15rem .65rem; text-transform: none; letter-spacing: normal; font-weight: 400; }
   .llc legend label.fa { font: inherit; letter-spacing: inherit; margin: 0; cursor: pointer; }
   .llc legend .section-caret { transition: transform .15s ease; font-size: .9em; }
   .llc legend + * { clear: left; }
@@ -740,7 +743,7 @@
       var pane = form.querySelector('.tab-content');
       var isBtn = function (n) {
         return n && n.nodeType === 1 && n.matches('.btn') && !n.matches('.llc-token, .accent-swatch, .llc-pcaret, .secret-toggle, .langchip') &&
-          !n.closest('.input-group, .llc-ph, .llc-pblock, .searchlang-modes, .langpicker, .accent-picker, .help-block, .llc-actions');
+          !n.closest('.input-group, .llc-ph, legend, .llc-pblock, .searchlang-modes, .langpicker, .accent-picker, .help-block, .llc-actions');
       };
       var skippable = function (n) { return n && ((n.nodeType === 3 && !n.textContent.trim()) || (n.nodeType === 1 && n.matches('br'))); };
       // an apprise notifier: "Name | field | S [] | D []" in one bar becomes the name field with the two switches
@@ -810,12 +813,26 @@
         Array.prototype.slice.call(g.children).forEach(function (c) { if (c.matches('.help-block')) { prev.appendChild(c); } });
         g.remove();
       });
-      // a download client's Test acts on the whole section: it goes to its end, out of the column beside a field
+      // a download client's buttons act on the whole section, as on a provider card: Open (its web page) and Test
+      // in the heading, out of the column beside a field
       form.querySelectorAll('#downloadsettings .llc-actions').forEach(function (row) {
-        if (!row.querySelector('[id^="test_"]')) { return; }
+        var test = row.querySelector('[id^="test_"]');
+        if (!test) { return; }
         var fs = row.closest('fieldset'); if (!fs) { return; }
         var body = fs.querySelector(':scope > .section-body') || fs, from = row.parentElement;
-        body.appendChild(row);
+        var legend = fs.querySelector(':scope > legend');
+        if (legend) {
+          // the heading names the client already, so the buttons only say what they do
+          row.querySelectorAll('a.btn[target="_blank"]').forEach(function (open) {
+            open.classList.add('rounded-pill', 'llc-ltest');
+            open.innerHTML = '<i class="fa fa-external-link-alt me-1" aria-hidden="true"></i>' + ${_js('Open')};
+            legend.appendChild(open);
+          });
+          test.classList.add('rounded-pill', 'llc-ltest');
+          test.textContent = ${_js('Test')};
+          legend.appendChild(test);
+        }
+        if (row.querySelector('.btn')) { body.insertBefore(row, body.firstChild); } else { row.remove(); }
         while (from && from !== body && !from.querySelector('input, select, textarea, button, label, .help-block')) {
           var up = from.parentElement; from.remove(); from = up;
         }
@@ -840,8 +857,13 @@
         if (lab) { cb.setAttribute('aria-label', lab.textContent.trim()); lab.removeAttribute('for'); }
         lg.insertAdjacentHTML('afterbegin', '<i class="fa fa-caret-down section-caret" aria-hidden="true"></i>');
         lg.classList.add('llc-lfold'); lg.tabIndex = 0; lg.setAttribute('role', 'button'); lg.setAttribute('aria-expanded', 'true');
+        // Open Prowlarr (in the lists it added indexers to) goes to the heading, as Open and Test of a download client
+        fs.querySelectorAll('.llc-prowlarr').forEach(function (box) {
+          box.querySelectorAll('a.btn').forEach(function (a) { a.classList.add('rounded-pill', 'llc-ltest'); lg.appendChild(a); });
+          box.remove();
+        });
         var flip = function (e) {
-          if (e.target === cb) { return; }
+          if (e.target === cb || e.target.closest('.btn')) { return; }
           if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') { return; }
           e.preventDefault();
           var c = !fs.classList.contains('llc-sfold');
@@ -1268,7 +1290,8 @@
           icon.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
           icon.setAttribute('aria-label', help.textContent.trim().slice(0, 120));
           icon.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); });
-          anchor.appendChild(icon);
+          // next to the heading's name, before a Test at its end
+          anchor.insertBefore(icon, anchor.querySelector(':scope > .llc-ltest'));
           icon._llcHelp = [];
         }
         icon._llcHelp.push(help.innerHTML);

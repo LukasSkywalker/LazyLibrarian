@@ -101,6 +101,8 @@
     lib = 'AudioBook' if audio else 'eBook'
     page = 'audio' if audio else 'books'
     primary = lazylibrarian.PRIMARY_AUTHORS == True
+    from lazylibrarian.menulinks import menu_links
+    ext_links = menu_links(perm, ['LINK_AUDIOBOOKSHELF'] if audio else ['LINK_CALIBRE'], page)
 %>
 <div x-data="llBooks" x-init="start()">
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
@@ -157,12 +159,17 @@
     %endif
     %if perm&lazylibrarian.perm_force:
     <a class="btn btn-sm btn-outline-secondary rounded-pill" href="force_search?source=${page}"><i class="fa fa-search" aria-hidden="true"></i> ${_('Search wanted')}</a>
+    %endif
+    %if perm&lazylibrarian.perm_force or ext_links:
     <div class="dropdown">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
               title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
       <ul class="dropdown-menu dropdown-menu-end">
+        %if perm&lazylibrarian.perm_force:
         <li><a class="dropdown-item" href="force_process?source=${page}"><i class="fa fa-cogs fa-fw me-2" aria-hidden="true"></i>${_('Run Post-Processor')}</a></li>
         <li><a class="dropdown-item" href="library_scan?library=${lib}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('Library Scan')}</a></li>
+        %endif
+        ${self.ext_link_items(ext_links, bool(perm&lazylibrarian.perm_force))}
       </ul>
     </div>
     %endif

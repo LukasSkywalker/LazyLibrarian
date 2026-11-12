@@ -2634,6 +2634,8 @@ class WebInterface:
                 if value:
                     if key.lower() in ['bok_host', 'fallback_proxy', 'proxy_host']:
                         tokens = ['<', '>', '"', "'", '+', '(', ')']
+                    elif key.lower().startswith('link_') and key.lower().endswith('_url'):
+                        tokens = ['<', '>', '"', "'", ' ']  # menu link addresses keep their query strings
                     elif (key.lower() in ['user_agent', 'fmt_series'] or key.lower().endswith('_folder')
                           or key.lower().endswith('_file')):
                         tokens = ['<', '&', '>', '=', '"', "'", '+']
