@@ -113,7 +113,7 @@
   function toast(text) {
     var node = el('div', {'class': 'llw-toast', role: 'status', text: text});
     document.body.appendChild(node);
-    setTimeout(function () { node.remove(); }, 3500);
+    setTimeout(function () { node.remove(); }, 6000);
   }
 
   function rows() {
@@ -269,7 +269,8 @@
 
   function summary() {
     var ticked = rows().filter(function (row) { return state[row.key].ticked; });
-    if (!ticked.length) { return [el('p', {'class': 'llw-muted', text: t('nothing')})]; }
+    var where = el('div', {'class': 'llw-note llw-where'}, [el('i', {'class': 'fa fa-magic', 'aria-hidden': 'true'}), ' ' + t('where')]);
+    if (!ticked.length) { return [el('p', {'class': 'llw-muted', text: t('nothing')}), where]; }
     return [el('table', {'class': 'llw-summary'}, [
       el('thead', {}, [el('tr', {}, [el('th'), el('th', {text: t('setting')}), el('th', {text: t('change')})])]),
       el('tbody', {}, ticked.map(function (row) {
@@ -279,7 +280,7 @@
           el('td', {}, [el('span', {'class': 'llw-old', text: display(row, row.current)}), ' → ',
             el('strong', {text: display(row, state[row.key].value)})])]);
       }))
-    ])];
+    ]), where];
   }
 
   function apply() {
@@ -289,7 +290,7 @@
     post('wizard_apply', {values: JSON.stringify(values)}).then(function (r) { return r.json(); }).then(function (res) {
       busy = false;
       if (!res.ok) { render(res.error || t('failed')); return; }
-      var msg = t('saved').replace('%(count)s', res.changed.length);
+      var msg = t('saved').replace('%(count)s', res.changed.length) + ' ' + t('where');
       if (res.warnings && res.warnings.length) { msg += ' ' + res.warnings.join(' '); }
       if (res.reload || langSwitched) { toast(msg); setTimeout(function () { location.reload(); }, 1200); return; }
       close(); toast(msg);
@@ -327,7 +328,7 @@
     var ready = !busy && data;
     var foot = [
       autoOpened ? el('button', {type: 'button', 'class': 'llw-link', text: t('dismiss'), onclick: function () {
-        post('wizard_dismiss', {}).catch(function () {}); close();
+        post('wizard_dismiss', {}).catch(function () {}); close(); toast(t('where'));
       }}) : null,
       el('span', {'class': 'llw-grow'}),
       el('button', {type: 'button', 'class': 'llw-btn', text: t('cancel'), onclick: close}),

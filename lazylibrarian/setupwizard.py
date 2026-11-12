@@ -557,6 +557,8 @@ def ui_strings() -> dict:
         'no_changes': _('Nothing to change here, the settings already suit your country.'),
         'show_all': _('Show unchanged settings too'), 'edit': _('Edit'),
         'show_langs': _('Show all languages'),
+        'where': _('You can run the Setup Wizard again any time: in Settings, the Setup Wizard button '
+                   'next to Check Version.'),
         'loading': _('Loading...'), 'current': _('Now'), 'on': _('On'), 'off': _('Off'),
         'setting': _('Setting'), 'change': _('Change'), 'nothing': _('Nothing is ticked, nothing will be changed.'),
         'back': _('Back'), 'next': _('Next'), 'skip': _('Skip step'), 'apply': _('Apply'), 'cancel': _('Cancel'),
