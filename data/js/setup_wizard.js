@@ -171,10 +171,6 @@
     var s = state[row.key], input, badge = null;
     if (row.kind === 'langs') {
       return langButtons(row, onchange);
-    } else if (row.kind === 'bool') {
-      var check = el('input', {type: 'checkbox', role: 'switch', onchange: function () { setValue(row, check.checked); onchange(); }});
-      check.checked = !!s.value;
-      input = el('label', {'class': 'llw-switch'}, [check, ' ' + t('on')]);
     } else if (row.kind === 'choice') {
       var sel = el('select', {onchange: function () { setValue(row, sel.value); onchange(); }},
         row.choices.map(option).map(function (c) {
@@ -199,8 +195,24 @@
     return el('label', {'class': 'llw-tick'}, [box]);
   }
 
+  // a yes/no setting is one checkbox: it is the value, and it is saved when it differs from now
+  function boolRow(row) {
+    var s = state[row.key];
+    var note = el('span', {'class': 'llw-cur', text: t('current') + ': ' + show(row.current)});
+    var check = el('input', {type: 'checkbox', onchange: function () {
+      setValue(row, check.checked); note.hidden = s.value === row.current;
+    }});
+    check.checked = !!s.value;
+    note.hidden = s.value === row.current;
+    return el('div', {'class': 'llw-row'}, [el('div', {'class': 'llw-main'}, [
+      el('label', {'class': 'llw-boolrow'}, [check, el('span', {'class': 'llw-label', text: row.label}), note]),
+      row.help ? el('div', {'class': 'llw-help llw-indent', text: row.help}) : null
+    ])]);
+  }
+
   // a setting to fill in: the control, with the current value below
   function formRow(row) {
+    if (row.kind === 'bool') { return boolRow(row); }
     var tick = tickBox(row);
     var sync = function () { tick.firstChild.checked = state[row.key].ticked; };
     return el('div', {'class': 'llw-row'}, [tick, el('div', {'class': 'llw-main'}, [
@@ -213,7 +225,7 @@
 
   // a change worked out for the country: old -> new, to check, and to edit only if wanted
   function reviewRow(row) {
-    if (editing[row.key] || row.kind === 'langs') { return formRow(row); }
+    if (editing[row.key] || row.kind === 'langs' || row.kind === 'bool') { return formRow(row); }
     var s = state[row.key];
     var diff = s.value !== row.current
       ? [el('span', {'class': 'llw-old', text: display(row, row.current)}), ' → ', el('strong', {text: display(row, s.value)})]
