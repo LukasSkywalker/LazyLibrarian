@@ -123,6 +123,24 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.config.set_csv('ISSUE_NOUNS', 'issue, číslo')
         self.assertNotIn('cislo', self.rows('CZ')['ISSUE_NOUNS']['proposed'].split(', '))
 
+    def test_other_country_languages_replaced(self):
+        self.config.set_csv('IMP_PREFLANG', 'de, ger, deu, German, en, eng, ja, Unknown')
+        r = self.rows('SK')['IMP_PREFLANG']
+        codes = r['proposed'].split(', ')
+        self.assertNotIn('de', codes)
+        self.assertNotIn('German', codes)
+        self.assertEqual(codes[-2:], ['ja', 'Unknown'])  # the user's own stay, after the country's
+        self.assertEqual(r['kind'], 'langs')
+        self.assertEqual(r['choices'][0]['label'], i18n.gettext('Slovak'))
+
+    def test_other_language_words_replaced(self):
+        self.config.set_csv('ISSUE_NOUNS', 'issue, iss, no, nr, #, n, ausgabe, heft, mywordx')
+        words = self.rows('SK')['ISSUE_NOUNS']['proposed'].split(', ')
+        self.assertNotIn('ausgabe', words)
+        self.assertIn('nr', words)  # English and the default stay
+        self.assertIn('mywordx', words)  # a word no language has is the user's own
+        self.assertIn('cislo', words)
+
     def test_preflang_keeps_other_languages(self):
         self.config.set_csv('IMP_PREFLANG', 'en, eng, ja')
         self.assertIn('ja', self.rows('SK')['IMP_PREFLANG']['proposed'].split(', '))

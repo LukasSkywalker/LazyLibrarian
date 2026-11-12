@@ -32,6 +32,64 @@
     return value === '' || value === null || value === undefined ? '—' : String(value);
   }
 
+  // IMP_PREFLANG is shown as the language names of its codes, like the buttons on the config page
+  function codeList(csv) {
+    return String(csv || '').split(',').map(function (c) { return c.trim(); }).filter(Boolean);
+  }
+
+  function buttonOf(row, code) {
+    code = code.toLowerCase();
+    return row.choices.filter(function (b) { return b.codes.some(function (c) { return c.toLowerCase() === code; }); })[0];
+  }
+
+  function display(row, value) {
+    if (row.kind !== 'langs') { return show(value); }
+    var labels = [];
+    codeList(value).forEach(function (code) {
+      var b = buttonOf(row, code), label = b ? b.label : code;
+      if (labels.indexOf(label) < 0) { labels.push(label); }
+    });
+    return labels.length ? labels.join(', ') : '—';
+  }
+
+  // the languages as buttons: selected first, numbered in their order, click to switch one on or off
+  function langButtons(row, onchange) {
+    var s = state[row.key], more = false;
+    var box = el('div', {'class': 'llw-chips', role: 'group', 'aria-label': row.label});
+    function position(b) {
+      var codes = codeList(s.value).map(function (c) { return c.toLowerCase(); });
+      var found = b.codes.map(function (c) { return codes.indexOf(c.toLowerCase()); }).filter(function (i) { return i >= 0; });
+      return found.length ? Math.min.apply(null, found) : -1;
+    }
+    function toggle(b, on) {
+      var lower = b.codes.map(function (c) { return c.toLowerCase(); });
+      var codes = codeList(s.value).filter(function (c) { return lower.indexOf(c.toLowerCase()) < 0; });
+      if (!on) { codes = codes.concat(b.codes); }
+      setValue(row, codes.join(', '));
+      onchange(); draw();
+    }
+    function chip(b, on, n) {
+      return el('button', {type: 'button', 'class': 'llw-chip' + (on ? ' llw-chip-on' : ''), title: b.codes.join(', '),
+        'aria-pressed': on ? 'true' : 'false', onclick: function () { toggle(b, on); }},
+        [n ? el('span', {'class': 'llw-chip-n', text: String(n)}) : null, b.label]);
+    }
+    function draw() {
+      var selected = row.choices.filter(function (b) { return position(b) >= 0; })
+        .sort(function (a, b) { return position(a) - position(b); });
+      var rest = row.choices.filter(function (b) { return position(b) < 0; });
+      var shown = rest.filter(function (b) { return more || b.shown; });
+      var kids = selected.map(function (b, i) { return chip(b, true, i + 1); })
+        .concat(shown.map(function (b) { return chip(b, false); }));
+      if (shown.length < rest.length) {
+        kids.push(el('button', {type: 'button', 'class': 'llw-link llw-small', text: t('show_langs') + ' (' + rest.length + ')',
+          onclick: function () { more = true; draw(); }}));
+      }
+      box.replaceChildren.apply(box, kids);
+    }
+    draw();
+    return box;
+  }
+
   function checkResponse(r) {
     if (!r.ok) { throw new Error(r.status + ' ' + r.statusText); }
     return r;
@@ -104,7 +162,9 @@
   // the control that changes a row's value
   function control(row, onchange) {
     var s = state[row.key], input, badge = null;
-    if (row.kind === 'bool') {
+    if (row.kind === 'langs') {
+      return langButtons(row, onchange);
+    } else if (row.kind === 'bool') {
       var check = el('input', {type: 'checkbox', role: 'switch', onchange: function () { setValue(row, check.checked); onchange(); }});
       check.checked = !!s.value;
       input = el('label', {'class': 'llw-switch'}, [check, ' ' + t('on')]);
@@ -138,13 +198,13 @@
       el('div', {'class': 'llw-label', text: row.label}),
       row.help ? el('div', {'class': 'llw-help', text: row.help}) : null,
       control(row, sync),
-      el('div', {'class': 'llw-cur', text: t('current') + ': ' + show(row.current)})
+      el('div', {'class': 'llw-cur', text: t('current') + ': ' + display(row, row.current)})
     ])]);
   }
 
   // a change worked out for the country: old -> new, to check, and to edit only if wanted
   function reviewRow(row) {
-    if (editing[row.key]) { return formRow(row); }
+    if (editing[row.key] || row.kind === 'langs') { return formRow(row); }
     var s = state[row.key];
     var diff = s.value !== row.current
       ? [el('span', {'class': 'llw-old', text: show(row.current)}), ' → ', el('strong', {text: show(s.value)})]
@@ -195,8 +255,8 @@
         var box = el('input', {type: 'checkbox', checked: 'checked', 'aria-label': row.label,
           onchange: function () { state[row.key].ticked = box.checked; }});
         return el('tr', {}, [el('td', {}, [box]), el('td', {text: row.label}),
-          el('td', {}, [el('span', {'class': 'llw-old', text: show(row.current)}), ' → ',
-            el('strong', {text: show(state[row.key].value)})])]);
+          el('td', {}, [el('span', {'class': 'llw-old', text: display(row, row.current)}), ' → ',
+            el('strong', {text: display(row, state[row.key].value)})])]);
       }))
     ])];
   }

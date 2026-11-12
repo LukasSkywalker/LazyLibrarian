@@ -178,6 +178,44 @@ def _row(config, key, label, kind, proposed, choices=None, help_text='', current
             'help': i18n.gettext(help_text) if help_text else ''}
 
 
+def _wizard_language_codes() -> set:
+    """ Lowercase codes of every language a preset can propose, the codes of other languages are the user's own """
+    codes = set()
+    for lang in LANGUAGES:
+        codes.update(code.lower() for code in _book_codes(lang))
+    for info in COUNTRIES.values():
+        codes.update(code.lower() for code in info.get('codes', []))
+    return codes
+
+
+def _replace_languages(head: list, current: list) -> list:
+    """ The country's languages, then the user's own languages from the current value.
+        Languages of the other presets are dropped, so picking another country replaces them """
+    ours = _wizard_language_codes() | {code.lower() for code in head}
+    return _merge(head, [code for code in current if code.lower() not in ours])
+
+
+def _replace_words(key: str, current: list, locale_name: str, default: list) -> list:
+    """ The current words without those of other languages, then the words of this language.
+        English words and the setting's default stay, so do words the user added that no language has """
+    attr = key.lower()
+    target = LANGUAGE_WORDS.get(locale_name, {}).get(attr, [])
+    english = LANGUAGE_WORDS.get('en_GB.UTF-8', {}).get(attr, [])
+    keep = {unaccented(word).lower() for word in target + english + default}
+    others = {unaccented(word).lower() for words in LANGUAGE_WORDS.values() for word in words.get(attr, [])}
+    kept = [word for word in current if unaccented(word).lower() in keep or unaccented(word).lower() not in others]
+    return _merge(kept, target)
+
+
+def _language_buttons(preflang: str, browser_langs) -> list:
+    """ The language buttons of the config page for IMP_PREFLANG: [{'label', 'codes', 'shown'}], those in
+        preflang first in its order. Codes the picker doesn't know are buttons of their own """
+    from lazylibrarian.booklanguages import language_picker
+    browser = [str(tag).replace('-', '_').lower() for tag in browser_langs or []]
+    return [{'label': lang['label'], 'codes': _split(lang['codes']), 'shown': lang['shown']}
+            for lang in language_picker(preflang, browser)['languages']]
+
+
 def _month_table() -> list:
     return lazylibrarian.MONTHNAMES[0] if lazylibrarian.MONTHNAMES else []
 
@@ -213,10 +251,11 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
     for code in [lang] + prof['also']:
         pref_head += _book_codes(code)
     pref_head += prof['codes'] + _book_codes('en')
-    pref = _merge(pref_head, _split(config.get_str('IMP_PREFLANG')))
+    pref = _replace_languages(pref_head, _split(config.get_str('IMP_PREFLANG')))
     langid = _merge(_split(config.get_str('LANGID_LANGUAGES')), [lang] if lang and len(lang) == 2 else [])
     books = [
-        _row(config, 'IMP_PREFLANG', N_('Preferred book languages'), 'csv', ', '.join(pref)),
+        _row(config, 'IMP_PREFLANG', N_('Preferred book languages'), 'langs', ', '.join(pref),
+             _language_buttons(', '.join(pref), browser_langs)),
         _row(config, 'LANGID_LANGUAGES', N_('Languages to detect in book files'), 'csv', ', '.join(langid)),
     ]
 
@@ -233,12 +272,13 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
         dates.append(_row(config, key, label, 'str', prof['date'] or config.get_str(key)))
     if lang:
         dates.append(_row(config, 'PREF_MAGLANG', N_('Preferred magazine language'), 'str', lang))
-    words = LANGUAGE_WORDS.get(month_locale, {})
     for key, label in (('ISSUE_NOUNS', N_('Words for issue numbers')),
                        ('VOLUME_NOUNS', N_('Words for volume numbers')),
                        ('MAG_NOUNS', N_('Other words allowed in magazine titles'))):
-        current = _split(config.get_str(key))
-        dates.append(_row(config, key, label, 'csv', ', '.join(_merge(current, words.get(key.lower(), [])))))
+        item = config.get_item(key)
+        default = _split(item.get_default()) if item else []
+        words = _replace_words(key, _split(config.get_str(key)), month_locale, default)
+        dates.append(_row(config, key, label, 'csv', ', '.join(words)))
 
     other = [_row(config, key, label, 'folder', config.get_str(key)) for key, label in FOLDER_KEYS]
     other += [_row(config, key, label, 'bool', config.get_bool(key)) for key, label in TAB_KEYS]
@@ -432,6 +472,7 @@ def ui_strings() -> dict:
         'review': _('These settings will be changed for your country:'),
         'no_changes': _('Nothing to change here, the settings already suit your country.'),
         'show_all': _('Show unchanged settings too'), 'edit': _('Edit'),
+        'show_langs': _('Show all languages'),
         'loading': _('Loading...'), 'current': _('Now'), 'on': _('On'), 'off': _('Off'),
         'setting': _('Setting'), 'change': _('Change'), 'nothing': _('Nothing is ticked, nothing will be changed.'),
         'back': _('Back'), 'next': _('Next'), 'skip': _('Skip step'), 'apply': _('Apply'), 'cancel': _('Cancel'),

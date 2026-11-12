@@ -20,6 +20,12 @@
 .llw-pick label { flex: 0 0 90px; margin: 0; font-weight: 600; }
 .llw-diff { overflow-wrap: anywhere; margin-top: 2px; }
 .llw-small { font-size: 12px; margin-left: 4px; }
+.llw-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; align-items: center; }
+.llw-chip { font: inherit; font-size: 13px; padding: 3px 12px; border-radius: 999px; cursor: pointer; color: inherit;
+            background: transparent; border: 1px solid var(--bs-border-color, #bbb); }
+.llw-chip-on { background: var(--bs-primary, #337ab7); border-color: var(--bs-primary, #337ab7); color: #fff; }
+.llw-chip-n { display: inline-block; min-width: 16px; margin-right: 5px; font-size: 11px; font-weight: 700;
+              border-radius: 999px; background: rgba(255, 255, 255, .3); text-align: center; }
 .llw-more { display: inline-block; margin-top: 10px; font-size: 13px; }
 .llw-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--bs-border-color-translucent, #eee); }
 .llw-row:last-child { border-bottom: 0; }
