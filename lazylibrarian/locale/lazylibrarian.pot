@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-12 17:22+0000\n"
+"POT-Creation-Date: 2026-11-12 18:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5209,7 +5209,9 @@ msgid "AudioBook Library Folder"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:2755
-msgid "The folder of your audiobooks, it can be the same as the eBook folder."
+msgid ""
+"The folder of your audiobooks. Keep it apart from the eBook folder: "
+"audiobooks have folder and file name patterns of their own."
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:2759
