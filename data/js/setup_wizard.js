@@ -199,7 +199,7 @@
   function boolRow(row) {
     var s = state[row.key];
     var note = el('span', {'class': 'llw-cur', text: t('current') + ': ' + show(row.current)});
-    var check = el('input', {type: 'checkbox', onchange: function () {
+    var check = el('input', {type: 'checkbox', role: 'switch', 'class': 'llw-toggle', onchange: function () {
       setValue(row, check.checked); note.hidden = s.value === row.current;
     }});
     check.checked = !!s.value;
