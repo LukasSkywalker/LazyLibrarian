@@ -8643,7 +8643,7 @@ class WebInterface:
     @require_auth()
     @cherrypy.tools.json_out()
     def get_downloads(self, **kwargs):
-        """ AJAX for the modern downloads panel and the bell: what is downloading now, with its progress,
+        """ AJAX for the modern downloads panel: what is downloading now, with its progress,
             and the latest downloads that finished """
         self.check_permitted(lazylibrarian.perm_history)
         self.label_thread('WEBSERVER')
@@ -8682,10 +8682,13 @@ class WebInterface:
 
             rows = db.select(f"SELECT {cols} from wanted WHERE Status IN ('Snatched','Seeding') "
                              "and BookID is not null ORDER BY rowid DESC LIMIT 50")
-            for count, row in enumerate(rows):
+            # asking the downloaders is slow, only the newest few get a live percentage
+            limit = max(CONFIG.get_int('DL_PROGRESS_LIMIT'), 0)
+            asked = 0
+            for row in rows:
                 progress = -1
-                # asking the downloaders is slow, only the newest few get a live percentage
-                if row['Status'] == 'Snatched' and count < 10 and row['Source'] and row['DownloadID']:
+                if row['Status'] == 'Snatched' and asked < limit and row['Source'] and row['DownloadID']:
+                    asked += 1
                     progress, _ = get_download_progress(row['Source'], make_unicode(row['DownloadID']))
                 active.append(to_item(row, progress))
             # failed downloads are too common to be worth showing here, the history page has them
