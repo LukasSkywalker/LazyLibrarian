@@ -592,6 +592,22 @@ class FormatterTest(LLTestCaseWithStartup):
             authorname = formatter.surname_first(name[0], postfixes=self.cfg().get_list('NAME_POSTFIX'))
             self.assertEqual(authorname, name[1], f"{name[0]} -> {authorname} instead of {name[1]}")
 
+    def test_surname_first_prefixes(self):
+        postfixes = self.cfg().get_list('NAME_POSTFIX')
+        prefixes = self.cfg().get_list('NAME_PREFIX') + ['ing', 'arch']
+        testnames = [
+            ("Dr. Allan Pedersen", "Pedersen, Allan, Dr."),
+            ("Sir Terry Pratchett", "Pratchett, Terry, Sir"),
+            ("Ing. arch. Ján Novák, PhD.", "Novák PhD., Ján, Ing. arch."),
+            ("Dr. Seuss", "Seuss, Dr."),
+            # a prefix on its own is the name
+            ("Dr", "Dr"),
+            ("Allan Pedersen", "Pedersen, Allan"),
+        ]
+        for name in testnames:
+            authorname = formatter.surname_first(name[0], postfixes=postfixes, prefixes=prefixes)
+            self.assertEqual(authorname, name[1], f"{name[0]} -> {authorname} instead of {name[1]}")
+
     def test_format_author_name(self):
         testnames_plain = [
             ("Allan Pedersen", "Allan Pedersen"),

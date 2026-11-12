@@ -4109,11 +4109,9 @@
                         data-long="${','.join(month[0] for month in lang['months']) | h}"
                         data-short="${','.join(month[1] for month in lang['months']) | h}"
                         data-seasons="${','.join(f'{name}:{month}' for name, month in lang['seasons'].items()) | h}"
-                        data-issue_nouns="${','.join(lang['words'].get('issue_nouns', [])) | h}"
-                        data-volume_nouns="${','.join(lang['words'].get('volume_nouns', [])) | h}"
-                        data-mag_nouns="${','.join(lang['words'].get('mag_nouns', [])) | h}"
-                        data-name_postfix="${','.join(lang['words'].get('name_postfix', [])) | h}"
-                        data-name_definite="${','.join(lang['words'].get('name_definite', [])) | h}"
+                        %for field, words in lang['words'].items():
+                        data-${field}="${','.join(words) | h}"
+                        %endfor
                         aria-pressed="${'true' if lang['selected'] else 'false'}" title="${lang['locale'] | h}">${lang['label'] | h}</button>
                       %endfor
                     </div>
@@ -4124,7 +4122,8 @@
                     </div>
                     %endif
                     <span class="help-block">${_('Each language adds its month and season names to the Month Names and Season Names tables, and to Date Language.')}<br/>
-                      ${_('It also adds its words for issue and volume numbers, words allowed in magazine titles, author name suffixes and articles for sorting titles. At least one language stays on.')}</span>
+                      ${_('It also adds its words for issue and volume numbers, words allowed in magazine titles, author name suffixes and articles for sorting titles. At least one language stays on.')}<br/>
+                      ${_('And its titles before author names, words joining several authors, words for audiobooks in the eBook reject words (under Filters) and comic genres (under Import).')}</span>
                   </div>
                   <div class="form-group">
                     <label for="date_lang" class="control-label">${_('Date Language (for issue names and shown dates):')}</label>
@@ -4194,6 +4193,16 @@
                     <label for="name_postfix" class="control-label">${_('Author Name suffix')}</label>
                     <input type="text" id="name_postfix" name="name_postfix" value="${CONFIG['NAME_POSTFIX']}" class="form-control" placeholder="eg snr, jnr">
                     <span class="help-block">${_('Comma separated list of suffixes to ignore when showing surname first')}</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="name_prefix" class="control-label">${_('Titles before author names')}</label>
+                    <input type="text" id="name_prefix" name="name_prefix" value="${CONFIG['NAME_PREFIX']}" class="form-control" placeholder="eg Dr, Prof, Ing">
+                    <span class="help-block">${_('Comma separated list of titles written before the name, like Dr. or Ing. When showing surname first they go after the forenames, "Ing. Ján Novák" is shown and sorted as "Novák, Ján, Ing."')}</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="multi_author_split" class="control-label">${_('Words joining authors')}</label>
+                    <input type="text" id="multi_author_split" name="multi_author_split" value="${CONFIG['MULTI_AUTHOR_SPLIT']}" class="form-control" placeholder="eg and, with">
+                    <span class="help-block">${_('Comma separated list of words that join several author names, e.g. "Terry Pratchett and Neil Gaiman". Commas, semicolons and & always split.')}</span>
                   </div>
                   <div class="form-group">
                     <label for="name_definite" class="control-label">${_('Definite Articles')}</label>
