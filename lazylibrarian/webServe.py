@@ -56,6 +56,7 @@ from lazylibrarian import (
     qbittorrent,
     rtorrent,
     sabnzbd,
+    setupwizard,
     synology,
     transmission,
     utorrent,
@@ -8044,6 +8045,54 @@ class WebInterface:
             message = message + '<br><small>' + messages
 
         return message
+
+    # setup wizard, see setupwizard.py
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_presets(self, country='', langs='', **kwargs):
+        """ The wizard steps for a country, guessed from the browser languages when not given """
+        self.check_permitted(lazylibrarian.perm_config)
+        browser_langs = [lang.strip() for lang in langs.split(',') if lang.strip()]
+        if not browser_langs:
+            browser_langs = i18n.parse_accept_language(cherrypy.request.headers.get('Accept-Language', ''))
+        if country not in setupwizard.COUNTRIES:
+            country = setupwizard.guess_country(browser_langs)
+        return {'country': country, 'countries': setupwizard.country_choices(),
+                'steps': setupwizard.presets_for(country, browser_langs),
+                'auth_missing': not (CONFIG['HTTP_USER'] and CONFIG['HTTP_PASS']) and
+                not CONFIG.get_bool('USER_ACCOUNTS')}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_apply(self, values='{}', **kwargs):
+        """ Save the settings ticked in the wizard, values is a json object of setting: value """
+        self.check_permitted(lazylibrarian.perm_config)
+        if cherrypy.request.method != 'POST':
+            return {'ok': False, 'error': 'POST only'}
+        try:
+            parsed = json.loads(values)
+        except ValueError as e:
+            return {'ok': False, 'error': str(e)}
+        return setupwizard.apply(parsed)
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_dismiss(self, **kwargs):
+        """ Don't offer the wizard on start again """
+        self.check_permitted(lazylibrarian.perm_config)
+        setupwizard.dismiss()
+        return {'ok': True}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_check_folder(self, path='', **kwargs):
+        self.check_permitted(lazylibrarian.perm_config)
+        return {'status': setupwizard.folder_status(path)}
 
     @cherrypy.expose
     @require_auth()

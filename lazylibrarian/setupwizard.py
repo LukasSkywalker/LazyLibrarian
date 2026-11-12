@@ -7,6 +7,7 @@
 #    monthlanguages.py, so a language added there is available here too.
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import contextlib
 import copy
 import locale
 import logging
@@ -320,10 +321,8 @@ def _locale_available(name: str) -> bool:
     except locale.Error:
         return False
     finally:
-        try:
+        with contextlib.suppress(locale.Error):
             locale.setlocale(locale.LC_TIME, old)
-        except locale.Error:
-            pass
 
 
 def folder_status(path: str) -> str:
