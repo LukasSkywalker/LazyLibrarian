@@ -61,6 +61,7 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigInt('General', 'PRIORITY_WEIGHT', 0),
     ConfigInt('General', 'DISPLAYLENGTH', 10),
     ConfigInt('General', 'HIST_REFRESH', 1000),
+    ConfigInt('General', 'DL_PROGRESS_LIMIT', 10),  # downloads that get a live % in the modern downloads panel, 0 for none
     ConfigBool('General', 'NO_IPV6', 0),
     ConfigStr('General', 'BOOKSTRAP_THEME', 'slate'),
     ConfigStr('General', 'MODERN_ACCENT', ''),  # accent colour of the modern interface (#rrggbb), empty is the default
