@@ -1368,9 +1368,10 @@
             });
         }
 
-        // Issue, volume and magazine title words, author name suffixes and articles,
-        // each chip has them in data-<field id>
-        const wordFields = ["issue_nouns", "volume_nouns", "mag_nouns", "name_postfix", "name_definite"];
+        // Issue, volume and magazine title words, author name suffixes, titles and joining words, articles,
+        // audiobook words to reject and comic genres, each chip has them in data-<field id>
+        const wordFields = ["issue_nouns", "volume_nouns", "mag_nouns", "name_postfix", "name_prefix", "name_definite",
+            "multi_author_split", "reject_words", "comic_genres"];
         function chipWords(chip, field) {
             return (chip.attr("data-" + field) || "").split(",").filter(item => item);
         }

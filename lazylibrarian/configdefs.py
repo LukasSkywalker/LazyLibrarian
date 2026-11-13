@@ -88,6 +88,8 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigBool('General', 'IGNORE_PAUSED', 0),
     ConfigBool('General', 'LAUNCH_BROWSER', 1),
     ConfigCSV('General', 'NAME_POSTFIX', 'snr, jnr, jr, sr, phd', force_lower=True),
+    # titles written before the name, like Dr. or Ing., go after the forenames when showing surname first
+    ConfigCSV('General', 'NAME_PREFIX', 'mr, mrs, ms, dr, prof, sir, dame, rev', force_lower=True),
     ConfigCSV('General', 'NAME_DEFINITE', 'the, a', force_lower=True),
     ConfigCSV('General', 'MULTI_AUTHOR_SPLIT', 'and, und, with', force_lower=True),
     ConfigBool('General', 'GOOGLE_TRANS_ID', 1),

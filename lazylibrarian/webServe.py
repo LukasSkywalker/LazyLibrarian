@@ -1008,7 +1008,8 @@ class WebInterface:
                             reasonstring = ''
 
                     if CONFIG.get_bool('SORT_SURNAME'):
-                        arow[1] = surname_first(arow[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')))
+                        arow[1] = surname_first(arow[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')),
+                                                prefixes=get_list(CONFIG.get_csv('NAME_PREFIX')))
                     if CONFIG.get_bool('SORT_DEFINITE'):
                         arow[2] = sort_definite(arow[2], articles=get_list(CONFIG.get_csv('NAME_DEFINITE')))
                     arow[3] = date_format(arow[3], '', f'{arow[1]}/{arow[2]}', datelang=CONFIG['DATE_LANG'])
@@ -1993,7 +1994,8 @@ class WebInterface:
                 for row in filtered:
                     row.append(row[0][:2])  # extract 2 letter source from seriesid
                     if CONFIG.get_bool('SORT_SURNAME'):
-                        row[1] = surname_first(row[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')))
+                        row[1] = surname_first(row[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')),
+                                               prefixes=get_list(CONFIG.get_csv('NAME_PREFIX')))
                     have = check_int(row[6], 0)
                     total = check_int(row[7], 0)
                     if total:
@@ -3872,7 +3874,8 @@ class WebInterface:
                         if entry[pos] is None:
                             entry[pos] = ""
                     if CONFIG.get_bool('SORT_SURNAME'):
-                        entry[1] = surname_first(entry[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')))
+                        entry[1] = surname_first(entry[1], postfixes=get_list(CONFIG.get_csv('NAME_POSTFIX')),
+                                                 prefixes=get_list(CONFIG.get_csv('NAME_PREFIX')))
                     if CONFIG.get_bool('SORT_DEFINITE'):
                         entry[2] = sort_definite(entry[2], articles=get_list(CONFIG.get_csv('NAME_DEFINITE')))
                     rows.append(entry)  # add each rowlist to the masterlist

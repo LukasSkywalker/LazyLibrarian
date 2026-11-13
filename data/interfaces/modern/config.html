@@ -1539,17 +1539,41 @@
         var dl = document.getElementById('date_lang'), names = dl && dl.closest('fieldset');
         if (!bookFs || !names) { return; }
         var grp = function (el, sel) { return el ? el.closest(sel || '.form-group') : null; };
-        var card = function (title, nodes) {
+        var card = function (title, nodes, note) {
           nodes = nodes.filter(function (n) { return n; });
           if (!nodes.length) { return; }
           var fs = llcCard(title), b = fs.querySelector('.section-body');
+          if (note) { b.appendChild(note); }
           nodes.forEach(function (n) { b.appendChild(n); });
           bookFs.parentElement.appendChild(fs);
         };
+        // the word lists are filled by the language buttons of another card, say which and link to it
+        var picker = document.getElementById('monthlangpicker');
+        var langNote = function () {
+          if (!picker) { return null; }
+          var p = document.createElement('p'), a = document.createElement('a');
+          var parts = ${js(_('The words of each language are filled in by the language buttons in %(card)s. The lists can also be edited by hand.'))}.split('%(card)s');
+          var legend = names.querySelector('legend');
+          // shown as text, not turned into an (i) icon, so it is seen before looking for the buttons here
+          p.className = 'help-block help-keep';
+          p.style.margin = '0 0 .75rem';
+          a.href = '#monthlangpicker';
+          a.textContent = legend ? legend.textContent.trim() : '';
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            picker.scrollIntoView({behavior: 'smooth', block: 'center'});
+            var chip = picker.querySelector('.langchip');
+            if (chip) { chip.focus({preventScroll: true}); }
+          });
+          p.appendChild(document.createTextNode(parts[0]));
+          p.appendChild(a);
+          p.appendChild(document.createTextNode(parts.slice(1).join('')));
+          return p;
+        };
         card(${_js('Language Detection')}, [grp(document.getElementById('google_trans_id'), '.checkbox'),
           grp(document.getElementById('ms_trans_id')), document.getElementById('lang_refresh_options')]);
-        card(${_js('Magazine Titles')}, ['pref_maglang', 'issue_nouns', 'volume_nouns', 'mag_nouns'].map(function (id) { return grp(document.getElementById(id)); }));
-        card(${_js('Sorting')}, ['name_postfix', 'name_definite', 'imp_nosplit'].map(function (id) { return grp(document.getElementById(id)); }));
+        card(${_js('Magazine Titles')}, ['pref_maglang', 'issue_nouns', 'volume_nouns', 'mag_nouns'].map(function (id) { return grp(document.getElementById(id)); }), langNote());
+        card(${_js('Sorting')}, ['name_prefix', 'name_postfix', 'multi_author_split', 'name_definite', 'imp_nosplit'].map(function (id) { return grp(document.getElementById(id)); }), langNote());
       })();
       // Processing in the order the work happens: when, with what status, what is imported, Calibre, where files go
       // and how they are named, conversions and the programs for them, the rest

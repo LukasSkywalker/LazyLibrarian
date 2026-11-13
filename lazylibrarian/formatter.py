@@ -1049,16 +1049,22 @@ def sort_definite(title: str, articles=list[str]) -> str:
     return title
 
 
-def surname_first(authorname: str, postfixes: list[str]) -> str:
-    """ Swap authorname round into surname, forenames for display and sorting"""
+def surname_first(authorname: str, postfixes: list[str], prefixes: list[str] | None = None) -> str:
+    """ Swap authorname round into surname, forenames for display and sorting.
+        Suffixes stay with the surname, "Ján Novák PhD" is "Novák PhD, Ján". Titles before the name
+        go after the forenames, so the name sorts by surname: "Ing. Ján Novák" is "Novák, Ján, Ing." """
     words = get_list(authorname)
-    if len(words) < 2:
+    titles = []
+    if prefixes:
+        keys = word_keys(prefixes)
+        while len(words) > 1 and word_key(words[0]) in keys:
+            titles.append(words.pop(0))
+    if len(words) < 2 and not titles:
         return authorname
     res = words.pop()
-
-    if word_key(res) in word_keys(postfixes):
+    if words and word_key(res) in word_keys(postfixes):
         res = f"{words.pop()} {res}"
-    return res + ', ' + ' '.join(words)
+    return ', '.join(part for part in (res, ' '.join(words), ' '.join(titles)) if part)
 
 
 def clean_name(name, extras=None):
