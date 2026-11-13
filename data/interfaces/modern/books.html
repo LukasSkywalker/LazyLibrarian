@@ -247,8 +247,8 @@
     <template x-for="a in ['Wanted', 'Have', 'Skipped', 'Ignored']" :key="a">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk(a)" x-text="llStatus(a)"></button>
     </template>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove')}</button>
-    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove from library')}</button>
+    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete from disk')}</button>
     %if CONFIG['USER_ACCOUNTS']:
     <span class="vr mx-1" aria-hidden="true"></span>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Unread')">${_('Unread')}</button>

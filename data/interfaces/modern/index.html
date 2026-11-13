@@ -188,6 +188,8 @@
     %for st in statuses:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('${st}')">${_(st)}</button>
     %endfor
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove from library')}</button>
+    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete from disk')}</button>
     %if CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Subscribe')">${_('Subscribe')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Unsubscribe')">${_('Unsubscribe')}</button>
@@ -217,7 +219,8 @@ document.addEventListener('alpine:init', function () {
     refreshing: ${_js('Author Refresh in progress ...')}, searching: ${_js('Search in progress ...')},
     selected: ${_jsn('%(count)s selected', '%(count)s selected')},
     authors: ${_jsn('%(count)s author', '%(count)s authors')},
-    booksOf: ${_jsn('%(have)s of %(count)s book', '%(have)s of %(count)s books')}
+    booksOf: ${_jsn('%(have)s of %(count)s book', '%(have)s of %(count)s books')},
+    confirmDel: ${_jsn('Are you sure you want to permanently delete the selected author and their files?', 'Are you sure you want to permanently delete the %(count)s selected authors and their files?')}
   };
 
   function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) % 360; } return h; }
@@ -332,6 +335,7 @@ document.addEventListener('alpine:init', function () {
       bulk: function (action) {
         var ids = Object.keys(this.sel);
         if (!ids.length) { this.toast(T.pickFirst); return; }
+        if (action === 'Delete' && !window.confirm(llNgettext(T.confirmDel, ids.length))) { return; }
         var self = this;
         var body = new URLSearchParams({action: action});
         ids.forEach(function (id) { body.append(id, 'on'); });
