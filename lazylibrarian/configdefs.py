@@ -76,6 +76,7 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigStr('MenuLinks', 'LINK_CUSTOM_URL', ''),
     ConfigStr('MenuLinks', 'LINK_CUSTOM_NAME', ''),
     ConfigStr('MenuLinks', 'LINK_CUSTOM_PAGE', 'history'),  # books, audio, history or logs: the page whose "..." menu has it
+    ConfigBool('General', 'SETUP_WIZARD_DONE', 0),  # the setup wizard was finished or dismissed
     ConfigBool('General', 'SERIES_TAB', 1),
     ConfigBool('General', 'AUDIO_TAB', 1),
     ConfigBool('General', 'EBOOK_TAB', 1),

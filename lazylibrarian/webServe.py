@@ -56,6 +56,7 @@ from lazylibrarian import (
     qbittorrent,
     rtorrent,
     sabnzbd,
+    setupwizard,
     synology,
     transmission,
     utorrent,
@@ -107,8 +108,8 @@ from lazylibrarian.common import (
     pwd_check,
     pwd_generator,
     run_script,
+    save_monthtable,
     set_readinglist,
-    validate_monthtable,
     zip_audio,
 )
 from lazylibrarian.config2 import CONFIG, wishlist_type
@@ -407,6 +408,13 @@ def template_i18n():
             'book_language_label': book_language_label,
             'ui_lang_auto': getattr(cherrypy.request, 'ui_lang_auto', False),
             'ui_langs': i18n.available_languages(), 'ui_lang_cookie': i18n.BROWSER_COOKIE}
+
+
+def first_value(value):
+    """ A query parameter given twice arrives as a list, use the first """
+    if isinstance(value, list):
+        return value[0] if value else ''
+    return value
 
 
 def mark_summary(headline, passed, failed):
@@ -2595,22 +2603,8 @@ class WebInterface:
             new_months[0] = [lang for lang in new_months[0] for _ in range(2)]
         if new_months != lazylibrarian.MONTHNAMES[0]:
             logger.debug("MONTHNAMES has changed")
-            if not validate_monthtable(new_months):
+            if not save_monthtable(new_months):
                 logger.debug("New MONTHNAMES is not valid, ignoring")
-            else:
-                json_file = os.path.join(DIRS.DATADIR, 'monthnames.json')
-                with open(json_file, 'w', encoding='utf-8') as f:
-                    json.dump(new_months, f, ensure_ascii=False)
-
-                # Create a second copy of the monthnames without accents and lowercased to speed up matching
-                cleantable = []
-                for lyne in new_months:
-                    cleanlyne = []
-                    for itm in lyne:
-                        cleanlyne.append(unaccented(itm).lower().strip('.'))
-                    cleantable.append(cleanlyne)
-
-                lazylibrarian.MONTHNAMES = [new_months, cleantable]
 
         # now the season dictionary
         new_seasons = {}
@@ -8061,6 +8055,60 @@ class WebInterface:
             message = message + '<br><small>' + messages
 
         return message
+
+    # setup wizard, see setupwizard.py
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_presets(self, country='', langs='', **kwargs):
+        """ The wizard steps for a country, guessed from the browser languages when not given.
+            The texts and the proposed UI_LANGUAGE follow the language of this request """
+        self.check_permitted(lazylibrarian.perm_config)
+        country, langs = first_value(country), first_value(langs)
+        browser_langs = [lang.strip() for lang in langs.split(',') if lang.strip()]
+        if not browser_langs:
+            browser_langs = i18n.parse_accept_language(cherrypy.request.headers.get('Accept-Language', ''))
+        if country not in setupwizard.COUNTRIES:
+            country = setupwizard.guess_country(browser_langs)
+        ui_lang = i18n.get_language()
+        return {'country': country, 'countries': setupwizard.country_choices(),
+                'lang': ui_lang, 'languages': setupwizard.language_choices(), 'strings': setupwizard.ui_strings(),
+                'steps': setupwizard.presets_for(country, browser_langs, ui_lang=ui_lang),
+                'auth_missing': not (CONFIG['HTTP_USER'] and CONFIG['HTTP_PASS']) and
+                not CONFIG.get_bool('USER_ACCOUNTS')}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_apply(self, values='{}', finish='1', **kwargs):
+        """ Save the settings ticked in the wizard, values is a json object of setting: value.
+            finish=0 saves without ending the wizard """
+        self.check_permitted(lazylibrarian.perm_config)
+        if cherrypy.request.method != 'POST':
+            return {'ok': False, 'error': 'POST only'}
+        try:
+            parsed = json.loads(first_value(values))
+        except (TypeError, ValueError) as e:
+            return {'ok': False, 'error': str(e)}
+        return setupwizard.apply(parsed, finish=first_value(finish) != '0')
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.allow(methods=['POST'])
+    def wizard_dismiss(self, **kwargs):
+        """ Don't offer the wizard on start again """
+        self.check_permitted(lazylibrarian.perm_config)
+        setupwizard.dismiss()
+        return {'ok': True}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def wizard_check_folder(self, path='', **kwargs):
+        self.check_permitted(lazylibrarian.perm_config)
+        return {'status': setupwizard.folder_status(first_value(path))}
 
     @cherrypy.expose
     @require_auth()
