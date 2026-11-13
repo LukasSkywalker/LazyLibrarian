@@ -292,8 +292,9 @@
       if (!res.ok) { render(res.error || t('failed')); return; }
       var msg = t('saved').replace('%(count)s', res.changed.length) + ' ' + t('where');
       if (res.warnings && res.warnings.length) { msg += ' ' + res.warnings.join(' '); }
-      if (res.reload || langSwitched) { toast(msg); setTimeout(function () { location.reload(); }, 1200); return; }
-      close(); toast(msg);
+      // the page was drawn with the old settings: reload it, the message is shown again after the reload
+      try { sessionStorage.setItem('llw-toast', msg); } catch (e) { toast(msg); }
+      langSwitched = false; close(); location.reload();
     }).catch(function (e) { busy = false; render(String(e)); });
   }
 
@@ -374,6 +375,10 @@
 
   // a new install: offer the wizard once per browser session, "don't show again" stops it for good
   function autoOpen() {
+    try {
+      var saved = sessionStorage.getItem('llw-toast');
+      if (saved) { sessionStorage.removeItem('llw-toast'); toast(saved); }
+    } catch (e) { /* private mode */ }
     var root = document.getElementById('llw-root');
     if (!root || root.getAttribute('data-autoopen') !== '1') { return; }
     try { if (sessionStorage.getItem('llw-offered')) { return; } sessionStorage.setItem('llw-offered', '1'); } catch (e) { /* private mode */ }
