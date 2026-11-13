@@ -91,7 +91,7 @@
   .llc .tab-pane fieldset:has(> legend), .llc .tab-pane fieldset:has(> .section-body) {
     background: var(--bs-body-bg); border: 1px solid var(--bs-border-color-translucent); border-radius: 14px; padding: 1rem 1.1rem .4rem; margin-bottom: 1rem;
     box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  .llc .tab-pane fieldset fieldset:has(> legend) { border-radius: 10px; background: var(--bs-tertiary-bg); box-shadow: none; }
+  .llc .tab-pane fieldset fieldset:has(> legend) { border-radius: 10px; background: var(--bs-body-bg); box-shadow: none; }
   .llc legend { float: left; width: 100%; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--bs-secondary-color);
                 margin: 0 0 .75rem; padding: 0; border: 0; display: flex; align-items: center; gap: .35rem; }
   .llc legend.section-toggle { cursor: pointer; user-select: none; }
@@ -122,7 +122,7 @@
   .llc .tab-pane fieldset#rss_options:has(> [class*="col-"]) { margin-inline: 0 !important; padding-inline: .6rem !important; }
   /* action buttons (Test, Sync now, Request authorization...): one row of small outlined pills under what they act on */
   /* an apprise notifier in a box like the other notifiers' sections (llcActions) */
-  .llc .llc-acard { border: 1px solid var(--bs-border-color-translucent); border-radius: 10px; background: var(--bs-tertiary-bg);
+  .llc .llc-acard { border: 1px solid var(--bs-border-color-translucent); border-radius: 10px; background: var(--bs-body-bg);
                     padding: .8rem .9rem .1rem; height: 100%; }
   .llc .llc-acard .input-group { margin-bottom: .8rem; }
   .llc .llc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 .9rem; }
@@ -133,7 +133,7 @@
   .llc .tab-pane .row > .form-group[class*="col-"] { display: flex; flex-direction: column; justify-content: flex-end; }
   .llc .tab-pane .row > .form-group[class*="col-"] > label { align-self: flex-start; }
   /* provider cards: the rows of "label | field | label | field | button" made into a small form */
-  .llc .llc-pcard > .llc-pbox { border: 1px solid var(--bs-border-color-translucent); border-radius: 12px; background: var(--bs-tertiary-bg); padding: .7rem .8rem .2rem; height: 100%; }
+  .llc .llc-pcard > .llc-pbox { border: 1px solid var(--bs-border-color-translucent); border-radius: 12px; background: var(--bs-body-bg); padding: .7rem .8rem .2rem; height: 100%; }
   .llc .llc-pcard.llc-off > .llc-pbox { opacity: .7; }
   .llc .llc-ph { display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem; min-height: 32px; }
   .llc .llc-ptitle { font-weight: 650; font-size: .95rem; margin-right: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -214,6 +214,18 @@
   .llc .llc-cgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); column-gap: 1.75rem; align-items: start; }
   .llc .llc-cgrid > .llc-cwide { grid-column: 1 / -1; }
   .llc .llc-cgrid > .llc-cstart { grid-column-start: 1; }
+  /* Processing: the switches of a section together, one column in tight rows */
+  .llc .llc-cgrid > .llc-swgrid { align-self: center; }
+  .llc .llc-swgrid > .checkbox { margin-bottom: .35rem; }
+  /* contrast between a section and the cards inside it: the section a little lighter than the page, its cards as dark as the page */
+  .llc .tab-pane .llc-flow-item > fieldset:has(> legend), .llc .tab-pane .llc-flow-item > fieldset:has(> .section-body) { background: color-mix(in srgb, var(--bs-body-color) 6%, var(--bs-body-bg)); }
+  /* Language detection: the switch level with the key field, the maintenance button under the switch, the key with its
+     help on the right over both, instead of three cells with a tall one beside two short ones */
+  .llc .llc-cgrid > .checkbox:has(#google_trans_id) { margin-top: 1.9rem; }
+  .llc .llc-cgrid > .form-group:has(#ms_trans_id) { grid-row: span 2; }
+  .llc .llc-cgrid > #lang_refresh_options { grid-column: auto; }
+  /* a switch next to the field it belongs to (several sources, Goodreads sync): centred on that field */
+  .llc .llc-cgrid > .checkbox:has(#multi_source, #gr_sync) { align-self: center; margin-bottom: 0; }
   /* small cards side by side (national libraries, providers) as high as the highest of their row */
   .llc .llc-cgrid > fieldset:not(.llc-cwide), .llc .llc-cgrid > .llc-pcard { align-self: stretch; }
   /* a cell keeps one spacing under it, a field with a button (show/hide) in it adds none of its own */
@@ -221,7 +233,7 @@
   .llc .llc-flags { display: inline-flex; gap: .3rem; margin-left: .35rem; cursor: help; }
   .llc .llc-flags svg { width: 1.35rem; height: .9rem; border-radius: 2px; box-shadow: 0 0 0 1px var(--bs-border-color); text-transform: none; letter-spacing: normal; }
   .llc .llc-flags .fa { font-size: 1.05rem; color: var(--ll-accent); }
-  .llc .llc-note { display: block; font-size: .75rem; color: var(--bs-warning-text-emphasis); margin: .15rem 0 0 calc(2.1em + .6rem); }
+  .llc .llc-note { display: block; font-size: .75rem; color: var(--bs-warning); margin: .15rem 0 0 calc(2.1em + .6rem); }
   /* On this page: links to the sections of a long tab */
   .llc-toc { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; margin: -.35rem 0 1rem; font-size: .8rem; }
   .llc-toc > span { color: var(--bs-secondary-color); margin-right: .2rem; }
@@ -229,10 +241,14 @@
   .llc-toc a:hover, .llc-toc a:focus-visible { border-color: var(--ll-accent); color: var(--ll-accent); }
   .llc-searching .llc-toc { display: none; }
   .llc .llc-flow-item > fieldset { scroll-margin-top: 80px; }
+  /* the example of a name pattern: the accent colour, softly, instead of the yellow marker */
+  .llc small > mark { background: color-mix(in srgb, var(--ll-accent) 16%, transparent); color: var(--ll-accent);
+                      border-radius: 6px; padding: .05rem .45rem; font-weight: 500; }
   /* $variables of the name patterns: a click inserts them at the cursor of the pattern field */
   .llc .llc-token { display: inline-block; font: inherit; font-size: .95em; line-height: 1.5; color: var(--bs-body-color);
-                    background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color); border-radius: 999px; padding: 0 .55rem; margin: .1rem 0; cursor: pointer; }
-  .llc .llc-token:hover, .llc .llc-token:focus-visible { border-color: var(--ll-accent); color: var(--ll-accent); outline: 0; }
+                    background: color-mix(in srgb, var(--ll-accent) 14%, var(--bs-body-bg)); border: 1px solid color-mix(in srgb, var(--ll-accent) 45%, transparent);
+                    border-radius: 999px; padding: 0 .55rem; margin: .1rem 0; cursor: pointer; }
+  .llc .llc-token:hover, .llc .llc-token:focus-visible { background: color-mix(in srgb, var(--ll-accent) 28%, var(--bs-body-bg)); border-color: var(--ll-accent); outline: 0; }
   .llc .help-icon { margin-left: .35rem; color: var(--bs-secondary-color); cursor: help; font-size: .85em; text-decoration: none; }
   .llc .help-icon:hover, .llc .help-icon:focus { color: var(--ll-accent); }
   /* a list of switches in the same columns as the cells of the section around it */
@@ -795,6 +811,26 @@
         var subs = grid.querySelectorAll(':scope > fieldset');
         var named = Array.prototype.filter.call(subs, function (s) { return s.querySelector(':scope > legend'); });
         if (named.some(function (s) { return s.classList.contains('llc-cwide'); })) { named.forEach(function (s) { s.classList.add('llc-cwide'); }); }
+        // Processing: the switches of a section sit together, after its fields, instead of between them. Only runs of
+        // plain cells are sorted (stable); a wide setting, a card or a pair that starts a line ends a run, so the
+        // order around them and the room the grid takes stay as they were
+        if (body.closest('#searchprocessing')) {
+          var cells = Array.prototype.slice.call(grid.children), run = [];
+          var plain = function (c) { return c.matches('.form-group, .checkbox') && !c.matches('.llc-cwide, .llc-cstart') && !c.hidden; };
+          var flush = function () {
+            var sw = run.filter(function (c) { return c.matches('.checkbox'); });
+            if (sw.length > 1 && sw.length < run.length) {
+              // the switches become one cell, one column of tight rows, so they are not spread over the tall rows
+              // of the fields
+              var blk = document.createElement('div'); blk.className = 'llc-swgrid';
+              run[run.length - 1].after(blk);
+              sw.forEach(function (c) { blk.appendChild(c); });
+            }
+            run = [];
+          };
+          cells.forEach(function (c) { if (plain(c)) { run.push(c); } else { flush(); } });
+          flush();
+        }
         body.appendChild(grid);
         grid.querySelectorAll(':scope > fieldset, :scope > * > fieldset').forEach(gridOf);
       };
@@ -846,12 +882,14 @@
                     gb_api: [['google'], 'Google Books'],
                     ol_api: [['openlibrary'], 'Open Library'],
                     hc_api: [['hardcover'], 'Hardcover'],
+                    cv_apikey: [['comicvine'], 'ComicVine'],
                     lt_devkey: [['librarything'], 'LibraryThing']};
     // the letter badges of services with a logo of their own (the brand icon font is not shipped)
     FLAGS.goodreads = '<rect width="30" height="20" rx="3" fill="#F4F1EA"/><text x="15" y="12.5" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#382110">g</text>';
     FLAGS.google = '<rect width="30" height="20" rx="3" fill="#fff"/><text x="15" y="15.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#4285F4">G</text>';
     FLAGS.openlibrary = '<rect width="30" height="20" rx="3" fill="#E1DCC5"/><text x="15" y="14.5" text-anchor="middle" font-family="Georgia, serif" font-size="11.5" font-weight="700" fill="#2D5F8B">OL</text>';
     FLAGS.librarything = '<rect width="30" height="20" rx="3" fill="#F7EFD9"/><text x="15" y="14.5" text-anchor="middle" font-family="Georgia, serif" font-size="11.5" font-weight="700" fill="#8C2A1C">LT</text>';
+    FLAGS.comicvine = '<rect width="30" height="20" rx="3" fill="#E21F26"/><text x="15" y="14.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="700" fill="#fff">CV</text>';
     FLAGS.hardcover ='<rect width="30" height="20" rx="3" fill="#6466F1"/><text x="15" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#fff">H</text>';
     function llcFlags() {
       Object.keys(LIBFLAGS).forEach(function (id) {
@@ -1746,7 +1784,12 @@
           info.insertBefore(how, info.firstChild);
           if (info.childNodes.length > 1) { info.insertBefore(document.createElement('br'), how.nextSibling); }
           help.after(info);
-          warns.reverse().forEach(function (w) { help.after(w); });
+          // under the field: the example of the pattern, then what it has to include, the buttons come after them
+          var ex = info.nextElementSibling;
+          while (ex && !ex.matches('small')) { ex = ex.nextElementSibling; }
+          var anchor = field.closest('.input-group') || field;
+          if (ex) { ex.style.display = 'block'; ex.style.margin = '.3rem 0 .4rem'; anchor.after(ex); anchor = ex; }
+          warns.reverse().forEach(function (w) { anchor.after(w); });
           // "($Series variable)" in the label names the variable this pattern fills; the buttons say it already
           var lab = field.id && form.querySelector('label[for="' + field.id + '"]');
           if (lab) {
