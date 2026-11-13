@@ -177,6 +177,8 @@
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Scan')">${_('Scan issues')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('tag')">${_('Tag issues')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Reset')">${_('Reset')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove from library')}</button>
+    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete from disk')}</button>
     %endif
     %if CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Subscribe')">${_('Subscribe')}</button>
@@ -223,7 +225,8 @@ document.addEventListener('alpine:init', function () {
     pickFirst: ${_js('Select at least one magazine first')}, failed: ${_js('Something went wrong, try again')},
     searching: ${_js('Searching...')},
     selected: ${_jsn('%(count)s selected', '%(count)s selected')},
-    mags: ${_jsn('%(count)s magazine', '%(count)s magazines')}
+    mags: ${_jsn('%(count)s magazine', '%(count)s magazines')},
+    confirmDel: ${_jsn('Are you sure you want to permanently delete the selected magazine and all its issues?', 'Are you sure you want to permanently delete the %(count)s selected magazines and all their issues?')}
   };
   function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) % 360; } return h; }
 
@@ -320,6 +323,7 @@ document.addEventListener('alpine:init', function () {
       bulk: function (action) {
         var ids = Object.keys(this.sel);
         if (!ids.length) { this.toast(T.pickFirst); return; }
+        if (action === 'Delete' && !window.confirm(llNgettext(T.confirmDel, ids.length))) { return; }
         var self = this;
         var body = new URLSearchParams({action: action});
         ids.forEach(function (id) { body.append(id, 'on'); });

@@ -160,8 +160,8 @@
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Active')">${_('Active')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Paused')">${_('Paused')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Reset')">${_('Reset')}</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove')}</button>
-    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete')}</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove from library')}</button>
+    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete from disk')}</button>
     %endif
     %if CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Subscribe')">${_('Subscribe')}</button>
