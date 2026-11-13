@@ -184,6 +184,7 @@ from lazylibrarian.importer import (
 from lazylibrarian.librarysync import library_scan
 from lazylibrarian.logconfig import LOGCONFIG
 from lazylibrarian.magazinescan import (
+    format_issue_filename,
     get_dateparts,
     magazine_scan,
     remove_if_empty,
@@ -2517,6 +2518,18 @@ class WebInterface:
         testvars = {}
         for itm in namevars:
             testvars[itm] = namevars[itm].replace(' ', '&nbsp;')
+        # examples of the magazine and comic patterns, for a sample issue
+        try:
+            sample = get_dateparts('2024-05-14')
+            for key, pattern in (('MagFolder', CONFIG['MAG_DEST_FOLDER']), ('MagFile', CONFIG['MAG_DEST_FILE'])):
+                testvars[key] = format_issue_filename(pattern, 'National Geographic', sample).replace(' ', '&nbsp;')
+            testvars['ComicFolder'] = (CONFIG['COMIC_DEST_FOLDER'].replace('$Issue', '123')
+                                       .replace('$Publisher', 'DC Comics')
+                                       .replace('$Title', 'Batman').replace(' ', '&nbsp;'))
+        except Exception as e:
+            logger.debug(f"Unable to make the magazine and comic name examples: {e}")
+            for key in ('MagFolder', 'MagFile', 'ComicFolder'):
+                testvars.setdefault(key, '')
         config = {
             "http_look_list": http_look_list,
             "apprise_list": apprise_list,

@@ -2693,6 +2693,7 @@
                     <input type="text" id="mag_dest_folder" name="mag_dest_folder" value="${CONFIG['MAG_DEST_FOLDER']}" class="form-control" placeholder="${_('Magazines Destination Folder') | h}">
                     <span class="help-block help-keep">${_('Absolute path, or inside book folder. Options: $Title, $IssueDate, $IssueYear, $IssueVol, $IssueNum, $IssueMonth, $IssueMNum, $IssueDay, any string')}
                       <BR><strong>${_('All options are discretionary but Title is recommended unless included in Filename to prevent issue name collisions')}</strong></span>
+                    <small>${_('Example:')}  <mark>${config['namevars']['MagFolder']}</mark></small>
                   </div>
                   <div class="checkbox">
                     <% checked = 'checked="checked"' if CONFIG['MAG_RELATIVE'] else '' %>
@@ -2711,6 +2712,7 @@
                     <input type="text" id="mag_dest_file" name="mag_dest_file" value="${CONFIG['MAG_DEST_FILE']}" class="form-control" placeholder="${_('Magazine Issue Filename') | h}">
                     <span class="help-block help-keep">${_('Options: $Title, $IssueDate, $IssueYear, $IssueVol, $IssueNum, $IssueMonth, $IssueMNum, $IssueDay, any string')}
                       <BR><strong>${_('Current limitation: Filename must contain IssueDate, or IssueYear and one of IssueNum/IssueMonth/IssueMNum')}</strong></span>
+                    <small>${_('Example:')}  <mark>${config['namevars']['MagFile']}</mark></small>
                   </div>
                   %endif
                   %if CONFIG['COMIC_TAB']:
@@ -2718,6 +2720,7 @@
                     <label for="comic_dest_folder">${_('Comic Foldername Pattern:')}</label>
                     <input type="text" id="comic_dest_folder" name="comic_dest_folder" value="${CONFIG['COMIC_DEST_FOLDER']}" class="form-control" placeholder="${_('Comics Destination Folder') | h}">
                     <span class="help-block help-keep">${_('Absolute path, or inside book folder')}<br>${_('Options: $Title, $Issue, $Publisher, any string')}</span>
+                    <small>${_('Example:')}  <mark>${config['namevars']['ComicFolder']}</mark></small>
                   </div>
                   <div class="checkbox">
                     <% checked = 'checked="checked"' if CONFIG['COMIC_RELATIVE'] else '' %>
@@ -3587,6 +3590,8 @@
                     <legend>${_('Apprise Notifiers')}</legend>
                     <div class="form-group col-md-12">
                     <button class="button btn btn-sm btn-primary" type="button" value="Supported Types" id="show_apprise"><i class="fa fa-list-ul"></i> ${_('Supported Types')}</button>
+                    <span class="help-block help-keep">${_('Each notifier is an Apprise URL, its format depends on the service, for example tgram://bottoken/ChatID.')}
+                      <a href="https://github.com/caronc/apprise/wiki" target="_blank" rel="noopener noreferrer">${_('How to set up the URL of each service')} <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
                     </div>
                   %for provider in CONFIG.providers('APPRISE'):
                   %if provider['DISPNAME'] != '':
