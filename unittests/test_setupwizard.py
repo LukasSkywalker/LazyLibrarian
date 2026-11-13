@@ -220,6 +220,13 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         self.assertEqual(self.config['DATE_LANG'], before)
         self.save.assert_not_called()
 
+    def test_apply_records_telemetry_only_when_saved(self):
+        with mock.patch('lazylibrarian.setupwizard.TELEMETRY') as telemetry:
+            self.assertFalse(apply({'HTTP_PASS': 'x'}, self.config)['ok'])
+            telemetry.record_usage_data.assert_not_called()
+            self.assertTrue(apply({'DATE_FORMAT': '$d.$m.$Y'}, self.config)['ok'])
+            telemetry.record_usage_data.assert_called_once_with('SetupWizard')
+
     def test_apply_without_finish(self):
         self.config.set_bool('SETUP_WIZARD_DONE', False)
         self.assertTrue(apply({'DATE_FORMAT': '$d.$m.$Y'}, self.config, finish=False)['ok'])

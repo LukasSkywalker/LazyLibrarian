@@ -19,6 +19,7 @@ from lazylibrarian.booklanguages import BOOK_LANGUAGES, GB_COUNTRIES
 from lazylibrarian.formatter import unaccented
 from lazylibrarian.i18n import N_
 from lazylibrarian.monthlanguages import LANGUAGE_WORDS, MONTH_LANGUAGES
+from lazylibrarian.telemetry import TELEMETRY
 
 GENERIC = '_generic'
 MONTH_LANGUAGE = 'MONTH_LANGUAGE'  # pseudo key, adds a built-in language to the month name table
@@ -514,6 +515,7 @@ def apply(values: dict, config=None, finish: bool = True) -> dict:
         logger.error(f'Setup wizard could not save: {type(e).__name__} {e}')
         result['error'] = str(e)
         return result
+    TELEMETRY.record_usage_data('SetupWizard')
 
     if 'DATE_LANG' in clean and not _locale_available(clean['DATE_LANG']):
         result['warnings'].append(i18n.gettext('The system does not have the locale') + f" {clean['DATE_LANG']}")
