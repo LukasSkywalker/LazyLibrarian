@@ -236,14 +236,10 @@ def fold(s):
     return ''.join(c for c in s if not unicodedata.combining(c)).casefold()
 
 
-def clear_mako_cache(userid=0):
+def clear_mako_cache():
     logger = logging.getLogger(__name__)
-    if userid:
-        logger.warning(f"Clearing mako cache {userid}")
-        makocache = os.path.join(DIRS.CACHEDIR, 'mako', str(userid))
-    else:
-        logger.warning("Clearing mako cache")
-        makocache = os.path.join(DIRS.CACHEDIR, 'mako')
+    logger.warning("Clearing mako cache")
+    makocache = DIRS.get_mako_cachedir()
     try:
         rmtree(makocache, ignore_errors=True)
         # noinspection PyArgumentList
@@ -252,29 +248,43 @@ def clear_mako_cache(userid=0):
         logger.error(f"Error clearing mako cache: {str(e)}")
 
 
+def template_lookup(look, cached=True):
+    """ Where mako finds the templates of an interface, and where it keeps them once compiled.
+        An interface only needs the pages it changes, anything missing comes from bookstrap.
+        The interfaces folder is a root too, so a page can use another interface's page by its
+        path, eg modern's config.html renders the form of /bookstrap/config.html
+        Each interface has its own cache folder. A compiled page is stored under its name, so in
+        a shared folder modern's index.html and bookstrap's would be the same file. This way users
+        of one instance can use different interfaces, and changing interface needs no clearing """
+    interface_dir = os.path.join(str(DIRS.PROG_DIR), 'data', 'interfaces')
+    roots = [os.path.join(interface_dir, look), os.path.join(interface_dir, 'bookstrap'), interface_dir]
+    module_directory = os.path.join(DIRS.get_mako_cachedir(), look) if cached else None
+    return TemplateLookup(directories=list(dict.fromkeys(roots)), input_encoding='utf-8',
+                          module_directory=module_directory)
+
+
 # a template names another one by its path from the interfaces folder, eg file="/bookstrap/config.html"
 _TEMPLATE_REF = re.compile(r'<%(?:namespace|include|inherit)\b[^>]*?\bfile\s*=\s*["\'](/[^"\']+)["\']')
 
 
 def precompile_templates():
-    """ Compile the interface's templates into the mako cache, so the first visitor to a page
-        doesn't wait for it. Bookstrap's config.html alone takes about ten seconds.
+    """ Compile the templates of every interface into the mako cache, so the first visitor to a
+        page doesn't wait for it. Bookstrap's config.html alone takes several seconds.
         Runs in its own thread, see start_precompile_templates() """
     logger = logging.getLogger(__name__)
     thread_name('PRECOMPILE')
     interface_dir = os.path.join(str(DIRS.PROG_DIR), 'data', 'interfaces')
-    bookstrap_dir = os.path.join(interface_dir, 'bookstrap')
-    module_directory = os.path.join(DIRS.CACHEDIR, 'mako')
-    while True:
-        look = CONFIG['HTTP_LOOK']
+    # the configured interface first, then any others, a user can choose their own
+    looks = [CONFIG['HTTP_LOOK']]
+    looks += [name for name in sorted(os.listdir(interface_dir)) if name not in looks]
+    for look in looks:
         template_dir = os.path.join(interface_dir, look)
-        # the same roots and cache as serve_template(), or the compiled pages would not be reused
-        lookup = TemplateLookup(directories=list(dict.fromkeys([template_dir, bookstrap_dir, interface_dir])),
-                                input_encoding='utf-8', module_directory=module_directory)
+        if not path_isdir(template_dir):
+            continue
+        lookup = template_lookup(look)
         names = set()
-        for folder in (template_dir, bookstrap_dir):
-            if path_isdir(folder):
-                names.update(name for name in os.listdir(folder) if name.endswith('.html'))
+        for folder in (template_dir, os.path.join(interface_dir, 'bookstrap')):
+            names.update(name for name in os.listdir(folder) if name.endswith('.html'))
         # serve_template() doesn't cache these two
         todo = sorted(names - {'logs.html', 'history.html'})
         done = set()
@@ -291,16 +301,8 @@ def precompile_templates():
                         todo.append(ref)
             except Exception as e:
                 # whoever asks for the page gets the real error
-                logger.debug(f"Unable to precompile {name}: {type(e).__name__} {e}")
-            if CONFIG['HTTP_LOOK'] != look:
-                break
-        if CONFIG['HTTP_LOOK'] == look:
-            logger.debug(f"Precompiled {len(done)} {look} templates in {time.time() - start:.1f} sec")
-            return
-        # the interface changed while we were compiling, and a compiled page is cached under
-        # its name whichever interface it came from, so the last one could be the old interface's
-        logger.debug(f"Interface changed from {look} to {CONFIG['HTTP_LOOK']}, precompiling again")
-        clear_mako_cache()
+                logger.debug(f"Unable to precompile {look} {name}: {type(e).__name__} {e}")
+        logger.debug(f"Precompiled {len(done)} {look} templates in {time.time() - start:.1f} sec")
 
 
 def start_precompile_templates():
@@ -491,17 +493,9 @@ def serve_template(templatename, **kwargs):
         CONFIG.set_str('HTTP_LOOK', 'bookstrap')
         template_dir = os.path.join(str(interface_dir), CONFIG['HTTP_LOOK'])
 
-    if templatename in ['logs.html', 'history.html']:
-        # don't cache these so we can change refresh rate
-        module_directory = None
-    else:
-        module_directory = os.path.join(DIRS.CACHEDIR, 'mako')
-    # an interface only needs the pages it changes, anything missing comes from bookstrap.
-    # The interfaces folder is a root too, so a page can use another interface's page by its
-    # path, eg modern's config.html renders the form of /bookstrap/config.html
-    bookstrap_dir = os.path.join(str(interface_dir), 'bookstrap')
-    _hplookup = TemplateLookup(directories=list(dict.fromkeys([template_dir, bookstrap_dir, str(interface_dir)])),
-                               input_encoding='utf-8', module_directory=module_directory)
+    # don't cache these so we can change refresh rate
+    cached = templatename not in ['logs.html', 'history.html']
+    _hplookup = template_lookup(CONFIG['HTTP_LOOK'], cached)
     # noinspection PyBroadException
     try:
         style = CONFIG['BOOKSTRAP_THEME']
@@ -721,16 +715,13 @@ def serve_template(templatename, **kwargs):
                 if not path_isdir(template_dir):
                     logger.error(f"Unable to locate template [{template_dir}], reverting to bookstrap")
                     CONFIG.set_str('HTTP_LOOK', 'bookstrap')
-                    template_dir = os.path.join(str(interface_dir), CONFIG['HTTP_LOOK'])
-
-                module_directory = os.path.join(DIRS.CACHEDIR, 'mako', str(userid))
-                _hplookup = TemplateLookup(directories=list(dict.fromkeys([template_dir, bookstrap_dir,
-                                                                           str(interface_dir)])),
-                                           input_encoding='utf-8', module_directory=module_directory)
+                    theme = CONFIG['HTTP_LOOK']
+                # the user's own interface, compiled into that interface's cache
+                _hplookup = template_lookup(theme, cached)
             try:
                 template = _hplookup.get_template(templatename)
             except (AttributeError, KeyError):
-                clear_mako_cache(userid)
+                clear_mako_cache()
                 template = _hplookup.get_template(templatename)
 
         theme = usertheme.split('_', 1)
@@ -1263,7 +1254,6 @@ class WebInterface:
                         style = parts[1] if len(parts) == 2 and parts[0] == 'bookstrap' else CONFIG['BOOKSTRAP_THEME']
                         theme = f'bookstrap_{style}' if style else 'bookstrap'
                     db.action('UPDATE users SET Theme=? WHERE UserID=?', (theme, userid))
-                    clear_mako_cache(userid)
                 if lang is not None:
                     db.action('UPDATE users SET UI_Lang=? WHERE UserID=?', (lang, userid))
             finally:
@@ -1272,7 +1262,6 @@ class WebInterface:
             self.check_permitted(lazylibrarian.perm_config)
             CONFIG.set_str('HTTP_LOOK', look)
             CONFIG.save_config_and_backup_old()
-            clear_mako_cache()
         if lang is not None:
             # set it for the next page too, which reads the language before it looks at the user
             cherrypy.response.cookie['ll_uilang'] = lang

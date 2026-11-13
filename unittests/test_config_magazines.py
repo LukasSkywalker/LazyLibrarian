@@ -41,8 +41,8 @@ class ConfigMagazinesTest(LLTestCaseWithStartup):
         finally:
             db.close()
         self.addCleanup(self.remove_rows)
-        # a changed HTTP_LOOK write count makes the next config save clear the mako cache, which the
-        # startup teardown has already removed. Cleanups run last in first out, so this one runs last
+        # put the write counts back, so these don't look changed to the next config save.
+        # Cleanups run last in first out, so this one runs last
         for key in ('HTTP_LOOK', 'MAG_TAB', 'COMIC_TAB'):
             item = self.cfg().config[key]
             self.addCleanup(setattr, item, 'accesses', item.accesses.copy())
