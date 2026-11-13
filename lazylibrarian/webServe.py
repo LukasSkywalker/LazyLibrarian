@@ -252,6 +252,61 @@ def clear_mako_cache(userid=0):
         logger.error(f"Error clearing mako cache: {str(e)}")
 
 
+# a template names another one by its path from the interfaces folder, eg file="/bookstrap/config.html"
+_TEMPLATE_REF = re.compile(r'<%(?:namespace|include|inherit)\b[^>]*?\bfile\s*=\s*["\'](/[^"\']+)["\']')
+
+
+def precompile_templates():
+    """ Compile the interface's templates into the mako cache, so the first visitor to a page
+        doesn't wait for it. Bookstrap's config.html alone takes about ten seconds.
+        Runs in its own thread, see start_precompile_templates() """
+    logger = logging.getLogger(__name__)
+    thread_name('PRECOMPILE')
+    interface_dir = os.path.join(str(DIRS.PROG_DIR), 'data', 'interfaces')
+    bookstrap_dir = os.path.join(interface_dir, 'bookstrap')
+    module_directory = os.path.join(DIRS.CACHEDIR, 'mako')
+    while True:
+        look = CONFIG['HTTP_LOOK']
+        template_dir = os.path.join(interface_dir, look)
+        # the same roots and cache as serve_template(), or the compiled pages would not be reused
+        lookup = TemplateLookup(directories=list(dict.fromkeys([template_dir, bookstrap_dir, interface_dir])),
+                                input_encoding='utf-8', module_directory=module_directory)
+        names = set()
+        for folder in (template_dir, bookstrap_dir):
+            if path_isdir(folder):
+                names.update(name for name in os.listdir(folder) if name.endswith('.html'))
+        # serve_template() doesn't cache these two
+        todo = sorted(names - {'logs.html', 'history.html'})
+        done = set()
+        start = time.time()
+        while todo:
+            if lazylibrarian.STOPTHREADS:
+                return
+            name = todo.pop(0)
+            done.add(name)
+            try:
+                template = lookup.get_template(name)
+                for ref in _TEMPLATE_REF.findall(template.source):
+                    if ref not in done and ref not in todo:
+                        todo.append(ref)
+            except Exception as e:
+                # whoever asks for the page gets the real error
+                logger.debug(f"Unable to precompile {name}: {type(e).__name__} {e}")
+            if CONFIG['HTTP_LOOK'] != look:
+                break
+        if CONFIG['HTTP_LOOK'] == look:
+            logger.debug(f"Precompiled {len(done)} {look} templates in {time.time() - start:.1f} sec")
+            return
+        # the interface changed while we were compiling, and a compiled page is cached under
+        # its name whichever interface it came from, so the last one could be the old interface's
+        logger.debug(f"Interface changed from {look} to {CONFIG['HTTP_LOOK']}, precompiling again")
+        clear_mako_cache()
+
+
+def start_precompile_templates():
+    threading.Thread(target=precompile_templates, name='PRECOMPILE', daemon=True).start()
+
+
 def clear_our_cookies():
     cookie = cherrypy.response.cookie
     cookie['ll_uid'] = ''
