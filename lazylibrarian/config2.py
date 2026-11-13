@@ -9,7 +9,6 @@ import io
 import logging
 import os
 import re
-import shutil
 import threading
 from collections import Counter
 from collections.abc import Generator
@@ -473,14 +472,6 @@ class LLConfigHandler(ConfigDict):
         # Re-initialize cached loggers
         self.initialize_logger()
         DIRS.initialize_logger()
-
-        # Clean the mako cache if the interface has changed
-        interface = self.config['HTTP_LOOK']
-        if interface.get_write_count() > 0:  # It's changed
-            mako_dir = DIRS.get_mako_cachedir()
-            self.logger.debug("Clearing mako cache")
-            shutil.rmtree(mako_dir)
-            os.makedirs(mako_dir)
 
         # Restart all scheduled jobs since the schedules may have changed
         if restart_jobs:
