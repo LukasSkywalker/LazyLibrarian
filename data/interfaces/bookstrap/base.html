@@ -490,7 +490,14 @@
                   %endif
                   </a></li>
                 %endif
-                <li><a id="help" href="help" target="_new"><i class="fa fa-question-circle"></i> ${_('Help')}</a></li>
+                <li class="dropdown"><a href="#" id="help" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-question-circle"></i> ${_('Help')} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="help" target="_new"><i class="fa fa-book fa-fw"></i> ${_('Help')}</a></li>
+                    <li><a href="https://www.reddit.com/r/LazyLibrarian/" target="_blank" rel="noopener"><i class="fab fa-reddit-alien fa-fw"></i> Reddit</a></li>
+                    <li><a href="https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues" target="_blank" rel="noopener"><i class="fa fa-bug fa-fw"></i> ${_('Report an issue')}</a></li>
+                  </ul>
+                </li>
                 %if can_switch and len(lang_opts) > 3:
                   <li class="dropdown"><a href="#" id="uilang" class="dropdown-toggle" data-toggle="dropdown" role="button"
                       aria-haspopup="true" aria-expanded="false" title="${_('Interface language') | h}"><i class="fa fa-globe"></i>
@@ -531,11 +538,6 @@
       </header>
       <div id="main" class="main container">
         ${next.body()}
-        <p class="text-center text-muted small" style="margin-top:20px">
-          <a href="https://lazylibrarian.gitlab.io/" target="_blank" rel="noopener"><i class="fa fa-book"></i> ${_('Documentation')}</a> &middot;
-          <a href="https://www.reddit.com/r/LazyLibrarian/" target="_blank" rel="noopener"><i class="fab fa-reddit-alien"></i> Reddit</a> &middot;
-          <a href="https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues" target="_blank" rel="noopener"><i class="fa fa-bug"></i> ${_('Report an issue')}</a>
-        </p>
       </div>
       <button onclick="topFunction()" id="myBtn" title="${_('Go to top') | h}"><i class="fa fa-arrow-up"></i></button>
     </div>
