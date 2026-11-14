@@ -36,7 +36,7 @@
 </%def>
 <%def name="body()">
 <h1 class="h3 mb-3">${title}</h1>
-%if perm & lazylibrarian.perm_aaa == lazylibrarian.perm_all:
+%if perm & lazylibrarian.perm_all == lazylibrarian.perm_all:
 <%
     names = sorted([u['UserName'] for u in users if u['UserName']], key=lambda name: name.lower())
     presets = [('admin', _('Admin'), lazylibrarian.perm_all), ('friend', _('Friend'), lazylibrarian.perm_friend),
