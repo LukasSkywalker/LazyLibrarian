@@ -89,6 +89,12 @@
     <a class="btn btn-sm btn-outline-secondary rounded-pill" href="${repo | h}/-/commits/${changes.get('branch') or branch | u}" target="_blank" rel="noopener">
       <i class="fa fa-external-link-alt" aria-hidden="true"></i> <span class="d-none d-sm-inline">${_('All changes on GitLab')}</span>
     </a>
+    <a class="btn btn-sm btn-outline-secondary rounded-pill" href="https://www.reddit.com/r/LazyLibrarian/" target="_blank" rel="noopener">
+      <i class="fab fa-reddit-alien" aria-hidden="true"></i> <span class="d-none d-sm-inline">Reddit</span>
+    </a>
+    <a class="btn btn-sm btn-outline-secondary rounded-pill" href="https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues" target="_blank" rel="noopener">
+      <i class="fa fa-bug" aria-hidden="true"></i> <span class="d-none d-sm-inline">${_('Report an issue')}</span>
+    </a>
   </div>
 
   %if changes.get('loading'):
