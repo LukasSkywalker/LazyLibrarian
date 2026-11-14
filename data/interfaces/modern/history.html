@@ -134,7 +134,7 @@
             <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" x-show="modal.item && modal.item.status !== 'Failed'" @click="markFailed()">${_('Mark Failed')}</button>
             %endif
             %if can_edit:
-            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" x-show="modal.item && modal.item.status === 'Seeding'" @click="stopSeeding()"><i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
+            <button type="button" class="btn btn-sm btn-outline-info rounded-pill" x-show="modal.item && modal.item.status === 'Seeding'" @click="stopSeeding()"><i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
             <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="remove()">${_('Delete')}</button>
             %endif
           </div>

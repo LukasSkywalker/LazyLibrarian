@@ -491,7 +491,7 @@
               <span class="badge rounded-pill ll-dl-pill" :class="d.status === 'Seeding' ? 'text-bg-info' : 'text-bg-warning'"
                     x-text="d.status === 'Seeding' ? llStatus(d.status) : $store.dl.T.noClient"></span>
               %if perm & lazylibrarian.perm_edit:
-              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill ms-2 py-0" x-show="d.status === 'Seeding'"
+              <button type="button" class="btn btn-sm btn-outline-info rounded-pill ms-2 py-0" x-show="d.status === 'Seeding'"
                       :disabled="!!d.busy" @click.prevent.stop="$store.dl.stopSeeding(d)">
                 <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
               %endif
