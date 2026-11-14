@@ -116,7 +116,7 @@ from lazylibrarian.config2 import CONFIG, wishlist_type
 from lazylibrarian.configtypes import ConfigBool
 from lazylibrarian.csvfile import dump_table, export_csv, import_csv, restore_table
 from lazylibrarian.dbupgrade import check_db
-from lazylibrarian.download_client import get_download_progress
+from lazylibrarian.download_client import delete_task, get_download_progress
 from lazylibrarian.downloadmethods import (
     direct_dl_method,
     irc_dl_method,
@@ -8802,8 +8802,9 @@ class WebInterface:
                     progress, _ = get_download_progress(row['Source'], make_unicode(row['DownloadID']))
                 active.append(to_item(row, progress))
             # failed downloads are too common to be worth showing here, the history page has them
+            # by date, as a download whose seeding was just stopped gets today's date and should show first
             rows = db.select(f"SELECT {cols} from wanted WHERE Status='Processed' "
-                             "and BookID is not null ORDER BY rowid DESC LIMIT 15")
+                             "and BookID is not null ORDER BY NZBdate DESC, rowid DESC LIMIT 15")
             for row in rows:
                 recent.append(to_item(row, 100))
         except Exception:
@@ -8811,6 +8812,65 @@ class WebInterface:
         finally:
             db.close()
         return {'active': active, 'recent': recent}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def stop_seeding(self, rowid=None, **kwargs):
+        """ Modern downloads panel: stop seeding one download now. The torrent goes from the downloader,
+            its files stay where they are, and the request is done with """
+        self.check_permitted(lazylibrarian.perm_edit)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        logger = logging.getLogger(__name__)
+        db = database.DBConnection()
+        # noinspection PyBroadException
+        try:
+            return {'ok': self._stop_seeding_row(db, check_int(rowid, 0))}
+        except Exception:
+            logger.error(f'Unhandled exception in stop_seeding: {traceback.format_exc()}')
+            return {'ok': False}
+        finally:
+            db.close()
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def stop_all_seeding(self, **kwargs):
+        """ Stop seeding every download that is seeding, see stop_seeding """
+        self.check_permitted(lazylibrarian.perm_edit)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        logger = logging.getLogger(__name__)
+        stopped = failed = 0
+        db = database.DBConnection()
+        # noinspection PyBroadException
+        try:
+            for row in db.select("SELECT rowid from wanted WHERE Status='Seeding'"):
+                try:
+                    if self._stop_seeding_row(db, row['rowid']):
+                        stopped += 1
+                    else:
+                        failed += 1
+                except Exception:
+                    logger.error(f'Unhandled exception in stop_all_seeding: {traceback.format_exc()}')
+                    failed += 1
+        finally:
+            db.close()
+        return {'ok': failed == 0, 'stopped': stopped, 'failed': failed}
+
+    @staticmethod
+    def _stop_seeding_row(db, rowid):
+        """ Take one seeding download off its downloader and mark it processed, True if that worked """
+        logger = logging.getLogger(__name__)
+        row = db.match("SELECT NZBtitle,Source,DownloadID from wanted WHERE rowid=? and Status='Seeding'", (rowid,))
+        if not row:
+            return False
+        # abandoned: the provider's seed requirement is the very thing being cut short here
+        if not delete_task(row['Source'], make_unicode(row['DownloadID']), False, abandoned=True):
+            return False
+        logger.info(f"STATUS: {row['NZBtitle']} [Seeding -> Processed] Seeding stopped by user")
+        db.action("UPDATE wanted SET Status='Processed',NZBDate=? WHERE rowid=? and Status='Seeding'",
+                  (now(), rowid))
+        return True
 
     @cherrypy.expose
     @require_auth()

@@ -483,8 +483,14 @@
       <button type="button" class="btn-close" @click="$store.dl.hide()" aria-label="${_('Close') | h}"></button>
     </div>
     <div class="offcanvas-body">
-      <h3>${_('Downloading')}
-        <span class="badge rounded-pill text-bg-info" x-show="$store.dl.active.length" x-text="$store.dl.active.length"></span></h3>
+      <h3 class="d-flex align-items-center gap-2">${_('Downloading')}
+        <span class="badge rounded-pill text-bg-info" x-show="$store.dl.active.length" x-text="$store.dl.active.length"></span>
+        %if perm & lazylibrarian.perm_edit:
+        <button type="button" class="btn btn-sm btn-outline-info rounded-pill py-0 ms-auto" x-show="$store.dl.seeding > 0"
+                :disabled="$store.dl.stopping" @click="$store.dl.stopAll()">
+          <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop all seeding')}</button>
+        %endif
+      </h3>
       <template x-for="d in $store.dl.active" :key="d.rowid">
         <a class="ll-dl-item" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
@@ -510,6 +516,11 @@
             <span class="ll-dl-p" x-show="d.status !== 'Snatched' || d.progress < -1">
               <span class="badge rounded-pill ll-dl-pill" :class="d.status === 'Seeding' ? 'text-bg-info' : 'text-bg-warning'"
                     x-text="d.status === 'Seeding' ? llStatus(d.status) : $store.dl.T.noClient"></span>
+              %if perm & lazylibrarian.perm_edit:
+              <button type="button" class="btn btn-sm btn-outline-info rounded-pill ms-2 py-0" x-show="d.status === 'Seeding'"
+                      :disabled="!!d.busy" @click.prevent.stop="$store.dl.stopSeeding(d)">
+                <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
+              %endif
             </span>
           </span>
         </a>
@@ -517,7 +528,9 @@
       <div class="ll-dl-empty" x-show="$store.dl.loaded && !$store.dl.active.length">${_('Nothing is downloading')}</div>
       <div class="ll-dl-empty" x-show="!$store.dl.loaded"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span></div>
 
-      <h3>${_('Finished recently')}</h3>
+      <h3 class="d-flex align-items-center justify-content-between">${_('Finished recently')}
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill py-0" x-show="$store.dl.recent.length"
+                @click="$store.dl.clearRecent()"><i class="fa fa-trash me-1" aria-hidden="true"></i>${_('Clear')}</button></h3>
       <template x-for="d in $store.dl.recent" :key="d.rowid">
         <a class="ll-dl-item" :class="$store.dl.hl.indexOf(d.rowid) >= 0 && 'll-new'" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
@@ -613,8 +626,9 @@
     var rtf = null, panel = null, panelWide = false;  // the bootstrap instance stays out of Alpine's reactivity
     try { rtf = new Intl.RelativeTimeFormat(LANG, {numeric: 'auto'}); } catch (e) {}
     Alpine.store('dl', {
-      T: T, active: [], recent: [], hl: [], loaded: false, open: false, timer: 0,
+      T: T, active: [], recent: [], hl: [], loaded: false, open: false, timer: 0, stopping: false,
       get downloading() { return this.active.filter(function (d) { return d.status === 'Snatched'; }).length; },
+      get seeding() { return this.active.filter(function (d) { return d.status === 'Seeding'; }).length; },
       get unread() { return this.recent.some(function (d) { return d.isNew; }); },
       init: function () {
         var self = this, el = document.getElementById('ll-dl');
@@ -647,7 +661,9 @@
         fetch('get_downloads?_=' + Date.now(), {credentials: 'same-origin'}).then(function (r) {
           if (!r.ok) { throw new Error(r.status); } return r.json();
         }).then(function (j) {
-          var read = load('ll-dl-read'), recent = j.recent || [];
+          var read = load('ll-dl-read'), cleared = load('ll-dl-cleared') || [];
+          // what was cleared from the list stays out of it, the history page still has it
+          var recent = (j.recent || []).filter(function (d) { return cleared.indexOf(d.rowid) < 0; });
           // the first time ever, what finished before is not news
           if (!Array.isArray(read)) { read = recent.map(function (d) { return d.rowid; }); save('ll-dl-read', read); }
           recent.forEach(function (d) { d.isNew = read.indexOf(d.rowid) < 0; });
@@ -672,6 +688,29 @@
         this.recent.forEach(function (d) { if (d.isNew && hl.indexOf(d.rowid) < 0) { hl.push(d.rowid); } });
         this.recent.forEach(function (d) { if (read.indexOf(d.rowid) < 0) { read.push(d.rowid); } d.isNew = false; });
         save('ll-dl-read', read.slice(-200));
+      },
+      clearRecent: function () {
+        var cleared = load('ll-dl-cleared');
+        cleared = Array.isArray(cleared) ? cleared : [];
+        this.recent.forEach(function (d) { if (cleared.indexOf(d.rowid) < 0) { cleared.push(d.rowid); } });
+        save('ll-dl-cleared', cleared.slice(-200));
+        this.recent = []; this.hl = [];
+      },
+      stopAll: function () {
+        var self = this;
+        this.stopping = true;
+        fetch('stop_all_seeding', {method: 'POST', credentials: 'same-origin'})
+          .then(function (r) { return r.json(); })
+          .catch(function () {})
+          .finally(function () { self.stopping = false; self.schedule(true); });
+      },
+      stopSeeding: function (d) {
+        var self = this;
+        d.busy = true;
+        fetch('stop_seeding?rowid=' + encodeURIComponent(d.rowid), {method: 'POST', credentials: 'same-origin'}).then(function (r) {
+          return r.json();
+        }).then(function (j) { if (j.ok) { self.schedule(true); } else { d.busy = false; } })
+          .catch(function () { d.busy = false; });
       },
       icon: function (kind) { return T.icons[kind] || 'fa-book'; },
       size: function (s) { return /^[0-9.]+$/.test(String(s)) ? s + ' MB' : String(s); },
