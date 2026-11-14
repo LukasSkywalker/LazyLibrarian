@@ -25,8 +25,13 @@
 # Create a pipeline for master and for merge requests. Other pushes get none: without this,
 # every push got a pipeline with no jobs, which GitLab shows as failed. translations-check
 # runs in every merge request pipeline, so those pipelines are never empty.
+# Merge requests from weblate* branches get none: they only carry .po files written by
+# Hosted Weblate, which validates them itself, and from the Weblate fork the pipeline
+# would run on the shared weblate account's compute minutes (ci_quota_exceeded).
 workflow:
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^weblate/'
+      when: never
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
