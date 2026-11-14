@@ -810,10 +810,13 @@ def iterate_over_direct_sites(book=None, search_type=None):
                     logger.debug(f"Querying {prov['NAME']}")
                     TELEMETRY.record_usage_data(f"Query/{prov['NAME']}")
                     results, error = direct_gen(book, prov['NAME'])
+                    # keep what was found before an error, eg a later results page timing out
+                    resultslist += results
                     if error:
-                        BLOCKHANDLER.block_provider(prov['NAME'], error)
-                    else:
-                        resultslist += results
+                        # a slow or flaky mirror is retried sooner than the usual hour
+                        delay = min(CONFIG.get_int('BLOCKLIST_TIMER'), 600)
+                        BLOCKHANDLER.block_provider(prov['NAME'], error, delay=delay)
+                    if results or not error:
                         providers += 1
     except RuntimeError:
         logger.debug("Error iterating gen")
