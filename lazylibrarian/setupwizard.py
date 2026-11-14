@@ -23,6 +23,7 @@ from lazylibrarian.telemetry import TELEMETRY
 
 GENERIC = '_generic'
 MONTH_LANGUAGE = 'MONTH_LANGUAGE'  # pseudo key, adds a built-in language to the month name table
+LIBGEN = 'LIBGEN'  # pseudo key, switches on the LibGen entry of the generic (GEN) providers
 
 # Per language: date order, series number wording, other languages readers of it usually want,
 # and the switch of a metadata source for books in it.
@@ -70,6 +71,22 @@ SOURCE_HELP = {
     'DNB_API': N_('German National Library (Deutsche Nationalbibliothek)'),
     'BN_API': N_('National Library of Poland (Biblioteka Narodowa)'),
 }
+# Providers the wizard can switch on: key, label, help. Hosts and logins are set on the Providers tab.
+SEARCH_PROVIDERS = [
+    ('ANNA', N_("Anna's Archive"), N_('Books in many languages. Downloads without a key are slow.')),
+    ('WEBSHARE', N_('Webshare'), N_('Czech and Slovak file hosting. Needs your Webshare login, '
+                                     'enter it on the Providers tab.')),
+    ('BOK', N_('Z-Library'), N_('Needs your Z-Library login, enter it on the Providers tab.')),
+    ('SLSK', N_('Soulseek'), N_('Needs a running slskd server, set it up on the Providers tab.')),
+    ('ABB', N_('AudioBookBay'), N_('AudioBooks by torrent, needs a torrent client.')),
+    ('LIME', N_('LimeTorrents'), N_('Torrents, needs a torrent client.')),
+    ('TPB', N_('The Pirate Bay'), N_('Torrents, needs a torrent client.')),
+    ('KAT', N_('KickassTorrents'), N_('Torrents, needs a torrent client.')),
+    ('TDL', N_('TorrentDownloads'), N_('Torrents, needs a torrent client.')),
+]
+# Providers worth switching on per country, on top of those for every country
+PROVIDERS_ALL = ['ANNA']
+PROVIDERS_COUNTRY = {'SK': ['WEBSHARE'], 'CZ': ['WEBSHARE']}
 # Keys whose change needs the page reloaded to show
 RELOAD_KEYS = {'UI_LANGUAGE', 'HTTP_LOOK', 'BOOKSTRAP_THEME', 'EBOOK_TAB', 'AUDIO_TAB', 'MAG_TAB', 'COMIC_TAB',
                'SERIES_TAB'}
@@ -285,6 +302,21 @@ def _maglang_choices(values: list) -> list:
     return _with_extra(choices, values)
 
 
+def _recommended_providers(country: str) -> list:
+    return PROVIDERS_ALL + PROVIDERS_COUNTRY.get(country, [])
+
+
+def _libgen_entry(config):
+    """ The generic (GEN) provider that is LibGen, the one the program prepares switched off, or None """
+    array = config.get_array('GEN')
+    if array is None:
+        return None
+    for entry in array:
+        if 'libgen' in entry.get_str('HOST').lower():
+            return entry
+    return None
+
+
 def _month_table() -> list:
     return lazylibrarian.MONTHNAMES[0] if lazylibrarian.MONTHNAMES else []
 
@@ -363,8 +395,17 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
 
     other = [_row(config, key, label, 'folder', config.get_str(key)) for key, label in FOLDER_KEYS]
     other += [_row(config, key, label, 'bool', config.get_bool(key)) for key, label in TAB_KEYS]
-    other.append(_row(config, 'ANNA', N_("Search Anna's Archive"), 'bool', config.get_bool('ANNA')))
-    other.append(_row(config, 'BOK', N_('Search Z-Library'), 'bool', config.get_bool('BOK')))
+    providers = []
+    recommended = _recommended_providers(country)
+    for key, label, help_text in SEARCH_PROVIDERS:
+        providers.append(_row(config, key, label, 'bool', key in recommended or config.get_bool(key),
+                              help_text=help_text))
+        if key in recommended:
+            providers[-1]['help'] = (i18n.gettext('Recommended for your country') + '. ' + providers[-1]['help']).strip()
+    libgen = _libgen_entry(config)
+    if libgen is not None:
+        providers.insert(1, _row(config, LIBGEN, N_('LibGen'), 'bool', True, current=libgen.get_bool('ENABLED'),
+                                 help_text=N_('Recommended for your country. Books and comics from the LibGen mirror.')))
     other.append(_row(config, 'FMT_SERNUM', N_('Series number format'), 'str',
                       prof['sernum'] or config.get_str('FMT_SERNUM')))
     other.append(_row(config, 'HTTP_LOOK', N_('Interface'), 'choice', config.get_str('HTTP_LOOK'),
@@ -378,23 +419,26 @@ def presets_for(country: str, browser_langs=(), config=None, ui_lang: str = '') 
         {'id': 'sources', 'title': i18n.gettext('Book databases'), 'rows': sources},
         {'id': 'books', 'title': i18n.gettext('Book languages'), 'rows': books},
         {'id': 'dates', 'title': i18n.gettext('Dates, months and magazines'), 'rows': dates},
+        {'id': 'providers', 'title': i18n.gettext('Search providers'), 'rows': providers},
         {'id': 'other', 'title': i18n.gettext('Library and other settings'), 'rows': other},
     ]
 
 
 def _all_keys() -> frozenset:
-    keys = {MONTH_LANGUAGE, 'UI_LANGUAGE', 'BOOK_API', 'GB_COUNTRY', 'IMP_PREFLANG', 'LANGID_LANGUAGES',
+    keys = {MONTH_LANGUAGE, LIBGEN, 'UI_LANGUAGE', 'BOOK_API', 'GB_COUNTRY', 'IMP_PREFLANG', 'LANGID_LANGUAGES',
             'DATE_LANG', 'DATE_FORMAT', 'AUTHOR_DATE_FORMAT', 'PREF_MAGLANG', 'ISSUE_NOUNS', 'VOLUME_NOUNS',
-            'MAG_NOUNS', 'ANNA', 'BOK', 'FMT_SERNUM', 'HTTP_LOOK', 'BOOKSTRAP_THEME'}
+            'MAG_NOUNS', 'FMT_SERNUM', 'HTTP_LOOK', 'BOOKSTRAP_THEME'}
+    keys.update(key for key, _label, _help in SEARCH_PROVIDERS)
     keys.update(prof['source'] for prof in LANGUAGES.values() if prof.get('source'))
     keys.update(key for key, _label in FOLDER_KEYS + TAB_KEYS)
     return frozenset(keys)
 
 
 WIZARD_KEYS = _all_keys()
-_KIND = {'UI_LANGUAGE': 'choice', 'BOOK_API': 'choice', 'HTTP_LOOK': 'choice', 'GB_COUNTRY': 'choice', 'ANNA': 'bool', 'BOK': 'bool',
-         'DBK_API': 'bool', 'DNB_API': 'bool', 'BN_API': 'bool', MONTH_LANGUAGE: 'months'}
+_KIND = {'UI_LANGUAGE': 'choice', 'BOOK_API': 'choice', 'HTTP_LOOK': 'choice', 'GB_COUNTRY': 'choice',
+         'DBK_API': 'bool', 'DNB_API': 'bool', 'BN_API': 'bool', MONTH_LANGUAGE: 'months', LIBGEN: 'bool'}
 _KIND.update({key: 'bool' for key, _label in TAB_KEYS})
+_KIND.update({key: 'bool' for key, _label, _help in SEARCH_PROVIDERS})
 _BOOL_STRINGS = {'1': True, 'true': True, '0': False, 'false': False, '': False}
 
 
@@ -428,7 +472,7 @@ def _coerce(key: str, value, config):
         return value
     item = config.get_item(key)
     if item is None:
-        raise ValueError(f'{key}: unknown setting')
+        raise ValueError(f'{key}: unknown setting')  # LIBGEN is a bool, returned above
     if item.get_force_lower():
         value = value.lower()
     if not item.is_valid_value(value):
@@ -503,6 +547,11 @@ def apply(values: dict, config=None, finish: bool = True) -> dict:
         for key, value in clean.items():
             if key == MONTH_LANGUAGE:
                 if _add_month_language(value):
+                    result['changed'].append(key)
+                continue
+            if key == LIBGEN:
+                entry = _libgen_entry(config)
+                if entry is not None and entry.get_item('ENABLED').set_from_ui(value):
                     result['changed'].append(key)
                 continue
             if config.set_from_ui(key, value):
