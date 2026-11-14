@@ -223,7 +223,8 @@ def direct_gen(book=None, prov=None, test=False):
                 host = f"http://{host}"
             search = entry['SEARCH']
             if not search:
-                search = 'search.php'
+                # libgen.li only has index.php, the older mirrors search.php
+                search = 'index.php' if 'libgen.li' in host.lower() else 'search.php'
             if search[0] == '/':
                 search = search[1:]
             priority = entry['DLPRIORITY']
