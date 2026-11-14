@@ -36,10 +36,10 @@
 </%def>
 <%def name="body()">
 <h1 class="h3 mb-3">${title}</h1>
-%if perm & lazylibrarian.perm_admin == lazylibrarian.perm_admin:
+%if perm & lazylibrarian.perm_aaa == lazylibrarian.perm_all:
 <%
     names = sorted([u['UserName'] for u in users if u['UserName']], key=lambda name: name.lower())
-    presets = [('admin', _('Admin'), lazylibrarian.perm_admin), ('friend', _('Friend'), lazylibrarian.perm_friend),
+    presets = [('admin', _('Admin'), lazylibrarian.perm_all), ('friend', _('Friend'), lazylibrarian.perm_friend),
                ('guest', _('Guest'), lazylibrarian.perm_guest)]
     # the themes admin_users accepts: '' (the global interface), modern and bookstrap_<style>
     themes = [('', _('Default')), ('modern', 'modern')] + \
@@ -256,7 +256,7 @@
 %endif
 </%def>
 <%def name="javascriptIncludes()">
-%if perm & lazylibrarian.perm_admin == lazylibrarian.perm_admin:
+%if perm & lazylibrarian.perm_all == lazylibrarian.perm_all:
 <script>
 document.addEventListener('alpine:init', function () {
   var T = {
