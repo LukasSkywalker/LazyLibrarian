@@ -426,6 +426,20 @@ class LLConfigHandler(ConfigDict):
             self.logger.warning(f"Unable to pre_load_fixup {configfile}")
             return 1
 
+    def ensure_libgen_preset(self):
+        """ With no generic (GEN) provider configured, offer LibGen ready filled in but switched off,
+            so a user only has to turn it on """
+        array = self.get_array('GEN')
+        if array is None or any(array.is_in_use(i) for i in range(len(array))):
+            return
+        first = array[0] if array.has_index(0) else None
+        if first is None:
+            return
+        first.set_str('DISPNAME', 'LibGen')
+        first.set_str('HOST', 'https://libgen.li')
+        first.set_str('SEARCH', 'index.php')
+        array.ensure_empty_end_item()
+
     def post_load_fixup(self) -> int:
         """
         Perform post-load operations specific to LL.
@@ -450,6 +464,7 @@ class LLConfigHandler(ConfigDict):
             warnings += 1
 
         self.ensure_valid_homepage()
+        self.ensure_libgen_preset()
 
         if self.config['SSL_CERTS'].get_str() != '' and not path_exists(str(self.config['SSL_CERTS'])):
             self.logger.warning(f"SSL_CERTS [{str(self.config['SSL_CERTS'])}] not found")
