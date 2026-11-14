@@ -2140,6 +2140,27 @@
                         </span>
                       </div>
                     </div>
+                    <% checked = 'checked="checked"' if CONFIG['MLP'] else '' %>
+                    <div class="col-md-4 form-group">
+                      <label for="mlp" class="sr-only">${_('Prague City Library')}</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">${_('Prague City Library')}</span>
+                        <input type="text" class="form-control" value="mlp.cz/cz/eknihy" readonly>
+                        <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="${_('Enable provider') | h}">
+                        <input type="checkbox" id="mlp" name="mlp" value="1" ${checked} />
+                        </span>
+                      </div>
+                      <p class="help-block">${_('Free Czech e-books from the Městská knihovna v Praze, no login needed. eBooks only.')}</p>
+                      <div class="input-group">
+                        <span class="input-group-addon">${_('Priority')}</span>
+                        <input type="number" id="mlp_dlpriority" name="mlp_dlpriority" value="${CONFIG['MLP_DLPRIORITY']}" class="form-control" placeholder="0">
+                        <span class="input-group-addon">${_('Types')}</span>
+                        <input type="text" id="mlp_dltypes" name="mlp_dltypes" value="${CONFIG['MLP_DLTYPES']}" class="form-control" placeholder="">
+                        <span class="input-group-addon">
+                        <button role="testprov" class="button btn btn-xs btn-warning active" type="button" value="MLP"> ${_('Test')}</button>
+                        </span>
+                      </div>
+                    </div>
                     <% checked = 'checked="checked"' if CONFIG['BOK'] else '' %>
                     <div class="col-md-4 form-group">
                       <label for="bok_host" class="sr-only">${_('zlibrary host')}</label>

@@ -60,6 +60,7 @@ from lazylibrarian.torrentparser import (
     torrent_tdl,
     torrent_tpb,
 )
+from lazylibrarian.mlp import mlp_search
 from lazylibrarian.webshare import webshare_search
 
 
@@ -333,6 +334,10 @@ def test_provider(name: str, host=None, api=None):
             CONFIG.set_str('WEBSHARE_USER', user)
             CONFIG.set_str('WEBSHARE_PASS', pwd)
         return webshare_search(book, test=True), "Webshare"
+
+    if name == 'MLP':
+        logger.debug(f"Testing provider {name}")
+        return mlp_search(book, test=True), "MLP"
 
     msg = f"Unknown provider [{name}]"
     logger.error(msg)
@@ -966,6 +971,31 @@ def iterate_over_direct_sites(book=None, search_type=None):
             if 'mag' in search_type:
                 searchtype = 'mag'
             results, error = webshare_search(book, searchtype)
+            if error:
+                BLOCKHANDLER.block_provider(provider, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
+            else:
+                resultslist += results
+                providers += 1
+
+    # free e-books of the Prague City Library, eBooks only
+    prov = 'MLP'
+    if CONFIG[prov]:
+        iterateproviderslogger.debug(f"DLTYPES: {prov}: {CONFIG[prov]} {CONFIG[prov + '_DLTYPES']}")
+        provider = 'mlp'
+        ignored = False
+        if BLOCKHANDLER.is_blocked(provider):
+            logger.debug('mlp is BLOCKED')
+            ignored = True
+        elif search_type not in ['book', 'shortbook', 'titlebook']:
+            logger.debug(f"Ignoring {prov} for {search_type}, it only has eBooks")
+            ignored = True
+        elif 'E' not in CONFIG[f"{prov}_DLTYPES"]:
+            logger.debug(f"Ignoring {prov} for eBook")
+            ignored = True
+        if not ignored:
+            logger.debug(f'Querying {provider}')
+            TELEMETRY.record_usage_data(f'Query/{prov}')
+            results, error = mlp_search(book, 'ebook')
             if error:
                 BLOCKHANDLER.block_provider(provider, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
             else:

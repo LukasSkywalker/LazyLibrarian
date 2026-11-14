@@ -76,6 +76,8 @@ SEARCH_PROVIDERS = [
     ('ANNA', N_("Anna's Archive"), N_('Books in many languages. Downloads without a key are slow.')),
     ('WEBSHARE', N_('Webshare'), N_('Czech and Slovak file hosting. Needs your Webshare login, '
                                      'enter it on the Providers tab.')),
+    ('MLP', N_('Prague City Library'), N_('Free Czech e-books from the Městská knihovna v Praze. '
+                                          'No login needed.')),
     ('BOK', N_('Z-Library'), N_('Needs your Z-Library login, enter it on the Providers tab.')),
     ('SLSK', N_('Soulseek'), N_('Needs a running slskd server, set it up on the Providers tab.')),
     ('ABB', N_('AudioBookBay'), N_('AudioBooks by torrent, needs a torrent client.')),
@@ -86,7 +88,7 @@ SEARCH_PROVIDERS = [
 ]
 # Providers worth switching on per country, on top of those for every country
 PROVIDERS_ALL = ['ANNA']
-PROVIDERS_COUNTRY = {'SK': ['WEBSHARE'], 'CZ': ['WEBSHARE']}
+PROVIDERS_COUNTRY = {'SK': ['WEBSHARE'], 'CZ': ['WEBSHARE', 'MLP']}
 # Keys whose change needs the page reloaded to show
 RELOAD_KEYS = {'UI_LANGUAGE', 'HTTP_LOOK', 'BOOKSTRAP_THEME', 'EBOOK_TAB', 'AUDIO_TAB', 'MAG_TAB', 'COMIC_TAB',
                'SERIES_TAB'}

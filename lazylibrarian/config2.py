@@ -657,7 +657,7 @@ class LLConfigHandler(ConfigDict):
                     not BLOCKHANDLER.is_blocked(provider['NAME']):
                 count += 1
         for item, blockname in [('BOK', 'zlibrary'), ('ANNA', 'annas'), ('SLSK', 'soulseek'),
-                                ('WEBSHARE', 'webshare')]:
+                                ('WEBSHARE', 'webshare'), ('MLP', 'mlp')]:
             if self.get_bool(item) and not BLOCKHANDLER.is_blocked(blockname):
                 count += 1
         return count

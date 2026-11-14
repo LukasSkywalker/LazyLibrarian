@@ -3650,7 +3650,7 @@ class WebInterface:
             db.upsert("wanted", new_value_dict, control_value_dict)
             author_id = bookdata["AuthorID"]
             dl_title = bookdata["BookName"]
-            if provider in ['soulseek', 'annas', 'webshare']:
+            if provider in ['soulseek', 'annas', 'webshare', 'mlp']:
                 dl_title = title
             if mode == 'direct':
                 snatch, res = direct_dl_method(bookid, dl_title, url, library, provider)
@@ -3731,7 +3731,7 @@ class WebInterface:
     HAVE_STATUSES = ('Open', 'Have', 'Snatched', 'Processed')
     # direct providers are stored in the wanted table by their internal name
     DIRECT_PROVIDER_NAMES = {'annas': "Anna's Archive", 'zlibrary': 'Z-Library', 'webshare': 'Webshare',
-                             'soulseek': 'Soulseek'}
+                             'mlp': 'Městská knihovna v Praze', 'soulseek': 'Soulseek'}
 
     @classmethod
     def _found_not_downloaded(cls, db, bookids) -> dict:
@@ -9284,6 +9284,7 @@ class WebInterface:
         for prefix, prov, key, name in (('slsk', 'SLSK', 'soulseek', 'Soulseek'),
                                         ('anna', 'ANNA', 'annas', "Anna's Archive"),
                                         ('webshare', 'WEBSHARE', 'webshare', 'WebShare'),
+                                        ('mlp', 'MLP', 'mlp', 'Městská knihovna v Praze'),
                                         ('bok', 'BOK', 'zlibrary', 'Z-Library')):
             cards[prefix] = {'keys': [key, prov], 'name': name}
         for prefix, card in cards.items():
