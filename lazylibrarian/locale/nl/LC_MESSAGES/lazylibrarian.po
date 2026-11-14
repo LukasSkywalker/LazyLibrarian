@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-13 18:01+0000\n"
+"POT-Creation-Date: 2026-11-14 20:12+0000\n"
 "PO-Revision-Date: 2026-11-13 12:56+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -51,7 +51,7 @@ msgstr ""
 #: data/interfaces/modern/issues.html:119
 #: data/interfaces/modern/magazines.html:113
 #: data/interfaces/modern/magazines.html:158
-#: data/interfaces/modern/modern_base.html:898
+#: data/interfaces/modern/modern_base.html:966
 msgid "Search"
 msgstr "Zoeken"
 
@@ -130,7 +130,7 @@ msgstr "Hoofdauteur of medewerker"
 #: data/interfaces/modern/author.html:236
 #: data/interfaces/modern/book_detail.html:80
 #: data/interfaces/modern/books.html:141
-#: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:555
+#: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
 msgid "Language"
 msgstr "Taal"
 
@@ -255,7 +255,7 @@ msgstr "Verwijderen"
 #: data/interfaces/bookstrap/users.html:119
 #: data/interfaces/modern/dlresult.html:30
 #: data/interfaces/modern/editcomic.html:93
-#: data/interfaces/modern/history.html:137
+#: data/interfaces/modern/history.html:145
 #: data/interfaces/modern/users.html:197
 msgid "Delete"
 msgstr "Wissen"
@@ -353,7 +353,7 @@ msgstr "Tonen:"
 #: data/interfaces/modern/books.html:135 data/interfaces/modern/books.html:291
 #: data/interfaces/modern/config.html:1740
 #: data/interfaces/modern/editauthor.html:80
-#: data/interfaces/modern/history.html:94
+#: data/interfaces/modern/history.html:96
 #: data/interfaces/modern/managebooks.html:65
 #: data/interfaces/modern/members.html:126
 #: data/interfaces/modern/searchresults.html:141
@@ -407,7 +407,7 @@ msgstr "Titel"
 #: data/interfaces/bookstrap/author.html:313
 #: data/interfaces/bookstrap/author.html:329
 #: data/interfaces/bookstrap/author_detail.html:41
-#: data/interfaces/bookstrap/base.html:432
+#: data/interfaces/bookstrap/base.html:436
 #: data/interfaces/bookstrap/books.html:88
 #: data/interfaces/bookstrap/books.html:109
 #: data/interfaces/bookstrap/config.html:134
@@ -422,7 +422,7 @@ msgstr "Titel"
 #: data/interfaces/modern/editbook.html:138
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
-#: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:77
+#: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:94
 #: lazylibrarian/webServe.py:2122
 msgid "Series"
 msgstr "Serie"
@@ -589,7 +589,7 @@ msgstr[1] ""
 #: data/interfaces/bookstrap/audio.html:297
 #: data/interfaces/bookstrap/author.html:355
 #: data/interfaces/bookstrap/author_detail.html:80
-#: data/interfaces/bookstrap/base.html:769
+#: data/interfaces/bookstrap/base.html:789
 #: data/interfaces/bookstrap/books.html:316
 #: data/interfaces/bookstrap/comicissues.html:185
 #: data/interfaces/bookstrap/comics.html:268
@@ -603,7 +603,7 @@ msgstr[1] ""
 #: data/interfaces/modern/author.html:321
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
-#: data/interfaces/modern/modern_base.html:567
+#: data/interfaces/modern/modern_base.html:609
 #: data/interfaces/modern/users.html:228
 msgid "Yes"
 msgstr "Ja"
@@ -611,7 +611,7 @@ msgstr "Ja"
 #: data/interfaces/bookstrap/audio.html:301
 #: data/interfaces/bookstrap/author.html:359
 #: data/interfaces/bookstrap/author_detail.html:81
-#: data/interfaces/bookstrap/base.html:773
+#: data/interfaces/bookstrap/base.html:793
 #: data/interfaces/bookstrap/books.html:320
 #: data/interfaces/bookstrap/comicissues.html:189
 #: data/interfaces/bookstrap/comics.html:272
@@ -628,7 +628,7 @@ msgstr "Ja"
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
-#: data/interfaces/modern/modern_base.html:566
+#: data/interfaces/modern/modern_base.html:608
 #: data/interfaces/modern/users.html:227
 msgid "No"
 msgstr "Nee"
@@ -727,7 +727,7 @@ msgstr "Boeken als voltooid markeren"
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/config.html:1157
 #: data/interfaces/modern/editmag.html:103
-#: data/interfaces/modern/modern_base.html:672
+#: data/interfaces/modern/modern_base.html:740
 #: data/interfaces/modern/searchresults.html:226
 msgid "OK"
 msgstr "OK"
@@ -766,9 +766,9 @@ msgstr "Er is een fout opgetreden:"
 #: data/interfaces/bookstrap/audio.html:390
 #: data/interfaces/bookstrap/author.html:606
 #: data/interfaces/bookstrap/author.html:679
-#: data/interfaces/bookstrap/base.html:729
-#: data/interfaces/bookstrap/base.html:754
-#: data/interfaces/bookstrap/base.html:933
+#: data/interfaces/bookstrap/base.html:749
+#: data/interfaces/bookstrap/base.html:774
+#: data/interfaces/bookstrap/base.html:953
 #: data/interfaces/bookstrap/books.html:409
 #: data/interfaces/bookstrap/choosetype.html:48
 #: data/interfaces/bookstrap/config_functions.js:172
@@ -844,16 +844,16 @@ msgstr "Er is een fout opgetreden:"
 #: data/interfaces/modern/comics.html:179
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/dlresult.html:33
-#: data/interfaces/modern/history.html:119
-#: data/interfaces/modern/history.html:146 data/interfaces/modern/login.html:52
+#: data/interfaces/modern/history.html:126
+#: data/interfaces/modern/history.html:154 data/interfaces/modern/login.html:52
 #: data/interfaces/modern/login.html:68
 #: data/interfaces/modern/magazines.html:196
 #: data/interfaces/modern/managebooks.html:194
 #: data/interfaces/modern/managebooks.html:204
-#: data/interfaces/modern/modern_base.html:454
-#: data/interfaces/modern/modern_base.html:555
-#: data/interfaces/modern/modern_base.html:749
-#: data/interfaces/modern/modern_base.html:877
+#: data/interfaces/modern/modern_base.html:483
+#: data/interfaces/modern/modern_base.html:597
+#: data/interfaces/modern/modern_base.html:817
+#: data/interfaces/modern/modern_base.html:945
 #: data/interfaces/modern/profile.html:126
 #: data/interfaces/modern/profile.html:130
 #: data/interfaces/modern/response.html:18
@@ -991,7 +991,7 @@ msgstr "RSS-feed van recente luisterboeken"
 #: data/interfaces/modern/issues.html:112
 #: data/interfaces/modern/issues.html:125
 #: data/interfaces/modern/issues.html:155
-#: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:560
+#: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -1582,7 +1582,7 @@ msgstr "Rijen 0 tot 0 van 0"
 msgid "(filtered from _MAX_ total rows)"
 msgstr "(gefilterd uit _MAX_ rijen in totaal)"
 
-#: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:564
+#: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:613
 msgid "Loading..."
 msgstr "Laden ..."
 
@@ -1594,7 +1594,7 @@ msgstr "Eerste"
 msgid "Previous"
 msgstr "Vorige"
 
-#: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:566
+#: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:615
 msgid "Next"
 msgstr "Volgende"
 
@@ -1603,6 +1603,7 @@ msgid "Last"
 msgstr "Laatste"
 
 #: data/interfaces/bookstrap/base.html:179
+#: data/interfaces/modern/modern_base.html:533
 msgid "Clear"
 msgstr "Wissen"
 
@@ -1622,7 +1623,7 @@ msgstr "Wissen"
 #: data/interfaces/modern/members.html:194
 #: data/interfaces/modern/searchresults.html:208
 #: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1667,12 +1668,12 @@ msgstr "Lijst"
 msgid "View:"
 msgstr "Weergave:"
 
-#: data/interfaces/bookstrap/base.html:400
-#: data/interfaces/modern/modern_base.html:354
+#: data/interfaces/bookstrap/base.html:404
+#: data/interfaces/modern/modern_base.html:366
 msgid "Toggle navigation"
 msgstr "Navigatie in-/uitklappen"
 
-#: data/interfaces/bookstrap/base.html:420
+#: data/interfaces/bookstrap/base.html:424
 #: data/interfaces/bookstrap/config.html:134
 #: data/interfaces/bookstrap/config.html:2429
 #: data/interfaces/modern/modern_base.html:14 lazylibrarian/webServe.py:875
@@ -1680,131 +1681,144 @@ msgstr "Navigatie in-/uitklappen"
 msgid "Authors"
 msgstr "Auteurs"
 
-#: data/interfaces/bookstrap/base.html:425
+#: data/interfaces/bookstrap/base.html:429
 #: data/interfaces/bookstrap/config.html:134
 #: data/interfaces/bookstrap/config.html:149
 #: data/interfaces/bookstrap/config.html:225
-#: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:3727
 msgid "eBooks"
 msgstr "E-books"
 
-#: data/interfaces/bookstrap/base.html:440
+#: data/interfaces/bookstrap/base.html:444
 msgid "Audio"
 msgstr "Audio"
 
-#: data/interfaces/bookstrap/base.html:441
+#: data/interfaces/bookstrap/base.html:445
 #: data/interfaces/bookstrap/config.html:135
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:225
-#: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:3704
 msgid "AudioBooks"
 msgstr "Luisterboeken"
 
-#: data/interfaces/bookstrap/base.html:451
+#: data/interfaces/bookstrap/base.html:455
 msgid "Mags"
 msgstr "Tijdschr."
 
-#: data/interfaces/bookstrap/base.html:452
+#: data/interfaces/bookstrap/base.html:456
 #: data/interfaces/bookstrap/config.html:135
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
-#: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:6886
 msgid "Magazines"
 msgstr "Tijdschriften"
 
-#: data/interfaces/bookstrap/base.html:461
+#: data/interfaces/bookstrap/base.html:465
 #: data/interfaces/bookstrap/config.html:136
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2896
-#: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:77
+#: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
 #: lazylibrarian/webServe.py:6176 lazylibrarian/webServe.py:6537
 msgid "Comics"
 msgstr "Strips"
 
-#: data/interfaces/bookstrap/base.html:467
-#: data/interfaces/bookstrap/base.html:469
+#: data/interfaces/bookstrap/base.html:471
+#: data/interfaces/bookstrap/base.html:473
 #: data/interfaces/modern/modern_base.html:26
 msgid "Manage"
 msgstr "Beheren"
 
-#: data/interfaces/bookstrap/base.html:473
+#: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:28
-#: data/interfaces/modern/modern_base.html:513 lazylibrarian/webServe.py:8618
+#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8618
 msgid "History"
 msgstr "Geschiedenis"
 
-#: data/interfaces/bookstrap/base.html:476
+#: data/interfaces/bookstrap/base.html:480
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/bookstrap/config.html:320
 #: data/interfaces/modern/modern_base.html:30
 msgid "Logs"
 msgstr "Logboeken"
 
-#: data/interfaces/bookstrap/base.html:479
-#: data/interfaces/modern/modern_base.html:424
+#: data/interfaces/bookstrap/base.html:483
+#: data/interfaces/modern/modern_base.html:436
 msgid "Config"
 msgstr "Configuratie"
 
-#: data/interfaces/bookstrap/base.html:482
-#: data/interfaces/bookstrap/base.html:483
-#: data/interfaces/bookstrap/base.html:697
+#: data/interfaces/bookstrap/base.html:486
+#: data/interfaces/bookstrap/base.html:487
+#: data/interfaces/bookstrap/base.html:717
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:407 lazylibrarian/webServe.py:8179
+#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8179
 msgid "What's new"
 msgstr "Wat is er nieuw"
 
-#: data/interfaces/bookstrap/base.html:489
-#: data/interfaces/modern/modern_base.html:429
+#: data/interfaces/bookstrap/base.html:494
+#: data/interfaces/bookstrap/base.html:496
+#: data/interfaces/modern/modern_base.html:442
+#: data/interfaces/modern/modern_base.html:444
 msgid "Help"
 msgstr "Help"
 
-#: data/interfaces/bookstrap/base.html:492
-#: data/interfaces/bookstrap/base.html:493
-#: data/interfaces/modern/modern_base.html:371
-#: data/interfaces/modern/modern_base.html:375 lazylibrarian/setupwizard.py:306
+#: data/interfaces/bookstrap/base.html:498
+#: data/interfaces/bookstrap/config.html:4364
+#: data/interfaces/bookstrap/whatsnew.html:28
+#: data/interfaces/modern/modern_base.html:446
+#: data/interfaces/modern/whatsnew.html:96
+#, fuzzy
+#| msgid "Import Issues"
+msgid "Report an issue"
+msgstr "Nummers importeren"
+
+#: data/interfaces/bookstrap/base.html:503
+#: data/interfaces/bookstrap/base.html:504
+#: data/interfaces/modern/modern_base.html:383
+#: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
 msgid "Interface language"
 msgstr "Interfacetaal"
 
-#: data/interfaces/bookstrap/base.html:502
+#: data/interfaces/bookstrap/base.html:513
 msgid "Try the new interface (beta)"
 msgstr "Probeer de nieuwe interface (bèta)"
 
-#: data/interfaces/bookstrap/base.html:503
-#: data/interfaces/bookstrap/base.html:673
+#: data/interfaces/bookstrap/base.html:514
+#: data/interfaces/bookstrap/base.html:693
 msgid "New interface (beta)"
 msgstr "Nieuwe interface (bèta)"
 
-#: data/interfaces/bookstrap/base.html:505
-#: data/interfaces/bookstrap/base.html:506
+#: data/interfaces/bookstrap/base.html:516
+#: data/interfaces/bookstrap/base.html:517
 msgid "Back to the new interface"
 msgstr "Terug naar de nieuwe interface"
 
-#: data/interfaces/bookstrap/base.html:511
+#: data/interfaces/bookstrap/base.html:522
 #: data/interfaces/bookstrap/config.html:540
 #: data/interfaces/bookstrap/config.html:623
-#: data/interfaces/modern/modern_base.html:432
+#: data/interfaces/modern/modern_base.html:451
 msgid "User"
 msgstr "Gebruiker"
 
-#: data/interfaces/bookstrap/base.html:514
-#: data/interfaces/modern/modern_base.html:435
+#: data/interfaces/bookstrap/base.html:525
+#: data/interfaces/modern/modern_base.html:454
 msgid "Logout"
 msgstr "Afmelden"
 
-#: data/interfaces/bookstrap/base.html:531
+#: data/interfaces/bookstrap/base.html:542
+#: data/interfaces/modern/modern_base.html:466
 msgid "Go to top"
 msgstr "Naar boven"
 
-#: data/interfaces/bookstrap/base.html:537
+#: data/interfaces/bookstrap/base.html:548
 #: data/interfaces/modern/modern_base.html:38
 msgid "LazyLibrarian Telemetry"
 msgstr "LazyLibrarian-telemetrie"
 
-#: data/interfaces/bookstrap/base.html:538
+#: data/interfaces/bookstrap/base.html:549
 #: data/interfaces/modern/modern_base.html:39
 msgid ""
 "LazyLibrarian has the ability to send basic information about the "
@@ -1817,46 +1831,46 @@ msgstr ""
 "verbeteringen de moeite waard zijn en welke onderdelen niemand gebruikt. "
 "Alle telemetriegegevens zijn 100% geanonimiseerd."
 
-#: data/interfaces/bookstrap/base.html:539
-#: data/interfaces/bookstrap/base.html:725
+#: data/interfaces/bookstrap/base.html:550
+#: data/interfaces/bookstrap/base.html:745
 msgid "Enable Telemetry"
 msgstr "Telemetrie inschakelen"
 
-#: data/interfaces/bookstrap/base.html:539
+#: data/interfaces/bookstrap/base.html:550
 #: data/interfaces/modern/modern_base.html:42
 msgid "Turn on"
 msgstr "Inschakelen"
 
-#: data/interfaces/bookstrap/base.html:540
+#: data/interfaces/bookstrap/base.html:551
 msgid "Ask me again later"
 msgstr "Later opnieuw vragen"
 
-#: data/interfaces/bookstrap/base.html:540
+#: data/interfaces/bookstrap/base.html:551
 #: data/interfaces/modern/modern_base.html:42
 msgid "Maybe Later"
 msgstr "Misschien later"
 
-#: data/interfaces/bookstrap/base.html:543
+#: data/interfaces/bookstrap/base.html:554
 #: data/interfaces/modern/modern_base.html:64
 msgid "LazyLibrarian Update"
 msgstr "LazyLibrarian-update"
 
-#: data/interfaces/bookstrap/base.html:545
+#: data/interfaces/bookstrap/base.html:556
 #: data/interfaces/modern/modern_base.html:47
 msgid "You are running an unknown version of lazylibrarian"
 msgstr "Je gebruikt een onbekende versie van LazyLibrarian"
 
-#: data/interfaces/bookstrap/base.html:547
+#: data/interfaces/bookstrap/base.html:558
 #: data/interfaces/modern/modern_base.html:49
 msgid "You are running an unknown version via source install"
 msgstr "Je gebruikt een onbekende versie via een broninstallatie"
 
-#: data/interfaces/bookstrap/base.html:550
+#: data/interfaces/bookstrap/base.html:561
 #: data/interfaces/modern/modern_base.html:52
 msgid "Unable to get the latest version from git"
 msgstr "Kan de nieuwste versie niet ophalen uit git"
 
-#: data/interfaces/bookstrap/base.html:552
+#: data/interfaces/bookstrap/base.html:563
 #: data/interfaces/modern/modern_base.html:54
 msgid ""
 "Running a local updated version. Push changes to git or rollback to Master "
@@ -1865,7 +1879,7 @@ msgstr ""
 "Er draait een lokaal aangepaste versie. Push de wijzigingen naar git of ga "
 "terug naar de Master-release"
 
-#: data/interfaces/bookstrap/base.html:555
+#: data/interfaces/bookstrap/base.html:566
 #: data/interfaces/modern/modern_base.html:56
 #, python-format
 msgid "New version available. You are one commit behind."
@@ -1873,32 +1887,32 @@ msgid_plural "New version available. You are %(count)d commits behind."
 msgstr[0] "Nieuwe versie beschikbaar. Je loopt één commit achter."
 msgstr[1] "Nieuwe versie beschikbaar. Je loopt %(count)d commits achter."
 
-#: data/interfaces/bookstrap/base.html:559
+#: data/interfaces/bookstrap/base.html:570
 #: data/interfaces/modern/modern_base.html:65
 msgid "Manual update is required"
 msgstr "Handmatige update vereist"
 
-#: data/interfaces/bookstrap/base.html:563
+#: data/interfaces/bookstrap/base.html:574
 msgid "Update to the latest release"
 msgstr "Bijwerken naar de nieuwste release"
 
-#: data/interfaces/bookstrap/base.html:563
+#: data/interfaces/bookstrap/base.html:574
 #: data/interfaces/bookstrap/profile.html:84
 #: data/interfaces/modern/modern_base.html:62
 #: data/interfaces/modern/profile.html:117
 msgid "Update"
 msgstr "Bijwerken"
 
-#: data/interfaces/bookstrap/base.html:570
+#: data/interfaces/bookstrap/base.html:581
 msgid "Ignore the update message for 24 hours"
 msgstr "Updatemelding 24 uur negeren"
 
-#: data/interfaces/bookstrap/base.html:570
+#: data/interfaces/bookstrap/base.html:581
 #: data/interfaces/modern/modern_base.html:63
 msgid "Ignore"
 msgstr "Negeren"
 
-#: data/interfaces/bookstrap/base.html:598
+#: data/interfaces/bookstrap/base.html:618
 #: data/interfaces/modern/modern_base.html:89
 #, python-format
 msgid ""
@@ -1909,7 +1923,7 @@ msgstr ""
 "kunt helpen de vertaling af te maken op Hosted Weblate, zonder te "
 "programmeren."
 
-#: data/interfaces/bookstrap/base.html:602
+#: data/interfaces/bookstrap/base.html:622
 #: data/interfaces/modern/modern_base.html:93
 #, python-format
 msgid ""
@@ -1919,22 +1933,22 @@ msgstr ""
 "LazyLibrarian is nog niet beschikbaar in het %(language)s. Je kunt helpen "
 "met vertalen op Hosted Weblate, zonder te programmeren."
 
-#: data/interfaces/bookstrap/base.html:609
+#: data/interfaces/bookstrap/base.html:629
 #: data/interfaces/modern/modern_base.html:98
 msgid "Help translate"
 msgstr "Help vertalen"
 
-#: data/interfaces/bookstrap/base.html:610
+#: data/interfaces/bookstrap/base.html:630
 #: data/interfaces/modern/modern_base.html:99
 msgid "No thanks"
 msgstr "Nee, bedankt"
 
-#: data/interfaces/bookstrap/base.html:613
+#: data/interfaces/bookstrap/base.html:633
 #: data/interfaces/modern/modern_base.html:96
 msgid "Translate LazyLibrarian"
 msgstr "LazyLibrarian vertalen"
 
-#: data/interfaces/bookstrap/base.html:634
+#: data/interfaces/bookstrap/base.html:654
 #: data/interfaces/modern/author.html:345
 #: data/interfaces/modern/author_detail.html:361
 #: data/interfaces/modern/book_detail.html:274
@@ -1945,24 +1959,24 @@ msgstr "LazyLibrarian vertalen"
 #: data/interfaces/modern/editcomic.html:117
 #: data/interfaces/modern/editissue.html:90
 #: data/interfaces/modern/editseries.html:121
-#: data/interfaces/modern/history.html:163
+#: data/interfaces/modern/history.html:171
 #: data/interfaces/modern/index.html:218 data/interfaces/modern/issues.html:212
 #: data/interfaces/modern/login.html:78 data/interfaces/modern/logs.html:111
 #: data/interfaces/modern/magazines.html:225
 #: data/interfaces/modern/managebooks.html:226
 #: data/interfaces/modern/manageissues.html:122
 #: data/interfaces/modern/members.html:211
-#: data/interfaces/modern/modern_base.html:735
-#: data/interfaces/modern/modern_base.html:749
+#: data/interfaces/modern/modern_base.html:803
+#: data/interfaces/modern/modern_base.html:817
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
-#: lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Something went wrong, try again"
 msgstr "Er ging iets mis, probeer het opnieuw"
 
-#: data/interfaces/bookstrap/base.html:653
+#: data/interfaces/bookstrap/base.html:673
 msgid ""
 "LazyLibrarian has a new interface: covers as cards, infinite scroll and a "
 "layout made for phones. Pages it does not have yet open in this one, and you "
@@ -1972,20 +1986,20 @@ msgstr ""
 "scrollen en een indeling gemaakt voor telefoons. Pagina's die hier nog niet "
 "in zitten openen in deze interface, en je kunt altijd terugschakelen."
 
-#: data/interfaces/bookstrap/base.html:665
+#: data/interfaces/bookstrap/base.html:685
 #: data/interfaces/bookstrap/config.html:85
 msgid "Interface language:"
 msgstr "Interfacetaal:"
 
-#: data/interfaces/bookstrap/base.html:668
+#: data/interfaces/bookstrap/base.html:688
 msgid "Try it"
 msgstr "Proberen"
 
-#: data/interfaces/bookstrap/base.html:670
+#: data/interfaces/bookstrap/base.html:690
 msgid "Not now"
 msgstr "Niet nu"
 
-#: data/interfaces/bookstrap/base.html:693
+#: data/interfaces/bookstrap/base.html:713
 #: data/interfaces/modern/modern_base.html:69
 #, python-format
 msgid "One change since you last looked:"
@@ -1993,24 +2007,24 @@ msgid_plural "%(count)d changes since you last looked:"
 msgstr[0] "Eén wijziging sinds je laatste bezoek:"
 msgstr[1] "%(count)d wijzigingen sinds je laatste bezoek:"
 
-#: data/interfaces/bookstrap/base.html:698
+#: data/interfaces/bookstrap/base.html:718
 #: data/interfaces/modern/modern_base.html:71
 msgid "Dismiss"
 msgstr "Negeren"
 
-#: data/interfaces/bookstrap/base.html:701
+#: data/interfaces/bookstrap/base.html:721
 #: data/interfaces/modern/modern_base.html:68
 msgid "LazyLibrarian updated"
 msgstr "LazyLibrarian bijgewerkt"
 
-#: data/interfaces/bookstrap/base.html:750
+#: data/interfaces/bookstrap/base.html:770
 #: data/interfaces/bookstrap/config.html:32
 #: data/interfaces/bookstrap/config_functions.js:946
 msgid "Check Version"
 msgstr "Versie controleren"
 
-#: data/interfaces/bookstrap/base.html:766
-#: data/interfaces/modern/modern_base.html:564
+#: data/interfaces/bookstrap/base.html:786
+#: data/interfaces/modern/modern_base.html:606
 msgid "Are you sure you want to logout?"
 msgstr "Weet je zeker dat je je wilt afmelden?"
 
@@ -2266,7 +2280,7 @@ msgstr "Striptitel"
 #: data/interfaces/bookstrap/comics.html:39
 #: data/interfaces/modern/comics.html:189
 #: data/interfaces/modern/editcomic.html:42
-#: data/interfaces/modern/history.html:168
+#: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/issues.html:73 lazylibrarian/notifiers/__init__.py:79
 msgid "Comic"
 msgstr "Strip"
@@ -2331,7 +2345,7 @@ msgstr "Nieuwste nummer"
 
 #: data/interfaces/bookstrap/comics.html:177
 #: data/interfaces/bookstrap/comics.html:179
-#: data/interfaces/bookstrap/config.html:4514
+#: data/interfaces/bookstrap/config.html:4519
 #: data/interfaces/bookstrap/magazines.html:184
 #: data/interfaces/bookstrap/magazines.html:186
 msgid "Show"
@@ -2388,7 +2402,7 @@ msgstr "Taakstatus"
 msgid "DB Stats"
 msgstr "DB-statistieken"
 
-#: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:555
+#: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:604
 msgid "Setup Wizard"
 msgstr ""
 
@@ -2439,7 +2453,7 @@ msgstr "Alles uitvouwen"
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
-#: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:370
+#: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:411
 msgid "Interface"
 msgstr "Interface"
 
@@ -2452,7 +2466,7 @@ msgid "Downloaders"
 msgstr "Downloaders"
 
 #: data/interfaces/bookstrap/config.html:64
-#: data/interfaces/modern/modern_base.html:404
+#: data/interfaces/modern/modern_base.html:416
 msgid "Providers"
 msgstr "Providers"
 
@@ -2461,7 +2475,7 @@ msgid "Processing"
 msgstr "Verwerking"
 
 #: data/interfaces/bookstrap/config.html:66
-#: data/interfaces/modern/modern_base.html:519
+#: data/interfaces/modern/modern_base.html:561
 msgid "Notifications"
 msgstr "Meldingen"
 
@@ -4672,8 +4686,8 @@ msgid "Daily Downloads: (used %(count)s)"
 msgstr "Dagelijkse downloads: (%(count)s gebruikt)"
 
 #: data/interfaces/bookstrap/config.html:2197
-#: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:143
-#: lazylibrarian/setupwizard.py:146
+#: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:160
+#: lazylibrarian/setupwizard.py:163
 msgid "name"
 msgstr "naam"
 
@@ -6643,7 +6657,7 @@ msgstr "Alle talen"
 msgid "Custom: %s"
 msgstr "Aangepast: %s"
 
-#: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:565
+#: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:614
 msgid "Change"
 msgstr "Wijzigen"
 
@@ -6663,7 +6677,7 @@ msgstr ""
 msgid "GoogleBooks Country:"
 msgstr "GoogleBooks-land:"
 
-#: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:223
+#: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:240
 msgid "Automatic (where the server is)"
 msgstr "Automatisch (waar de server staat)"
 
@@ -6742,7 +6756,7 @@ msgstr ""
 msgid "Default language for magazines:"
 msgstr "Standaardtaal voor tijdschriften:"
 
-#: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:573
+#: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:622
 msgid "Not set"
 msgstr "Niet ingesteld"
 
@@ -7060,34 +7074,40 @@ msgstr "Huidige versie: %(version)s"
 msgid "Latest Version: %(version)s"
 msgstr "Nieuwste versie: %(version)s"
 
-#: data/interfaces/bookstrap/config.html:4368
+#: data/interfaces/bookstrap/config.html:4362
+#, fuzzy
+#| msgid "Authentication"
+msgid "Documentation"
+msgstr "Authenticatie"
+
+#: data/interfaces/bookstrap/config.html:4373
 msgid "Min size"
 msgstr "Min. grootte"
 
-#: data/interfaces/bookstrap/config.html:4369
+#: data/interfaces/bookstrap/config.html:4374
 msgid "Reject minimum size"
 msgstr "Minimale grootte (weigeren)"
 
-#: data/interfaces/bookstrap/config.html:4370
 #: data/interfaces/bookstrap/config.html:4375
+#: data/interfaces/bookstrap/config.html:4380
 msgid "Mb"
 msgstr "MB"
 
-#: data/interfaces/bookstrap/config.html:4373
+#: data/interfaces/bookstrap/config.html:4378
 msgid "Max size"
 msgstr "Max. grootte"
 
-#: data/interfaces/bookstrap/config.html:4374
+#: data/interfaces/bookstrap/config.html:4379
 msgid "Reject maximum size"
 msgstr "Maximale grootte (weigeren)"
 
 #. TRANSLATORS: label above the checkboxes that switch notification services or
 #. download clients on
-#: data/interfaces/bookstrap/config.html:4383
+#: data/interfaces/bookstrap/config.html:4388
 msgid "Enable:"
 msgstr "Inschakelen:"
 
-#: data/interfaces/bookstrap/config.html:4515
+#: data/interfaces/bookstrap/config.html:4520
 #: data/interfaces/modern/config.html:952
 msgid "Hide"
 msgstr "Verbergen"
@@ -7273,7 +7293,7 @@ msgstr "omslag"
 #: data/interfaces/bookstrap/dlresult.html:27
 #: data/interfaces/bookstrap/history.html:74
 #: data/interfaces/modern/dlresult.html:27
-#: data/interfaces/modern/history.html:134
+#: data/interfaces/modern/history.html:141
 msgid "Mark Failed"
 msgstr "Als mislukt markeren"
 
@@ -7822,22 +7842,22 @@ msgid "Sign in"
 msgstr "Aanmelden"
 
 #: data/interfaces/bookstrap/history.html:10
-#: data/interfaces/modern/history.html:79
+#: data/interfaces/modern/history.html:81
 msgid "Clear All History"
 msgstr "Hele geschiedenis wissen"
 
 #: data/interfaces/bookstrap/history.html:11
-#: data/interfaces/modern/history.html:75
+#: data/interfaces/modern/history.html:77
 msgid "Clear Processed"
 msgstr "Verwerkte wissen"
 
 #: data/interfaces/bookstrap/history.html:12
-#: data/interfaces/modern/history.html:76
+#: data/interfaces/modern/history.html:78
 msgid "Clear Snatched"
 msgstr "Binnengehaalde wissen"
 
 #: data/interfaces/bookstrap/history.html:13
-#: data/interfaces/modern/history.html:77
+#: data/interfaces/modern/history.html:79
 msgid "Clear Failed"
 msgstr "Mislukte wissen"
 
@@ -7882,17 +7902,17 @@ msgstr "Downloaden "
 
 #: data/interfaces/bookstrap/history.html:77
 #: data/interfaces/modern/dlresult.html:48
-#: data/interfaces/modern/history.html:165
+#: data/interfaces/modern/history.html:173
 msgid "Marked Failed"
 msgstr "Als mislukt gemarkeerd"
 
 #: data/interfaces/bookstrap/history.html:103
-#: data/interfaces/modern/history.html:164
+#: data/interfaces/modern/history.html:172
 msgid "Successful Downloads"
 msgstr "Geslaagde downloads"
 
 #: data/interfaces/bookstrap/history.html:108
-#: data/interfaces/modern/history.html:143
+#: data/interfaces/modern/history.html:151
 msgid "Clear Counters"
 msgstr "Tellers wissen"
 
@@ -7902,8 +7922,8 @@ msgid "Complete"
 msgstr "Voltooid"
 
 #: data/interfaces/bookstrap/history.html:179
-#: data/interfaces/modern/history.html:111
-#: data/interfaces/modern/modern_base.html:511
+#: data/interfaces/modern/history.html:118
+#: data/interfaces/modern/modern_base.html:553
 msgid "No history found"
 msgstr "Geen geschiedenis gevonden"
 
@@ -7930,13 +7950,13 @@ msgstr "Hoofdauteur of alle medewerkers"
 #: data/interfaces/bookstrap/index.html:39
 #: data/interfaces/bookstrap/searchresults.html:17
 #: data/interfaces/bookstrap/series.html:46
-#: data/interfaces/modern/modern_base.html:888
+#: data/interfaces/modern/modern_base.html:956
 #: data/interfaces/modern/searchresults.html:123
 msgid "Title / Author / ISBN"
 msgstr "Titel / auteur / ISBN"
 
 #: data/interfaces/bookstrap/index.html:41
-#: data/interfaces/modern/modern_base.html:886
+#: data/interfaces/modern/modern_base.html:954
 msgid "Search for author/book"
 msgstr "Zoeken naar auteur/boek"
 
@@ -7968,7 +7988,7 @@ msgstr "Afbeelding"
 #: data/interfaces/bookstrap/index.html:101
 #: data/interfaces/bookstrap/index.html:121
 #: data/interfaces/modern/index.html:97
-#: data/interfaces/modern/modern_base.html:388
+#: data/interfaces/modern/modern_base.html:400
 msgid "Downloaded"
 msgstr "Gedownload"
 
@@ -8208,7 +8228,7 @@ msgstr "Tijdschrifttitel"
 #: data/interfaces/bookstrap/magazines.html:40
 #: data/interfaces/bookstrap/magazines.html:42
 #: data/interfaces/modern/editmag.html:40
-#: data/interfaces/modern/history.html:168
+#: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/issues.html:73 lazylibrarian/notifiers/__init__.py:79
 msgid "Magazine"
 msgstr "Tijdschrift"
@@ -8497,7 +8517,7 @@ msgstr "Selectie markeren"
 #: data/interfaces/bookstrap/members.html:61
 #: data/interfaces/modern/author.html:346
 #: data/interfaces/modern/book_detail.html:61
-#: data/interfaces/modern/history.html:168
+#: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:174
 #: data/interfaces/modern/members.html:112 lazylibrarian/i18n.py:404
 #: lazylibrarian/notifiers/__init__.py:78
@@ -8509,7 +8529,7 @@ msgstr "E-book"
 #: data/interfaces/modern/author.html:346
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/book_detail.html:132
-#: data/interfaces/modern/history.html:168
+#: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:176
 #: data/interfaces/modern/members.html:114 lazylibrarian/i18n.py:404
 #: lazylibrarian/notifiers/__init__.py:78
@@ -8671,9 +8691,9 @@ msgstr "Aantal waarderingen"
 #: data/interfaces/modern/comicresults.html:76
 #: data/interfaces/modern/comics.html:90
 #: data/interfaces/modern/magazines.html:103
-#: data/interfaces/modern/modern_base.html:867
-#: data/interfaces/modern/modern_base.html:876
-#: data/interfaces/modern/modern_base.html:896
+#: data/interfaces/modern/modern_base.html:935
+#: data/interfaces/modern/modern_base.html:944
+#: data/interfaces/modern/modern_base.html:964
 msgid "Add"
 msgstr "Toevoegen"
 
@@ -8683,7 +8703,9 @@ msgid "Have Author"
 msgstr "Auteur bestaat al"
 
 #: data/interfaces/bookstrap/searchresults.html:83
-#: data/interfaces/modern/searchresults.html:86 lazylibrarian/i18n.py:404
+#: data/interfaces/bookstrap/whatsnew.html:31
+#: data/interfaces/modern/searchresults.html:86
+#: data/interfaces/modern/whatsnew.html:101 lazylibrarian/i18n.py:404
 msgid "Loading"
 msgstr "Laden"
 
@@ -8885,8 +8907,8 @@ msgid "Logins"
 msgstr "Aanmeldingen"
 
 #: data/interfaces/bookstrap/users.html:109
-#: data/interfaces/modern/modern_base.html:385
-#: data/interfaces/modern/modern_base.html:452
+#: data/interfaces/modern/modern_base.html:397
+#: data/interfaces/modern/modern_base.html:481
 #: data/interfaces/modern/users.html:179
 msgid "Downloads"
 msgstr "Downloads"
@@ -8943,43 +8965,43 @@ msgstr "Gebruiker wissen"
 msgid "New"
 msgstr "Nieuw"
 
-#: data/interfaces/bookstrap/whatsnew.html:27
-#: data/interfaces/modern/whatsnew.html:95
+#: data/interfaces/bookstrap/whatsnew.html:34
+#: data/interfaces/modern/whatsnew.html:104
 #, python-format
 msgid "Unable to get the list of changes from %(repo)s, try again later."
 msgstr ""
 "De lijst met wijzigingen van %(repo)s kan niet worden opgehaald, probeer het "
 "later opnieuw."
 
-#: data/interfaces/bookstrap/whatsnew.html:30
-#: data/interfaces/modern/whatsnew.html:99
+#: data/interfaces/bookstrap/whatsnew.html:37
+#: data/interfaces/modern/whatsnew.html:108
 msgid "Not installed yet"
 msgstr "Nog niet geïnstalleerd"
 
-#: data/interfaces/bookstrap/whatsnew.html:32
-#: data/interfaces/modern/whatsnew.html:103
+#: data/interfaces/bookstrap/whatsnew.html:39
+#: data/interfaces/modern/whatsnew.html:112
 msgid "These will be included in the next container image update."
 msgstr "Deze worden opgenomen in de volgende update van de containerimage."
 
-#: data/interfaces/bookstrap/whatsnew.html:37
-#: data/interfaces/modern/whatsnew.html:109
+#: data/interfaces/bookstrap/whatsnew.html:44
+#: data/interfaces/modern/whatsnew.html:118
 msgid "Installed"
 msgstr "Geïnstalleerd"
 
-#: data/interfaces/bookstrap/whatsnew.html:39
-#: data/interfaces/modern/whatsnew.html:111
+#: data/interfaces/bookstrap/whatsnew.html:46
+#: data/interfaces/modern/whatsnew.html:120
 msgid "Recent changes"
 msgstr "Recente wijzigingen"
 
-#: data/interfaces/bookstrap/whatsnew.html:40
-#: data/interfaces/modern/whatsnew.html:115
+#: data/interfaces/bookstrap/whatsnew.html:47
+#: data/interfaces/modern/whatsnew.html:124
 msgid ""
 "The installed version is not known, so changes are not marked as installed."
 msgstr ""
 "De geïnstalleerde versie is niet bekend, dus wijzigingen worden niet als "
 "geïnstalleerd gemarkeerd."
 
-#: data/interfaces/bookstrap/whatsnew.html:44
+#: data/interfaces/bookstrap/whatsnew.html:51
 #: data/interfaces/modern/whatsnew.html:90
 msgid "All changes on GitLab"
 msgstr "Alle wijzigingen op GitLab"
@@ -9067,7 +9089,7 @@ msgstr "Minder tonen"
 #: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
 #: data/interfaces/modern/editauthor.html:241
-#: data/interfaces/modern/history.html:164
+#: data/interfaces/modern/history.html:172
 #: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/logs.html:111
 #: data/interfaces/modern/magazines.html:224
@@ -9081,7 +9103,7 @@ msgstr "Klaar"
 
 #: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
-#: data/interfaces/modern/history.html:163
+#: data/interfaces/modern/history.html:171
 #: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/logs.html:111
 #: data/interfaces/modern/magazines.html:224
@@ -9173,7 +9195,7 @@ msgstr "ISBN"
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Back"
 msgstr "Terug"
 
@@ -9183,7 +9205,7 @@ msgid "by"
 msgstr "door"
 
 #: data/interfaces/modern/book_detail.html:196
-#: data/interfaces/modern/modern_base.html:331 lazylibrarian/webServe.py:4072
+#: data/interfaces/modern/modern_base.html:343 lazylibrarian/webServe.py:4072
 msgid "Found, but not downloaded"
 msgstr "Gevonden, maar niet gedownload"
 
@@ -9352,7 +9374,7 @@ msgid "Basics"
 msgstr "Basis"
 
 #: data/interfaces/modern/config.html:540
-#: data/interfaces/modern/modern_base.html:457
+#: data/interfaces/modern/modern_base.html:486
 msgid "Downloading"
 msgstr "Downloaden"
 
@@ -9571,7 +9593,7 @@ msgid "Blocked"
 msgstr "Geblokkeerd"
 
 #: data/interfaces/modern/config.html:1157
-#: data/interfaces/modern/modern_base.html:672
+#: data/interfaces/modern/modern_base.html:740
 msgid "Unblock"
 msgstr "Deblokkeren"
 
@@ -9580,13 +9602,13 @@ msgid "Other blocked sources"
 msgstr "Andere geblokkeerde bronnen"
 
 #: data/interfaces/modern/config.html:1158
-#: data/interfaces/modern/modern_base.html:672
+#: data/interfaces/modern/modern_base.html:740
 #, python-format
 msgid "Blocked for %(time)s"
 msgstr "Geblokkeerd voor %(time)s"
 
 #: data/interfaces/modern/config.html:1159
-#: data/interfaces/modern/modern_base.html:674
+#: data/interfaces/modern/modern_base.html:742
 #, python-format
 msgid "%(count)s minute"
 msgid_plural "%(count)s minutes"
@@ -9594,7 +9616,7 @@ msgstr[0] "%(count)s minuut"
 msgstr[1] "%(count)s minuten"
 
 #: data/interfaces/modern/config.html:1159
-#: data/interfaces/modern/modern_base.html:674
+#: data/interfaces/modern/modern_base.html:742
 #, python-format
 msgid "%(count)s hour"
 msgid_plural "%(count)s hours"
@@ -9745,12 +9767,12 @@ msgid "Day"
 msgstr "Dag"
 
 #: data/interfaces/modern/dlresult.html:48
-#: data/interfaces/modern/history.html:165
+#: data/interfaces/modern/history.html:173
 msgid "Deleted"
 msgstr "Gewist"
 
 #: data/interfaces/modern/dlresult.html:49
-#: data/interfaces/modern/history.html:167
+#: data/interfaces/modern/history.html:176
 msgid "Delete this history entry?"
 msgstr "Dit geschiedenisitem wissen?"
 
@@ -9762,27 +9784,46 @@ msgstr "Nieuwste"
 msgid "Oldest"
 msgstr "Oudste"
 
-#: data/interfaces/modern/history.html:164
+#: data/interfaces/modern/history.html:75
+#: data/interfaces/modern/modern_base.html:491
+#, fuzzy
+#| msgid "Show all series"
+msgid "Stop all seeding"
+msgstr "Alle series tonen"
+
+#: data/interfaces/modern/history.html:111
+#: data/interfaces/modern/history.html:144
+#: data/interfaces/modern/modern_base.html:522
+#, fuzzy
+#| msgid "Seeding"
+msgid "Stop seeding"
+msgstr "Bezig met seeden"
+
+#: data/interfaces/modern/history.html:172
 msgid "Download"
 msgstr "Downloaden"
 
-#: data/interfaces/modern/history.html:166
+#: data/interfaces/modern/history.html:174
+msgid "Stop seeding everything that is seeding?"
+msgstr ""
+
+#: data/interfaces/modern/history.html:175
 msgid "Clear this part of the history?"
 msgstr "Dit deel van de geschiedenis wissen?"
 
-#: data/interfaces/modern/history.html:166
+#: data/interfaces/modern/history.html:175
 msgid "Clear all history? Snatched books go back to Wanted."
 msgstr ""
 "Alle geschiedenis wissen? Binnengehaalde boeken gaan terug naar Gezocht."
 
-#: data/interfaces/modern/history.html:169
+#: data/interfaces/modern/history.html:178
 #, python-format
 msgid "%(count)s entry"
 msgid_plural "%(count)s entries"
 msgstr[0] "%(count)s item"
 msgstr[1] "%(count)s items"
 
-#: data/interfaces/modern/history.html:170
+#: data/interfaces/modern/history.html:179
 #, python-format
 msgid "%(count)s downloading"
 msgid_plural "%(count)s downloading"
@@ -10020,63 +10061,63 @@ msgstr "Begrepen"
 msgid "Back to classic"
 msgstr "Terug naar klassiek"
 
-#: data/interfaces/modern/modern_base.html:363
+#: data/interfaces/modern/modern_base.html:375
 msgid "Switch theme"
 msgstr "Thema wisselen"
 
-#: data/interfaces/modern/modern_base.html:395
-#: data/interfaces/modern/modern_base.html:401
+#: data/interfaces/modern/modern_base.html:407
+#: data/interfaces/modern/modern_base.html:413
 msgid "Provider status"
 msgstr "Providerstatus"
 
-#: data/interfaces/modern/modern_base.html:427
+#: data/interfaces/modern/modern_base.html:439
 msgid "Classic interface"
 msgstr "Klassieke interface"
 
-#: data/interfaces/modern/modern_base.html:488
+#: data/interfaces/modern/modern_base.html:528
 msgid "Nothing is downloading"
 msgstr "Er wordt niets gedownload"
 
-#: data/interfaces/modern/modern_base.html:491
+#: data/interfaces/modern/modern_base.html:531
 msgid "Finished recently"
 msgstr "Onlangs voltooid"
 
-#: data/interfaces/modern/modern_base.html:537
+#: data/interfaces/modern/modern_base.html:579
 #, python-format
 msgid "and %(count)s more"
 msgstr "en nog %(count)s"
 
-#: data/interfaces/modern/modern_base.html:580
+#: data/interfaces/modern/modern_base.html:622
 msgid "Download client not reachable"
 msgstr "Downloadclient niet bereikbaar"
 
-#: data/interfaces/modern/modern_base.html:673
+#: data/interfaces/modern/modern_base.html:741
 #, python-format
 msgid "%(count)s provider blocked"
 msgid_plural "%(count)s providers blocked"
 msgstr[0] "%(count)s provider geblokkeerd"
 msgstr[1] "%(count)s providers geblokkeerd"
 
-#: data/interfaces/modern/modern_base.html:750
+#: data/interfaces/modern/modern_base.html:818
 #, python-format
 msgid "%(count)s more notification"
 msgid_plural "%(count)s more notifications"
 msgstr[0] "%(count)s andere melding"
 msgstr[1] "%(count)s andere meldingen"
 
-#: data/interfaces/modern/modern_base.html:876 lazylibrarian/webServe.py:2223
+#: data/interfaces/modern/modern_base.html:944 lazylibrarian/webServe.py:2223
 msgid "Add series"
 msgstr "Serie toevoegen"
 
-#: data/interfaces/modern/modern_base.html:881
+#: data/interfaces/modern/modern_base.html:949
 msgid "Series ID or link"
 msgstr "Serie-ID of link"
 
-#: data/interfaces/modern/modern_base.html:883
+#: data/interfaces/modern/modern_base.html:951
 msgid "HC12345 / GR12345 / OL12345"
 msgstr "HC12345 / GR12345 / OL12345"
 
-#: data/interfaces/modern/modern_base.html:884
+#: data/interfaces/modern/modern_base.html:952
 msgid ""
 "A Hardcover, Goodreads or LibraryThing series ID, or a Goodreads or "
 "LibraryThing series link."
@@ -10128,7 +10169,7 @@ msgstr[1] "%(count)s series"
 msgid "Only new"
 msgstr "Alleen nieuwe"
 
-#: data/interfaces/modern/whatsnew.html:118
+#: data/interfaces/modern/whatsnew.html:127
 msgid "No results"
 msgstr "Geen resultaten"
 
@@ -10599,373 +10640,458 @@ msgstr "Aan de bibliotheek toegevoegd"
 msgid "Download failed"
 msgstr "Download mislukt"
 
-#: lazylibrarian/setupwizard.py:45
+#: lazylibrarian/setupwizard.py:46
 #, fuzzy
 #| msgid "Slovak"
 msgid "Slovakia"
 msgstr "Slowaaks"
 
-#: lazylibrarian/setupwizard.py:46
+#: lazylibrarian/setupwizard.py:47
 msgid "Czech Republic"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:47
+#: lazylibrarian/setupwizard.py:48
 #, fuzzy
 #| msgid "German"
 msgid "Germany"
 msgstr "Duits"
 
-#: lazylibrarian/setupwizard.py:48
+#: lazylibrarian/setupwizard.py:49
 msgid "Austria"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:49
+#: lazylibrarian/setupwizard.py:50
 msgid "Switzerland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:50
+#: lazylibrarian/setupwizard.py:51
 msgid "Poland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:51
+#: lazylibrarian/setupwizard.py:52
 #, fuzzy
 #| msgid "Cancel"
 msgid "France"
 msgstr "Annuleren"
 
-#: lazylibrarian/setupwizard.py:52
+#: lazylibrarian/setupwizard.py:53
 msgid "Spain"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:53
+#: lazylibrarian/setupwizard.py:54
 #, fuzzy
 #| msgid "Italian"
 msgid "Italy"
 msgstr "Italiaans"
 
-#: lazylibrarian/setupwizard.py:54
+#: lazylibrarian/setupwizard.py:55
 msgid "Netherlands"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:55
+#: lazylibrarian/setupwizard.py:56
 #, fuzzy
 #| msgid "Russian"
 msgid "Russia"
 msgstr "Russisch"
 
-#: lazylibrarian/setupwizard.py:56
+#: lazylibrarian/setupwizard.py:57
 #, fuzzy
 #| msgid "Estonian"
 msgid "Estonia"
 msgstr "Estisch"
 
-#: lazylibrarian/setupwizard.py:57
+#: lazylibrarian/setupwizard.py:58
 msgid "United Kingdom"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:58
+#: lazylibrarian/setupwizard.py:59
 #, fuzzy
 #| msgid "Updates"
 msgid "United States"
 msgstr "Updates"
 
-#: lazylibrarian/setupwizard.py:60
+#: lazylibrarian/setupwizard.py:61
 #, fuzzy
 #| msgid "User accounts"
 msgid "Other country"
 msgstr "Gebruikersaccounts"
 
-#: lazylibrarian/setupwizard.py:69
+#: lazylibrarian/setupwizard.py:70
 msgid "Czech and Slovak book database (databazeknih.cz)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:70
+#: lazylibrarian/setupwizard.py:71
 #, fuzzy
 #| msgid "Deutsche Nationalbibliothek API:"
 msgid "German National Library (Deutsche Nationalbibliothek)"
 msgstr "Deutsche Nationalbibliothek-API:"
 
-#: lazylibrarian/setupwizard.py:71
+#: lazylibrarian/setupwizard.py:72
 msgid "National Library of Poland (Biblioteka Narodowa)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:76
+#, fuzzy
+#| msgid "Annas Archive"
+msgid "Anna's Archive"
+msgstr "Annas Archive"
+
+#: lazylibrarian/setupwizard.py:76
+msgid "Books in many languages. Downloads without a key are slow."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:77
+msgid "Webshare"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:77
+msgid ""
+"Czech and Slovak file hosting. Needs your Webshare login, enter it on the "
+"Providers tab."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:79
+#, fuzzy
+#| msgid "Library"
+msgid "Z-Library"
+msgstr "Bibliotheek"
+
+#: lazylibrarian/setupwizard.py:79
+msgid "Needs your Z-Library login, enter it on the Providers tab."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:80
+#, fuzzy
+#| msgid "soulseek daemon"
+msgid "Soulseek"
+msgstr "soulseek-daemon"
+
+#: lazylibrarian/setupwizard.py:80
+msgid "Needs a running slskd server, set it up on the Providers tab."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:81
+#, fuzzy
+#| msgid "AudioBook"
+msgid "AudioBookBay"
+msgstr "Luisterboek"
+
+#: lazylibrarian/setupwizard.py:81
+msgid "AudioBooks by torrent, needs a torrent client."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:82
+#, fuzzy
+#| msgid "Torrents"
+msgid "LimeTorrents"
+msgstr "Torrents"
+
+#: lazylibrarian/setupwizard.py:82 lazylibrarian/setupwizard.py:83
+#: lazylibrarian/setupwizard.py:84 lazylibrarian/setupwizard.py:85
+msgid "Torrents, needs a torrent client."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:83
+msgid "The Pirate Bay"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:84
+#, fuzzy
+#| msgid "Torrents"
+msgid "KickassTorrents"
+msgstr "Torrents"
+
+#: lazylibrarian/setupwizard.py:85
+#, fuzzy
+#| msgid "torrentdownload host"
+msgid "TorrentDownloads"
+msgstr "torrentdownload-host"
+
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 #| msgid "eBook Library Folder"
 msgid "eBook library folder"
 msgstr "E-bookbibliotheekmap"
 
-#: lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 #| msgid "AudioBook Library Folder"
 msgid "AudioBook library folder"
 msgstr "Luisterboekbibliotheekmap"
 
-#: lazylibrarian/setupwizard.py:79
+#: lazylibrarian/setupwizard.py:96
 #, fuzzy
 #| msgid "Download failed"
 msgid "Download folder"
 msgstr "Download mislukt"
 
-#: lazylibrarian/setupwizard.py:310
+#: lazylibrarian/setupwizard.py:342
 #, fuzzy
 #| msgid "Information Sources"
 msgid "Main book information source"
 msgstr "Informatiebronnen"
 
-#: lazylibrarian/setupwizard.py:314
+#: lazylibrarian/setupwizard.py:346
 #, fuzzy
 #| msgid "Book Databases"
 msgid "Local book database"
 msgstr "Boekendatabases"
 
-#: lazylibrarian/setupwizard.py:317
+#: lazylibrarian/setupwizard.py:349
 msgid "Country for Google Books results"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:327
+#: lazylibrarian/setupwizard.py:359
 #, fuzzy
 #| msgid "Refresh Book Languages"
 msgid "Preferred book languages"
 msgstr "Boektalen vernieuwen"
 
-#: lazylibrarian/setupwizard.py:329
+#: lazylibrarian/setupwizard.py:361
 #, fuzzy
 #| msgid "Language Detection"
 msgid "Languages to detect in book titles"
 msgstr "Taaldetectie"
 
-#: lazylibrarian/setupwizard.py:331
+#: lazylibrarian/setupwizard.py:363
 msgid ""
 "When a source does not say the language of a book, it is guessed from the "
 "title, choosing only from these languages. Keep the languages you do not "
 "want too, so their books are recognised and left out."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:342
+#: lazylibrarian/setupwizard.py:374
 #, fuzzy
 #| msgid "Month name"
 msgid "Add month names"
 msgstr "Maandnaam"
 
-#: lazylibrarian/setupwizard.py:347
+#: lazylibrarian/setupwizard.py:379
 #, fuzzy
 #| msgid "Languages"
 msgid "Language for dates"
 msgstr "Talen"
 
-#: lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 #| msgid "wanted formats"
 msgid "Date format"
 msgstr "gewenste formaten"
 
-#: lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 #| msgid "Author surname first"
 msgid "Author date format"
 msgstr "Achternaam van auteur eerst"
 
-#: lazylibrarian/setupwizard.py:354
+#: lazylibrarian/setupwizard.py:386
 msgid "Preferred magazine language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:356
+#: lazylibrarian/setupwizard.py:388
 #, fuzzy
 #| msgid "Issue number"
 msgid "Words for issue numbers"
 msgstr "Nummer"
 
-#: lazylibrarian/setupwizard.py:357
+#: lazylibrarian/setupwizard.py:389
 msgid "Words for volume numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:358
+#: lazylibrarian/setupwizard.py:390
 #, fuzzy
 #| msgid "Words allowed in magazine titles:"
 msgid "Other words allowed in magazine titles"
 msgstr "Toegestane woorden in tijdschrifttitels:"
 
-#: lazylibrarian/setupwizard.py:366
+#: lazylibrarian/setupwizard.py:404
 #, fuzzy
-#| msgid "Annas Archive"
-msgid "Search Anna's Archive"
-msgstr "Annas Archive"
+#| msgid "Recommended for books in German"
+msgid "Recommended for your country"
+msgstr "Aanbevolen voor Duitstalige boeken"
 
-#: lazylibrarian/setupwizard.py:367
-#, fuzzy
-#| msgid "Search in:"
-msgid "Search Z-Library"
-msgstr "Zoeken in:"
+#: lazylibrarian/setupwizard.py:407
+msgid "LibGen"
+msgstr ""
 
-#: lazylibrarian/setupwizard.py:368
+#: lazylibrarian/setupwizard.py:408
+msgid "Recommended for your country. Books and comics from the LibGen mirror."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:409
 #, fuzzy
 #| msgid "Series number"
 msgid "Series number format"
 msgstr "Serienummer"
 
-#: lazylibrarian/setupwizard.py:373
+#: lazylibrarian/setupwizard.py:414
 #, fuzzy
 #| msgid "Use Bookstrap"
 msgid "Bookstrap theme"
 msgstr "Bookstrap gebruiken"
 
-#: lazylibrarian/setupwizard.py:377
+#: lazylibrarian/setupwizard.py:418
 #, fuzzy
 #| msgid "Interface language"
 msgid "Country and language"
 msgstr "Interfacetaal"
 
-#: lazylibrarian/setupwizard.py:378
+#: lazylibrarian/setupwizard.py:419
 #, fuzzy
 #| msgid "Book Databases"
 msgid "Book databases"
 msgstr "Boekendatabases"
 
-#: lazylibrarian/setupwizard.py:379
+#: lazylibrarian/setupwizard.py:420
 #, fuzzy
 #| msgid "Book Languages"
 msgid "Book languages"
 msgstr "Boektalen"
 
-#: lazylibrarian/setupwizard.py:380
+#: lazylibrarian/setupwizard.py:421
 msgid "Dates, months and magazines"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:422
+#, fuzzy
+#| msgid "Search series"
+msgid "Search providers"
+msgstr "Series zoeken"
+
+#: lazylibrarian/setupwizard.py:423
 msgid "Library and other settings"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:435
+#: lazylibrarian/setupwizard.py:479
 #, fuzzy
 #| msgid "Not Available"
 msgid "Not a valid value"
 msgstr "Niet beschikbaar"
 
-#: lazylibrarian/setupwizard.py:492
+#: lazylibrarian/setupwizard.py:536
 msgid "Not a setting the wizard can change"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:521
+#: lazylibrarian/setupwizard.py:570
 msgid "The system does not have the locale"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:524
+#: lazylibrarian/setupwizard.py:573
 msgid "Folder not found or not writable"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 #, fuzzy
 #| msgid "Summary:"
 msgid "Summary"
 msgstr "Samenvatting:"
 
-#: lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 msgid "Country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:556
+#: lazylibrarian/setupwizard.py:605
 msgid ""
 "Pick your language and country. The next steps show what will be set for "
 "them, check it and untick anything you want to keep as it is."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:558
+#: lazylibrarian/setupwizard.py:607
 msgid "These settings will be changed for your country:"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:559
+#: lazylibrarian/setupwizard.py:608
 msgid "Nothing to change here, the settings already suit your country."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:560
+#: lazylibrarian/setupwizard.py:609
 msgid "Show unchanged settings too"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:561
+#: lazylibrarian/setupwizard.py:610
 #, fuzzy
 #| msgid "Show all magazines"
 msgid "Show all languages"
 msgstr "Alle tijdschriften tonen"
 
-#: lazylibrarian/setupwizard.py:562
+#: lazylibrarian/setupwizard.py:611
 msgid ""
 "You can run the Setup Wizard again any time: in Settings, the Setup Wizard "
 "button next to Check Version."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 #| msgid "No"
 msgid "Now"
 msgstr "Nee"
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 #| msgid "Open"
 msgid "On"
 msgstr "Openen"
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "Off"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 #, fuzzy
 #| msgid "Settings"
 msgid "Setting"
 msgstr "Instellingen"
 
-#: lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 msgid "Nothing is ticked, nothing will be changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 #, fuzzy
 #| msgid "Skipped"
 msgid "Skip step"
 msgstr "Overgeslagen"
 
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Apply"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Don't show again"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:568
+#: lazylibrarian/setupwizard.py:617
 #, fuzzy, python-format
 #| msgid "%(count)s setting found"
 #| msgid_plural "%(count)s settings found"
 msgid "%(count)s settings changed."
 msgstr "%(count)s instelling gevonden"
 
-#: lazylibrarian/setupwizard.py:569
+#: lazylibrarian/setupwizard.py:618
 msgid ""
 "The web interface has no username and password, anyone on your network can "
 "change the settings."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:571
+#: lazylibrarian/setupwizard.py:620
 #, fuzzy
 #| msgid "Try the new interface (beta)"
 msgid "Set them on the Interface tab"
 msgstr "Probeer de nieuwe interface (bèta)"
 
-#: lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 #| msgid "Folder"
 msgid "Folder found"
 msgstr "Map"
 
-#: lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 #| msgid "User not found"
 msgid "Folder not found"
 msgstr "Gebruiker niet gevonden"
 
-#: lazylibrarian/setupwizard.py:573
+#: lazylibrarian/setupwizard.py:622
 #, fuzzy
 #| msgid "is not available"
 msgid "Folder is not writable"
@@ -11525,278 +11651,288 @@ msgstr "Bibliotheek opnieuw openen"
 msgid "Log"
 msgstr "Logboek"
 
-#: lazylibrarian/webServe.py:8869
+#: lazylibrarian/webServe.py:8929
 msgid "BookID not found"
 msgstr "BookID niet gevonden"
 
-#: lazylibrarian/webServe.py:8871
+#: lazylibrarian/webServe.py:8931
 msgid "No Description"
 msgstr "Geen beschrijving"
 
-#: lazylibrarian/webServe.py:8883
+#: lazylibrarian/webServe.py:8943
 #, python-format
 msgid "Reason: %(reason)s"
 msgstr "Reden: %(reason)s"
 
-#: lazylibrarian/webServe.py:8895
+#: lazylibrarian/webServe.py:8955
 #, python-format
 msgid "Title: %(value)s"
 msgstr "Titel: %(value)s"
 
-#: lazylibrarian/webServe.py:8896
+#: lazylibrarian/webServe.py:8956
 #, python-format
 msgid "Type: %(value)s"
 msgstr "Type: %(value)s"
 
-#: lazylibrarian/webServe.py:8897
+#: lazylibrarian/webServe.py:8957
 #, python-format
 msgid "Date: %(value)s"
 msgstr "Datum: %(value)s"
 
-#: lazylibrarian/webServe.py:8898
+#: lazylibrarian/webServe.py:8958
 #, python-format
 msgid "Size: %(value)s Mb"
 msgstr "Grootte: %(value)s MB"
 
-#: lazylibrarian/webServe.py:8899
+#: lazylibrarian/webServe.py:8959
 #, python-format
 msgid "Provider: %(value)s"
 msgstr "Provider: %(value)s"
 
-#: lazylibrarian/webServe.py:8900
+#: lazylibrarian/webServe.py:8960
 #, python-format
 msgid "Downloader: %(value)s"
 msgstr "Downloader: %(value)s"
 
-#: lazylibrarian/webServe.py:8901
+#: lazylibrarian/webServe.py:8961
 #, python-format
 msgid "DownloadID: %(value)s"
 msgstr "DownloadID: %(value)s"
 
-#: lazylibrarian/webServe.py:8902
+#: lazylibrarian/webServe.py:8962
 #, python-format
 msgid "URL: %(value)s"
 msgstr "URL: %(value)s"
 
-#: lazylibrarian/webServe.py:8906
+#: lazylibrarian/webServe.py:8966
 #, python-format
 msgid "File: %(value)s"
 msgstr "Bestand: %(value)s"
 
-#: lazylibrarian/webServe.py:8910
+#: lazylibrarian/webServe.py:8970
 #, python-format
 msgid "Error: %(value)s"
 msgstr "Fout: %(value)s"
 
-#: lazylibrarian/webServe.py:9162
+#: lazylibrarian/webServe.py:9222
 #, python-format
 msgid "%(name)s test FAILED, bad parameter: %(param)s"
 msgstr "%(name)s-test MISLUKT, ongeldige parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9167
+#: lazylibrarian/webServe.py:9227
 #, python-format
 msgid "%(name)s test FAILED, check debug log"
 msgstr "%(name)s-test MISLUKT, bekijk het debuglogboek"
 
-#: lazylibrarian/webServe.py:9169
+#: lazylibrarian/webServe.py:9229
 #, python-format
 msgid "%(name)s test PASSED"
 msgstr "%(name)s-test GESLAAGD"
 
-#: lazylibrarian/webServe.py:9175
+#: lazylibrarian/webServe.py:9235
 #, python-format
 msgid "%(name)s test PASSED, found %(result)s"
 msgstr "%(name)s-test GESLAAGD, gevonden: %(result)s"
 
-#: lazylibrarian/webServe.py:9178
+#: lazylibrarian/webServe.py:9238
 msgid "Invalid or missing name in testprovider"
 msgstr "Ongeldige of ontbrekende naam in testprovider"
 
-#: lazylibrarian/webServe.py:9190
+#: lazylibrarian/webServe.py:9250
 #, python-format
 msgid "Cleared %(count)s blocked provider"
 msgid_plural "Cleared %(count)s blocked providers"
 msgstr[0] "%(count)s geblokkeerde provider vrijgegeven"
 msgstr[1] "%(count)s geblokkeerde providers vrijgegeven"
 
-#: lazylibrarian/webServe.py:9283
+#: lazylibrarian/webServe.py:9343
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
 msgstr[0] "Downloadteller gewist voor %(count)s provider"
 msgstr[1] "Downloadteller gewist voor %(count)s providers"
 
-#: lazylibrarian/webServe.py:9304
+#: lazylibrarian/webServe.py:9364
 msgid "No downloads"
 msgstr "Geen downloads"
 
-#: lazylibrarian/webServe.py:9312
+#: lazylibrarian/webServe.py:9372
 msgid "Calibre Sync is already running"
 msgstr "Calibre-synchronisatie is al bezig"
 
-#: lazylibrarian/webServe.py:9321
+#: lazylibrarian/webServe.py:9381
 msgid "No userid found"
 msgstr "Geen gebruikers-ID gevonden"
 
-#: lazylibrarian/webServe.py:9420 lazylibrarian/webServe.py:9486
-#: lazylibrarian/webServe.py:9508 lazylibrarian/webServe.py:9535
-#: lazylibrarian/webServe.py:9572 lazylibrarian/webServe.py:9599
-#: lazylibrarian/webServe.py:9626 lazylibrarian/webServe.py:9653
-#: lazylibrarian/webServe.py:9679 lazylibrarian/webServe.py:9937
-#: lazylibrarian/webServe.py:10033 lazylibrarian/webServe.py:10071
-#: lazylibrarian/webServe.py:10107 lazylibrarian/webServe.py:10150
-#: lazylibrarian/webServe.py:10191 lazylibrarian/webServe.py:10230
-#: lazylibrarian/webServe.py:10266 lazylibrarian/webServe.py:10284
-#: lazylibrarian/webServe.py:10320 lazylibrarian/webServe.py:10342
-#: lazylibrarian/webServe.py:10355
+#: lazylibrarian/webServe.py:9480 lazylibrarian/webServe.py:9546
+#: lazylibrarian/webServe.py:9568 lazylibrarian/webServe.py:9595
+#: lazylibrarian/webServe.py:9632 lazylibrarian/webServe.py:9659
+#: lazylibrarian/webServe.py:9686 lazylibrarian/webServe.py:9713
+#: lazylibrarian/webServe.py:9739 lazylibrarian/webServe.py:9997
+#: lazylibrarian/webServe.py:10093 lazylibrarian/webServe.py:10131
+#: lazylibrarian/webServe.py:10167 lazylibrarian/webServe.py:10210
+#: lazylibrarian/webServe.py:10251 lazylibrarian/webServe.py:10290
+#: lazylibrarian/webServe.py:10326 lazylibrarian/webServe.py:10344
+#: lazylibrarian/webServe.py:10380 lazylibrarian/webServe.py:10402
+#: lazylibrarian/webServe.py:10415
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr "%(name)s mislukt, ongeldige parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9443
+#: lazylibrarian/webServe.py:9503
 msgid "Key verification successful"
 msgstr "Sleutel geverifieerd"
 
-#: lazylibrarian/webServe.py:9444
+#: lazylibrarian/webServe.py:9504
 msgid "Unable to verify key"
 msgstr "Kan sleutel niet verifiëren"
 
-#: lazylibrarian/webServe.py:9445
+#: lazylibrarian/webServe.py:9505
 msgid "No key provided"
 msgstr "Geen sleutel opgegeven"
 
-#: lazylibrarian/webServe.py:9454
+#: lazylibrarian/webServe.py:9514
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr "Tweet verstuurd, controleer je Twitter of het gelukt is"
 
-#: lazylibrarian/webServe.py:9455
+#: lazylibrarian/webServe.py:9515
 msgid "Error sending tweet"
 msgstr "Fout bij versturen van tweet"
 
-#: lazylibrarian/webServe.py:9484 lazylibrarian/webServe.py:9597
-#: lazylibrarian/webServe.py:9624 lazylibrarian/webServe.py:9651
+#: lazylibrarian/webServe.py:9544 lazylibrarian/webServe.py:9657
+#: lazylibrarian/webServe.py:9684 lazylibrarian/webServe.py:9711
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr "Testmelding via %(name)s verstuurd"
 
-#: lazylibrarian/webServe.py:9487 lazylibrarian/webServe.py:9600
-#: lazylibrarian/webServe.py:9627 lazylibrarian/webServe.py:9654
+#: lazylibrarian/webServe.py:9547 lazylibrarian/webServe.py:9660
+#: lazylibrarian/webServe.py:9687 lazylibrarian/webServe.py:9714
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr "Testmelding via %(name)s mislukt"
 
-#: lazylibrarian/webServe.py:9506 lazylibrarian/webServe.py:9533
-#: lazylibrarian/webServe.py:9570 lazylibrarian/webServe.py:9681
+#: lazylibrarian/webServe.py:9566 lazylibrarian/webServe.py:9593
+#: lazylibrarian/webServe.py:9630 lazylibrarian/webServe.py:9741
 #, python-format
 msgid "%(name)s notification successful"
 msgstr "%(name)s-melding geslaagd"
 
-#: lazylibrarian/webServe.py:9509 lazylibrarian/webServe.py:9536
-#: lazylibrarian/webServe.py:9573 lazylibrarian/webServe.py:9677
+#: lazylibrarian/webServe.py:9569 lazylibrarian/webServe.py:9596
+#: lazylibrarian/webServe.py:9633 lazylibrarian/webServe.py:9737
 #, python-format
 msgid "%(name)s notification failed"
 msgstr "%(name)s-melding mislukt"
 
-#: lazylibrarian/webServe.py:9700
+#: lazylibrarian/webServe.py:9760
 msgid "Custom notification failed"
 msgstr "Eigen melding mislukt"
 
-#: lazylibrarian/webServe.py:9702
+#: lazylibrarian/webServe.py:9762
 #, python-format
 msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr "Eigen melding mislukt, ongeldige parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9704
+#: lazylibrarian/webServe.py:9764
 msgid "Custom notification successful"
 msgstr "Eigen melding geslaagd"
 
-#: lazylibrarian/webServe.py:9762
+#: lazylibrarian/webServe.py:9822
 msgid "Email notification failed"
 msgstr "E-mailmelding mislukt"
 
-#: lazylibrarian/webServe.py:9764
+#: lazylibrarian/webServe.py:9824
 #, python-format
 msgid "Email notification failed, bad parameter: %(param)s"
 msgstr "E-mailmelding mislukt, ongeldige parameter: %(param)s"
 
-#: lazylibrarian/webServe.py:9766
+#: lazylibrarian/webServe.py:9826
 msgid "Email notification successful, check your email"
 msgstr "E-mailmelding geslaagd, controleer je e-mail"
 
-#: lazylibrarian/webServe.py:9894
+#: lazylibrarian/webServe.py:9954
 msgid "Manage AudioBooks"
 msgstr "Luisterboeken beheren"
 
-#: lazylibrarian/webServe.py:9894
+#: lazylibrarian/webServe.py:9954
 msgid "Manage eBooks"
 msgstr "E-books beheren"
 
-#: lazylibrarian/webServe.py:9958
+#: lazylibrarian/webServe.py:10018
 msgid "Deluge: Daemon connection successful"
 msgstr "Deluge: verbinding met daemon geslaagd"
 
-#: lazylibrarian/webServe.py:9964
+#: lazylibrarian/webServe.py:10024
 msgid "Deluge daemon seems to have no labels set"
 msgstr "De Deluge-daemon lijkt geen labels te hebben"
 
-#: lazylibrarian/webServe.py:9974
+#: lazylibrarian/webServe.py:10034
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr "Label [%(label)s] is toegevoegd"
 
-#: lazylibrarian/webServe.py:9978
+#: lazylibrarian/webServe.py:10038
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr "Label [%(label)s] is geldig"
 
-#: lazylibrarian/webServe.py:9984
+#: lazylibrarian/webServe.py:10044
 msgid "Deluge: Daemon connection FAILED"
 msgstr "Deluge: verbinding met daemon MISLUKT"
 
-#: lazylibrarian/webServe.py:9987
+#: lazylibrarian/webServe.py:10047
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr "Controleer de instellingen HOST en PORT van de Deluge-daemon"
 
-#: lazylibrarian/webServe.py:9989
+#: lazylibrarian/webServe.py:10049
 msgid "Invalid USERNAME or PASSWORD"
 msgstr "Ongeldige GEBRUIKERSNAAM of ongeldig WACHTWOORD"
 
-#: lazylibrarian/webServe.py:10304 lazylibrarian/webServe.py:10327
+#: lazylibrarian/webServe.py:10364 lazylibrarian/webServe.py:10387
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr "%(name)s versie %(version)s gevonden"
 
-#: lazylibrarian/webServe.py:10307 lazylibrarian/webServe.py:10329
+#: lazylibrarian/webServe.py:10367 lazylibrarian/webServe.py:10389
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr "%(command)s mislukt: %(error)s"
 
-#: lazylibrarian/webServe.py:10360
+#: lazylibrarian/webServe.py:10420
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr "Preprocessor gaf %(rc)s terug: res[%(res)s] err[%(err)s]"
 
-#: lazylibrarian/webServe.py:10363
+#: lazylibrarian/webServe.py:10423
 msgid "No preprocessor set in config"
 msgstr "Geen voorbewerkingsprogramma ingesteld in de configuratie"
 
-#: lazylibrarian/webServe.py:10417
+#: lazylibrarian/webServe.py:10477
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr "Bestand %(file)s gemaild naar %(addresses)s"
 
-#: lazylibrarian/webServe.py:10421
+#: lazylibrarian/webServe.py:10481
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr "Kan bestand %(file)s niet mailen naar %(addresses)s"
 
-#: lazylibrarian/webServe.py:10423
+#: lazylibrarian/webServe.py:10483
 msgid "Send file"
 msgstr "Bestand versturen"
 
-#: lazylibrarian/webServe.py:10479
+#: lazylibrarian/webServe.py:10539
 msgid "Thank you for enabling Telemetry"
 msgstr "Bedankt voor het inschakelen van telemetrie"
+
+#, fuzzy
+#~| msgid "Annas Archive"
+#~ msgid "Search Anna's Archive"
+#~ msgstr "Annas Archive"
+
+#, fuzzy
+#~| msgid "Search in:"
+#~ msgid "Search Z-Library"
+#~ msgstr "Zoeken in:"
 
 #, fuzzy
 #~| msgid "Add Author"
