@@ -419,11 +419,85 @@ def parse_result(raw_content: Tag) -> SearchResult | None:
     return res
 
 
+def _mirror_links(soup: BeautifulSoup, md5: str, base: str) -> list[str]:
+    """ Links to external libgen mirrors for this md5 on an Annas book page, libgen.li ads pages first """
+    links = []
+    for a in soup.find_all('a', href=True):
+        href = urljoin(base, a['href'])
+        parsed = urlparse(href)
+        if 'libgen' in parsed.netloc.lower() and md5.lower() in href.lower() and href not in links:
+            links.append(href)
+    return sorted(links, key=lambda h: '/ads.php' not in h)
+
+
+def annas_mirror_download(md5, folder, title, extn):
+    """ Download without a membership key: find the libgen mirror links on the book's page,
+        follow one to its get.php link and fetch the file. Annas' own slow downloads need a captcha """
+    logger = logging.getLogger(__name__)
+    downloadlogger = logging.getLogger('special.dlcomms')
+    annas_hosts = get_list(CONFIG['ANNA_HOST'])
+    if not annas_hosts:
+        return False, "No Annas hosts found"
+    mirrors = []
+    for host in annas_hosts:
+        base = host if host.startswith('http') else f"https://{host}"
+        try:
+            response = ANNAS_SESSION.get(urljoin(base, f"/md5/{md5}"), timeout=30)
+            if response.status_code != 200:
+                downloadlogger.debug(f"{host}: book page returned {response.status_code}")
+                continue
+            soup = BeautifulSoup(response.text.replace("<!--", "").replace("-->", ""), "html5lib")
+            mirrors = _mirror_links(soup, md5, base)
+            if mirrors:
+                annas_hosts_prefer(annas_hosts, host)
+                break
+        except Exception as e:
+            downloadlogger.debug(f"{host}: {e}")
+    if not mirrors:
+        return False, "No Annas secret key set and no mirror links found for this book"
+
+    for mirror in mirrors:
+        try:
+            r = ANNAS_SESSION.get(mirror, timeout=60)
+            if r.status_code != 200:
+                downloadlogger.debug(f"{mirror} returned {r.status_code}")
+                continue
+            if 'text/html' in r.headers.get('content-type', '').lower():
+                # an intermediate page, look for the real download link on it
+                page = BeautifulSoup(r.text, "html5lib")
+                dl_link = next((urljoin(mirror, a['href']) for a in page.find_all('a', href=True)
+                                if 'get.php' in a['href']), None)
+                if not dl_link:
+                    downloadlogger.debug(f"No get.php link on {mirror}")
+                    continue
+                r = ANNAS_SESSION.get(dl_link, timeout=120)
+                if r.status_code != 200:
+                    downloadlogger.debug(f"{dl_link} returned {r.status_code}")
+                    continue
+                mirror = dl_link
+            if 'text/html' in r.headers.get('content-type', '').lower() or len(r.content) < 1000:
+                downloadlogger.debug(f"{mirror} did not return a book ({len(r.content)} bytes)")
+                continue
+            download_dir = get_directory('Download')
+            if folder:
+                parent = os.path.join(download_dir, folder)
+                if not os.path.isdir(parent):
+                    os.mkdir(parent)
+            dest_filename = os.path.join(download_dir, folder, sanitize(f"{title}{extn}"))
+            with open(dest_filename, 'wb') as f:
+                f.write(r.content)
+            logger.debug(f"Got {len(r.content)} bytes from {mirror}, written to {dest_filename}")
+            return True, dest_filename
+        except Exception as e:
+            downloadlogger.debug(f"{mirror}: {e}")
+    return False, "No Annas secret key set and the mirrors would not give the file"
+
+
 def annas_download(md5, folder, title, extn, domain_index=0):
     logger = logging.getLogger(__name__)
     downloadlogger = logging.getLogger('special.dlcomms')
     if not CONFIG['ANNA_KEY']:
-        return False, "No Annas secret key set, downloads need a paid membership key"
+        return annas_mirror_download(md5, folder, title, extn)
     params = {'md5': md5, 'key': CONFIG['ANNA_KEY']}
     if domain_index:
         params['domain_index'] = domain_index
