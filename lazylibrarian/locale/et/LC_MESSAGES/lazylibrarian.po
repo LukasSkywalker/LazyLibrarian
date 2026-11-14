@@ -131,6 +131,7 @@ msgstr "Peaautor või kaasautor"
 #: data/interfaces/modern/book_detail.html:80
 #: data/interfaces/modern/books.html:141
 #: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
+#: lazylibrarian/setupwizard.py:555
 msgid "Language"
 msgstr "Keel"
 
@@ -423,7 +424,7 @@ msgstr "Pealkiri"
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
 #: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:2122
+#: lazylibrarian/webServe.py:2122 lazylibrarian/setupwizard.py:77
 msgid "Series"
 msgstr "Sari"
 
@@ -989,6 +990,7 @@ msgstr "viimaste heliraamatute RSS-voog"
 #: data/interfaces/modern/issues.html:125
 #: data/interfaces/modern/issues.html:155
 #: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
+#: lazylibrarian/setupwizard.py:560
 msgid "Edit"
 msgstr "Muuda"
 
@@ -1577,6 +1579,7 @@ msgid "(filtered from _MAX_ total rows)"
 msgstr "(filtreeritud kokku _MAX_ reast)"
 
 #: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:613
+#: lazylibrarian/setupwizard.py:564
 msgid "Loading..."
 msgstr "Laadimine ..."
 
@@ -1589,6 +1592,7 @@ msgid "Previous"
 msgstr "Eelmine"
 
 #: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:615
+#: lazylibrarian/setupwizard.py:566
 msgid "Next"
 msgstr "Järgmine"
 
@@ -1617,7 +1621,7 @@ msgstr "Tühjenda"
 #: data/interfaces/modern/members.html:194
 #: data/interfaces/modern/searchresults.html:208
 #: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:615
+#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
 msgid "Cancel"
 msgstr "Tühista"
 
@@ -1680,7 +1684,7 @@ msgstr "Autorid"
 #: data/interfaces/bookstrap/config.html:149
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3727
+#: lazylibrarian/webServe.py:3727 lazylibrarian/setupwizard.py:76
 msgid "eBooks"
 msgstr "E-raamatud"
 
@@ -1693,7 +1697,7 @@ msgstr "Audio"
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3704
+#: lazylibrarian/webServe.py:3704 lazylibrarian/setupwizard.py:76
 msgid "AudioBooks"
 msgstr "Audioraamatud"
 
@@ -1706,7 +1710,7 @@ msgstr "Ajakirjad"
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
 #: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:6886
+#: lazylibrarian/webServe.py:6886 lazylibrarian/setupwizard.py:76
 msgid "Magazines"
 msgstr "Ajakirjad"
 
@@ -1716,6 +1720,7 @@ msgstr "Ajakirjad"
 #: data/interfaces/bookstrap/config.html:2896
 #: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
 #: lazylibrarian/webServe.py:6176 lazylibrarian/webServe.py:6537
+#: lazylibrarian/setupwizard.py:77
 msgid "Comics"
 msgstr "Koomiksid"
 
@@ -1765,7 +1770,6 @@ msgstr "Abi"
 #: data/interfaces/modern/modern_base.html:446
 #: data/interfaces/modern/whatsnew.html:96
 #, fuzzy
-#| msgid "Import Issues"
 msgid "Report an issue"
 msgstr "Impordi numbrid"
 
@@ -1773,6 +1777,7 @@ msgstr "Impordi numbrid"
 #: data/interfaces/bookstrap/base.html:504
 #: data/interfaces/modern/modern_base.html:383
 #: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
+#: lazylibrarian/setupwizard.py:306
 msgid "Interface language"
 msgstr "Liidese keel"
 
@@ -1964,7 +1969,7 @@ msgstr "Tõlgi LazyLibrarian"
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
-#: lazylibrarian/setupwizard.py:616
+#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
 msgid "Something went wrong, try again"
 msgstr "Midagi läks valesti, proovige uuesti"
 
@@ -2388,6 +2393,7 @@ msgid "DB Stats"
 msgstr "AB statistika"
 
 #: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:604
+#: lazylibrarian/setupwizard.py:555
 msgid "Setup Wizard"
 msgstr ""
 
@@ -2439,6 +2445,7 @@ msgid "Save changes"
 msgstr "Salvesta muudatused"
 
 #: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:411
+#: lazylibrarian/setupwizard.py:370
 msgid "Interface"
 msgstr "Liides"
 
@@ -4659,7 +4666,8 @@ msgstr "Päevased allalaadimised: (kasutatud %(count)s)"
 
 #: data/interfaces/bookstrap/config.html:2197
 #: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:160
-#: lazylibrarian/setupwizard.py:163
+#: lazylibrarian/setupwizard.py:163 lazylibrarian/setupwizard.py:143
+#: lazylibrarian/setupwizard.py:146
 msgid "name"
 msgstr "nimi"
 
@@ -6608,6 +6616,7 @@ msgid "Custom: %s"
 msgstr "Kohandatud: %s"
 
 #: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:614
+#: lazylibrarian/setupwizard.py:565
 msgid "Change"
 msgstr "Muuda"
 
@@ -6628,6 +6637,7 @@ msgid "GoogleBooks Country:"
 msgstr "GoogleBooksi riik:"
 
 #: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:240
+#: lazylibrarian/setupwizard.py:223
 msgid "Automatic (where the server is)"
 msgstr "Automaatne (serveri asukoht)"
 
@@ -6707,6 +6717,7 @@ msgid "Default language for magazines:"
 msgstr "Ajakirjade vaikekeel:"
 
 #: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:622
+#: lazylibrarian/setupwizard.py:573
 msgid "Not set"
 msgstr "Määramata"
 
@@ -6806,7 +6817,6 @@ msgstr ""
 
 #: data/interfaces/bookstrap/config.html:4204
 #, fuzzy
-#| msgid "Title, author and series"
 msgid "Titles before author names"
 msgstr "Pealkiri, autor ja sari"
 
@@ -7025,7 +7035,6 @@ msgstr "Uusim versioon: %(version)s"
 
 #: data/interfaces/bookstrap/config.html:4362
 #, fuzzy
-#| msgid "Authentication"
 msgid "Documentation"
 msgstr "Autentimine"
 
@@ -9125,7 +9134,7 @@ msgstr "ISBN"
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
-#: lazylibrarian/setupwizard.py:615
+#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
 msgid "Back"
 msgstr "Tagasi"
 
@@ -9152,7 +9161,6 @@ msgstr "Soovi"
 #: data/interfaces/modern/index.html:191 data/interfaces/modern/issues.html:182
 #: data/interfaces/modern/magazines.html:180
 #, fuzzy
-#| msgid "Reopen library"
 msgid "Remove from library"
 msgstr "Ava raamatukogu uuesti"
 
@@ -9160,7 +9168,6 @@ msgstr "Ava raamatukogu uuesti"
 #: data/interfaces/modern/index.html:192 data/interfaces/modern/issues.html:183
 #: data/interfaces/modern/magazines.html:181
 #, fuzzy
-#| msgid "Delete Comic"
 msgid "Delete from disk"
 msgstr "Kustuta koomiks"
 
@@ -9718,7 +9725,6 @@ msgstr "Vanimad"
 #: data/interfaces/modern/history.html:75
 #: data/interfaces/modern/modern_base.html:491
 #, fuzzy
-#| msgid "Show all series"
 msgid "Stop all seeding"
 msgstr "Näita kõiki sarju"
 
@@ -9726,7 +9732,6 @@ msgstr "Näita kõiki sarju"
 #: data/interfaces/modern/history.html:144
 #: data/interfaces/modern/modern_base.html:522
 #, fuzzy
-#| msgid "Seeding"
 msgid "Stop seeding"
 msgstr "Jagamine"
 
@@ -9802,12 +9807,6 @@ msgstr[1] "%(have)s / %(count)s raamatut"
 
 #: data/interfaces/modern/index.html:223
 #, fuzzy, python-format
-#| msgid ""
-#| "Are you sure you want to permanently delete the selected author and their "
-#| "media?"
-#| msgid_plural ""
-#| "Are you sure you want to permanently delete the %(count)s selected "
-#| "authors and their media?"
 msgid ""
 "Are you sure you want to permanently delete the selected author and their "
 "files?"
@@ -9922,10 +9921,6 @@ msgstr[1] "%(count)s ajakirja"
 
 #: data/interfaces/modern/magazines.html:229
 #, fuzzy, python-format
-#| msgid "Are you sure you want to permanently delete the selected magazine?"
-#| msgid_plural ""
-#| "Are you sure you want to permanently delete the %(count)s selected "
-#| "magazines?"
 msgid ""
 "Are you sure you want to permanently delete the selected magazine and all "
 "its issues?"
@@ -10566,99 +10561,89 @@ msgstr "Lisatud raamatukokku"
 msgid "Download failed"
 msgstr "Allalaadimine ebaõnnestus"
 
-#: lazylibrarian/setupwizard.py:46
+#: lazylibrarian/setupwizard.py:46 lazylibrarian/setupwizard.py:45
 #, fuzzy
-#| msgid "Slovak"
 msgid "Slovakia"
 msgstr "Slovaki"
 
-#: lazylibrarian/setupwizard.py:47
+#: lazylibrarian/setupwizard.py:47 lazylibrarian/setupwizard.py:46
 msgid "Czech Republic"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:48
+#: lazylibrarian/setupwizard.py:48 lazylibrarian/setupwizard.py:47
 #, fuzzy
-#| msgid "German"
 msgid "Germany"
 msgstr "Saksa"
 
-#: lazylibrarian/setupwizard.py:49
+#: lazylibrarian/setupwizard.py:49 lazylibrarian/setupwizard.py:48
 msgid "Austria"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:50
+#: lazylibrarian/setupwizard.py:50 lazylibrarian/setupwizard.py:49
 msgid "Switzerland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:51
+#: lazylibrarian/setupwizard.py:51 lazylibrarian/setupwizard.py:50
 msgid "Poland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:52
+#: lazylibrarian/setupwizard.py:52 lazylibrarian/setupwizard.py:51
 #, fuzzy
-#| msgid "Cancel"
 msgid "France"
 msgstr "Tühista"
 
-#: lazylibrarian/setupwizard.py:53
+#: lazylibrarian/setupwizard.py:53 lazylibrarian/setupwizard.py:52
 msgid "Spain"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:54
+#: lazylibrarian/setupwizard.py:54 lazylibrarian/setupwizard.py:53
 #, fuzzy
-#| msgid "Italian"
 msgid "Italy"
 msgstr "Itaalia"
 
-#: lazylibrarian/setupwizard.py:55
+#: lazylibrarian/setupwizard.py:55 lazylibrarian/setupwizard.py:54
 msgid "Netherlands"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:56
+#: lazylibrarian/setupwizard.py:56 lazylibrarian/setupwizard.py:55
 #, fuzzy
-#| msgid "Russian"
 msgid "Russia"
 msgstr "Vene"
 
-#: lazylibrarian/setupwizard.py:57
+#: lazylibrarian/setupwizard.py:57 lazylibrarian/setupwizard.py:56
 #, fuzzy
-#| msgid "Estonian"
 msgid "Estonia"
 msgstr "Eesti"
 
-#: lazylibrarian/setupwizard.py:58
+#: lazylibrarian/setupwizard.py:58 lazylibrarian/setupwizard.py:57
 msgid "United Kingdom"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:59
+#: lazylibrarian/setupwizard.py:59 lazylibrarian/setupwizard.py:58
 #, fuzzy
-#| msgid "Updates"
 msgid "United States"
 msgstr "Uuendused"
 
-#: lazylibrarian/setupwizard.py:61
+#: lazylibrarian/setupwizard.py:61 lazylibrarian/setupwizard.py:60
 #, fuzzy
-#| msgid "User accounts"
 msgid "Other country"
 msgstr "Kasutajakontod"
 
-#: lazylibrarian/setupwizard.py:70
+#: lazylibrarian/setupwizard.py:70 lazylibrarian/setupwizard.py:69
 msgid "Czech and Slovak book database (databazeknih.cz)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:71
+#: lazylibrarian/setupwizard.py:71 lazylibrarian/setupwizard.py:70
 #, fuzzy
-#| msgid "Deutsche Nationalbibliothek API:"
 msgid "German National Library (Deutsche Nationalbibliothek)"
 msgstr "Deutsche Nationalbibliotheki API:"
 
-#: lazylibrarian/setupwizard.py:72
+#: lazylibrarian/setupwizard.py:72 lazylibrarian/setupwizard.py:71
 msgid "National Library of Poland (Biblioteka Narodowa)"
 msgstr ""
 
 #: lazylibrarian/setupwizard.py:76
 #, fuzzy
-#| msgid "Annas Archive"
 msgid "Anna's Archive"
 msgstr "Annas Archive"
 
@@ -10678,7 +10663,6 @@ msgstr ""
 
 #: lazylibrarian/setupwizard.py:79
 #, fuzzy
-#| msgid "Library"
 msgid "Z-Library"
 msgstr "Raamatukogu"
 
@@ -10688,7 +10672,6 @@ msgstr ""
 
 #: lazylibrarian/setupwizard.py:80
 #, fuzzy
-#| msgid "soulseek daemon"
 msgid "Soulseek"
 msgstr "soulseeki deemon"
 
@@ -10698,7 +10681,6 @@ msgstr ""
 
 #: lazylibrarian/setupwizard.py:81
 #, fuzzy
-#| msgid "AudioBook"
 msgid "AudioBookBay"
 msgstr "Audioraamat"
 
@@ -10708,7 +10690,6 @@ msgstr ""
 
 #: lazylibrarian/setupwizard.py:82
 #, fuzzy
-#| msgid "Torrents"
 msgid "LimeTorrents"
 msgstr "Torrentid"
 
@@ -10723,116 +10704,100 @@ msgstr ""
 
 #: lazylibrarian/setupwizard.py:84
 #, fuzzy
-#| msgid "Torrents"
 msgid "KickassTorrents"
 msgstr "Torrentid"
 
 #: lazylibrarian/setupwizard.py:85
 #, fuzzy
-#| msgid "torrentdownload host"
 msgid "TorrentDownloads"
 msgstr "torrentdownloadi host"
 
-#: lazylibrarian/setupwizard.py:95
+#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
 #, fuzzy
-#| msgid "eBook Library Folder"
 msgid "eBook library folder"
 msgstr "E-raamatute raamatukogu kaust"
 
-#: lazylibrarian/setupwizard.py:95
+#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
 #, fuzzy
-#| msgid "AudioBook Library Folder"
 msgid "AudioBook library folder"
 msgstr "Audioraamatute raamatukogu kaust"
 
-#: lazylibrarian/setupwizard.py:96
+#: lazylibrarian/setupwizard.py:96 lazylibrarian/setupwizard.py:79
 #, fuzzy
-#| msgid "Download failed"
 msgid "Download folder"
 msgstr "Allalaadimine ebaõnnestus"
 
-#: lazylibrarian/setupwizard.py:342
+#: lazylibrarian/setupwizard.py:342 lazylibrarian/setupwizard.py:310
 #, fuzzy
-#| msgid "Information Sources"
 msgid "Main book information source"
 msgstr "Teabeallikad"
 
-#: lazylibrarian/setupwizard.py:346
+#: lazylibrarian/setupwizard.py:346 lazylibrarian/setupwizard.py:314
 #, fuzzy
-#| msgid "Book Databases"
 msgid "Local book database"
 msgstr "Raamatute andmebaasid"
 
-#: lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:349 lazylibrarian/setupwizard.py:317
 msgid "Country for Google Books results"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:359
+#: lazylibrarian/setupwizard.py:359 lazylibrarian/setupwizard.py:327
 #, fuzzy
-#| msgid "Refresh Book Languages"
 msgid "Preferred book languages"
 msgstr "Värskenda raamatute keeli"
 
-#: lazylibrarian/setupwizard.py:361
+#: lazylibrarian/setupwizard.py:361 lazylibrarian/setupwizard.py:329
 #, fuzzy
-#| msgid "Language Detection"
 msgid "Languages to detect in book titles"
 msgstr "Keele tuvastamine"
 
-#: lazylibrarian/setupwizard.py:363
+#: lazylibrarian/setupwizard.py:363 lazylibrarian/setupwizard.py:331
 msgid ""
 "When a source does not say the language of a book, it is guessed from the "
 "title, choosing only from these languages. Keep the languages you do not "
 "want too, so their books are recognised and left out."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:374
+#: lazylibrarian/setupwizard.py:374 lazylibrarian/setupwizard.py:342
 #, fuzzy
-#| msgid "Month name"
 msgid "Add month names"
 msgstr "Kuu nimi"
 
-#: lazylibrarian/setupwizard.py:379
+#: lazylibrarian/setupwizard.py:379 lazylibrarian/setupwizard.py:347
 #, fuzzy
-#| msgid "Languages"
 msgid "Language for dates"
 msgstr "Keeled"
 
-#: lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
 #, fuzzy
-#| msgid "wanted formats"
 msgid "Date format"
 msgstr "soovitud vormingud"
 
-#: lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
 #, fuzzy
-#| msgid "Author surname first"
 msgid "Author date format"
 msgstr "Autori perekonnanimi esimesena"
 
-#: lazylibrarian/setupwizard.py:386
+#: lazylibrarian/setupwizard.py:386 lazylibrarian/setupwizard.py:354
 msgid "Preferred magazine language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:388
+#: lazylibrarian/setupwizard.py:388 lazylibrarian/setupwizard.py:356
 #, fuzzy
-#| msgid "Issue number"
 msgid "Words for issue numbers"
 msgstr "Numbri number"
 
-#: lazylibrarian/setupwizard.py:389
+#: lazylibrarian/setupwizard.py:389 lazylibrarian/setupwizard.py:357
 msgid "Words for volume numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:390
+#: lazylibrarian/setupwizard.py:390 lazylibrarian/setupwizard.py:358
 #, fuzzy
-#| msgid "Words allowed in magazine titles:"
 msgid "Other words allowed in magazine titles"
 msgstr "Ajakirjade pealkirjades lubatud sõnad:"
 
 #: lazylibrarian/setupwizard.py:404
 #, fuzzy
-#| msgid "Recommended for books in German"
 msgid "Recommended for your country"
 msgstr "Soovitatav saksakeelsete raamatute jaoks"
 
@@ -10844,182 +10809,163 @@ msgstr ""
 msgid "Recommended for your country. Books and comics from the LibGen mirror."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:409
+#: lazylibrarian/setupwizard.py:409 lazylibrarian/setupwizard.py:368
 #, fuzzy
-#| msgid "Series number"
 msgid "Series number format"
 msgstr "Sarja number"
 
-#: lazylibrarian/setupwizard.py:414
+#: lazylibrarian/setupwizard.py:414 lazylibrarian/setupwizard.py:373
 #, fuzzy
-#| msgid "Use Bookstrap"
 msgid "Bookstrap theme"
 msgstr "Kasuta Bookstrapi"
 
-#: lazylibrarian/setupwizard.py:418
+#: lazylibrarian/setupwizard.py:418 lazylibrarian/setupwizard.py:377
 #, fuzzy
-#| msgid "Interface language"
 msgid "Country and language"
 msgstr "Liidese keel"
 
-#: lazylibrarian/setupwizard.py:419
+#: lazylibrarian/setupwizard.py:419 lazylibrarian/setupwizard.py:378
 #, fuzzy
-#| msgid "Book Databases"
 msgid "Book databases"
 msgstr "Raamatute andmebaasid"
 
-#: lazylibrarian/setupwizard.py:420
+#: lazylibrarian/setupwizard.py:420 lazylibrarian/setupwizard.py:379
 #, fuzzy
-#| msgid "Book Languages"
 msgid "Book languages"
 msgstr "Raamatute keeled"
 
-#: lazylibrarian/setupwizard.py:421
+#: lazylibrarian/setupwizard.py:421 lazylibrarian/setupwizard.py:380
 msgid "Dates, months and magazines"
 msgstr ""
 
 #: lazylibrarian/setupwizard.py:422
 #, fuzzy
-#| msgid "Search series"
 msgid "Search providers"
 msgstr "Otsi sarju"
 
-#: lazylibrarian/setupwizard.py:423
+#: lazylibrarian/setupwizard.py:423 lazylibrarian/setupwizard.py:381
 msgid "Library and other settings"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:479
+#: lazylibrarian/setupwizard.py:479 lazylibrarian/setupwizard.py:435
 #, fuzzy
-#| msgid "Not Available"
 msgid "Not a valid value"
 msgstr "Pole saadaval"
 
-#: lazylibrarian/setupwizard.py:536
+#: lazylibrarian/setupwizard.py:536 lazylibrarian/setupwizard.py:492
 msgid "Not a setting the wizard can change"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:570
+#: lazylibrarian/setupwizard.py:570 lazylibrarian/setupwizard.py:521
 msgid "The system does not have the locale"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:573
+#: lazylibrarian/setupwizard.py:573 lazylibrarian/setupwizard.py:524
 msgid "Folder not found or not writable"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:604
+#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
 #, fuzzy
-#| msgid "Summary:"
 msgid "Summary"
 msgstr "Kokkuvõte:"
 
-#: lazylibrarian/setupwizard.py:604
+#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
 msgid "Country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:605
+#: lazylibrarian/setupwizard.py:605 lazylibrarian/setupwizard.py:556
 msgid ""
 "Pick your language and country. The next steps show what will be set for "
 "them, check it and untick anything you want to keep as it is."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:607
+#: lazylibrarian/setupwizard.py:607 lazylibrarian/setupwizard.py:558
 msgid "These settings will be changed for your country:"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:608
+#: lazylibrarian/setupwizard.py:608 lazylibrarian/setupwizard.py:559
 msgid "Nothing to change here, the settings already suit your country."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:609
+#: lazylibrarian/setupwizard.py:609 lazylibrarian/setupwizard.py:560
 msgid "Show unchanged settings too"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:610
+#: lazylibrarian/setupwizard.py:610 lazylibrarian/setupwizard.py:561
 #, fuzzy
-#| msgid "Show all magazines"
 msgid "Show all languages"
 msgstr "Näita kõiki ajakirju"
 
-#: lazylibrarian/setupwizard.py:611
+#: lazylibrarian/setupwizard.py:611 lazylibrarian/setupwizard.py:562
 msgid ""
 "You can run the Setup Wizard again any time: in Settings, the Setup Wizard "
 "button next to Check Version."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:613
+#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
 #, fuzzy
-#| msgid "No"
 msgid "Now"
 msgstr "Ei"
 
-#: lazylibrarian/setupwizard.py:613
+#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
 #, fuzzy
-#| msgid "Open"
 msgid "On"
 msgstr "Ava"
 
-#: lazylibrarian/setupwizard.py:613
+#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
 msgid "Off"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:614
+#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
 #, fuzzy
-#| msgid "Settings"
 msgid "Setting"
 msgstr "Seaded"
 
-#: lazylibrarian/setupwizard.py:614
+#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
 msgid "Nothing is ticked, nothing will be changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:615
+#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
 #, fuzzy
-#| msgid "Skipped"
 msgid "Skip step"
 msgstr "Vahele jäetud"
 
-#: lazylibrarian/setupwizard.py:615
+#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
 msgid "Apply"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:616
+#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
 msgid "Don't show again"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:617
+#: lazylibrarian/setupwizard.py:617 lazylibrarian/setupwizard.py:568
 #, fuzzy, python-format
-#| msgid "%(count)s setting found"
-#| msgid_plural "%(count)s settings found"
 msgid "%(count)s settings changed."
 msgstr "Leiti %(count)s seade"
 
-#: lazylibrarian/setupwizard.py:618
+#: lazylibrarian/setupwizard.py:618 lazylibrarian/setupwizard.py:569
 msgid ""
 "The web interface has no username and password, anyone on your network can "
 "change the settings."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:620
+#: lazylibrarian/setupwizard.py:620 lazylibrarian/setupwizard.py:571
 #, fuzzy
-#| msgid "Try the new interface (beta)"
 msgid "Set them on the Interface tab"
 msgstr "Proovi uut liidest (beeta)"
 
-#: lazylibrarian/setupwizard.py:621
+#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
 #, fuzzy
-#| msgid "Folder"
 msgid "Folder found"
 msgstr "Kaust"
 
-#: lazylibrarian/setupwizard.py:621
+#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
 #, fuzzy
-#| msgid "User not found"
 msgid "Folder not found"
 msgstr "Kasutajat ei leitud"
 
-#: lazylibrarian/setupwizard.py:622
+#: lazylibrarian/setupwizard.py:622 lazylibrarian/setupwizard.py:573
 #, fuzzy
-#| msgid "is not available"
 msgid "Folder is not writable"
 msgstr "pole saadaval"
 
@@ -11849,18 +11795,17 @@ msgstr "Saada fail"
 msgid "Thank you for enabling Telemetry"
 msgstr "Täname telemeetria lubamise eest"
 
+#: lazylibrarian/setupwizard.py:366
 #, fuzzy
-#~| msgid "Annas Archive"
-#~ msgid "Search Anna's Archive"
-#~ msgstr "Annas Archive"
+msgid "Search Anna's Archive"
+msgstr "Annas Archive"
+
+#: lazylibrarian/setupwizard.py:367
+#, fuzzy
+msgid "Search Z-Library"
+msgstr "Otsi kohast:"
 
 #, fuzzy
-#~| msgid "Search in:"
-#~ msgid "Search Z-Library"
-#~ msgstr "Otsi kohast:"
-
-#, fuzzy
-#~| msgid "Add Author"
 #~ msgid "Add author"
 #~ msgstr "Lisa autor"
 
