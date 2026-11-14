@@ -245,7 +245,14 @@
     @media (prefers-reduced-motion: reduce) { .ll-notice, .ll-notice.ll-out { animation: none; } }
     .ll-theme-btn, .ll-lang-btn { background: none; border: 0; }
     /* the language list is long: it goes above the notices and scrolls when the screen is short, or its lower items can't be reached */
-    .ll-quick .dropdown-menu { z-index: 1060; max-height: calc(100vh - 70px); overflow-y: auto; }
+    .ll-quick .dropdown-menu { z-index: 1060; max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px); overflow-y: auto; overscroll-behavior: contain; }
+    /* on a phone the icons can wrap onto a second row and the menu, aligned to its icon, would stick out of the screen:
+       it takes the width of the bar instead, below it */
+    @media (max-width: 575.98px) {
+      .ll-quick > .dropdown:not(.ll-prov) { position: static; }
+      .ll-quick > .dropdown:not(.ll-prov) > .dropdown-menu { position: absolute !important; inset: 100% .5rem auto .5rem !important; transform: none !important;
+        width: auto; min-width: 0; max-height: calc(100vh - 130px); max-height: calc(100dvh - 130px); }
+    }
     /* the name opens the menu on narrow screens; on wide ones the menu is always there */
     .ll-brand { background: none; border: 0; padding-left: 0; color: inherit; }
     .ll-brand-caret { font-size: .62rem; opacity: .6; transition: transform .2s ease; }
@@ -485,7 +492,7 @@
                     x-text="d.status === 'Seeding' ? llStatus(d.status) : $store.dl.T.noClient"></span>
               %if perm & lazylibrarian.perm_edit:
               <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill ms-2 py-0" x-show="d.status === 'Seeding'"
-                      :disabled="d.busy" @click.prevent.stop="$store.dl.stopSeeding(d)">
+                      :disabled="!!d.busy" @click.prevent.stop="$store.dl.stopSeeding(d)">
                 <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
               %endif
             </span>
@@ -497,7 +504,7 @@
 
       <h3 class="d-flex align-items-center justify-content-between">${_('Finished recently')}
         <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill py-0" x-show="$store.dl.recent.length"
-                @click="$store.dl.clearRecent()"><i class="fa fa-broom me-1" aria-hidden="true"></i>${_('Clear')}</button></h3>
+                @click="$store.dl.clearRecent()"><i class="fa fa-trash me-1" aria-hidden="true"></i>${_('Clear')}</button></h3>
       <template x-for="d in $store.dl.recent" :key="d.rowid">
         <a class="ll-dl-item" :class="$store.dl.hl.indexOf(d.rowid) >= 0 && 'll-new'" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
