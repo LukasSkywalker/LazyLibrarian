@@ -244,6 +244,15 @@
                        box-shadow: 0 6px 18px -8px rgba(0,0,0,.4); }
     @media (prefers-reduced-motion: reduce) { .ll-notice, .ll-notice.ll-out { animation: none; } }
     .ll-theme-btn, .ll-lang-btn { background: none; border: 0; }
+    /* the language list is long: it goes above the notices and scrolls when the screen is short, or its lower items can't be reached */
+    .ll-quick .dropdown-menu { z-index: 1060; max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px); overflow-y: auto; overscroll-behavior: contain; }
+    /* on a phone the icons can wrap onto a second row and the menu, aligned to its icon, would stick out of the screen:
+       it takes the width of the bar instead, below it */
+    @media (max-width: 575.98px) {
+      .ll-quick > .dropdown:not(.ll-prov) { position: static; }
+      .ll-quick > .dropdown:not(.ll-prov) > .dropdown-menu { position: absolute !important; inset: 100% .5rem auto .5rem !important; transform: none !important;
+        width: auto; min-width: 0; max-height: calc(100vh - 130px); max-height: calc(100dvh - 130px); }
+    }
     /* the name opens the menu on narrow screens; on wide ones the menu is always there */
     .ll-brand { background: none; border: 0; padding-left: 0; color: inherit; }
     .ll-brand-caret { font-size: .62rem; opacity: .6; transition: transform .2s ease; }

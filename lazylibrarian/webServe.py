@@ -8172,8 +8172,8 @@ class WebInterface:
     def whats_new(self):
         self.check_permitted(lazylibrarian.perm_config, redirect_unauth=True)
         unseen = [item['id'] for item in lazylibrarian.WHATS_NEW]
-        changes = whatsnew.recent_changes()
-        if not changes['error']:
+        changes = whatsnew.changes_when_ready()
+        if not changes['error'] and not changes.get('loading'):
             # opening the page counts as having seen them, like closing the popup
             whatsnew.mark_seen()
         return serve_template(templatename="whatsnew.html", title=i18n.gettext("What's new"), changes=changes,
