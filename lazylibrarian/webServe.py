@@ -8824,23 +8824,52 @@ class WebInterface:
         db = database.DBConnection()
         # noinspection PyBroadException
         try:
-            row = db.match("SELECT NZBtitle,Source,DownloadID from wanted WHERE rowid=? and Status='Seeding'",
-                           (check_int(rowid, 0),))
-            if not row:
-                return {'ok': False}
-            # abandoned: the provider's seed requirement is the very thing being cut short here
-            ok = delete_task(row['Source'], make_unicode(row['DownloadID']), False, abandoned=True)
-            if not ok:
-                return {'ok': False}
-            logger.info(f"STATUS: {row['NZBtitle']} [Seeding -> Processed] Seeding stopped by user")
-            db.action("UPDATE wanted SET Status='Processed',NZBDate=? WHERE rowid=? and Status='Seeding'",
-                      (now(), check_int(rowid, 0)))
-            return {'ok': True}
+            return {'ok': self._stop_seeding_row(db, check_int(rowid, 0))}
         except Exception:
             logger.error(f'Unhandled exception in stop_seeding: {traceback.format_exc()}')
             return {'ok': False}
         finally:
             db.close()
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def stop_all_seeding(self, **kwargs):
+        """ Stop seeding every download that is seeding, see stop_seeding """
+        self.check_permitted(lazylibrarian.perm_edit)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        logger = logging.getLogger(__name__)
+        stopped = failed = 0
+        db = database.DBConnection()
+        # noinspection PyBroadException
+        try:
+            for row in db.select("SELECT rowid from wanted WHERE Status='Seeding'"):
+                try:
+                    if self._stop_seeding_row(db, row['rowid']):
+                        stopped += 1
+                    else:
+                        failed += 1
+                except Exception:
+                    logger.error(f'Unhandled exception in stop_all_seeding: {traceback.format_exc()}')
+                    failed += 1
+        finally:
+            db.close()
+        return {'ok': failed == 0, 'stopped': stopped, 'failed': failed}
+
+    @staticmethod
+    def _stop_seeding_row(db, rowid):
+        """ Take one seeding download off its downloader and mark it processed, True if that worked """
+        logger = logging.getLogger(__name__)
+        row = db.match("SELECT NZBtitle,Source,DownloadID from wanted WHERE rowid=? and Status='Seeding'", (rowid,))
+        if not row:
+            return False
+        # abandoned: the provider's seed requirement is the very thing being cut short here
+        if not delete_task(row['Source'], make_unicode(row['DownloadID']), False, abandoned=True):
+            return False
+        logger.info(f"STATUS: {row['NZBtitle']} [Seeding -> Processed] Seeding stopped by user")
+        db.action("UPDATE wanted SET Status='Processed',NZBDate=? WHERE rowid=? and Status='Seeding'",
+                  (now(), rowid))
+        return True
 
     @cherrypy.expose
     @require_auth()

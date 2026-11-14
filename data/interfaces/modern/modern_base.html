@@ -463,8 +463,14 @@
       <button type="button" class="btn-close" @click="$store.dl.hide()" aria-label="${_('Close') | h}"></button>
     </div>
     <div class="offcanvas-body">
-      <h3>${_('Downloading')}
-        <span class="badge rounded-pill text-bg-info" x-show="$store.dl.active.length" x-text="$store.dl.active.length"></span></h3>
+      <h3 class="d-flex align-items-center gap-2">${_('Downloading')}
+        <span class="badge rounded-pill text-bg-info" x-show="$store.dl.active.length" x-text="$store.dl.active.length"></span>
+        %if perm & lazylibrarian.perm_edit:
+        <button type="button" class="btn btn-sm btn-outline-info rounded-pill py-0 ms-auto" x-show="$store.dl.seeding > 0"
+                :disabled="$store.dl.stopping" @click="$store.dl.stopAll()">
+          <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop all seeding')}</button>
+        %endif
+      </h3>
       <template x-for="d in $store.dl.active" :key="d.rowid">
         <a class="ll-dl-item" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
@@ -600,8 +606,9 @@
     var rtf = null, panel = null, panelWide = false;  // the bootstrap instance stays out of Alpine's reactivity
     try { rtf = new Intl.RelativeTimeFormat(LANG, {numeric: 'auto'}); } catch (e) {}
     Alpine.store('dl', {
-      T: T, active: [], recent: [], hl: [], loaded: false, open: false, timer: 0,
+      T: T, active: [], recent: [], hl: [], loaded: false, open: false, timer: 0, stopping: false,
       get downloading() { return this.active.filter(function (d) { return d.status === 'Snatched'; }).length; },
+      get seeding() { return this.active.filter(function (d) { return d.status === 'Seeding'; }).length; },
       get unread() { return this.recent.some(function (d) { return d.isNew; }); },
       init: function () {
         var self = this, el = document.getElementById('ll-dl');
@@ -668,6 +675,14 @@
         this.recent.forEach(function (d) { if (cleared.indexOf(d.rowid) < 0) { cleared.push(d.rowid); } });
         save('ll-dl-cleared', cleared.slice(-200));
         this.recent = []; this.hl = [];
+      },
+      stopAll: function () {
+        var self = this;
+        this.stopping = true;
+        fetch('stop_all_seeding', {method: 'POST', credentials: 'same-origin'})
+          .then(function (r) { return r.json(); })
+          .catch(function () {})
+          .finally(function () { self.stopping = false; self.schedule(true); });
       },
       stopSeeding: function (d) {
         var self = this;
