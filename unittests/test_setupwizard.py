@@ -132,11 +132,24 @@ class SetupWizardTest(LLTestCaseWithConfigandDIRS):
         rows = {r['key']: r for s in presets_for('SK', (), self.config, ui_lang=lang) for r in s['rows']}
         self.assertEqual(rows['UI_LANGUAGE']['proposed'], lang)
 
-    def test_search_providers_never_proposed_on(self):
+    def test_recommended_search_providers(self):
         for code in COUNTRIES:
             r = self.rows(code)
-            self.assertFalse(r['ANNA']['changed'])
-            self.assertFalse(r['BOK']['changed'])
+            self.assertIs(r['ANNA']['proposed'], True, code)
+            self.assertIs(r['BOK']['proposed'], False, code)  # needs a login, never proposed on
+            self.assertEqual(r['WEBSHARE']['proposed'], code in ('SK', 'CZ'), code)
+
+    def test_libgen_switches_on_the_gen_entry(self):
+        self.config.ensure_libgen_preset()
+        entry = next(e for e in self.config.get_array('GEN') if 'libgen' in e.get_str('HOST'))
+        self.assertFalse(entry.get_bool('ENABLED'))
+        row = self.rows('SK')['LIBGEN']
+        self.assertIs(row['proposed'], True)
+        self.assertIs(row['current'], False)
+        res = apply({'LIBGEN': True}, self.config, finish=False)
+        self.assertTrue(res['ok'], res)
+        self.assertIn('LIBGEN', res['changed'])
+        self.assertTrue(entry.get_bool('ENABLED'))
 
     def test_nouns_merged_without_duplicates(self):
         self.config.set_csv('ISSUE_NOUNS', 'issue, iss, no, nr, #, n, cislo')

@@ -24,7 +24,7 @@ class SetupWizardWebTest(LLTestCaseWithStartup):
     def test_presets_guess_from_langs(self):
         res = self.ws.wizard_presets(langs='sk-SK,en')
         self.assertEqual(res['country'], 'SK')
-        self.assertEqual([s['id'] for s in res['steps']], ['language', 'sources', 'books', 'dates', 'other'])
+        self.assertEqual([s['id'] for s in res['steps']], ['language', 'sources', 'books', 'dates', 'providers', 'other'])
         self.assertIn('SK', [c['code'] for c in res['countries']])
         self.assertIn('title', res['strings'])
         self.assertIn(res['lang'], [lang['code'] for lang in res['languages']])

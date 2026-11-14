@@ -309,8 +309,8 @@
       body = languageStep();
     } else if (step < last) {
       var s = steps[step];
-      if (s.id === 'other') {
-        if (data.auth_missing) {
+      if (s.id === 'other' || s.id === 'providers') {
+        if (s.id === 'other' && data.auth_missing) {
           body.push(el('div', {'class': 'llw-note'}, [t('auth') + ' ', el('a', {href: 'config#interface', text: t('auth_link')})]));
         }
         s.rows.forEach(function (row) { body.push(formRow(row)); });
