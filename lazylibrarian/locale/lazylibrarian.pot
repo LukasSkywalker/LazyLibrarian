@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-14 14:07+0000\n"
+"POT-Creation-Date: 2026-11-14 20:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 #: data/interfaces/modern/author.html:236
 #: data/interfaces/modern/book_detail.html:80
 #: data/interfaces/modern/books.html:141
-#: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:555
+#: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
 msgid "Language"
 msgstr ""
 
@@ -419,7 +419,7 @@ msgstr ""
 #: data/interfaces/modern/editbook.html:138
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
-#: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:77
+#: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:94
 #: lazylibrarian/webServe.py:2122
 msgid "Series"
 msgstr ""
@@ -985,7 +985,7 @@ msgstr ""
 #: data/interfaces/modern/issues.html:112
 #: data/interfaces/modern/issues.html:125
 #: data/interfaces/modern/issues.html:155
-#: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:560
+#: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
 msgid "Edit"
 msgstr ""
 
@@ -1567,7 +1567,7 @@ msgstr ""
 msgid "(filtered from _MAX_ total rows)"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:564
+#: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:613
 msgid "Loading..."
 msgstr ""
 
@@ -1579,7 +1579,7 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:566
+#: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:615
 msgid "Next"
 msgstr ""
 
@@ -1608,7 +1608,7 @@ msgstr ""
 #: data/interfaces/modern/members.html:194
 #: data/interfaces/modern/searchresults.html:208
 #: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Cancel"
 msgstr ""
 
@@ -1670,7 +1670,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:134
 #: data/interfaces/bookstrap/config.html:149
 #: data/interfaces/bookstrap/config.html:225
-#: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:3727
 msgid "eBooks"
 msgstr ""
@@ -1683,7 +1683,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:135
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:225
-#: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:3704
 msgid "AudioBooks"
 msgstr ""
@@ -1696,7 +1696,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:135
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
-#: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:76
+#: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
 #: lazylibrarian/webServe.py:6886
 msgid "Magazines"
 msgstr ""
@@ -1705,7 +1705,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:136
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2896
-#: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:77
+#: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
 #: lazylibrarian/webServe.py:6176 lazylibrarian/webServe.py:6537
 msgid "Comics"
 msgstr ""
@@ -1761,7 +1761,7 @@ msgstr ""
 #: data/interfaces/bookstrap/base.html:503
 #: data/interfaces/bookstrap/base.html:504
 #: data/interfaces/modern/modern_base.html:383
-#: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:306
+#: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
 msgid "Interface language"
 msgstr ""
 
@@ -1944,7 +1944,7 @@ msgstr ""
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
-#: lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Something went wrong, try again"
 msgstr ""
 
@@ -2359,7 +2359,7 @@ msgstr ""
 msgid "DB Stats"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:555
+#: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:604
 msgid "Setup Wizard"
 msgstr ""
 
@@ -2410,7 +2410,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:370
+#: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:411
 msgid "Interface"
 msgstr ""
 
@@ -4555,8 +4555,8 @@ msgid "Daily Downloads: (used %(count)s)"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:2197
-#: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:143
-#: lazylibrarian/setupwizard.py:146
+#: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:160
+#: lazylibrarian/setupwizard.py:163
 msgid "name"
 msgstr ""
 
@@ -6380,7 +6380,7 @@ msgstr ""
 msgid "Custom: %s"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:565
+#: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:614
 msgid "Change"
 msgstr ""
 
@@ -6398,7 +6398,7 @@ msgstr ""
 msgid "GoogleBooks Country:"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:223
+#: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:240
 msgid "Automatic (where the server is)"
 msgstr ""
 
@@ -6463,7 +6463,7 @@ msgstr ""
 msgid "Default language for magazines:"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:573
+#: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:622
 msgid "Not set"
 msgstr ""
 
@@ -8822,7 +8822,7 @@ msgstr ""
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Back"
 msgstr ""
 
@@ -10179,293 +10179,364 @@ msgstr ""
 msgid "Download failed"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:45
+#: lazylibrarian/setupwizard.py:46
 msgid "Slovakia"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:46
+#: lazylibrarian/setupwizard.py:47
 msgid "Czech Republic"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:47
+#: lazylibrarian/setupwizard.py:48
 msgid "Germany"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:48
+#: lazylibrarian/setupwizard.py:49
 msgid "Austria"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:49
+#: lazylibrarian/setupwizard.py:50
 msgid "Switzerland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:50
+#: lazylibrarian/setupwizard.py:51
 msgid "Poland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:51
+#: lazylibrarian/setupwizard.py:52
 msgid "France"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:52
+#: lazylibrarian/setupwizard.py:53
 msgid "Spain"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:53
+#: lazylibrarian/setupwizard.py:54
 msgid "Italy"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:54
+#: lazylibrarian/setupwizard.py:55
 msgid "Netherlands"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:55
+#: lazylibrarian/setupwizard.py:56
 msgid "Russia"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:56
+#: lazylibrarian/setupwizard.py:57
 msgid "Estonia"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:57
+#: lazylibrarian/setupwizard.py:58
 msgid "United Kingdom"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:58
+#: lazylibrarian/setupwizard.py:59
 msgid "United States"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:60
+#: lazylibrarian/setupwizard.py:61
 msgid "Other country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:69
+#: lazylibrarian/setupwizard.py:70
 msgid "Czech and Slovak book database (databazeknih.cz)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:70
+#: lazylibrarian/setupwizard.py:71
 msgid "German National Library (Deutsche Nationalbibliothek)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:71
+#: lazylibrarian/setupwizard.py:72
 msgid "National Library of Poland (Biblioteka Narodowa)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:78
-msgid "eBook library folder"
+#: lazylibrarian/setupwizard.py:76
+msgid "Anna's Archive"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:78
-msgid "AudioBook library folder"
+#: lazylibrarian/setupwizard.py:76
+msgid "Books in many languages. Downloads without a key are slow."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:77
+msgid "Webshare"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:77
+msgid ""
+"Czech and Slovak file hosting. Needs your Webshare login, enter it on the"
+" Providers tab."
 msgstr ""
 
 #: lazylibrarian/setupwizard.py:79
+msgid "Z-Library"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:79
+msgid "Needs your Z-Library login, enter it on the Providers tab."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:80
+msgid "Soulseek"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:80
+msgid "Needs a running slskd server, set it up on the Providers tab."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:81
+msgid "AudioBookBay"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:81
+msgid "AudioBooks by torrent, needs a torrent client."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:82
+msgid "LimeTorrents"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:82 lazylibrarian/setupwizard.py:83
+#: lazylibrarian/setupwizard.py:84 lazylibrarian/setupwizard.py:85
+msgid "Torrents, needs a torrent client."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:83
+msgid "The Pirate Bay"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:84
+msgid "KickassTorrents"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:85
+msgid "TorrentDownloads"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:95
+msgid "eBook library folder"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:95
+msgid "AudioBook library folder"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:96
 msgid "Download folder"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:310
+#: lazylibrarian/setupwizard.py:342
 msgid "Main book information source"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:314
+#: lazylibrarian/setupwizard.py:346
 msgid "Local book database"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:317
+#: lazylibrarian/setupwizard.py:349
 msgid "Country for Google Books results"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:327
+#: lazylibrarian/setupwizard.py:359
 msgid "Preferred book languages"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:329
+#: lazylibrarian/setupwizard.py:361
 msgid "Languages to detect in book titles"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:331
+#: lazylibrarian/setupwizard.py:363
 msgid ""
 "When a source does not say the language of a book, it is guessed from the"
 " title, choosing only from these languages. Keep the languages you do not"
 " want too, so their books are recognised and left out."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:342
+#: lazylibrarian/setupwizard.py:374
 msgid "Add month names"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:347
+#: lazylibrarian/setupwizard.py:379
 msgid "Language for dates"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 msgid "Date format"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 msgid "Author date format"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:354
+#: lazylibrarian/setupwizard.py:386
 msgid "Preferred magazine language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:356
+#: lazylibrarian/setupwizard.py:388
 msgid "Words for issue numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:357
+#: lazylibrarian/setupwizard.py:389
 msgid "Words for volume numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:358
+#: lazylibrarian/setupwizard.py:390
 msgid "Other words allowed in magazine titles"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:366
-msgid "Search Anna's Archive"
+#: lazylibrarian/setupwizard.py:404
+msgid "Recommended for your country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:367
-msgid "Search Z-Library"
+#: lazylibrarian/setupwizard.py:407
+msgid "LibGen"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:368
+#: lazylibrarian/setupwizard.py:408
+msgid "Recommended for your country. Books and comics from the LibGen mirror."
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:409
 msgid "Series number format"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:373
+#: lazylibrarian/setupwizard.py:414
 msgid "Bookstrap theme"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:377
+#: lazylibrarian/setupwizard.py:418
 msgid "Country and language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:378
+#: lazylibrarian/setupwizard.py:419
 msgid "Book databases"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:379
+#: lazylibrarian/setupwizard.py:420
 msgid "Book languages"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:380
+#: lazylibrarian/setupwizard.py:421
 msgid "Dates, months and magazines"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:422
+msgid "Search providers"
+msgstr ""
+
+#: lazylibrarian/setupwizard.py:423
 msgid "Library and other settings"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:435
+#: lazylibrarian/setupwizard.py:479
 msgid "Not a valid value"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:492
+#: lazylibrarian/setupwizard.py:536
 msgid "Not a setting the wizard can change"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:521
+#: lazylibrarian/setupwizard.py:570
 msgid "The system does not have the locale"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:524
+#: lazylibrarian/setupwizard.py:573
 msgid "Folder not found or not writable"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 msgid "Summary"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 msgid "Country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:556
+#: lazylibrarian/setupwizard.py:605
 msgid ""
 "Pick your language and country. The next steps show what will be set for "
 "them, check it and untick anything you want to keep as it is."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:558
+#: lazylibrarian/setupwizard.py:607
 msgid "These settings will be changed for your country:"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:559
+#: lazylibrarian/setupwizard.py:608
 msgid "Nothing to change here, the settings already suit your country."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:560
+#: lazylibrarian/setupwizard.py:609
 msgid "Show unchanged settings too"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:561
+#: lazylibrarian/setupwizard.py:610
 msgid "Show all languages"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:562
+#: lazylibrarian/setupwizard.py:611
 msgid ""
 "You can run the Setup Wizard again any time: in Settings, the Setup "
 "Wizard button next to Check Version."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "Now"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "On"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "Off"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 msgid "Setting"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 msgid "Nothing is ticked, nothing will be changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Skip step"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Apply"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Don't show again"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:568
+#: lazylibrarian/setupwizard.py:617
 #, python-format
 msgid "%(count)s settings changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:569
+#: lazylibrarian/setupwizard.py:618
 msgid ""
 "The web interface has no username and password, anyone on your network "
 "can change the settings."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:571
+#: lazylibrarian/setupwizard.py:620
 msgid "Set them on the Interface tab"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 msgid "Folder found"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 msgid "Folder not found"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:573
+#: lazylibrarian/setupwizard.py:622
 msgid "Folder is not writable"
 msgstr ""
 
