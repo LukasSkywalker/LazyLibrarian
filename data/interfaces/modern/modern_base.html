@@ -244,6 +244,8 @@
                        box-shadow: 0 6px 18px -8px rgba(0,0,0,.4); }
     @media (prefers-reduced-motion: reduce) { .ll-notice, .ll-notice.ll-out { animation: none; } }
     .ll-theme-btn, .ll-lang-btn { background: none; border: 0; }
+    /* the language list is long: it goes above the notices and scrolls when the screen is short, or its lower items can't be reached */
+    .ll-quick .dropdown-menu { z-index: 1060; max-height: calc(100vh - 70px); overflow-y: auto; }
     /* the name opens the menu on narrow screens; on wide ones the menu is always there */
     .ll-brand { background: none; border: 0; padding-left: 0; color: inherit; }
     .ll-brand-caret { font-size: .62rem; opacity: .6; transition: transform .2s ease; }
@@ -481,6 +483,11 @@
             <span class="ll-dl-p" x-show="d.status !== 'Snatched' || d.progress < -1">
               <span class="badge rounded-pill ll-dl-pill" :class="d.status === 'Seeding' ? 'text-bg-info' : 'text-bg-warning'"
                     x-text="d.status === 'Seeding' ? llStatus(d.status) : $store.dl.T.noClient"></span>
+              %if perm & lazylibrarian.perm_edit:
+              <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill ms-2 py-0" x-show="d.status === 'Seeding'"
+                      :disabled="d.busy" @click.prevent.stop="$store.dl.stopSeeding(d)">
+                <i class="fa fa-stop me-1" aria-hidden="true"></i>${_('Stop seeding')}</button>
+              %endif
             </span>
           </span>
         </a>
@@ -488,7 +495,9 @@
       <div class="ll-dl-empty" x-show="$store.dl.loaded && !$store.dl.active.length">${_('Nothing is downloading')}</div>
       <div class="ll-dl-empty" x-show="!$store.dl.loaded"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span></div>
 
-      <h3>${_('Finished recently')}</h3>
+      <h3 class="d-flex align-items-center justify-content-between">${_('Finished recently')}
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill py-0" x-show="$store.dl.recent.length"
+                @click="$store.dl.clearRecent()"><i class="fa fa-broom me-1" aria-hidden="true"></i>${_('Clear')}</button></h3>
       <template x-for="d in $store.dl.recent" :key="d.rowid">
         <a class="ll-dl-item" :class="$store.dl.hl.indexOf(d.rowid) >= 0 && 'll-new'" :href="d.link || 'history'">
           <span class="ll-dl-thumb">
@@ -618,7 +627,9 @@
         fetch('get_downloads?_=' + Date.now(), {credentials: 'same-origin'}).then(function (r) {
           if (!r.ok) { throw new Error(r.status); } return r.json();
         }).then(function (j) {
-          var read = load('ll-dl-read'), recent = j.recent || [];
+          var read = load('ll-dl-read'), cleared = load('ll-dl-cleared') || [];
+          // what was cleared from the list stays out of it, the history page still has it
+          var recent = (j.recent || []).filter(function (d) { return cleared.indexOf(d.rowid) < 0; });
           // the first time ever, what finished before is not news
           if (!Array.isArray(read)) { read = recent.map(function (d) { return d.rowid; }); save('ll-dl-read', read); }
           recent.forEach(function (d) { d.isNew = read.indexOf(d.rowid) < 0; });
@@ -643,6 +654,21 @@
         this.recent.forEach(function (d) { if (d.isNew && hl.indexOf(d.rowid) < 0) { hl.push(d.rowid); } });
         this.recent.forEach(function (d) { if (read.indexOf(d.rowid) < 0) { read.push(d.rowid); } d.isNew = false; });
         save('ll-dl-read', read.slice(-200));
+      },
+      clearRecent: function () {
+        var cleared = load('ll-dl-cleared');
+        cleared = Array.isArray(cleared) ? cleared : [];
+        this.recent.forEach(function (d) { if (cleared.indexOf(d.rowid) < 0) { cleared.push(d.rowid); } });
+        save('ll-dl-cleared', cleared.slice(-200));
+        this.recent = []; this.hl = [];
+      },
+      stopSeeding: function (d) {
+        var self = this;
+        d.busy = true;
+        fetch('stop_seeding?rowid=' + encodeURIComponent(d.rowid), {method: 'POST', credentials: 'same-origin'}).then(function (r) {
+          return r.json();
+        }).then(function (j) { if (j.ok) { self.schedule(true); } else { d.busy = false; } })
+          .catch(function () { d.busy = false; });
       },
       icon: function (kind) { return T.icons[kind] || 'fa-book'; },
       size: function (s) { return /^[0-9.]+$/.test(String(s)) ? s + ' MB' : String(s); },

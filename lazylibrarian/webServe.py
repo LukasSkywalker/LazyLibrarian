@@ -116,7 +116,7 @@ from lazylibrarian.config2 import CONFIG, wishlist_type
 from lazylibrarian.configtypes import ConfigBool
 from lazylibrarian.csvfile import dump_table, export_csv, import_csv, restore_table
 from lazylibrarian.dbupgrade import check_db
-from lazylibrarian.download_client import get_download_progress
+from lazylibrarian.download_client import delete_task, get_download_progress
 from lazylibrarian.downloadmethods import (
     direct_dl_method,
     irc_dl_method,
@@ -8811,6 +8811,36 @@ class WebInterface:
         finally:
             db.close()
         return {'active': active, 'recent': recent}
+
+    @cherrypy.expose
+    @require_auth()
+    @cherrypy.tools.json_out()
+    def stop_seeding(self, rowid=None, **kwargs):
+        """ Modern downloads panel: stop seeding one download now. The torrent goes from the downloader,
+            its files stay where they are, and the request is done with """
+        self.check_permitted(lazylibrarian.perm_edit)
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        logger = logging.getLogger(__name__)
+        db = database.DBConnection()
+        # noinspection PyBroadException
+        try:
+            row = db.match("SELECT NZBtitle,Source,DownloadID from wanted WHERE rowid=? and Status='Seeding'",
+                           (check_int(rowid, 0),))
+            if not row:
+                return {'ok': False}
+            # abandoned: the provider's seed requirement is the very thing being cut short here
+            ok = delete_task(row['Source'], make_unicode(row['DownloadID']), False, abandoned=True)
+            if not ok:
+                return {'ok': False}
+            logger.info(f"STATUS: {row['NZBtitle']} [Seeding -> Processed] Seeding stopped by user")
+            db.action("UPDATE wanted SET Status='Processed',NZBDate=? WHERE rowid=? and Status='Seeding'",
+                      (now(), check_int(rowid, 0)))
+            return {'ok': True}
+        except Exception:
+            logger.error(f'Unhandled exception in stop_seeding: {traceback.format_exc()}')
+            return {'ok': False}
+        finally:
+            db.close()
 
     @cherrypy.expose
     @require_auth()
