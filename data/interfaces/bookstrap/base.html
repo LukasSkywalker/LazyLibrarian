@@ -388,6 +388,10 @@
     /* Hide the original label */
     .shorten > span { display: none; }
 }
+/* the collapsed menu on a phone: Bootstrap stops it at 340px, which hides the lower items (Config, language, new interface) */
+@media (max-width: 767px) {
+    .navbar-fixed-top .navbar-collapse { max-height: calc(100vh - 70px); max-height: calc(100dvh - 70px); }
+}
 </style>
 </head>
   <body>
@@ -486,7 +490,14 @@
                   %endif
                   </a></li>
                 %endif
-                <li><a id="help" href="help" target="_new"><i class="fa fa-question-circle"></i> ${_('Help')}</a></li>
+                <li class="dropdown"><a href="#" id="help" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-question-circle"></i> ${_('Help')} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="help" target="_new"><i class="fa fa-book fa-fw"></i> ${_('Help')}</a></li>
+                    <li><a href="https://www.reddit.com/r/LazyLibrarian/" target="_blank" rel="noopener"><i class="fab fa-reddit-alien fa-fw"></i> Reddit</a></li>
+                    <li><a href="https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues" target="_blank" rel="noopener"><i class="fa fa-bug fa-fw"></i> ${_('Report an issue')}</a></li>
+                  </ul>
+                </li>
                 %if can_switch and len(lang_opts) > 3:
                   <li class="dropdown"><a href="#" id="uilang" class="dropdown-toggle" data-toggle="dropdown" role="button"
                       aria-haspopup="true" aria-expanded="false" title="${_('Interface language') | h}"><i class="fa fa-globe"></i>
@@ -574,6 +585,15 @@
       % endif
 
       $(document).ready(function() {
+
+        // on a phone the notices would cover the navbar and its menu button, so they go to the bottom
+        if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+          $.notifyDefaults({placement: {from: 'bottom', align: 'center'}, offset: 8, newest_on_top: false});
+          // and they stay out of the way while the menu is open, or they would hide its lower items (languages, settings)
+          $(document).on('show.bs.collapse', '.navbar-collapse', function () { $('body').addClass('ll-menu-open'); })
+                     .on('hidden.bs.collapse', '.navbar-collapse', function () { $('body').removeClass('ll-menu-open'); });
+          $('<style>body.ll-menu-open [data-notify="container"] { display: none !important; }</style>').appendTo('head');
+        }
 
         if (msg != '') {
           $.notify({
