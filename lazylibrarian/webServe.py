@@ -8802,8 +8802,9 @@ class WebInterface:
                     progress, _ = get_download_progress(row['Source'], make_unicode(row['DownloadID']))
                 active.append(to_item(row, progress))
             # failed downloads are too common to be worth showing here, the history page has them
+            # by date, as a download whose seeding was just stopped gets today's date and should show first
             rows = db.select(f"SELECT {cols} from wanted WHERE Status='Processed' "
-                             "and BookID is not null ORDER BY rowid DESC LIMIT 15")
+                             "and BookID is not null ORDER BY NZBdate DESC, rowid DESC LIMIT 15")
             for row in rows:
                 recent.append(to_item(row, 100))
         except Exception:
