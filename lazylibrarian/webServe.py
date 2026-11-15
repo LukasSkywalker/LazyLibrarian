@@ -32,6 +32,7 @@ from shutil import copyfile, rmtree
 from urllib.parse import quote, unquote, unquote_plus, urlencode, urlsplit, urlunsplit
 
 import cherrypy
+import requests
 from cherrypy.lib.static import serve_file
 from deluge_client import DelugeRPCClient
 from mako import exceptions
@@ -2487,6 +2488,14 @@ class WebInterface:
 
         BLOCKHANDLER.check_day()
 
+        # the HardCover token belongs to the admin user, not to the config file
+        db = database.DBConnection()
+        try:
+            admin = db.match("SELECT hc_token from users where perms=65535 and hc_token is not null")
+        finally:
+            db.close()
+        hc_admin_token = admin['hc_token'] if admin and admin['hc_token'] else ''
+
         # Don't pass the whole config, no need to pass the
         # lazylibrarian.globals
         months = {}
@@ -2554,7 +2563,8 @@ class WebInterface:
                                                      browser_languages()),
             "zlib_languages": search_language_picker(CONFIG['BOK_SEARCH_LANG'], 'zlib', CONFIG['IMP_PREFLANG'],
                                                      browser_languages()),
-            "updated": time.ctime(CONFIG.get_int('GIT_UPDATED'))
+            "updated": time.ctime(CONFIG.get_int('GIT_UPDATED')),
+            "hc_token": hc_admin_token
         }
         for itm in CONFIG.config.values():
             if isinstance(itm, ConfigBool):
@@ -2678,6 +2688,20 @@ class WebInterface:
             json_file = os.path.join(DIRS.DATADIR, 'seasons.json')
             with open(json_file, 'w', encoding='utf-8') as f:
                 json.dump(lazylibrarian.SEASONS, f, ensure_ascii=False)
+
+        # the HardCover token is stored on the admin user
+        if 'hc_token' in kwargs:
+            new_token = kwargs['hc_token'].strip()
+            admin = db.match("SELECT UserID,hc_token from users where perms=65535 order by "
+                             "hc_token is null, hc_token = ''")
+            if admin and (admin['hc_token'] or '') != new_token:
+                if self.validate_param("hardcover token", new_token, ['<', '>', '='], None):
+                    db.action('UPDATE users SET hc_token=? WHERE UserID=?', (new_token, admin['UserID']))
+                    logger.info("HardCover token updated")
+                    if new_token:
+                        BLOCKHANDLER.remove_provider_entry('HardCover')
+                else:
+                    logger.warning("Invalid hardcover token")
 
         # now the config file entries
         for key, itm in CONFIG.config.items():
@@ -9455,6 +9479,54 @@ class WebInterface:
         if str(res).isnumeric():
             res = f"Pass: whoami={res}"
         return res
+
+    @cherrypy.expose
+    @require_auth()
+    def test_gbapi(self, **kwargs):
+        """ Try a GoogleBooks search with the key as typed in the UI (not saved) """
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        thread_name("WEBSERVER")
+        key = kwargs.get('gb_api', '').strip()
+        if not self.validate_param("googlebooks api", key, ['<', '>', '=', '&', ' '], None):
+            return "Fail: invalid characters in key"
+        if not key:
+            return "Fail: no API key entered"
+        url = '/'.join([CONFIG['GB_URL'], 'books/v1/volumes'])
+        try:
+            r = requests.get(url, params={'q': 'intitle:dune', 'maxResults': 1, 'key': key}, timeout=15)
+        except requests.RequestException as e:
+            return f"Fail: {type(e).__name__}: {str(e)[:150]}"
+        try:
+            err = r.json().get('error', {}).get('message', '')
+        except ValueError:
+            err = ''
+        if r.status_code == 200:
+            return "Pass: GoogleBooks accepted the key"
+        return f"Fail: status {r.status_code} {err}".strip()
+
+    @cherrypy.expose
+    @require_auth()
+    def test_cvapi(self, **kwargs):
+        """ Try a ComicVine request with the key as typed in the UI (not saved) """
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        thread_name("WEBSERVER")
+        key = kwargs.get('cv_apikey', '').strip()
+        if not self.validate_param("comicvine api", key, ['<', '>', '=', '&', ' '], None):
+            return "Fail: invalid characters in key"
+        if not key:
+            return "Fail: no API key entered"
+        url = '/'.join([CONFIG['CV_URL'], 'api/volumes/'])
+        try:
+            r = requests.get(url, params={'api_key': key, 'format': 'json', 'limit': 1},
+                             headers={'User-Agent': 'LazyLibrarian'}, timeout=15)
+            res = r.json()
+        except requests.RequestException as e:
+            return f"Fail: {type(e).__name__}: {str(e)[:150]}"
+        except ValueError:
+            return f"Fail: status {r.status_code}, unexpected answer"
+        if res.get('status_code') == 1:
+            return "Pass: ComicVine accepted the key"
+        return f"Fail: {res.get('error', 'status ' + str(r.status_code))}"
 
     @cherrypy.expose
     @require_auth()
