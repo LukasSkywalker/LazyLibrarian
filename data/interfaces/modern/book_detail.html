@@ -60,6 +60,9 @@
     kicon = {'eBook': 'fa-book', 'AudioBook': 'fa-headphones'}
     klabel = {'eBook': _('eBook'), 'AudioBook': _('AudioBook')}
     kopen = {'eBook': _('Open eBook'), 'AudioBook': _('Open AudioBook')}
+    # users with a Send To address (eg kindle) can email the file, see send_book
+    mail = context.get('email') or ''
+    ksend = {'eBook': _('Send eBook'), 'AudioBook': _('Send AudioBook')}
     ksearch = {'eBook': _('Search eBook'), 'AudioBook': _('Search AudioBook')}
     karia = {'eBook': _('eBook status:'), 'AudioBook': _('AudioBook status:')}
     genres = [g.strip() for g in (book.get('BookGenre') or '').split(',') if g.strip() and g.strip() != 'Unknown']
@@ -151,6 +154,9 @@
         %for kind in kinds:
           %if book.get(kstat[kind]) == 'Open':
         <a class="btn btn-ll rounded-pill" href="open_book?bookid=${book['BookID'] | u}&library=${kind}"><i class="fa ${kicon[kind]}" aria-hidden="true"></i> ${kopen[kind]}</a>
+            %if mail:
+        <a class="btn btn-outline-secondary rounded-pill" href="send_book?bookid=${book['BookID'] | u}&library=${kind}"><i class="fa fa-envelope" aria-hidden="true"></i> ${ksend[kind]}</a>
+            %endif
           %endif
         %endfor
         %if perm&lazylibrarian.perm_status:

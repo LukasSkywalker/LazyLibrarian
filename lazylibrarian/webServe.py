@@ -5093,6 +5093,12 @@ class WebInterface:
                 "SELECT series.SeriesID, SeriesName, SeriesNum FROM member, series "
                 "WHERE member.SeriesID=series.SeriesID AND member.BookID=?", (bookid,))]
         not_downloaded = self._found_not_downloaded(db, [bookid]).get(bookid, []) if book else []
+        email = ''
+        cookie = cherrypy.request.cookie
+        if cookie and 'll_uid' in list(cookie.keys()):
+            res = db.match('SELECT SendTo from users where UserID=?', (cookie['ll_uid'].value,))
+            if res and res['SendTo']:
+                email = res['SendTo']
         db.close()
         if not book:
             raise cherrypy.HTTPRedirect("books")
@@ -5122,7 +5128,7 @@ class WebInterface:
 
         return serve_template(templatename="book_detail.html", title=book['BookName'], book=book,
                               book_links=book_links, amazon_link=amazon_link, book_series=book_series,
-                              not_downloaded=not_downloaded,
+                              not_downloaded=not_downloaded, email=email,
                               library='AudioBook' if library == 'AudioBook' else 'eBook')
 
     @cherrypy.expose
