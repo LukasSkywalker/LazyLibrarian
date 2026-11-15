@@ -5565,6 +5565,17 @@ class WebInterface:
             wantbook = "Wanted" if action in ['AddBook', 'AddBoth'] else 'Skipped'
             wantaudio = "Wanted" if action in ['AddAudio', 'AddBoth'] else 'Skipped'
             for itm in ids:
+                # the value is the book's authorid when the page knows it ('on' from a plain checkbox).
+                # Add that author first, like add_book does, instead of looking the author up by name
+                authorid = args.get(itm)
+                if authorid and authorid != 'on':
+                    db = database.DBConnection()
+                    try:
+                        known = db.match('SELECT AuthorID from authors WHERE AuthorID=?', (authorid,))
+                    finally:
+                        db.close()
+                    if not known:
+                        add_author_to_db(None, False, authorid, False, f'WebServer mark_results {itm}')
                 if api.add_bookid_to_db(itm, wantbook, wantaudio,
                                         f"Added by User from resultlist {wantbook}:{wantaudio}"):
                     passed += 1

@@ -105,7 +105,7 @@
         except (TypeError, ValueError):
             fuzz = 0.0
         rows.append({
-            'id': str(result['bookid']), 'title': result['bookname'] or '', 'author': result['authorname'] or '',
+            'id': str(result['bookid']), 'aid': str(aid or ''), 'title': result['bookname'] or '', 'author': result['authorname'] or '',
             'img': result.get('bookimg') or '', 'link': result.get('booklink') or '', 'date': str(result.get('bookdate') or ''),
             'rate': rate, 'count': result.get('bookrate_count') or 0, 'fuzz': fuzz, 'source': result.get('source') or '',
             'author_act': author_act, 'ebook': ebook, 'audio': audio,
@@ -155,7 +155,7 @@
   </div>
 
   <div class="llsr-list">
-    <template x-for="r in items" :key="r.id + '|' + r.source">
+    <template x-for="(r, i) in items" :key="i + '|' + r.id + '|' + r.source">
       <div class="llsr-row" :class="sel[r.id] && 'llsr-sel'" @click="pick(r, $event)">
         <span class="llsr-check" x-show="selecting" x-cloak aria-hidden="true"><i class="fa fa-check"></i></span>
         <span class="llsr-cover">
@@ -309,9 +309,18 @@ document.addEventListener('alpine:init', function () {
       modalEl: function () { return bootstrap.Modal.getOrCreateInstance(this.$refs.modal, {backdrop: 'static', keyboard: false}); },
       bulk: function (action) {
         var ids = Object.keys(this.sel), self = this;
+        // adding authors takes author ids, everything else takes book ids
+        if (action === 'AddAuthor') {
+          var aids = {};
+          this.all.forEach(function (r) { if (r.aid && self.sel[r.id]) { aids[r.aid] = true; } });
+          ids = Object.keys(aids);
+        }
         if (!ids.length) { this.toast(T.nothing); return; }
         var body = new URLSearchParams({action: action});
-        ids.forEach(function (id) { body.append(id, 'on'); });
+        // a book is sent with its author id, so the server can add the author without a lookup by name
+        var author = {};
+        this.all.forEach(function (r) { author[r.id] = r.aid; });
+        ids.forEach(function (id) { body.append(id, action === 'AddAuthor' ? 'on' : (author[id] || 'on')); });
         this.modal = {title: T.complete, text: '', busy: true, passed: 0, failed: 0};
         this.modalEl().show();
         fetch('mark_results_ajax', {method: 'POST', body: body, credentials: 'same-origin'})
