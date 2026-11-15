@@ -1521,7 +1521,7 @@ def listopia_scraper(host=None, feednr=None, priority=0, dispname=None, types='E
     results = []
     rows = []
     if result:
-        soup = BeautifulSoup(result.text, "html.parser")
+        soup = BeautifulSoup(result, "html5lib")
         # Find all book rows in the Listopia table
         rows = soup.select("table.tableList tr")
 
