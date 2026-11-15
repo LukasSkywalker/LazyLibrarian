@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-15 08:32+0000\n"
+"POT-Creation-Date: 2026-11-15 16:15+0000\n"
 "PO-Revision-Date: 2026-11-13 12:55+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -44,14 +44,14 @@ msgstr ""
 #: data/interfaces/bookstrap/managebooks.html:110
 #: data/interfaces/bookstrap/searchresults.html:15
 #: data/interfaces/bookstrap/series.html:44
-#: data/interfaces/modern/books.html:124 data/interfaces/modern/comics.html:99
-#: data/interfaces/modern/comics.html:144
+#: data/interfaces/modern/books.html:124 data/interfaces/modern/comics.html:133
+#: data/interfaces/modern/comics.html:178
 #: data/interfaces/modern/editbook.html:67
-#: data/interfaces/modern/issues.html:106
-#: data/interfaces/modern/issues.html:119
-#: data/interfaces/modern/magazines.html:113
-#: data/interfaces/modern/magazines.html:158
-#: data/interfaces/modern/modern_base.html:966
+#: data/interfaces/modern/issues.html:139
+#: data/interfaces/modern/issues.html:152
+#: data/interfaces/modern/magazines.html:143
+#: data/interfaces/modern/magazines.html:188
+#: data/interfaces/modern/modern_base.html:994
 msgid "Search"
 msgstr "Suchen"
 
@@ -61,9 +61,9 @@ msgstr "Suchen"
 #: data/interfaces/bookstrap/comics.html:13
 #: data/interfaces/bookstrap/issues.html:11
 #: data/interfaces/bookstrap/magazines.html:13
-#: data/interfaces/modern/books.html:169 data/interfaces/modern/comics.html:100
-#: data/interfaces/modern/issues.html:107
-#: data/interfaces/modern/magazines.html:114
+#: data/interfaces/modern/books.html:199 data/interfaces/modern/comics.html:134
+#: data/interfaces/modern/issues.html:140
+#: data/interfaces/modern/magazines.html:144
 msgid "Run Post-Processor"
 msgstr "Nachbearbeitung starten"
 
@@ -75,10 +75,10 @@ msgstr "Nachbearbeitung starten"
 #: data/interfaces/bookstrap/config.html:2912
 #: data/interfaces/bookstrap/issues.html:12
 #: data/interfaces/bookstrap/magazines.html:14
-#: data/interfaces/modern/books.html:170 data/interfaces/modern/comics.html:101
-#: data/interfaces/modern/issues.html:108
-#: data/interfaces/modern/issues.html:120
-#: data/interfaces/modern/magazines.html:115
+#: data/interfaces/modern/books.html:200 data/interfaces/modern/comics.html:135
+#: data/interfaces/modern/issues.html:141
+#: data/interfaces/modern/issues.html:153
+#: data/interfaces/modern/magazines.html:145
 msgid "Library Scan"
 msgstr "Bibliothek scannen"
 
@@ -120,16 +120,16 @@ msgstr "Alle oder nur meine"
 #: data/interfaces/bookstrap/books.html:30
 #: data/interfaces/bookstrap/editauthor.html:54
 #: data/interfaces/bookstrap/editauthor.html:56
-#: data/interfaces/modern/books.html:154
+#: data/interfaces/modern/books.html:206
 msgid "Primary Author, or Contributor"
 msgstr "Hauptautor oder Mitwirkender"
 
 #: data/interfaces/bookstrap/audio.html:36
 #: data/interfaces/bookstrap/books.html:35
 #: data/interfaces/bookstrap/config.html:3966
-#: data/interfaces/modern/author.html:236
+#: data/interfaces/modern/author.html:243
 #: data/interfaces/modern/book_detail.html:83
-#: data/interfaces/modern/books.html:141
+#: data/interfaces/modern/books.html:157
 #: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
 msgid "Language"
 msgstr "Sprache"
@@ -154,11 +154,11 @@ msgstr "Sprache"
 #: data/interfaces/bookstrap/members.html:201
 #: data/interfaces/bookstrap/series.html:75
 #: data/interfaces/bookstrap/series.html:251
-#: data/interfaces/modern/author.html:237 data/interfaces/modern/books.html:143
-#: data/interfaces/modern/books.html:288 data/interfaces/modern/issues.html:170
+#: data/interfaces/modern/author.html:244 data/interfaces/modern/books.html:159
+#: data/interfaces/modern/books.html:295 data/interfaces/modern/issues.html:116
 #: data/interfaces/modern/manualsearch.html:69
-#: data/interfaces/modern/members.html:197
-#: data/interfaces/modern/series.html:78 lazylibrarian/i18n.py:401
+#: data/interfaces/modern/members.html:132
+#: data/interfaces/modern/series.html:82 lazylibrarian/i18n.py:401
 msgid "All"
 msgstr "Alle"
 
@@ -168,9 +168,9 @@ msgstr "Alle"
 #: data/interfaces/bookstrap/comics.html:52
 #: data/interfaces/bookstrap/issues.html:35
 #: data/interfaces/bookstrap/magazines.html:55
-#: data/interfaces/modern/books.html:286 data/interfaces/modern/comics.html:119
-#: data/interfaces/modern/issues.html:134
-#: data/interfaces/modern/magazines.html:134
+#: data/interfaces/modern/books.html:293 data/interfaces/modern/comics.html:153
+#: data/interfaces/modern/issues.html:167
+#: data/interfaces/modern/magazines.html:164
 msgid "Libraryscan in progress ..."
 msgstr "Bibliotheksscan läuft ..."
 
@@ -191,7 +191,7 @@ msgstr "Ausgewählte markieren als"
 #: data/interfaces/bookstrap/members.html:74
 #: data/interfaces/bookstrap/series.html:78
 #: data/interfaces/bookstrap/series.html:123
-#: data/interfaces/modern/series.html:80 lazylibrarian/i18n.py:401
+#: data/interfaces/modern/series.html:84 lazylibrarian/i18n.py:401
 msgid "Wanted"
 msgstr "Gesucht"
 
@@ -201,7 +201,7 @@ msgstr "Gesucht"
 #: data/interfaces/bookstrap/series.html:93
 #: data/interfaces/bookstrap/series.html:112
 #: data/interfaces/modern/comicresults.html:72
-#: data/interfaces/modern/series.html:111 lazylibrarian/i18n.py:401
+#: data/interfaces/modern/series.html:120 lazylibrarian/i18n.py:401
 msgid "Have"
 msgstr "Vorhanden"
 
@@ -214,8 +214,8 @@ msgstr "Vorhanden"
 #: data/interfaces/bookstrap/members.html:74
 #: data/interfaces/bookstrap/series.html:78
 #: data/interfaces/bookstrap/series.html:124
-#: data/interfaces/modern/author.html:246
-#: data/interfaces/modern/members.html:97 data/interfaces/modern/series.html:80
+#: data/interfaces/modern/author.html:253
+#: data/interfaces/modern/members.html:97 data/interfaces/modern/series.html:84
 #: lazylibrarian/i18n.py:402
 msgid "Ignored"
 msgstr "Ignoriert"
@@ -316,7 +316,7 @@ msgstr "Los"
 #: data/interfaces/bookstrap/searchresults.html:47
 #: data/interfaces/bookstrap/searchresults.html:176
 #: data/interfaces/modern/editbook.html:178
-#: data/interfaces/modern/issues.html:173
+#: data/interfaces/modern/issues.html:118
 msgid "Cover"
 msgstr "Cover"
 
@@ -350,14 +350,14 @@ msgstr "Umschalten:"
 #: data/interfaces/bookstrap/searchresults.html:48
 #: data/interfaces/bookstrap/series.html:91
 #: data/interfaces/bookstrap/series.html:110
-#: data/interfaces/modern/books.html:135 data/interfaces/modern/books.html:291
+#: data/interfaces/modern/books.html:138 data/interfaces/modern/books.html:298
 #: data/interfaces/modern/config.html:1740
 #: data/interfaces/modern/editauthor.html:80
 #: data/interfaces/modern/history.html:96
-#: data/interfaces/modern/managebooks.html:65
-#: data/interfaces/modern/members.html:126
+#: data/interfaces/modern/managebooks.html:76
+#: data/interfaces/modern/members.html:144
 #: data/interfaces/modern/searchresults.html:141
-#: data/interfaces/modern/series.html:110
+#: data/interfaces/modern/series.html:119
 msgid "Author"
 msgstr "Autor"
 
@@ -385,17 +385,17 @@ msgstr "Autor"
 #: data/interfaces/bookstrap/members.html:92
 #: data/interfaces/bookstrap/members.html:108
 #: data/interfaces/bookstrap/searchresults.html:49
-#: data/interfaces/modern/author.html:225 data/interfaces/modern/books.html:136
-#: data/interfaces/modern/books.html:291
+#: data/interfaces/modern/author.html:226 data/interfaces/modern/books.html:139
+#: data/interfaces/modern/books.html:298
 #: data/interfaces/modern/comicresults.html:55
-#: data/interfaces/modern/comics.html:79
+#: data/interfaces/modern/comics.html:78
 #: data/interfaces/modern/config.html:1740
 #: data/interfaces/modern/editissue.html:48
 #: data/interfaces/modern/editmag.html:43
 #: data/interfaces/modern/history.html:58
-#: data/interfaces/modern/magazines.html:93
-#: data/interfaces/modern/managebooks.html:66
-#: data/interfaces/modern/manageissues.html:52
+#: data/interfaces/modern/magazines.html:85
+#: data/interfaces/modern/managebooks.html:77
+#: data/interfaces/modern/manageissues.html:68
 #: data/interfaces/modern/manualsearch.html:66
 #: data/interfaces/modern/searchresults.html:140
 msgid "Title"
@@ -418,7 +418,7 @@ msgstr "Titel"
 #: data/interfaces/bookstrap/series.html:92
 #: data/interfaces/modern/author.html:153
 #: data/interfaces/modern/author_detail.html:139
-#: data/interfaces/modern/books.html:291
+#: data/interfaces/modern/books.html:298
 #: data/interfaces/modern/editbook.html:138
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
@@ -456,8 +456,8 @@ msgstr "Bewertung"
 #: data/interfaces/bookstrap/managebooks.html:106
 #: data/interfaces/bookstrap/managebooks.html:130
 #: data/interfaces/bookstrap/searchresults.html:50
-#: data/interfaces/modern/author.html:224 data/interfaces/modern/books.html:138
-#: data/interfaces/modern/managebooks.html:67
+#: data/interfaces/modern/author.html:225 data/interfaces/modern/books.html:141
+#: data/interfaces/modern/managebooks.html:78
 #: data/interfaces/modern/searchresults.html:142
 #: data/interfaces/modern/searchresults.html:247
 msgid "Released"
@@ -479,11 +479,11 @@ msgstr "Erschienen"
 #: data/interfaces/bookstrap/issues.html:73
 #: data/interfaces/bookstrap/magazines.html:89
 #: data/interfaces/bookstrap/magazines.html:113
-#: data/interfaces/modern/author.html:226
+#: data/interfaces/modern/author.html:227
 #: data/interfaces/modern/book_detail.html:92
-#: data/interfaces/modern/books.html:137 data/interfaces/modern/comics.html:81
-#: data/interfaces/modern/index.html:95 data/interfaces/modern/issues.html:211
-#: data/interfaces/modern/magazines.html:95
+#: data/interfaces/modern/books.html:140 data/interfaces/modern/comics.html:80
+#: data/interfaces/modern/index.html:94 data/interfaces/modern/issues.html:224
+#: data/interfaces/modern/magazines.html:87
 msgid "Added"
 msgstr "Hinzugefügt"
 
@@ -510,11 +510,11 @@ msgstr "Hinzugefügt"
 #: data/interfaces/bookstrap/series.html:113
 #: data/interfaces/modern/author.html:143
 #: data/interfaces/modern/author_detail.html:129
-#: data/interfaces/modern/books.html:185
-#: data/interfaces/modern/managebooks.html:118
-#: data/interfaces/modern/manageissues.html:62
-#: data/interfaces/modern/series.html:112
-#: data/interfaces/modern/series.html:145
+#: data/interfaces/modern/books.html:127 data/interfaces/modern/books.html:172
+#: data/interfaces/modern/managebooks.html:65
+#: data/interfaces/modern/manageissues.html:52
+#: data/interfaces/modern/series.html:107
+#: data/interfaces/modern/series.html:121
 msgid "Status"
 msgstr "Status"
 
@@ -531,9 +531,9 @@ msgstr "Gelistet:"
 #: data/interfaces/bookstrap/magazines.html:181
 #: data/interfaces/bookstrap/members.html:151
 #: data/interfaces/bookstrap/members.html:167
-#: data/interfaces/modern/author.html:286
-#: data/interfaces/modern/issues.html:152
-#: data/interfaces/modern/members.html:173
+#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/issues.html:185
+#: data/interfaces/modern/members.html:191
 msgid "Send"
 msgstr "Senden"
 
@@ -543,9 +543,9 @@ msgstr "Senden"
 #: data/interfaces/bookstrap/managebooks.html:589
 #: data/interfaces/bookstrap/members.html:198
 #: data/interfaces/bookstrap/searchresults.html:238
-#: data/interfaces/modern/author.html:301 data/interfaces/modern/books.html:240
-#: data/interfaces/modern/managebooks.html:163
-#: data/interfaces/modern/members.html:190
+#: data/interfaces/modern/author.html:324 data/interfaces/modern/books.html:266
+#: data/interfaces/modern/managebooks.html:190
+#: data/interfaces/modern/members.html:208
 #: data/interfaces/modern/searchresults.html:246
 msgid "No books found"
 msgstr "Keine Bücher gefunden"
@@ -600,10 +600,10 @@ msgstr[1] ""
 #: data/interfaces/bookstrap/issues.html:207
 #: data/interfaces/bookstrap/magazines.html:271
 #: data/interfaces/bookstrap/users.html:276
-#: data/interfaces/modern/author.html:328
+#: data/interfaces/modern/author.html:335
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
-#: data/interfaces/modern/modern_base.html:609
+#: data/interfaces/modern/modern_base.html:637
 #: data/interfaces/modern/users.html:228
 msgid "Yes"
 msgstr "Ja"
@@ -624,11 +624,11 @@ msgstr "Ja"
 #: data/interfaces/bookstrap/issues.html:211
 #: data/interfaces/bookstrap/magazines.html:275
 #: data/interfaces/bookstrap/users.html:280
-#: data/interfaces/modern/author.html:327
+#: data/interfaces/modern/author.html:334
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
-#: data/interfaces/modern/modern_base.html:608
+#: data/interfaces/modern/modern_base.html:636
 #: data/interfaces/modern/users.html:227
 msgid "No"
 msgstr "Nein"
@@ -648,7 +648,7 @@ msgstr "Nein"
 #: data/interfaces/bookstrap/searchresults.html:266
 #: data/interfaces/bookstrap/series.html:290
 #: data/interfaces/modern/editmag.html:102
-#: data/interfaces/modern/managebooks.html:197
+#: data/interfaces/modern/managebooks.html:202
 #: data/interfaces/modern/searchresults.html:218
 msgid "Processing..."
 msgstr "Wird verarbeitet ..."
@@ -727,7 +727,7 @@ msgstr "Bücher als abgeschlossen markieren"
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/config.html:1157
 #: data/interfaces/modern/editmag.html:103
-#: data/interfaces/modern/modern_base.html:740
+#: data/interfaces/modern/modern_base.html:768
 #: data/interfaces/modern/searchresults.html:226
 msgid "OK"
 msgstr "OK"
@@ -841,19 +841,19 @@ msgstr "Ein Fehler ist aufgetreten:"
 #: data/interfaces/bookstrap/users.html:293
 #: data/interfaces/bookstrap/users.html:328
 #: data/interfaces/modern/choosetype.html:60
-#: data/interfaces/modern/comics.html:179
+#: data/interfaces/modern/comics.html:196
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/dlresult.html:33
 #: data/interfaces/modern/history.html:126
 #: data/interfaces/modern/history.html:154 data/interfaces/modern/login.html:52
 #: data/interfaces/modern/login.html:68
-#: data/interfaces/modern/magazines.html:196
-#: data/interfaces/modern/managebooks.html:194
-#: data/interfaces/modern/managebooks.html:204
-#: data/interfaces/modern/modern_base.html:483
-#: data/interfaces/modern/modern_base.html:597
-#: data/interfaces/modern/modern_base.html:817
-#: data/interfaces/modern/modern_base.html:945
+#: data/interfaces/modern/magazines.html:206
+#: data/interfaces/modern/managebooks.html:199
+#: data/interfaces/modern/managebooks.html:209
+#: data/interfaces/modern/modern_base.html:511
+#: data/interfaces/modern/modern_base.html:625
+#: data/interfaces/modern/modern_base.html:845
+#: data/interfaces/modern/modern_base.html:973
 #: data/interfaces/modern/profile.html:126
 #: data/interfaces/modern/profile.html:130
 #: data/interfaces/modern/response.html:18
@@ -870,9 +870,9 @@ msgstr "Schließen"
 #: data/interfaces/bookstrap/magazines.html:67
 #: data/interfaces/bookstrap/series.html:77
 #: data/interfaces/bookstrap/series.html:123
-#: data/interfaces/modern/comics.html:161
-#: data/interfaces/modern/magazines.html:175
-#: data/interfaces/modern/series.html:80 lazylibrarian/i18n.py:401
+#: data/interfaces/modern/comics.html:110
+#: data/interfaces/modern/magazines.html:116
+#: data/interfaces/modern/series.html:84 lazylibrarian/i18n.py:401
 msgid "Paused"
 msgstr "Pausiert"
 
@@ -884,9 +884,9 @@ msgstr "Pausiert"
 #: data/interfaces/bookstrap/magazines.html:66
 #: data/interfaces/bookstrap/series.html:78
 #: data/interfaces/bookstrap/series.html:123
-#: data/interfaces/modern/comics.html:160
-#: data/interfaces/modern/magazines.html:174
-#: data/interfaces/modern/series.html:80 lazylibrarian/i18n.py:401
+#: data/interfaces/modern/comics.html:109
+#: data/interfaces/modern/magazines.html:115
+#: data/interfaces/modern/series.html:84 lazylibrarian/i18n.py:401
 msgid "Active"
 msgstr "Aktiv"
 
@@ -934,7 +934,7 @@ msgstr "Aktive anzeigen"
 #: data/interfaces/bookstrap/author.html:43
 #: data/interfaces/bookstrap/author.html:45
 #: data/interfaces/bookstrap/members.html:21
-#: data/interfaces/modern/author.html:246
+#: data/interfaces/modern/author.html:253
 msgid "Show Ignored"
 msgstr "Ignorierte anzeigen"
 
@@ -988,10 +988,10 @@ msgstr "RSS-Feed der neuesten Hörbücher"
 #: data/interfaces/modern/author.html:168
 #: data/interfaces/modern/author_detail.html:153
 #: data/interfaces/modern/book_detail.html:174
-#: data/interfaces/modern/issues.html:112
-#: data/interfaces/modern/issues.html:125
-#: data/interfaces/modern/issues.html:155
-#: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
+#: data/interfaces/modern/issues.html:145
+#: data/interfaces/modern/issues.html:158
+#: data/interfaces/modern/issues.html:188
+#: data/interfaces/modern/members.html:159 lazylibrarian/setupwizard.py:609
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -1083,7 +1083,7 @@ msgstr "CSV-Import"
 #: data/interfaces/bookstrap/managebooks.html:17
 #: data/interfaces/modern/author.html:86
 #: data/interfaces/modern/author_detail.html:95
-#: data/interfaces/modern/managebooks.html:111
+#: data/interfaces/modern/managebooks.html:145
 msgid "Calibre Sync"
 msgstr "Calibre-Synchronisierung"
 
@@ -1169,13 +1169,13 @@ msgstr "Ausgewählte eBooks markieren als"
 
 #: data/interfaces/bookstrap/author.html:272
 #: data/interfaces/bookstrap/managebooks.html:148
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "eBook Wanted"
 msgstr "eBook gesucht"
 
 #: data/interfaces/bookstrap/author.html:274
 #: data/interfaces/bookstrap/managebooks.html:151
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "Audio Wanted"
 msgstr "Audio gesucht"
 
@@ -1188,12 +1188,12 @@ msgid "Both Have"
 msgstr "Beides vorhanden"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "eBook Have"
 msgstr "eBook vorhanden"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "Audio Have"
 msgstr "Audio vorhanden"
 
@@ -1202,12 +1202,12 @@ msgid "Both Ignored"
 msgstr "Beides ignoriert"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "eBook Ignored"
 msgstr "eBook ignoriert"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "Audio Ignored"
 msgstr "Audio ignoriert"
 
@@ -1216,12 +1216,12 @@ msgid "Both Skipped"
 msgstr "Beides übersprungen"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "eBook Skipped"
 msgstr "eBook übersprungen"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:309
+#: data/interfaces/modern/author.html:262
 msgid "Audio Skipped"
 msgstr "Audio übersprungen"
 
@@ -1230,7 +1230,7 @@ msgstr "Audio übersprungen"
 #: data/interfaces/bookstrap/managebooks.html:165
 #: data/interfaces/bookstrap/members.html:80
 #: data/interfaces/bookstrap/series.html:130
-#: data/interfaces/modern/books.html:254
+#: data/interfaces/modern/books.html:178
 #: data/interfaces/modern/managebooks.html:41
 msgid "Unread"
 msgstr "Ungelesen"
@@ -1241,7 +1241,7 @@ msgstr "Ungelesen"
 #: data/interfaces/bookstrap/managebooks.html:166
 #: data/interfaces/bookstrap/members.html:81
 #: data/interfaces/bookstrap/series.html:131
-#: data/interfaces/modern/books.html:255
+#: data/interfaces/modern/books.html:179
 #: data/interfaces/modern/managebooks.html:35
 #: data/interfaces/modern/managebooks.html:41
 msgid "Read"
@@ -1253,7 +1253,7 @@ msgstr "Gelesen"
 #: data/interfaces/bookstrap/managebooks.html:167
 #: data/interfaces/bookstrap/members.html:82
 #: data/interfaces/bookstrap/series.html:132
-#: data/interfaces/modern/books.html:256
+#: data/interfaces/modern/books.html:180
 #: data/interfaces/modern/managebooks.html:35
 #: data/interfaces/modern/managebooks.html:41
 msgid "To Read"
@@ -1265,7 +1265,7 @@ msgstr "Zu lesen"
 #: data/interfaces/bookstrap/managebooks.html:168
 #: data/interfaces/bookstrap/members.html:83
 #: data/interfaces/bookstrap/series.html:133
-#: data/interfaces/modern/books.html:257
+#: data/interfaces/modern/books.html:181
 #: data/interfaces/modern/managebooks.html:35
 #: data/interfaces/modern/managebooks.html:41
 msgid "Reading"
@@ -1277,7 +1277,7 @@ msgstr "Wird gelesen"
 #: data/interfaces/bookstrap/managebooks.html:169
 #: data/interfaces/bookstrap/members.html:84
 #: data/interfaces/bookstrap/series.html:134
-#: data/interfaces/modern/books.html:258
+#: data/interfaces/modern/books.html:182
 #: data/interfaces/modern/managebooks.html:35
 #: data/interfaces/modern/managebooks.html:41
 msgid "Abandoned"
@@ -1286,7 +1286,7 @@ msgstr "Abgebrochen"
 #: data/interfaces/bookstrap/author.html:352
 #: data/interfaces/bookstrap/author_detail.html:78
 #: data/interfaces/bookstrap/editauthor.html:264
-#: data/interfaces/modern/author.html:325
+#: data/interfaces/modern/author.html:332
 #: data/interfaces/modern/author_detail.html:338
 msgid "Are you sure you want to permanently delete the author?"
 msgstr "Möchten Sie den Autor wirklich dauerhaft löschen?"
@@ -1298,7 +1298,7 @@ msgstr "Möchten Sie den Autor wirklich dauerhaft löschen?"
 #: data/interfaces/bookstrap/books.html:216
 #: data/interfaces/bookstrap/books.html:225
 #: data/interfaces/bookstrap/books.html:232
-#: data/interfaces/modern/books.html:224 data/interfaces/modern/books.html:231
+#: data/interfaces/modern/books.html:250 data/interfaces/modern/books.html:257
 msgid "Request"
 msgstr "Anfordern"
 
@@ -1602,7 +1602,7 @@ msgid "Last"
 msgstr "Letzte"
 
 #: data/interfaces/bookstrap/base.html:179
-#: data/interfaces/modern/modern_base.html:533
+#: data/interfaces/modern/modern_base.html:561
 msgid "Clear"
 msgstr "Leeren"
 
@@ -1610,19 +1610,12 @@ msgstr "Leeren"
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
-#: data/interfaces/modern/author.html:318 data/interfaces/modern/books.html:260
-#: data/interfaces/modern/comics.html:170
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editcomic.html:90
-#: data/interfaces/modern/index.html:197 data/interfaces/modern/issues.html:184
-#: data/interfaces/modern/magazines.html:187
-#: data/interfaces/modern/managebooks.html:186
-#: data/interfaces/modern/manageissues.html:103
-#: data/interfaces/modern/members.html:201
+#: data/interfaces/modern/manageissues.html:83
 #: data/interfaces/modern/searchresults.html:208
-#: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:615
+#: data/interfaces/modern/users.html:233 lazylibrarian/setupwizard.py:615
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1641,10 +1634,13 @@ msgid "Detailed"
 msgstr "Ausführlich"
 
 #: data/interfaces/bookstrap/base.html:231
-#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
-#: data/interfaces/modern/magazines.html:88
-#: data/interfaces/modern/managebooks.html:224
-#: data/interfaces/modern/members.html:105
+#: data/interfaces/modern/author.html:361 data/interfaces/modern/books.html:296
+#: data/interfaces/modern/comics.html:94 data/interfaces/modern/index.html:108
+#: data/interfaces/modern/issues.html:102
+#: data/interfaces/modern/magazines.html:100
+#: data/interfaces/modern/managebooks.html:229
+#: data/interfaces/modern/members.html:111
+#: data/interfaces/modern/series.html:133
 msgid "Compact"
 msgstr "Kompakt"
 
@@ -1653,13 +1649,13 @@ msgid "Grid"
 msgstr "Raster"
 
 #: data/interfaces/bookstrap/base.html:232
-#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
-#: data/interfaces/modern/comics.html:76 data/interfaces/modern/index.html:91
-#: data/interfaces/modern/issues.html:87
-#: data/interfaces/modern/magazines.html:90
-#: data/interfaces/modern/managebooks.html:224
-#: data/interfaces/modern/members.html:107
-#: data/interfaces/modern/series.html:106
+#: data/interfaces/modern/author.html:361 data/interfaces/modern/books.html:296
+#: data/interfaces/modern/comics.html:97 data/interfaces/modern/index.html:111
+#: data/interfaces/modern/issues.html:105
+#: data/interfaces/modern/magazines.html:103
+#: data/interfaces/modern/managebooks.html:229
+#: data/interfaces/modern/members.html:114
+#: data/interfaces/modern/series.html:136
 msgid "List"
 msgstr "Liste"
 
@@ -1668,7 +1664,7 @@ msgid "View:"
 msgstr "Ansicht:"
 
 #: data/interfaces/bookstrap/base.html:404
-#: data/interfaces/modern/modern_base.html:366
+#: data/interfaces/modern/modern_base.html:394
 msgid "Toggle navigation"
 msgstr "Navigation umschalten"
 
@@ -1733,7 +1729,7 @@ msgstr "Verwalten"
 #: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:28
-#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8624
+#: data/interfaces/modern/modern_base.html:583 lazylibrarian/webServe.py:8624
 msgid "History"
 msgstr "Verlauf"
 
@@ -1745,7 +1741,7 @@ msgid "Logs"
 msgstr "Protokolle"
 
 #: data/interfaces/bookstrap/base.html:483
-#: data/interfaces/modern/modern_base.html:436
+#: data/interfaces/modern/modern_base.html:464
 msgid "Config"
 msgstr "Einstellungen"
 
@@ -1753,21 +1749,21 @@ msgstr "Einstellungen"
 #: data/interfaces/bookstrap/base.html:487
 #: data/interfaces/bookstrap/base.html:717
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8185
+#: data/interfaces/modern/modern_base.html:447 lazylibrarian/webServe.py:8185
 msgid "What's new"
 msgstr "Was ist neu"
 
 #: data/interfaces/bookstrap/base.html:494
 #: data/interfaces/bookstrap/base.html:496
-#: data/interfaces/modern/modern_base.html:442
-#: data/interfaces/modern/modern_base.html:444
+#: data/interfaces/modern/modern_base.html:470
+#: data/interfaces/modern/modern_base.html:472
 msgid "Help"
 msgstr "Hilfe"
 
 #: data/interfaces/bookstrap/base.html:498
 #: data/interfaces/bookstrap/config.html:4364
 #: data/interfaces/bookstrap/whatsnew.html:28
-#: data/interfaces/modern/modern_base.html:446
+#: data/interfaces/modern/modern_base.html:474
 #: data/interfaces/modern/whatsnew.html:96
 #, fuzzy
 msgid "Report an issue"
@@ -1775,8 +1771,8 @@ msgstr "Ausgaben importieren"
 
 #: data/interfaces/bookstrap/base.html:503
 #: data/interfaces/bookstrap/base.html:504
-#: data/interfaces/modern/modern_base.html:383
-#: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
+#: data/interfaces/modern/modern_base.html:411
+#: data/interfaces/modern/modern_base.html:415 lazylibrarian/setupwizard.py:338
 msgid "Interface language"
 msgstr "Sprache der Oberfläche"
 
@@ -1797,17 +1793,17 @@ msgstr "Zurück zur neuen Oberfläche"
 #: data/interfaces/bookstrap/base.html:522
 #: data/interfaces/bookstrap/config.html:540
 #: data/interfaces/bookstrap/config.html:623
-#: data/interfaces/modern/modern_base.html:451
+#: data/interfaces/modern/modern_base.html:479
 msgid "User"
 msgstr "Benutzer"
 
 #: data/interfaces/bookstrap/base.html:525
-#: data/interfaces/modern/modern_base.html:454
+#: data/interfaces/modern/modern_base.html:482
 msgid "Logout"
 msgstr "Abmelden"
 
 #: data/interfaces/bookstrap/base.html:542
-#: data/interfaces/modern/modern_base.html:466
+#: data/interfaces/modern/modern_base.html:494
 msgid "Go to top"
 msgstr "Nach oben"
 
@@ -1947,10 +1943,10 @@ msgid "Translate LazyLibrarian"
 msgstr "LazyLibrarian übersetzen"
 
 #: data/interfaces/bookstrap/base.html:654
-#: data/interfaces/modern/author.html:352
+#: data/interfaces/modern/author.html:359
 #: data/interfaces/modern/author_detail.html:361
 #: data/interfaces/modern/book_detail.html:280
-#: data/interfaces/modern/books.html:288 data/interfaces/modern/comics.html:208
+#: data/interfaces/modern/books.html:295 data/interfaces/modern/comics.html:225
 #: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editbook.html:245
@@ -1958,18 +1954,18 @@ msgstr "LazyLibrarian übersetzen"
 #: data/interfaces/modern/editissue.html:90
 #: data/interfaces/modern/editseries.html:121
 #: data/interfaces/modern/history.html:171
-#: data/interfaces/modern/index.html:218 data/interfaces/modern/issues.html:212
+#: data/interfaces/modern/index.html:235 data/interfaces/modern/issues.html:225
 #: data/interfaces/modern/login.html:78 data/interfaces/modern/logs.html:111
-#: data/interfaces/modern/magazines.html:225
-#: data/interfaces/modern/managebooks.html:226
-#: data/interfaces/modern/manageissues.html:122
-#: data/interfaces/modern/members.html:218
-#: data/interfaces/modern/modern_base.html:803
-#: data/interfaces/modern/modern_base.html:817
+#: data/interfaces/modern/magazines.html:235
+#: data/interfaces/modern/managebooks.html:231
+#: data/interfaces/modern/manageissues.html:128
+#: data/interfaces/modern/members.html:226
+#: data/interfaces/modern/modern_base.html:831
+#: data/interfaces/modern/modern_base.html:845
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
-#: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
+#: data/interfaces/modern/series.html:247 data/interfaces/modern/users.html:263
 #: lazylibrarian/setupwizard.py:616
 msgid "Something went wrong, try again"
 msgstr "Etwas ist schiefgelaufen, bitte erneut versuchen"
@@ -2022,7 +2018,7 @@ msgid "Check Version"
 msgstr "Version prüfen"
 
 #: data/interfaces/bookstrap/base.html:786
-#: data/interfaces/modern/modern_base.html:606
+#: data/interfaces/modern/modern_base.html:634
 msgid "Are you sure you want to logout?"
 msgstr "Möchten Sie sich wirklich abmelden?"
 
@@ -2137,7 +2133,7 @@ msgid "Snatched"
 msgstr "Geladen"
 
 #: data/interfaces/bookstrap/books.html:310
-#: data/interfaces/modern/books.html:296
+#: data/interfaces/modern/books.html:303
 #, python-format
 msgid "Are you sure you want to permanently delete the selected book?"
 msgid_plural ""
@@ -2150,9 +2146,10 @@ msgstr[1] ""
 #: data/interfaces/bookstrap/comics.html:16
 #: data/interfaces/bookstrap/issues.html:16
 #: data/interfaces/bookstrap/magazines.html:18
-#: data/interfaces/modern/comics.html:96 data/interfaces/modern/issues.html:103
-#: data/interfaces/modern/issues.html:115
-#: data/interfaces/modern/magazines.html:109
+#: data/interfaces/modern/comics.html:130
+#: data/interfaces/modern/issues.html:136
+#: data/interfaces/modern/issues.html:148
+#: data/interfaces/modern/magazines.html:139
 msgid "Recent Issues"
 msgstr "Neueste Ausgaben"
 
@@ -2173,8 +2170,8 @@ msgstr "Ausgewählte Ausgaben:"
 #: data/interfaces/bookstrap/manageissues.html:32
 #: data/interfaces/modern/config.html:1748
 #: data/interfaces/modern/editissue.html:44
-#: data/interfaces/modern/manageissues.html:54
-#: data/interfaces/modern/manageissues.html:122
+#: data/interfaces/modern/manageissues.html:70
+#: data/interfaces/modern/manageissues.html:128
 msgid "Issue"
 msgstr "Ausgabe"
 
@@ -2186,14 +2183,14 @@ msgstr "Ausgabe"
 #: data/interfaces/bookstrap/issues.html:74
 #: data/interfaces/bookstrap/magazines.html:92
 #: data/interfaces/bookstrap/magazines.html:116
-#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
-#: data/interfaces/modern/comics.html:207 data/interfaces/modern/index.html:217
-#: data/interfaces/modern/issues.html:211
-#: data/interfaces/modern/magazines.html:224
-#: data/interfaces/modern/managebooks.html:225
-#: data/interfaces/modern/members.html:217
+#: data/interfaces/modern/author.html:358 data/interfaces/modern/books.html:292
+#: data/interfaces/modern/comics.html:224 data/interfaces/modern/index.html:234
+#: data/interfaces/modern/issues.html:224
+#: data/interfaces/modern/magazines.html:234
+#: data/interfaces/modern/managebooks.html:230
+#: data/interfaces/modern/members.html:225
 #: data/interfaces/modern/searchresults.html:245
-#: data/interfaces/modern/series.html:227
+#: data/interfaces/modern/series.html:246
 msgid "Select"
 msgstr "Auswählen"
 
@@ -2203,22 +2200,22 @@ msgstr "Auswählen"
 #: data/interfaces/bookstrap/magazines.html:178
 #: data/interfaces/bookstrap/members.html:149
 #: data/interfaces/bookstrap/members.html:165
-#: data/interfaces/modern/author.html:283
+#: data/interfaces/modern/author.html:306
 #: data/interfaces/modern/config.html:1373
-#: data/interfaces/modern/issues.html:150
-#: data/interfaces/modern/members.html:170 lazylibrarian/i18n.py:402
+#: data/interfaces/modern/issues.html:183
+#: data/interfaces/modern/members.html:188 lazylibrarian/i18n.py:402
 msgid "Open"
 msgstr "Öffnen"
 
 #: data/interfaces/bookstrap/comicissues.html:118
 #: data/interfaces/bookstrap/issues.html:140
-#: data/interfaces/modern/issues.html:163
+#: data/interfaces/modern/issues.html:196
 msgid "No issues found"
 msgstr "Keine Ausgaben gefunden"
 
 #: data/interfaces/bookstrap/comicissues.html:179
 #: data/interfaces/bookstrap/issues.html:201
-#: data/interfaces/modern/issues.html:216
+#: data/interfaces/modern/issues.html:229
 #, python-format
 msgid "Are you sure you want to permanently delete the selected issue?"
 msgid_plural ""
@@ -2266,22 +2263,22 @@ msgstr "Keine Ergebnisse gefunden"
 #: data/interfaces/bookstrap/comics.html:32
 #: data/interfaces/bookstrap/comics.html:34
 #: data/interfaces/bookstrap/editcomic.html:22
-#: data/interfaces/modern/comics.html:182
+#: data/interfaces/modern/comics.html:199
 #: data/interfaces/modern/editcomic.html:46
 msgid "Comic Title"
 msgstr "Comic-Titel"
 
 #: data/interfaces/bookstrap/comics.html:37
 #: data/interfaces/bookstrap/comics.html:39
-#: data/interfaces/modern/comics.html:189
+#: data/interfaces/modern/comics.html:206
 #: data/interfaces/modern/editcomic.html:42
 #: data/interfaces/modern/history.html:177
-#: data/interfaces/modern/issues.html:73 lazylibrarian/notifiers/__init__.py:79
+#: data/interfaces/modern/issues.html:77 lazylibrarian/notifiers/__init__.py:79
 msgid "Comic"
 msgstr "Comic"
 
 #: data/interfaces/bookstrap/comics.html:37
-#: data/interfaces/modern/comics.html:185
+#: data/interfaces/modern/comics.html:202
 msgid "Search for comic"
 msgstr "Nach Comic suchen"
 
@@ -2291,8 +2288,8 @@ msgstr "Comic hinzufügen"
 
 #: data/interfaces/bookstrap/comics.html:65
 #: data/interfaces/bookstrap/magazines.html:68
-#: data/interfaces/modern/comics.html:162
-#: data/interfaces/modern/magazines.html:179
+#: data/interfaces/modern/comics.html:111
+#: data/interfaces/modern/magazines.html:120
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -2300,9 +2297,9 @@ msgstr "Zurücksetzen"
 #: data/interfaces/bookstrap/index.html:86
 #: data/interfaces/bookstrap/magazines.html:76
 #: data/interfaces/bookstrap/series.html:135
-#: data/interfaces/modern/comics.html:167 data/interfaces/modern/index.html:194
-#: data/interfaces/modern/magazines.html:184
-#: data/interfaces/modern/series.html:197
+#: data/interfaces/modern/comics.html:117 data/interfaces/modern/index.html:129
+#: data/interfaces/modern/magazines.html:126
+#: data/interfaces/modern/series.html:153
 msgid "Subscribe"
 msgstr "Abonnieren"
 
@@ -2310,9 +2307,9 @@ msgstr "Abonnieren"
 #: data/interfaces/bookstrap/index.html:87
 #: data/interfaces/bookstrap/magazines.html:77
 #: data/interfaces/bookstrap/series.html:136
-#: data/interfaces/modern/comics.html:168 data/interfaces/modern/index.html:195
-#: data/interfaces/modern/magazines.html:185
-#: data/interfaces/modern/series.html:198
+#: data/interfaces/modern/comics.html:118 data/interfaces/modern/index.html:130
+#: data/interfaces/modern/magazines.html:127
+#: data/interfaces/modern/series.html:154
 msgid "Unsubscribe"
 msgstr "Abo beenden"
 
@@ -2333,8 +2330,8 @@ msgstr "Neueste"
 
 #: data/interfaces/bookstrap/comics.html:108
 #: data/interfaces/bookstrap/magazines.html:114
-#: data/interfaces/modern/comics.html:80
-#: data/interfaces/modern/magazines.html:94
+#: data/interfaces/modern/comics.html:79
+#: data/interfaces/modern/magazines.html:86
 msgid "Latest Issue"
 msgstr "Neueste Ausgabe"
 
@@ -2347,12 +2344,12 @@ msgid "Show"
 msgstr "Anzeigen"
 
 #: data/interfaces/bookstrap/comics.html:200
-#: data/interfaces/modern/comics.html:152
+#: data/interfaces/modern/comics.html:186
 msgid "No comics found"
 msgstr "Keine Comics gefunden"
 
 #: data/interfaces/bookstrap/comics.html:262
-#: data/interfaces/modern/comics.html:212
+#: data/interfaces/modern/comics.html:229
 #, python-format
 msgid "Are you sure you want to permanently delete the selected comic?"
 msgid_plural ""
@@ -2459,7 +2456,7 @@ msgid "Downloaders"
 msgstr "Downloader"
 
 #: data/interfaces/bookstrap/config.html:64
-#: data/interfaces/modern/modern_base.html:416
+#: data/interfaces/modern/modern_base.html:444
 msgid "Providers"
 msgstr "Anbieter"
 
@@ -2468,7 +2465,7 @@ msgid "Processing"
 msgstr "Verarbeitung"
 
 #: data/interfaces/bookstrap/config.html:66
-#: data/interfaces/modern/modern_base.html:561
+#: data/interfaces/modern/modern_base.html:589
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
@@ -2822,7 +2819,7 @@ msgstr "Protokollordner"
 #: data/interfaces/bookstrap/config.html:326
 #: data/interfaces/bookstrap/logs.html:38
 #: data/interfaces/bookstrap/logs.html:50
-#: data/interfaces/bookstrap/logs.html:65 data/interfaces/modern/logs.html:48
+#: data/interfaces/bookstrap/logs.html:65 data/interfaces/modern/logs.html:47
 msgid "Level"
 msgstr "Stufe"
 
@@ -4281,7 +4278,7 @@ msgstr "Newznab-Anbieter"
 #: data/interfaces/bookstrap/config.html:1990
 #: data/interfaces/bookstrap/config.html:2196
 #: data/interfaces/bookstrap/config.html:3608
-#: data/interfaces/modern/index.html:94
+#: data/interfaces/modern/index.html:93
 msgid "Name"
 msgstr "Name"
 
@@ -7219,7 +7216,7 @@ msgstr ""
 "ignoriert markiert wurden. Läuft sicher als Hintergrundauftrag."
 
 #: data/interfaces/bookstrap/config_functions.js:388
-#: data/interfaces/modern/comics.html:83
+#: data/interfaces/modern/comics.html:82
 msgid "Start"
 msgstr "Starten"
 
@@ -7703,7 +7700,7 @@ msgstr "Buchserie %(number)s"
 #: data/interfaces/modern/editbook.html:143
 #: data/interfaces/modern/editbook.html:163
 #: data/interfaces/modern/editseries.html:53
-#: data/interfaces/modern/series.html:109
+#: data/interfaces/modern/series.html:118
 msgid "Series Name"
 msgstr "Serienname"
 
@@ -7902,7 +7899,7 @@ msgstr "Typ"
 #: data/interfaces/bookstrap/manualsearch.html:20
 #: data/interfaces/modern/config.html:1062
 #: data/interfaces/modern/history.html:59
-#: data/interfaces/modern/manageissues.html:55
+#: data/interfaces/modern/manageissues.html:71
 #: data/interfaces/modern/manualsearch.html:65
 msgid "Provider"
 msgstr "Anbieter"
@@ -7946,22 +7943,22 @@ msgstr "Abgeschlossen"
 
 #: data/interfaces/bookstrap/history.html:179
 #: data/interfaces/modern/history.html:118
-#: data/interfaces/modern/modern_base.html:553
+#: data/interfaces/modern/modern_base.html:581
 msgid "No history found"
 msgstr "Kein Verlauf gefunden"
 
 #: data/interfaces/bookstrap/index.html:11
-#: data/interfaces/modern/index.html:137
+#: data/interfaces/modern/index.html:169
 msgid "Refresh Authors"
 msgstr "Autoren aktualisieren"
 
 #: data/interfaces/bookstrap/index.html:14
-#: data/interfaces/modern/index.html:112
+#: data/interfaces/modern/index.html:144
 msgid "Show Active Authors"
 msgstr "Aktive Autoren anzeigen"
 
 #: data/interfaces/bookstrap/index.html:16
-#: data/interfaces/modern/index.html:114
+#: data/interfaces/modern/index.html:146
 msgid "Show Inactive Authors"
 msgstr "Inaktive Autoren anzeigen"
 
@@ -7973,18 +7970,18 @@ msgstr "Hauptautor oder alle Mitwirkenden"
 #: data/interfaces/bookstrap/index.html:39
 #: data/interfaces/bookstrap/searchresults.html:17
 #: data/interfaces/bookstrap/series.html:46
-#: data/interfaces/modern/modern_base.html:956
+#: data/interfaces/modern/modern_base.html:984
 #: data/interfaces/modern/searchresults.html:123
 msgid "Title / Author / ISBN"
 msgstr "Titel / Autor / ISBN"
 
 #: data/interfaces/bookstrap/index.html:41
-#: data/interfaces/modern/modern_base.html:954
+#: data/interfaces/modern/modern_base.html:982
 msgid "Search for author/book"
 msgstr "Nach Autor/Buch suchen"
 
 #: data/interfaces/bookstrap/index.html:55
-#: data/interfaces/modern/index.html:219
+#: data/interfaces/modern/index.html:236
 msgid "Author Refresh in progress ..."
 msgstr "Autorenaktualisierung läuft ..."
 
@@ -7994,7 +7991,7 @@ msgstr "Autorenaktualisierung läuft ..."
 #: data/interfaces/bookstrap/searchresults.html:37
 #: data/interfaces/bookstrap/series.html:62
 #: data/interfaces/bookstrap/series.html:66
-#: data/interfaces/modern/index.html:219
+#: data/interfaces/modern/index.html:236
 #: data/interfaces/modern/searchresults.html:153
 msgid "Search in progress ..."
 msgstr "Suche läuft ..."
@@ -8010,8 +8007,8 @@ msgstr "Bild"
 
 #: data/interfaces/bookstrap/index.html:101
 #: data/interfaces/bookstrap/index.html:121
-#: data/interfaces/modern/index.html:97
-#: data/interfaces/modern/modern_base.html:400
+#: data/interfaces/modern/index.html:96
+#: data/interfaces/modern/modern_base.html:428
 msgid "Downloaded"
 msgstr "Heruntergeladen"
 
@@ -8020,7 +8017,7 @@ msgid "Latest Book"
 msgstr "Neuestes Buch"
 
 #: data/interfaces/bookstrap/index.html:231
-#: data/interfaces/modern/index.html:181
+#: data/interfaces/modern/index.html:213
 msgid "No authors found"
 msgstr "Keine Autoren gefunden"
 
@@ -8066,14 +8063,14 @@ msgid "Mark Authors Complete"
 msgstr "Autoren als abgeschlossen markieren"
 
 #: data/interfaces/bookstrap/issues.html:13
-#: data/interfaces/modern/issues.html:121
+#: data/interfaces/modern/issues.html:154
 msgid "Import Issues"
 msgstr "Ausgaben importieren"
 
 #: data/interfaces/bookstrap/issues.html:14
 #: data/interfaces/bookstrap/magazines.html:16
-#: data/interfaces/modern/issues.html:117
-#: data/interfaces/modern/magazines.html:111 lazylibrarian/webServe.py:7394
+#: data/interfaces/modern/issues.html:150
+#: data/interfaces/modern/magazines.html:141 lazylibrarian/webServe.py:7394
 msgid "Past Issues"
 msgstr "Frühere Ausgaben"
 
@@ -8188,19 +8185,19 @@ msgstr "5 Minuten"
 msgid "10 Minutes"
 msgstr "10 Minuten"
 
-#: data/interfaces/bookstrap/logs.html:40 data/interfaces/modern/logs.html:49
+#: data/interfaces/bookstrap/logs.html:40 data/interfaces/modern/logs.html:48
 msgid "All levels"
 msgstr "Alle Stufen"
 
-#: data/interfaces/bookstrap/logs.html:41 data/interfaces/modern/logs.html:50
+#: data/interfaces/bookstrap/logs.html:41 data/interfaces/modern/logs.html:49
 msgid "Info and above"
 msgstr "Info und höher"
 
-#: data/interfaces/bookstrap/logs.html:42 data/interfaces/modern/logs.html:51
+#: data/interfaces/bookstrap/logs.html:42 data/interfaces/modern/logs.html:50
 msgid "Warnings and errors"
 msgstr "Warnungen und Fehler"
 
-#: data/interfaces/bookstrap/logs.html:43 data/interfaces/modern/logs.html:52
+#: data/interfaces/bookstrap/logs.html:43 data/interfaces/modern/logs.html:51
 msgid "Errors only"
 msgstr "Nur Fehler"
 
@@ -8233,7 +8230,7 @@ msgid "No log information available"
 msgstr "Keine Protokollinformationen verfügbar"
 
 #: data/interfaces/bookstrap/magazines.html:15
-#: data/interfaces/modern/magazines.html:116
+#: data/interfaces/modern/magazines.html:146
 msgid "Library Clean"
 msgstr "Bibliothek bereinigen"
 
@@ -8243,7 +8240,7 @@ msgstr "LazyLibrarian – neueste Zeitschriften"
 
 #: data/interfaces/bookstrap/magazines.html:34
 #: data/interfaces/bookstrap/magazines.html:36
-#: data/interfaces/modern/magazines.html:199
+#: data/interfaces/modern/magazines.html:209
 msgid "Magazine Title"
 msgstr "Zeitschriftentitel"
 
@@ -8251,38 +8248,38 @@ msgstr "Zeitschriftentitel"
 #: data/interfaces/bookstrap/magazines.html:42
 #: data/interfaces/modern/editmag.html:40
 #: data/interfaces/modern/history.html:177
-#: data/interfaces/modern/issues.html:73 lazylibrarian/notifiers/__init__.py:79
+#: data/interfaces/modern/issues.html:77 lazylibrarian/notifiers/__init__.py:79
 msgid "Magazine"
 msgstr "Zeitschrift"
 
 #: data/interfaces/bookstrap/magazines.html:40
-#: data/interfaces/modern/magazines.html:202
+#: data/interfaces/modern/magazines.html:212
 msgid "Search for Magazine"
 msgstr "Nach Zeitschrift suchen"
 
 #: data/interfaces/bookstrap/magazines.html:42
-#: data/interfaces/modern/magazines.html:195
-#: data/interfaces/modern/magazines.html:206
+#: data/interfaces/modern/magazines.html:205
+#: data/interfaces/modern/magazines.html:216
 msgid "Add Magazine"
 msgstr "Zeitschrift hinzufügen"
 
 #: data/interfaces/bookstrap/magazines.html:71
-#: data/interfaces/modern/magazines.html:178
+#: data/interfaces/modern/magazines.html:119
 msgid "Tag issues"
 msgstr "Ausgaben taggen"
 
 #: data/interfaces/bookstrap/magazines.html:72
-#: data/interfaces/modern/magazines.html:177
+#: data/interfaces/modern/magazines.html:118
 msgid "Scan issues"
 msgstr "Ausgaben scannen"
 
 #: data/interfaces/bookstrap/magazines.html:73
-#: data/interfaces/modern/magazines.html:176
+#: data/interfaces/modern/magazines.html:117
 msgid "Search issues"
 msgstr "Ausgaben suchen"
 
 #: data/interfaces/bookstrap/magazines.html:204
-#: data/interfaces/modern/magazines.html:166
+#: data/interfaces/modern/magazines.html:196
 msgid "No magazines found"
 msgstr "Keine Zeitschriften gefunden"
 
@@ -8297,56 +8294,53 @@ msgstr[1] ""
 "löschen?"
 
 #: data/interfaces/bookstrap/managebooks.html:13
-#: data/interfaces/modern/managebooks.html:91
+#: data/interfaces/modern/managebooks.html:125
 msgid "Import eBooks"
 msgstr "eBooks importieren"
 
 #: data/interfaces/bookstrap/managebooks.html:14
-#: data/interfaces/modern/managebooks.html:92
+#: data/interfaces/modern/managebooks.html:126
 msgid "Include eBooks"
 msgstr "eBooks einbeziehen"
 
 #: data/interfaces/bookstrap/managebooks.html:20
-#: data/interfaces/modern/managebooks.html:94
+#: data/interfaces/modern/managebooks.html:128
 msgid "Import AudioBooks"
 msgstr "Hörbücher importieren"
 
 #: data/interfaces/bookstrap/managebooks.html:21
-#: data/interfaces/modern/managebooks.html:95
+#: data/interfaces/modern/managebooks.html:129
 msgid "Include AudioBooks"
 msgstr "Hörbücher einbeziehen"
 
 #: data/interfaces/bookstrap/managebooks.html:23
-#: data/interfaces/modern/managebooks.html:97
+#: data/interfaces/modern/managebooks.html:131
 msgid "WishLists"
 msgstr "Wunschlisten"
 
 #: data/interfaces/bookstrap/managebooks.html:25
-#: data/interfaces/modern/managebooks.html:99
+#: data/interfaces/modern/managebooks.html:133
 msgid "Import CSV"
 msgstr "CSV importieren"
 
 #: data/interfaces/bookstrap/managebooks.html:27
-#: data/interfaces/modern/managebooks.html:100
+#: data/interfaces/modern/managebooks.html:134
 msgid "Export CSV"
 msgstr "CSV exportieren"
 
 #: data/interfaces/bookstrap/managebooks.html:30
-#: data/interfaces/modern/managebooks.html:105
+#: data/interfaces/modern/managebooks.html:139
 msgid "Goodreads Sync"
 msgstr "Goodreads-Synchronisierung"
 
 #: data/interfaces/bookstrap/managebooks.html:34
-#: data/interfaces/modern/managebooks.html:108
+#: data/interfaces/modern/managebooks.html:142
 msgid "HardCover Sync"
 msgstr "HardCover-Synchronisierung"
 
 #: data/interfaces/bookstrap/managebooks.html:41
-#: data/interfaces/modern/author.html:229
 #: data/interfaces/modern/config.html:545
-#: data/interfaces/modern/managebooks.html:72
-#: data/interfaces/modern/managebooks.html:172
-#: data/interfaces/modern/members.html:110
+#: data/interfaces/modern/members.html:120
 msgid "Library"
 msgstr "Bibliothek"
 
@@ -8356,8 +8350,8 @@ msgstr "Wird synchronisiert, bitte warten ..."
 
 #: data/interfaces/bookstrap/managebooks.html:107
 #: data/interfaces/bookstrap/managebooks.html:131
-#: data/interfaces/modern/managebooks.html:68
-#: data/interfaces/modern/managebooks.html:225
+#: data/interfaces/modern/managebooks.html:79
+#: data/interfaces/modern/managebooks.html:230
 msgid "Listed"
 msgstr "Gelistet"
 
@@ -8367,8 +8361,8 @@ msgid "Delay"
 msgstr "Verzögerung"
 
 #: data/interfaces/bookstrap/managebooks.html:135
-#: data/interfaces/modern/managebooks.html:69
-#: data/interfaces/modern/managebooks.html:225
+#: data/interfaces/modern/managebooks.html:80
+#: data/interfaces/modern/managebooks.html:230
 msgid "Last Search"
 msgstr "Letzte Suche"
 
@@ -8382,12 +8376,12 @@ msgid "No Delay"
 msgstr "Keine Verzögerung"
 
 #: data/interfaces/bookstrap/managebooks.html:208
-#: data/interfaces/modern/managebooks.html:229
+#: data/interfaces/modern/managebooks.html:234
 msgid "CSV Export Result"
 msgstr "Ergebnis des CSV-Exports"
 
 #: data/interfaces/bookstrap/managebooks.html:225
-#: data/interfaces/modern/managebooks.html:230
+#: data/interfaces/modern/managebooks.html:235
 msgid "Goodreads Sync Result"
 msgstr "Ergebnis der Goodreads-Synchronisierung"
 
@@ -8406,12 +8400,12 @@ msgid "HardCover Multi-User Sync Confirmation Required"
 msgstr "Bestätigung für HardCover-Mehrbenutzer-Synchronisierung erforderlich"
 
 #: data/interfaces/bookstrap/managebooks.html:258
-#: data/interfaces/modern/managebooks.html:227
+#: data/interfaces/modern/managebooks.html:232
 msgid "HardCover Sync Confirmation Required"
 msgstr "Bestätigung für HardCover-Synchronisierung erforderlich"
 
 #: data/interfaces/bookstrap/managebooks.html:267
-#: data/interfaces/modern/managebooks.html:228
+#: data/interfaces/modern/managebooks.html:233
 msgid "Ignore Updates"
 msgstr "Aktualisierungen ignorieren"
 
@@ -8425,7 +8419,7 @@ msgid "Proceed with All Users"
 msgstr "Für alle Benutzer fortfahren"
 
 #: data/interfaces/bookstrap/managebooks.html:280
-#: data/interfaces/modern/managebooks.html:228
+#: data/interfaces/modern/managebooks.html:233
 msgid "Proceed"
 msgstr "Fortfahren"
 
@@ -8438,7 +8432,7 @@ msgid "Current User"
 msgstr "Aktueller Benutzer"
 
 #: data/interfaces/bookstrap/managebooks.html:401
-#: data/interfaces/modern/managebooks.html:227
+#: data/interfaces/modern/managebooks.html:232
 msgid "HardCover Sync Result"
 msgstr "Ergebnis der HardCover-Synchronisierung"
 
@@ -8477,17 +8471,17 @@ msgid "HardCover Multi-User Sync Complete"
 msgstr "HardCover-Mehrbenutzer-Synchronisierung abgeschlossen"
 
 #: data/interfaces/bookstrap/managebooks.html:488
-#: data/interfaces/modern/managebooks.html:230
+#: data/interfaces/modern/managebooks.html:235
 msgid "Calibre Sync Result"
 msgstr "Ergebnis der Calibre-Synchronisierung"
 
 #: data/interfaces/bookstrap/managebooks.html:503
-#: data/interfaces/modern/managebooks.html:229
+#: data/interfaces/modern/managebooks.html:234
 msgid "CSV Import Info"
 msgstr "Info zum CSV-Import"
 
 #: data/interfaces/bookstrap/manageissues.html:44
-#: data/interfaces/modern/manageissues.html:53
+#: data/interfaces/modern/manageissues.html:69
 msgid "NZB Date"
 msgstr "NZB-Datum"
 
@@ -8496,12 +8490,11 @@ msgid "Issue Date"
 msgstr "Ausgabedatum"
 
 #: data/interfaces/bookstrap/manageissues.html:53
-#: data/interfaces/modern/manageissues.html:98
 msgid "Change selected magazines to:"
 msgstr "Ausgewählte Zeitschriften ändern in:"
 
 #: data/interfaces/bookstrap/manageissues.html:100
-#: data/interfaces/modern/manageissues.html:93
+#: data/interfaces/modern/manageissues.html:108
 msgid "No matching issues found"
 msgstr "Keine passenden Ausgaben gefunden"
 
@@ -8512,7 +8505,7 @@ msgstr "Laden"
 
 #: data/interfaces/bookstrap/members.html:9
 #: data/interfaces/bookstrap/series.html:11
-#: data/interfaces/modern/series.html:90
+#: data/interfaces/modern/series.html:94
 msgid "Return to Author"
 msgstr "Zurück zum Autor"
 
@@ -8521,7 +8514,7 @@ msgid "Series List"
 msgstr "Serienliste"
 
 #: data/interfaces/bookstrap/members.html:16
-#: data/interfaces/modern/members.html:138
+#: data/interfaces/modern/members.html:156
 msgid "Refresh Series"
 msgstr "Serien aktualisieren"
 
@@ -8535,23 +8528,23 @@ msgstr "Ausgewählte markieren"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:61
-#: data/interfaces/modern/author.html:353
+#: data/interfaces/modern/author.html:360
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/history.html:177
-#: data/interfaces/modern/managebooks.html:174
-#: data/interfaces/modern/members.html:112 lazylibrarian/i18n.py:404
+#: data/interfaces/modern/managebooks.html:105
+#: data/interfaces/modern/members.html:122 lazylibrarian/i18n.py:404
 #: lazylibrarian/notifiers/__init__.py:78
 msgid "eBook"
 msgstr "eBook"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:67
-#: data/interfaces/modern/author.html:353
+#: data/interfaces/modern/author.html:360
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/book_detail.html:135
 #: data/interfaces/modern/history.html:177
-#: data/interfaces/modern/managebooks.html:176
-#: data/interfaces/modern/members.html:114 lazylibrarian/i18n.py:404
+#: data/interfaces/modern/managebooks.html:106
+#: data/interfaces/modern/members.html:122 lazylibrarian/i18n.py:404
 #: lazylibrarian/notifiers/__init__.py:78
 msgid "AudioBook"
 msgstr "Hörbuch"
@@ -8709,11 +8702,11 @@ msgstr "Anzahl Bewertungen"
 
 #: data/interfaces/bookstrap/searchresults.html:53
 #: data/interfaces/modern/comicresults.html:76
-#: data/interfaces/modern/comics.html:90
-#: data/interfaces/modern/magazines.html:103
-#: data/interfaces/modern/modern_base.html:935
-#: data/interfaces/modern/modern_base.html:944
-#: data/interfaces/modern/modern_base.html:964
+#: data/interfaces/modern/comics.html:124
+#: data/interfaces/modern/magazines.html:133
+#: data/interfaces/modern/modern_base.html:963
+#: data/interfaces/modern/modern_base.html:972
+#: data/interfaces/modern/modern_base.html:992
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -8787,30 +8780,30 @@ msgstr "Alle anzeigen"
 
 #: data/interfaces/bookstrap/series.html:27
 #: data/interfaces/bookstrap/series.html:29
-#: data/interfaces/modern/index.html:120 data/interfaces/modern/series.html:127
+#: data/interfaces/modern/index.html:152 data/interfaces/modern/series.html:168
 msgid "Show all authors"
 msgstr "Alle Autoren anzeigen"
 
 #: data/interfaces/bookstrap/series.html:33
 #: data/interfaces/bookstrap/series.html:35
-#: data/interfaces/modern/series.html:129
+#: data/interfaces/modern/series.html:170
 msgid "Only active/wanted authors"
 msgstr "Nur aktive/gesuchte Autoren"
 
 #: data/interfaces/bookstrap/series.html:75
-#: data/interfaces/modern/series.html:78
+#: data/interfaces/modern/series.html:82
 msgctxt "series status"
 msgid "Complete"
 msgstr "Vollständig"
 
 #: data/interfaces/bookstrap/series.html:76
-#: data/interfaces/modern/series.html:79
+#: data/interfaces/modern/series.html:83
 msgctxt "series status"
 msgid "Partial"
 msgstr "Teilweise"
 
 #: data/interfaces/bookstrap/series.html:77
-#: data/interfaces/modern/series.html:79
+#: data/interfaces/modern/series.html:83
 msgctxt "series status"
 msgid "Empty"
 msgstr "Leer"
@@ -8820,7 +8813,7 @@ msgid "Change selected series to:"
 msgstr "Ausgewählte Serien ändern in:"
 
 #: data/interfaces/bookstrap/series.html:245
-#: data/interfaces/modern/series.html:184
+#: data/interfaces/modern/series.html:218
 msgid "No series found"
 msgstr "Keine Serien gefunden"
 
@@ -8925,8 +8918,8 @@ msgid "Logins"
 msgstr "Anmeldungen"
 
 #: data/interfaces/bookstrap/users.html:109
-#: data/interfaces/modern/modern_base.html:397
-#: data/interfaces/modern/modern_base.html:481
+#: data/interfaces/modern/modern_base.html:425
+#: data/interfaces/modern/modern_base.html:509
 #: data/interfaces/modern/users.html:179
 msgid "Downloads"
 msgstr "Downloads"
@@ -9032,25 +9025,25 @@ msgstr "Folgen"
 #: data/interfaces/modern/author.html:164
 #: data/interfaces/modern/author_detail.html:150
 #: data/interfaces/modern/book_detail.html:169
-#: data/interfaces/modern/books.html:166 data/interfaces/modern/comics.html:94
-#: data/interfaces/modern/history.html:68 data/interfaces/modern/index.html:108
-#: data/interfaces/modern/issues.html:100 data/interfaces/modern/logs.html:69
-#: data/interfaces/modern/magazines.html:107
-#: data/interfaces/modern/managebooks.html:88
-#: data/interfaces/modern/members.html:123
-#: data/interfaces/modern/series.html:124
+#: data/interfaces/modern/books.html:195 data/interfaces/modern/comics.html:128
+#: data/interfaces/modern/history.html:68 data/interfaces/modern/index.html:140
+#: data/interfaces/modern/issues.html:133 data/interfaces/modern/logs.html:69
+#: data/interfaces/modern/magazines.html:137
+#: data/interfaces/modern/managebooks.html:122
+#: data/interfaces/modern/members.html:141
+#: data/interfaces/modern/series.html:165
 msgid "More"
 msgstr "Mehr"
 
 #: data/interfaces/modern/author.html:181
 #: data/interfaces/modern/author_detail.html:166
-#: data/interfaces/modern/index.html:129
+#: data/interfaces/modern/index.html:161
 msgid "Include contributors"
 msgstr "Mitwirkende einbeziehen"
 
 #: data/interfaces/modern/author.html:183
 #: data/interfaces/modern/author_detail.html:168
-#: data/interfaces/modern/index.html:131
+#: data/interfaces/modern/index.html:163
 msgid "Primary authors only"
 msgstr "Nur Hauptautoren"
 
@@ -9060,120 +9053,121 @@ msgstr "Nur Hauptautoren"
 msgid "Filter books"
 msgstr "Bücher filtern"
 
-#: data/interfaces/modern/author.html:215 data/interfaces/modern/books.html:126
-#: data/interfaces/modern/comics.html:72 data/interfaces/modern/index.html:87
-#: data/interfaces/modern/issues.html:83
-#: data/interfaces/modern/magazines.html:84
-#: data/interfaces/modern/managebooks.html:56
-#: data/interfaces/modern/members.html:101
-#: data/interfaces/modern/series.html:102
-msgid "View"
-msgstr "Ansicht"
+#: data/interfaces/modern/author.html:220
+#: data/interfaces/modern/managebooks.html:60
+#, fuzzy
+#| msgid "Switch theme"
+msgid "Switch to"
+msgstr "Design wechseln"
 
-#: data/interfaces/modern/author.html:223 data/interfaces/modern/books.html:134
+#: data/interfaces/modern/author.html:224 data/interfaces/modern/books.html:137
 #: data/interfaces/modern/comicresults.html:53
-#: data/interfaces/modern/comics.html:78 data/interfaces/modern/history.html:55
-#: data/interfaces/modern/index.html:93 data/interfaces/modern/issues.html:89
-#: data/interfaces/modern/magazines.html:92
-#: data/interfaces/modern/managebooks.html:64
-#: data/interfaces/modern/manageissues.html:51
+#: data/interfaces/modern/comics.html:77 data/interfaces/modern/history.html:55
+#: data/interfaces/modern/index.html:92 data/interfaces/modern/issues.html:87
+#: data/interfaces/modern/magazines.html:84
+#: data/interfaces/modern/managebooks.html:75
+#: data/interfaces/modern/manageissues.html:67
 #: data/interfaces/modern/manualsearch.html:61
 #: data/interfaces/modern/searchresults.html:138
-#: data/interfaces/modern/series.html:108
+#: data/interfaces/modern/series.html:117
 msgid "Sort"
 msgstr "Sortieren"
 
-#: data/interfaces/modern/author.html:292 data/interfaces/modern/books.html:222
-#: data/interfaces/modern/members.html:184
+#: data/interfaces/modern/author.html:315 data/interfaces/modern/books.html:248
+#: data/interfaces/modern/members.html:202
 msgid "Search now"
 msgstr "Jetzt suchen"
 
-#: data/interfaces/modern/author.html:306 data/interfaces/modern/books.html:245
-#: data/interfaces/modern/managebooks.html:168
-#: data/interfaces/modern/members.html:195
-msgid "Selected books"
-msgstr "Ausgewählte Bücher"
-
-#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/author.html:358
 #: data/interfaces/modern/book_detail.html:279
 msgid "Show more"
 msgstr "Mehr anzeigen"
 
-#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/author.html:358
 #: data/interfaces/modern/book_detail.html:279
 msgid "Show less"
 msgstr "Weniger anzeigen"
 
-#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
-#: data/interfaces/modern/comics.html:207
+#: data/interfaces/modern/author.html:358 data/interfaces/modern/books.html:292
+#: data/interfaces/modern/comics.html:224
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/history.html:172
-#: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
+#: data/interfaces/modern/index.html:234 data/interfaces/modern/issues.html:224
 #: data/interfaces/modern/logs.html:111
-#: data/interfaces/modern/magazines.html:224
-#: data/interfaces/modern/managebooks.html:225
-#: data/interfaces/modern/manageissues.html:123
-#: data/interfaces/modern/members.html:217
+#: data/interfaces/modern/magazines.html:234
+#: data/interfaces/modern/managebooks.html:230
+#: data/interfaces/modern/manageissues.html:129
+#: data/interfaces/modern/members.html:225
 #: data/interfaces/modern/searchresults.html:245
-#: data/interfaces/modern/series.html:227
+#: data/interfaces/modern/series.html:246
 msgid "Done"
 msgstr "Fertig"
 
-#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
-#: data/interfaces/modern/comics.html:207
+#: data/interfaces/modern/author.html:358 data/interfaces/modern/books.html:292
+#: data/interfaces/modern/comics.html:224
 #: data/interfaces/modern/history.html:171
-#: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
+#: data/interfaces/modern/index.html:234 data/interfaces/modern/issues.html:224
 #: data/interfaces/modern/logs.html:111
-#: data/interfaces/modern/magazines.html:224
-#: data/interfaces/modern/managebooks.html:225
-#: data/interfaces/modern/manageissues.html:122
-#: data/interfaces/modern/series.html:227
+#: data/interfaces/modern/magazines.html:234
+#: data/interfaces/modern/managebooks.html:230
+#: data/interfaces/modern/manageissues.html:128
+#: data/interfaces/modern/series.html:246
 msgid "That is all"
 msgstr "Das ist alles"
 
-#: data/interfaces/modern/author.html:352
+#: data/interfaces/modern/author.html:359
 #: data/interfaces/modern/book_detail.html:279
-#: data/interfaces/modern/books.html:287 data/interfaces/modern/comics.html:209
-#: data/interfaces/modern/magazines.html:226
-#: data/interfaces/modern/members.html:218
+#: data/interfaces/modern/books.html:294 data/interfaces/modern/comics.html:226
+#: data/interfaces/modern/magazines.html:236
+#: data/interfaces/modern/members.html:226
 msgid "Searching..."
 msgstr "Suche läuft ..."
 
-#: data/interfaces/modern/author.html:352 data/interfaces/modern/books.html:287
-#: data/interfaces/modern/managebooks.html:226
-#: data/interfaces/modern/members.html:217
+#: data/interfaces/modern/author.html:359 data/interfaces/modern/books.html:294
+#: data/interfaces/modern/managebooks.html:231
+#: data/interfaces/modern/members.html:225
 msgid "Select at least one book first"
 msgstr "Wählen Sie zuerst mindestens ein Buch aus"
 
-#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
-#: data/interfaces/modern/comics.html:74
-#: data/interfaces/modern/config.html:1661
-#: data/interfaces/modern/issues.html:85
-#: data/interfaces/modern/magazines.html:86
-#: data/interfaces/modern/managebooks.html:224
+#: data/interfaces/modern/author.html:361 data/interfaces/modern/books.html:145
+#: data/interfaces/modern/comics.html:86 data/interfaces/modern/index.html:100
+#: data/interfaces/modern/issues.html:94
+#: data/interfaces/modern/magazines.html:92
+#: data/interfaces/modern/managebooks.html:84
 #: data/interfaces/modern/members.html:103
-#: data/interfaces/modern/series.html:104
+#: data/interfaces/modern/series.html:125
+msgid "View"
+msgstr "Ansicht"
+
+#: data/interfaces/modern/author.html:361 data/interfaces/modern/books.html:296
+#: data/interfaces/modern/comics.html:91
+#: data/interfaces/modern/config.html:1661
+#: data/interfaces/modern/issues.html:99
+#: data/interfaces/modern/magazines.html:97
+#: data/interfaces/modern/managebooks.html:229
+#: data/interfaces/modern/members.html:108
+#: data/interfaces/modern/series.html:130
 msgid "Covers"
 msgstr "Cover"
 
-#: data/interfaces/modern/author.html:355 data/interfaces/modern/books.html:294
-#: data/interfaces/modern/comics.html:210 data/interfaces/modern/index.html:220
-#: data/interfaces/modern/issues.html:214
-#: data/interfaces/modern/magazines.html:227
-#: data/interfaces/modern/managebooks.html:231
-#: data/interfaces/modern/manageissues.html:124
-#: data/interfaces/modern/members.html:219
+#: data/interfaces/modern/author.html:362 data/interfaces/modern/books.html:301
+#: data/interfaces/modern/comics.html:227 data/interfaces/modern/index.html:237
+#: data/interfaces/modern/issues.html:227
+#: data/interfaces/modern/magazines.html:237
+#: data/interfaces/modern/managebooks.html:236
+#: data/interfaces/modern/manageissues.html:130
+#: data/interfaces/modern/members.html:227
 #: data/interfaces/modern/searchresults.html:251
-#: data/interfaces/modern/series.html:229
+#: data/interfaces/modern/series.html:248
 #, python-format
 msgid "%(count)s selected"
 msgid_plural "%(count)s selected"
 msgstr[0] "%(count)s ausgewählt"
 msgstr[1] "%(count)s ausgewählt"
 
-#: data/interfaces/modern/author.html:356 data/interfaces/modern/books.html:295
-#: data/interfaces/modern/managebooks.html:232
-#: data/interfaces/modern/members.html:220
+#: data/interfaces/modern/author.html:363 data/interfaces/modern/books.html:302
+#: data/interfaces/modern/managebooks.html:237
+#: data/interfaces/modern/members.html:228
 #, python-format
 msgid "%(count)s book"
 msgid_plural "%(count)s books"
@@ -9224,7 +9218,7 @@ msgstr "ISBN"
 #: data/interfaces/modern/editissue.html:35
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
-#: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
+#: data/interfaces/modern/issues.html:71 data/interfaces/modern/members.html:69
 #: lazylibrarian/setupwizard.py:615
 msgid "Back"
 msgstr "Zurück"
@@ -9235,54 +9229,54 @@ msgid "by"
 msgstr "von"
 
 #: data/interfaces/modern/book_detail.html:202
-#: data/interfaces/modern/modern_base.html:343 lazylibrarian/webServe.py:4072
+#: data/interfaces/modern/modern_base.html:371 lazylibrarian/webServe.py:4072
 msgid "Found, but not downloaded"
 msgstr "Gefunden, aber nicht heruntergeladen"
 
-#: data/interfaces/modern/books.html:161
-msgid "Search wanted"
-msgstr "Gesuchte suchen"
-
-#: data/interfaces/modern/books.html:229
-#: data/interfaces/modern/members.html:179
-msgid "Want"
-msgstr "Suchen"
-
-#: data/interfaces/modern/books.html:250 data/interfaces/modern/comics.html:163
-#: data/interfaces/modern/index.html:191 data/interfaces/modern/issues.html:182
-#: data/interfaces/modern/magazines.html:180
+#: data/interfaces/modern/books.html:185 data/interfaces/modern/comics.html:112
+#: data/interfaces/modern/index.html:125 data/interfaces/modern/issues.html:125
+#: data/interfaces/modern/magazines.html:121
 #, fuzzy
 msgid "Remove from library"
 msgstr "Bibliothek wieder öffnen"
 
-#: data/interfaces/modern/books.html:251 data/interfaces/modern/comics.html:164
-#: data/interfaces/modern/index.html:192 data/interfaces/modern/issues.html:183
-#: data/interfaces/modern/magazines.html:181
+#: data/interfaces/modern/books.html:186 data/interfaces/modern/comics.html:114
+#: data/interfaces/modern/index.html:127 data/interfaces/modern/issues.html:127
+#: data/interfaces/modern/magazines.html:123
 #, fuzzy
 msgid "Delete from disk"
 msgstr "Comic löschen"
 
-#: data/interfaces/modern/books.html:290
+#: data/interfaces/modern/books.html:198
+msgid "Search wanted"
+msgstr "Gesuchte suchen"
+
+#: data/interfaces/modern/books.html:255
+#: data/interfaces/modern/members.html:197
+msgid "Want"
+msgstr "Suchen"
+
+#: data/interfaces/modern/books.html:297
 msgid "Search in:"
 msgstr "Suchen in:"
 
-#: data/interfaces/modern/books.html:290
+#: data/interfaces/modern/books.html:297
 msgid "Title, author and series"
 msgstr "Titel, Autor und Serie"
 
-#: data/interfaces/modern/books.html:292
+#: data/interfaces/modern/books.html:299
 msgid "Title, author, series"
 msgstr "Titel, Autor, Serie"
 
-#: data/interfaces/modern/books.html:292
+#: data/interfaces/modern/books.html:299
 msgid "Search titles"
 msgstr "Titel suchen"
 
-#: data/interfaces/modern/books.html:293
+#: data/interfaces/modern/books.html:300
 msgid "Search authors"
 msgstr "Autoren suchen"
 
-#: data/interfaces/modern/books.html:293
+#: data/interfaces/modern/books.html:300
 msgid "Search series"
 msgstr "Serien suchen"
 
@@ -9301,41 +9295,37 @@ msgid_plural "%(count)s results"
 msgstr[0] "%(count)s Ergebnis"
 msgstr[1] "%(count)s Ergebnisse"
 
-#: data/interfaces/modern/comics.html:70
+#: data/interfaces/modern/comics.html:75
 msgid "Filter comics"
 msgstr "Comics filtern"
 
-#: data/interfaces/modern/comics.html:82
-#: data/interfaces/modern/magazines.html:96
+#: data/interfaces/modern/comics.html:81
+#: data/interfaces/modern/magazines.html:88
 msgid "Issues"
 msgstr "Ausgaben"
 
-#: data/interfaces/modern/comics.html:107
+#: data/interfaces/modern/comics.html:141
 msgid "Show all comics"
 msgstr "Alle Comics anzeigen"
 
-#: data/interfaces/modern/comics.html:109
+#: data/interfaces/modern/comics.html:143
 msgid "Show only my comics"
 msgstr "Nur meine Comics anzeigen"
 
-#: data/interfaces/modern/comics.html:157
-msgid "Selected comics"
-msgstr "Ausgewählte Comics"
-
-#: data/interfaces/modern/comics.html:178
+#: data/interfaces/modern/comics.html:195
 msgid "Add Comic"
 msgstr "Comic hinzufügen"
 
-#: data/interfaces/modern/comics.html:207
-#: data/interfaces/modern/magazines.html:224
+#: data/interfaces/modern/comics.html:224
+#: data/interfaces/modern/magazines.html:234
 msgid "No issues yet"
 msgstr "Noch keine Ausgaben"
 
-#: data/interfaces/modern/comics.html:208
+#: data/interfaces/modern/comics.html:225
 msgid "Select at least one comic first"
 msgstr "Wählen Sie zuerst mindestens einen Comic aus"
 
-#: data/interfaces/modern/comics.html:211
+#: data/interfaces/modern/comics.html:228
 #, python-format
 msgid "%(count)s comic"
 msgid_plural "%(count)s comics"
@@ -9402,7 +9392,7 @@ msgid "Basics"
 msgstr "Grundlagen"
 
 #: data/interfaces/modern/config.html:540
-#: data/interfaces/modern/modern_base.html:486
+#: data/interfaces/modern/modern_base.html:514
 msgid "Downloading"
 msgstr "Wird heruntergeladen"
 
@@ -9624,7 +9614,7 @@ msgid "Blocked"
 msgstr "Gesperrt"
 
 #: data/interfaces/modern/config.html:1157
-#: data/interfaces/modern/modern_base.html:740
+#: data/interfaces/modern/modern_base.html:768
 msgid "Unblock"
 msgstr "Entsperren"
 
@@ -9633,13 +9623,13 @@ msgid "Other blocked sources"
 msgstr "Weitere gesperrte Quellen"
 
 #: data/interfaces/modern/config.html:1158
-#: data/interfaces/modern/modern_base.html:740
+#: data/interfaces/modern/modern_base.html:768
 #, python-format
 msgid "Blocked for %(time)s"
 msgstr "Gesperrt für %(time)s"
 
 #: data/interfaces/modern/config.html:1159
-#: data/interfaces/modern/modern_base.html:742
+#: data/interfaces/modern/modern_base.html:770
 #, python-format
 msgid "%(count)s minute"
 msgid_plural "%(count)s minutes"
@@ -9647,7 +9637,7 @@ msgstr[0] "%(count)s Minute"
 msgstr[1] "%(count)s Minuten"
 
 #: data/interfaces/modern/config.html:1159
-#: data/interfaces/modern/modern_base.html:742
+#: data/interfaces/modern/modern_base.html:770
 #, python-format
 msgid "%(count)s hour"
 msgid_plural "%(count)s hours"
@@ -9817,14 +9807,14 @@ msgid "Oldest"
 msgstr "Älteste"
 
 #: data/interfaces/modern/history.html:75
-#: data/interfaces/modern/modern_base.html:491
+#: data/interfaces/modern/modern_base.html:519
 #, fuzzy
 msgid "Stop all seeding"
 msgstr "Alle Serien anzeigen"
 
 #: data/interfaces/modern/history.html:111
 #: data/interfaces/modern/history.html:144
-#: data/interfaces/modern/modern_base.html:522
+#: data/interfaces/modern/modern_base.html:550
 #, fuzzy
 msgid "Stop seeding"
 msgstr "Seeding"
@@ -9859,45 +9849,41 @@ msgid_plural "%(count)s downloading"
 msgstr[0] "%(count)s wird heruntergeladen"
 msgstr[1] "%(count)s werden heruntergeladen"
 
-#: data/interfaces/modern/index.html:85
+#: data/interfaces/modern/index.html:90
 msgid "Filter authors"
 msgstr "Autoren filtern"
 
-#: data/interfaces/modern/index.html:89
-msgid "Pictures"
-msgstr "Bilder"
-
-#: data/interfaces/modern/index.html:96
+#: data/interfaces/modern/index.html:95
 msgid "Latest release"
 msgstr "Neueste Veröffentlichung"
 
-#: data/interfaces/modern/index.html:122
+#: data/interfaces/modern/index.html:105
+msgid "Pictures"
+msgstr "Bilder"
+
+#: data/interfaces/modern/index.html:154
 msgid "Show only my authors"
 msgstr "Nur meine Autoren anzeigen"
 
-#: data/interfaces/modern/index.html:186
-msgid "Selected authors"
-msgstr "Ausgewählte Autoren"
-
-#: data/interfaces/modern/index.html:218
+#: data/interfaces/modern/index.html:235
 msgid "Select at least one author first"
 msgstr "Wählen Sie zuerst mindestens einen Autor aus"
 
-#: data/interfaces/modern/index.html:221
+#: data/interfaces/modern/index.html:238
 #, python-format
 msgid "%(count)s author"
 msgid_plural "%(count)s authors"
 msgstr[0] "%(count)s Autor"
 msgstr[1] "%(count)s Autoren"
 
-#: data/interfaces/modern/index.html:222 data/interfaces/modern/series.html:231
+#: data/interfaces/modern/index.html:239 data/interfaces/modern/series.html:250
 #, python-format
 msgid "%(have)s of %(count)s book"
 msgid_plural "%(have)s of %(count)s books"
 msgstr[0] "%(have)s von %(count)s Buch"
 msgstr[1] "%(have)s von %(count)s Büchern"
 
-#: data/interfaces/modern/index.html:223
+#: data/interfaces/modern/index.html:240
 #, fuzzy, python-format
 msgid ""
 "Are you sure you want to permanently delete the selected author and their "
@@ -9912,52 +9898,48 @@ msgstr[1] ""
 "Möchten Sie die %(count)s ausgewählten Autoren und ihre Medien wirklich "
 "dauerhaft löschen?"
 
-#: data/interfaces/modern/issues.html:81
+#: data/interfaces/modern/issues.html:85
 msgid "Filter issues"
 msgstr "Ausgaben filtern"
 
-#: data/interfaces/modern/issues.html:90
+#: data/interfaces/modern/issues.html:88
 msgid "Newest issue"
 msgstr "Neueste Ausgabe"
 
-#: data/interfaces/modern/issues.html:91
+#: data/interfaces/modern/issues.html:89
 msgid "Oldest issue"
 msgstr "Älteste Ausgabe"
 
-#: data/interfaces/modern/issues.html:92
+#: data/interfaces/modern/issues.html:90
 msgid "Recently added"
 msgstr "Kürzlich hinzugefügt"
 
-#: data/interfaces/modern/issues.html:168
-msgid "Selected issues"
-msgstr "Ausgewählte Ausgaben"
-
-#: data/interfaces/modern/issues.html:175
+#: data/interfaces/modern/issues.html:119
 msgid "Cover from page 1"
 msgstr "Cover von Seite 1"
 
-#: data/interfaces/modern/issues.html:176
+#: data/interfaces/modern/issues.html:120
 msgid "Cover from page 2"
 msgstr "Cover von Seite 2"
 
-#: data/interfaces/modern/issues.html:177
+#: data/interfaces/modern/issues.html:121
 msgid "Swap cover"
 msgstr "Cover tauschen"
 
-#: data/interfaces/modern/issues.html:180
+#: data/interfaces/modern/issues.html:123
 msgid "Tag"
 msgstr "Tag"
 
-#: data/interfaces/modern/issues.html:212
+#: data/interfaces/modern/issues.html:225
 msgid "Select at least one issue first"
 msgstr "Wählen Sie zuerst mindestens eine Ausgabe aus"
 
-#: data/interfaces/modern/issues.html:213
+#: data/interfaces/modern/issues.html:226
 msgid "Sending..."
 msgstr "Wird gesendet ..."
 
-#: data/interfaces/modern/issues.html:215
-#: data/interfaces/modern/manageissues.html:125
+#: data/interfaces/modern/issues.html:228
+#: data/interfaces/modern/manageissues.html:131
 #, python-format
 msgid "%(count)s issue"
 msgid_plural "%(count)s issues"
@@ -9991,30 +9973,26 @@ msgstr[1] "%(count)s Zeilen"
 msgid "Filter magazines"
 msgstr "Zeitschriften filtern"
 
-#: data/interfaces/modern/magazines.html:122
+#: data/interfaces/modern/magazines.html:152
 msgid "Show all magazines"
 msgstr "Alle Zeitschriften anzeigen"
 
-#: data/interfaces/modern/magazines.html:124
+#: data/interfaces/modern/magazines.html:154
 msgid "Show only my magazines"
 msgstr "Nur meine Zeitschriften anzeigen"
 
-#: data/interfaces/modern/magazines.html:171
-msgid "Selected magazines"
-msgstr "Ausgewählte Zeitschriften"
-
-#: data/interfaces/modern/magazines.html:225
+#: data/interfaces/modern/magazines.html:235
 msgid "Select at least one magazine first"
 msgstr "Wählen Sie zuerst mindestens eine Zeitschrift aus"
 
-#: data/interfaces/modern/magazines.html:228
+#: data/interfaces/modern/magazines.html:238
 #, python-format
 msgid "%(count)s magazine"
 msgid_plural "%(count)s magazines"
 msgstr[0] "%(count)s Zeitschrift"
 msgstr[1] "%(count)s Zeitschriften"
 
-#: data/interfaces/modern/magazines.html:229
+#: data/interfaces/modern/magazines.html:239
 #, fuzzy, python-format
 msgid ""
 "Are you sure you want to permanently delete the selected magazine and all "
@@ -10027,12 +10005,12 @@ msgstr[1] ""
 "Möchten Sie die %(count)s ausgewählten Zeitschriften wirklich dauerhaft "
 "löschen?"
 
-#: data/interfaces/modern/managebooks.html:81
-#: data/interfaces/modern/manageissues.html:58
+#: data/interfaces/modern/managebooks.html:96
+#: data/interfaces/modern/manageissues.html:74
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: data/interfaces/modern/manageissues.html:123
+#: data/interfaces/modern/manageissues.html:129
 msgid "Remove the selected issues from past issues?"
 msgstr "Die ausgewählten Ausgaben aus den früheren Ausgaben entfernen?"
 
@@ -10045,15 +10023,15 @@ msgstr "Mehrere Autoren"
 msgid "%(have)s of %(total)s"
 msgstr "%(have)s von %(total)s"
 
-#: data/interfaces/modern/members.html:127
+#: data/interfaces/modern/members.html:145
 msgid "All series by this author"
 msgstr "Alle Serien dieses Autors"
 
-#: data/interfaces/modern/members.html:130
+#: data/interfaces/modern/members.html:148
 msgid "Show active books"
 msgstr "Aktive Bücher anzeigen"
 
-#: data/interfaces/modern/members.html:132
+#: data/interfaces/modern/members.html:150
 msgid "Show ignored books"
 msgstr "Ignorierte Bücher anzeigen"
 
@@ -10080,63 +10058,63 @@ msgstr "Verstanden"
 msgid "Back to classic"
 msgstr "Zurück zur klassischen Oberfläche"
 
-#: data/interfaces/modern/modern_base.html:375
+#: data/interfaces/modern/modern_base.html:403
 msgid "Switch theme"
 msgstr "Design wechseln"
 
-#: data/interfaces/modern/modern_base.html:407
-#: data/interfaces/modern/modern_base.html:413
+#: data/interfaces/modern/modern_base.html:435
+#: data/interfaces/modern/modern_base.html:441
 msgid "Provider status"
 msgstr "Anbieterstatus"
 
-#: data/interfaces/modern/modern_base.html:439
+#: data/interfaces/modern/modern_base.html:467
 msgid "Classic interface"
 msgstr "Klassische Oberfläche"
 
-#: data/interfaces/modern/modern_base.html:528
+#: data/interfaces/modern/modern_base.html:556
 msgid "Nothing is downloading"
 msgstr "Es wird nichts heruntergeladen"
 
-#: data/interfaces/modern/modern_base.html:531
+#: data/interfaces/modern/modern_base.html:559
 msgid "Finished recently"
 msgstr "Kürzlich abgeschlossen"
 
-#: data/interfaces/modern/modern_base.html:579
+#: data/interfaces/modern/modern_base.html:607
 #, python-format
 msgid "and %(count)s more"
 msgstr "und %(count)s weitere"
 
-#: data/interfaces/modern/modern_base.html:622
+#: data/interfaces/modern/modern_base.html:650
 msgid "Download client not reachable"
 msgstr "Download-Client nicht erreichbar"
 
-#: data/interfaces/modern/modern_base.html:741
+#: data/interfaces/modern/modern_base.html:769
 #, python-format
 msgid "%(count)s provider blocked"
 msgid_plural "%(count)s providers blocked"
 msgstr[0] "%(count)s Anbieter gesperrt"
 msgstr[1] "%(count)s Anbieter gesperrt"
 
-#: data/interfaces/modern/modern_base.html:818
+#: data/interfaces/modern/modern_base.html:846
 #, python-format
 msgid "%(count)s more notification"
 msgid_plural "%(count)s more notifications"
 msgstr[0] "%(count)s weitere Benachrichtigung"
 msgstr[1] "%(count)s weitere Benachrichtigungen"
 
-#: data/interfaces/modern/modern_base.html:944 lazylibrarian/webServe.py:2223
+#: data/interfaces/modern/modern_base.html:972 lazylibrarian/webServe.py:2223
 msgid "Add series"
 msgstr "Serie hinzufügen"
 
-#: data/interfaces/modern/modern_base.html:949
+#: data/interfaces/modern/modern_base.html:977
 msgid "Series ID or link"
 msgstr "Serien-ID oder Link"
 
-#: data/interfaces/modern/modern_base.html:951
+#: data/interfaces/modern/modern_base.html:979
 msgid "HC12345 / GR12345 / OL12345"
 msgstr "HC12345 / GR12345 / OL12345"
 
-#: data/interfaces/modern/modern_base.html:952
+#: data/interfaces/modern/modern_base.html:980
 msgid ""
 "A Hardcover, Goodreads or LibraryThing series ID, or a Goodreads or "
 "LibraryThing series link."
@@ -10157,27 +10135,23 @@ msgstr "Nachricht an den Admin gesendet, Sie erhalten eine Antwort per E-Mail"
 msgid "Nothing selected"
 msgstr "Nichts ausgewählt"
 
-#: data/interfaces/modern/series.html:100
+#: data/interfaces/modern/series.html:104
 msgid "Filter series"
 msgstr "Serien filtern"
 
-#: data/interfaces/modern/series.html:134
+#: data/interfaces/modern/series.html:175
 msgid "Show all series"
 msgstr "Alle Serien anzeigen"
 
-#: data/interfaces/modern/series.html:136
+#: data/interfaces/modern/series.html:177
 msgid "Show only my series"
 msgstr "Nur meine Serien anzeigen"
 
-#: data/interfaces/modern/series.html:189
-msgid "Selected series"
-msgstr "Ausgewählte Serien"
-
-#: data/interfaces/modern/series.html:228
+#: data/interfaces/modern/series.html:247
 msgid "Select at least one series first"
 msgstr "Wählen Sie zuerst mindestens eine Serie aus"
 
-#: data/interfaces/modern/series.html:230
+#: data/interfaces/modern/series.html:249
 #, python-format
 msgid "%(count)s series"
 msgid_plural "%(count)s series"
@@ -11904,6 +11878,24 @@ msgstr "Datei senden"
 #: lazylibrarian/webServe.py:10545
 msgid "Thank you for enabling Telemetry"
 msgstr "Danke, dass Sie die Telemetrie aktiviert haben"
+
+#~ msgid "Selected books"
+#~ msgstr "Ausgewählte Bücher"
+
+#~ msgid "Selected comics"
+#~ msgstr "Ausgewählte Comics"
+
+#~ msgid "Selected authors"
+#~ msgstr "Ausgewählte Autoren"
+
+#~ msgid "Selected issues"
+#~ msgstr "Ausgewählte Ausgaben"
+
+#~ msgid "Selected magazines"
+#~ msgstr "Ausgewählte Zeitschriften"
+
+#~ msgid "Selected series"
+#~ msgstr "Ausgewählte Serien"
 
 #, fuzzy
 #~ msgid "Search Anna's Archive"
