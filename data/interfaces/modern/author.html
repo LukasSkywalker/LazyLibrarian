@@ -209,29 +209,36 @@ ${bk.headIncludes()}
     <span class="flex-grow-1"></span>
     <div class="input-group input-group-sm llb-search">
       <span class="input-group-text rounded-start-pill bg-transparent"><i class="fa fa-filter" aria-hidden="true"></i></span>
-      <input type="search" id="lau-q" class="form-control rounded-end-pill" x-model.debounce.300ms="q"
+      <input type="search" id="lau-q" class="form-control " x-model.debounce.300ms="q"
              placeholder="${_('Filter books') | h}" autocomplete="off" aria-label="${_('Filter books') | h}">
-    </div>
-    <div class="btn-group btn-group-sm llb-views" role="group" aria-label="${_('View') | h}">
-      <template x-for="v in views" :key="v.id">
-        <button type="button" class="btn" :class="view === v.id ? 'btn-secondary' : 'btn-outline-secondary'"
-                :aria-pressed="view === v.id" :title="v.label" :aria-label="v.label" @click="setView(v.id)">
-          <i class="fa" :class="v.icon" aria-hidden="true"></i>
-        </button>
-      </template>
+      %if len(types) > 1 and perm&lazylibrarian.perm_audio:
+      <%
+        _next_lib = types[(types.index(library) + 1) % len(types)] if library in types else types[0]
+        _lib_icon = 'fa-headphones' if library == 'AudioBook' else 'fa-book'
+      %>
+      <a class="btn btn-sm btn-secondary rounded-end-pill px-3" style="min-width: 3.25rem" href="${page_url(lib=_next_lib) | h}"
+         title="${_('Switch to') | h} ${status_label(_next_lib) | h}" aria-label="${_('Switch to') | h} ${status_label(_next_lib) | h}">
+        <i class="fa ${_lib_icon}" aria-hidden="true"></i><span class="d-none d-sm-inline"> ${status_label(library)}</span></a>
+      %endif
     </div>
     <select id="lau-sort" class="form-select form-select-sm w-auto rounded-pill" x-model="sort" aria-label="${_('Sort') | h}">
       <option value="6:desc">${_('Released')}</option>
       <option value="3:asc">${_('Title')}</option>
       <option value="7:desc">${_('Added')}</option>
     </select>
-    %if len(types) > 1 and perm&lazylibrarian.perm_audio:
-    <select class="form-select form-select-sm w-auto rounded-pill" aria-label="${_('Library') | h}" onchange="window.location = this.value">
-      %for t in types:
-      <option value="${page_url(lib=t) | h}" ${'selected' if t == library else ''}>${status_label(t)}</option>
-      %endfor
-    </select>
-    %endif
+    <div class="dropdown llb-views">
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
+              :title="T.view" :aria-label="T.view">
+        <i class="fa" :class="(views.find(function (v) { return v.id === view; }) || views[0]).icon" aria-hidden="true"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <template x-for="v in views" :key="v.id">
+          <li><button type="button" class="dropdown-item" :class="view === v.id && 'active'" @click="setView(v.id)">
+            <i class="fa fa-fw me-2" :class="v.icon" aria-hidden="true"></i><span x-text="v.label"></span>
+          </button></li>
+        </template>
+      </ul>
+    </div>
     %if len(languages) > 1:
     <select class="form-select form-select-sm w-auto rounded-pill" aria-label="${_('Language') | h}" onchange="window.location = this.value">
       <option value="${page_url(lang='') | h}">${_('All')}</option>
@@ -247,6 +254,22 @@ ${bk.headIncludes()}
     %if perm&lazylibrarian.perm_status or CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="selecting ? stopSelect() : (selecting = true)"
             x-text="selecting ? T.done : T.select"></button>
+    <div class="dropdown dropup ll-selmenu" x-show="selecting" x-cloak>
+      <button type="button" class="btn btn-sm btn-ll rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+              x-text="llNgettext(T.selected, selCount)"></button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        %if perm&lazylibrarian.perm_status:
+          %for code, label_e, label_a in [('Want', _('eBook Wanted'), _('Audio Wanted')), ('Have', _('eBook Have'), _('Audio Have')), ('Skip', _('eBook Skipped'), _('Audio Skipped')), ('Ignore', _('eBook Ignored'), _('Audio Ignored'))]:
+            %if ebook_on:
+            <li><button type="button" class="dropdown-item" @click="bulk('${code}Ebook')"><i class="fa fa-book me-1" aria-hidden="true"></i>${label_e}</button></li>
+            %endif
+            %if audio_on:
+            <li><button type="button" class="dropdown-item" @click="bulk('${code}Audio')"><i class="fa fa-headphones me-1" aria-hidden="true"></i>${label_a}</button></li>
+            %endif
+          %endfor
+        %endif
+      </ul>
+    </div>
     %endif
   </div>
 
@@ -302,22 +325,6 @@ ${bk.headIncludes()}
   </div>
   <div x-ref="sentinel" class="text-center text-body-secondary small py-4" x-text="done && books.length ? T.allShown : ''"></div>
 
-  %if perm&lazylibrarian.perm_status or CONFIG['USER_ACCOUNTS']:
-  <div class="llb-bar d-flex align-items-center gap-2 flex-wrap" :class="!selecting && 'llb-bar-hidden'" role="region" aria-label="${_('Selected books') | h}">
-    <span class="fw-semibold me-auto" x-text="llNgettext(T.selected, selCount)"></span>
-    %if perm&lazylibrarian.perm_status:
-      %for code, label_e, label_a in [('Want', _('eBook Wanted'), _('Audio Wanted')), ('Have', _('eBook Have'), _('Audio Have')), ('Skip', _('eBook Skipped'), _('Audio Skipped')), ('Ignore', _('eBook Ignored'), _('Audio Ignored'))]:
-        %if ebook_on:
-        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('${code}Ebook')"><i class="fa fa-book me-1" aria-hidden="true"></i>${label_e}</button>
-        %endif
-        %if audio_on:
-        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('${code}Audio')"><i class="fa fa-headphones me-1" aria-hidden="true"></i>${label_a}</button>
-        %endif
-      %endfor
-    %endif
-    <button type="button" class="btn btn-sm btn-link" @click="stopSelect()">${_('Cancel')}</button>
-  </div>
-  %endif
 
   %if perm&lazylibrarian.perm_edit:
   <div class="modal fade" id="lau-remove" tabindex="-1" aria-hidden="true">
@@ -351,7 +358,7 @@ document.addEventListener('alpine:init', function () {
     select: ${_js('Select')}, done: ${_js('Done')}, allShown: ${_js('That is all')}, more: ${_js('Show more')}, less: ${_js('Show less')},
     pickFirst: ${_js('Select at least one book first')}, searching: ${_js('Searching...')}, failed: ${_js('Something went wrong, try again')},
     ebook: ${_js('eBook')}, audio: ${_js('AudioBook')},
-    grid: ${_js('Covers')}, compact: ${_js('Compact')}, list: ${_js('List')},
+    view: ${_js('View')}, grid: ${_js('Covers')}, compact: ${_js('Compact')}, list: ${_js('List')},
     selected: ${_jsn('%(count)s selected', '%(count)s selected')},
     books: ${_jsn('%(count)s book', '%(count)s books')}
   };
