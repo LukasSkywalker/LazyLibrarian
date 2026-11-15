@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-14 20:12+0000\n"
+"POT-Creation-Date: 2026-11-15 08:32+0000\n"
 "PO-Revision-Date: 2026-11-13 12:56+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -128,10 +128,9 @@ msgstr "Hlavní autor nebo spoluautor"
 #: data/interfaces/bookstrap/books.html:35
 #: data/interfaces/bookstrap/config.html:3966
 #: data/interfaces/modern/author.html:236
-#: data/interfaces/modern/book_detail.html:80
+#: data/interfaces/modern/book_detail.html:83
 #: data/interfaces/modern/books.html:141
 #: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
-#: lazylibrarian/setupwizard.py:555
 msgid "Language"
 msgstr "Jazyk"
 
@@ -158,7 +157,7 @@ msgstr "Jazyk"
 #: data/interfaces/modern/author.html:237 data/interfaces/modern/books.html:143
 #: data/interfaces/modern/books.html:288 data/interfaces/modern/issues.html:170
 #: data/interfaces/modern/manualsearch.html:69
-#: data/interfaces/modern/members.html:190
+#: data/interfaces/modern/members.html:197
 #: data/interfaces/modern/series.html:78 lazylibrarian/i18n.py:401
 msgid "All"
 msgstr "Vše"
@@ -424,7 +423,7 @@ msgstr "Název"
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
 #: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:2122 lazylibrarian/setupwizard.py:77
+#: lazylibrarian/webServe.py:2122
 msgid "Series"
 msgstr "Série"
 
@@ -481,7 +480,7 @@ msgstr "Vydáno"
 #: data/interfaces/bookstrap/magazines.html:89
 #: data/interfaces/bookstrap/magazines.html:113
 #: data/interfaces/modern/author.html:226
-#: data/interfaces/modern/book_detail.html:89
+#: data/interfaces/modern/book_detail.html:92
 #: data/interfaces/modern/books.html:137 data/interfaces/modern/comics.html:81
 #: data/interfaces/modern/index.html:95 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:95
@@ -532,7 +531,9 @@ msgstr "V seznamu:"
 #: data/interfaces/bookstrap/magazines.html:181
 #: data/interfaces/bookstrap/members.html:151
 #: data/interfaces/bookstrap/members.html:167
+#: data/interfaces/modern/author.html:286
 #: data/interfaces/modern/issues.html:152
+#: data/interfaces/modern/members.html:173
 msgid "Send"
 msgstr "Odeslat"
 
@@ -542,9 +543,9 @@ msgstr "Odeslat"
 #: data/interfaces/bookstrap/managebooks.html:589
 #: data/interfaces/bookstrap/members.html:198
 #: data/interfaces/bookstrap/searchresults.html:238
-#: data/interfaces/modern/author.html:294 data/interfaces/modern/books.html:240
+#: data/interfaces/modern/author.html:301 data/interfaces/modern/books.html:240
 #: data/interfaces/modern/managebooks.html:163
-#: data/interfaces/modern/members.html:183
+#: data/interfaces/modern/members.html:190
 #: data/interfaces/modern/searchresults.html:246
 msgid "No books found"
 msgstr "Nenalezeny žádné knihy"
@@ -599,7 +600,7 @@ msgstr[2] "Opravdu chcete trvale smazat %(count)s vybraných audioknih?"
 #: data/interfaces/bookstrap/issues.html:207
 #: data/interfaces/bookstrap/magazines.html:271
 #: data/interfaces/bookstrap/users.html:276
-#: data/interfaces/modern/author.html:321
+#: data/interfaces/modern/author.html:328
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
 #: data/interfaces/modern/modern_base.html:609
@@ -623,7 +624,7 @@ msgstr "Ano"
 #: data/interfaces/bookstrap/issues.html:211
 #: data/interfaces/bookstrap/magazines.html:275
 #: data/interfaces/bookstrap/users.html:280
-#: data/interfaces/modern/author.html:320
+#: data/interfaces/modern/author.html:327
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
@@ -986,12 +987,11 @@ msgstr "RSS kanál nedávných audioknih"
 #: data/interfaces/bookstrap/members.html:31
 #: data/interfaces/modern/author.html:168
 #: data/interfaces/modern/author_detail.html:153
-#: data/interfaces/modern/book_detail.html:168
+#: data/interfaces/modern/book_detail.html:174
 #: data/interfaces/modern/issues.html:112
 #: data/interfaces/modern/issues.html:125
 #: data/interfaces/modern/issues.html:155
 #: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
-#: lazylibrarian/setupwizard.py:560
 msgid "Edit"
 msgstr "Upravit"
 
@@ -1169,13 +1169,13 @@ msgstr "Označit vybrané e-knihy jako"
 
 #: data/interfaces/bookstrap/author.html:272
 #: data/interfaces/bookstrap/managebooks.html:148
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Wanted"
 msgstr "E-kniha hledaná"
 
 #: data/interfaces/bookstrap/author.html:274
 #: data/interfaces/bookstrap/managebooks.html:151
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Wanted"
 msgstr "Audio hledané"
 
@@ -1188,12 +1188,12 @@ msgid "Both Have"
 msgstr "Obojí vlastněné"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Have"
 msgstr "E-kniha vlastněná"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Have"
 msgstr "Audio vlastněné"
 
@@ -1202,12 +1202,12 @@ msgid "Both Ignored"
 msgstr "Obojí ignorované"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Ignored"
 msgstr "E-kniha ignorovaná"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Ignored"
 msgstr "Audio ignorované"
 
@@ -1216,12 +1216,12 @@ msgid "Both Skipped"
 msgstr "Obojí přeskočené"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Skipped"
 msgstr "E-kniha přeskočená"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Skipped"
 msgstr "Audio přeskočené"
 
@@ -1286,7 +1286,7 @@ msgstr "Rozečteno a odloženo"
 #: data/interfaces/bookstrap/author.html:352
 #: data/interfaces/bookstrap/author_detail.html:78
 #: data/interfaces/bookstrap/editauthor.html:264
-#: data/interfaces/modern/author.html:318
+#: data/interfaces/modern/author.html:325
 #: data/interfaces/modern/author_detail.html:338
 msgid "Are you sure you want to permanently delete the author?"
 msgstr "Opravdu chcete autora trvale smazat?"
@@ -1369,14 +1369,14 @@ msgstr[2] "%(count)s audioknih"
 #: data/interfaces/bookstrap/author_detail.html:177
 #: data/interfaces/bookstrap/book_detail.html:72
 #: data/interfaces/modern/author_detail.html:214
-#: data/interfaces/modern/book_detail.html:64
+#: data/interfaces/modern/book_detail.html:67
 msgid "eBook status:"
 msgstr "Stav e-knihy:"
 
 #: data/interfaces/bookstrap/author_detail.html:184
 #: data/interfaces/bookstrap/book_detail.html:74
 #: data/interfaces/modern/author_detail.html:221
-#: data/interfaces/modern/book_detail.html:64
+#: data/interfaces/modern/book_detail.html:67
 msgid "AudioBook status:"
 msgstr "Stav audioknihy:"
 
@@ -1410,7 +1410,7 @@ msgstr "nastavení je ručně zamčené a obnovení ho nepřepíše"
 #: data/interfaces/bookstrap/author_detail.html:211
 #: data/interfaces/bookstrap/book_detail.html:88
 #: data/interfaces/modern/author_detail.html:244
-#: data/interfaces/modern/book_detail.html:225
+#: data/interfaces/modern/book_detail.html:231
 msgid "Sources"
 msgstr "Zdroje"
 
@@ -1582,7 +1582,6 @@ msgid "(filtered from _MAX_ total rows)"
 msgstr "(vyfiltrováno z celkem _MAX_ řádků)"
 
 #: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:613
-#: lazylibrarian/setupwizard.py:564
 msgid "Loading..."
 msgstr "Načítání ..."
 
@@ -1595,7 +1594,6 @@ msgid "Previous"
 msgstr "Předchozí"
 
 #: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:615
-#: lazylibrarian/setupwizard.py:566
 msgid "Next"
 msgstr "Další"
 
@@ -1612,7 +1610,7 @@ msgstr "Vymazat"
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
-#: data/interfaces/modern/author.html:311 data/interfaces/modern/books.html:260
+#: data/interfaces/modern/author.html:318 data/interfaces/modern/books.html:260
 #: data/interfaces/modern/comics.html:170
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/editauthor.html:241
@@ -1621,10 +1619,10 @@ msgstr "Vymazat"
 #: data/interfaces/modern/magazines.html:187
 #: data/interfaces/modern/managebooks.html:186
 #: data/interfaces/modern/manageissues.html:103
-#: data/interfaces/modern/members.html:194
+#: data/interfaces/modern/members.html:201
 #: data/interfaces/modern/searchresults.html:208
 #: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -1643,7 +1641,7 @@ msgid "Detailed"
 msgstr "Podrobné"
 
 #: data/interfaces/bookstrap/base.html:231
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/magazines.html:88
 #: data/interfaces/modern/managebooks.html:224
 #: data/interfaces/modern/members.html:105
@@ -1655,7 +1653,7 @@ msgid "Grid"
 msgstr "Mřížka"
 
 #: data/interfaces/bookstrap/base.html:232
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/comics.html:76 data/interfaces/modern/index.html:91
 #: data/interfaces/modern/issues.html:87
 #: data/interfaces/modern/magazines.html:90
@@ -1687,7 +1685,7 @@ msgstr "Autoři"
 #: data/interfaces/bookstrap/config.html:149
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3727 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:3727
 msgid "eBooks"
 msgstr "E-knihy"
 
@@ -1700,7 +1698,7 @@ msgstr "Audio"
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3704 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:3704
 msgid "AudioBooks"
 msgstr "Audioknihy"
 
@@ -1713,7 +1711,7 @@ msgstr "Časop."
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
 #: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:6886 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:6892
 msgid "Magazines"
 msgstr "Časopisy"
 
@@ -1722,8 +1720,7 @@ msgstr "Časopisy"
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2896
 #: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:6176 lazylibrarian/webServe.py:6537
-#: lazylibrarian/setupwizard.py:77
+#: lazylibrarian/webServe.py:6182 lazylibrarian/webServe.py:6543
 msgid "Comics"
 msgstr "Komiksy"
 
@@ -1736,7 +1733,7 @@ msgstr "Spravovat"
 #: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:28
-#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8618
+#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8624
 msgid "History"
 msgstr "Historie"
 
@@ -1756,7 +1753,7 @@ msgstr "Nastavení"
 #: data/interfaces/bookstrap/base.html:487
 #: data/interfaces/bookstrap/base.html:717
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8179
+#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8185
 msgid "What's new"
 msgstr "Co je nového"
 
@@ -1780,7 +1777,6 @@ msgstr "Importovat čísla"
 #: data/interfaces/bookstrap/base.html:504
 #: data/interfaces/modern/modern_base.html:383
 #: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
-#: lazylibrarian/setupwizard.py:306
 msgid "Interface language"
 msgstr "Jazyk rozhraní"
 
@@ -1951,9 +1947,9 @@ msgid "Translate LazyLibrarian"
 msgstr "Přeložit LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:654
-#: data/interfaces/modern/author.html:345
+#: data/interfaces/modern/author.html:352
 #: data/interfaces/modern/author_detail.html:361
-#: data/interfaces/modern/book_detail.html:274
+#: data/interfaces/modern/book_detail.html:280
 #: data/interfaces/modern/books.html:288 data/interfaces/modern/comics.html:208
 #: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/editauthor.html:241
@@ -1967,14 +1963,14 @@ msgstr "Přeložit LazyLibrarian"
 #: data/interfaces/modern/magazines.html:225
 #: data/interfaces/modern/managebooks.html:226
 #: data/interfaces/modern/manageissues.html:122
-#: data/interfaces/modern/members.html:211
+#: data/interfaces/modern/members.html:218
 #: data/interfaces/modern/modern_base.html:803
 #: data/interfaces/modern/modern_base.html:817
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
-#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Something went wrong, try again"
 msgstr "Něco se pokazilo, zkuste to znovu"
 
@@ -2033,18 +2029,18 @@ msgstr "Opravdu se chcete odhlásit?"
 
 #: data/interfaces/bookstrap/book_detail.html:14
 #: data/interfaces/bookstrap/editbook.html:11
-#: data/interfaces/modern/book_detail.html:171
+#: data/interfaces/modern/book_detail.html:177
 #: data/interfaces/modern/editbook.html:55
 msgid "Refresh Book"
 msgstr "Obnovit knihu"
 
 #: data/interfaces/bookstrap/book_detail.html:17
-#: data/interfaces/modern/book_detail.html:63
+#: data/interfaces/modern/book_detail.html:66
 msgid "Search eBook"
 msgstr "Hledat e-knihu"
 
 #: data/interfaces/bookstrap/book_detail.html:19
-#: data/interfaces/modern/book_detail.html:63
+#: data/interfaces/modern/book_detail.html:66
 msgid "Search AudioBook"
 msgstr "Hledat audioknihu"
 
@@ -2097,19 +2093,19 @@ msgid "Publisher:"
 msgstr "Nakladatel:"
 
 #: data/interfaces/bookstrap/book_detail.html:103
-#: data/interfaces/modern/book_detail.html:231
+#: data/interfaces/modern/book_detail.html:237
 msgid "no verified link template"
 msgstr "bez ověřené šablony odkazu"
 
 #: data/interfaces/bookstrap/book_detail.html:109
-#: data/interfaces/modern/book_detail.html:235
-#: data/interfaces/modern/book_detail.html:237
-#: data/interfaces/modern/book_detail.html:239
+#: data/interfaces/modern/book_detail.html:241
+#: data/interfaces/modern/book_detail.html:243
+#: data/interfaces/modern/book_detail.html:245
 msgid "Amazon"
 msgstr "Amazon"
 
 #: data/interfaces/bookstrap/book_detail.html:116
-#: data/interfaces/modern/book_detail.html:239
+#: data/interfaces/modern/book_detail.html:245
 msgid "Look up on GoodReads"
 msgstr "Vyhledat na GoodReads"
 
@@ -2118,18 +2114,18 @@ msgid "no linked GoodReads id to look up from"
 msgstr "není propojeno žádné ID z GoodReads, podle kterého by šlo hledat"
 
 #: data/interfaces/bookstrap/book_detail.html:124
-#: data/interfaces/modern/book_detail.html:243
+#: data/interfaces/modern/book_detail.html:249
 msgid "No other sources linked"
 msgstr "Nejsou propojeny žádné další zdroje"
 
 #: data/interfaces/bookstrap/book_detail.html:134
 #: data/interfaces/bookstrap/comicresults.html:22
-#: data/interfaces/modern/book_detail.html:218
+#: data/interfaces/modern/book_detail.html:224
 msgid "Description"
 msgstr "Popis"
 
 #: data/interfaces/bookstrap/book_detail.html:146
-#: data/interfaces/modern/book_detail.html:274
+#: data/interfaces/modern/book_detail.html:280
 msgid "No ASIN found on GoodReads for this book"
 msgstr "Na GoodReads nebylo pro tuto knihu nalezeno žádné ASIN"
 
@@ -2191,12 +2187,12 @@ msgstr "Číslo"
 #: data/interfaces/bookstrap/issues.html:74
 #: data/interfaces/bookstrap/magazines.html:92
 #: data/interfaces/bookstrap/magazines.html:116
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207 data/interfaces/modern/index.html:217
 #: data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:224
 #: data/interfaces/modern/managebooks.html:225
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:227
 msgid "Select"
@@ -2208,10 +2204,10 @@ msgstr "Vybrat"
 #: data/interfaces/bookstrap/magazines.html:178
 #: data/interfaces/bookstrap/members.html:149
 #: data/interfaces/bookstrap/members.html:165
-#: data/interfaces/modern/author.html:281
+#: data/interfaces/modern/author.html:283
 #: data/interfaces/modern/config.html:1373
 #: data/interfaces/modern/issues.html:150
-#: data/interfaces/modern/members.html:168 lazylibrarian/i18n.py:402
+#: data/interfaces/modern/members.html:170 lazylibrarian/i18n.py:402
 msgid "Open"
 msgstr "Otevřít"
 
@@ -2245,7 +2241,7 @@ msgid "Match"
 msgstr "Shoda"
 
 #: data/interfaces/bookstrap/comicresults.html:20
-#: data/interfaces/modern/book_detail.html:82
+#: data/interfaces/modern/book_detail.html:85
 #: data/interfaces/modern/comicresults.html:56
 #: data/interfaces/modern/config.html:1748
 msgid "Publisher"
@@ -2400,7 +2396,6 @@ msgid "DB Stats"
 msgstr "Statistiky DB"
 
 #: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:604
-#: lazylibrarian/setupwizard.py:555
 msgid "Setup Wizard"
 msgstr ""
 
@@ -2452,7 +2447,6 @@ msgid "Save changes"
 msgstr "Uložit změny"
 
 #: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:411
-#: lazylibrarian/setupwizard.py:370
 msgid "Interface"
 msgstr "Rozhraní"
 
@@ -4467,7 +4461,7 @@ msgid "rss label #%(number)s"
 msgstr "štítek RSS č. %(number)s"
 
 #: data/interfaces/bookstrap/config.html:1830
-#: data/interfaces/modern/book_detail.html:78
+#: data/interfaces/modern/book_detail.html:81
 msgid "Pages"
 msgstr "Stránky"
 
@@ -4676,8 +4670,7 @@ msgstr "Denní stažení: (využito %(count)s)"
 
 #: data/interfaces/bookstrap/config.html:2197
 #: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:160
-#: lazylibrarian/setupwizard.py:163 lazylibrarian/setupwizard.py:143
-#: lazylibrarian/setupwizard.py:146
+#: lazylibrarian/setupwizard.py:163
 msgid "name"
 msgstr "název"
 
@@ -6620,7 +6613,6 @@ msgid "Custom: %s"
 msgstr "Vlastní: %s"
 
 #: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:614
-#: lazylibrarian/setupwizard.py:565
 msgid "Change"
 msgstr "Změnit"
 
@@ -6641,7 +6633,6 @@ msgid "GoogleBooks Country:"
 msgstr "Země GoogleBooks:"
 
 #: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:240
-#: lazylibrarian/setupwizard.py:223
 msgid "Automatic (where the server is)"
 msgstr "Automaticky (podle umístění serveru)"
 
@@ -6721,7 +6712,6 @@ msgid "Default language for magazines:"
 msgstr "Výchozí jazyk časopisů:"
 
 #: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:622
-#: lazylibrarian/setupwizard.py:573
 msgid "Not set"
 msgstr "Nenastaveno"
 
@@ -7020,7 +7010,7 @@ msgstr "Repozitář: %(repo)s"
 msgid "Updated: %(date)s"
 msgstr "Aktualizováno: %(date)s"
 
-#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8111
+#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8117
 #, python-format
 msgid "Branch: %(branch)s"
 msgstr "Větev: %(branch)s"
@@ -8009,7 +7999,7 @@ msgstr "Importovat čísla"
 #: data/interfaces/bookstrap/issues.html:14
 #: data/interfaces/bookstrap/magazines.html:16
 #: data/interfaces/modern/issues.html:117
-#: data/interfaces/modern/magazines.html:111 lazylibrarian/webServe.py:7388
+#: data/interfaces/modern/magazines.html:111 lazylibrarian/webServe.py:7394
 msgid "Past Issues"
 msgstr "Starší čísla"
 
@@ -8470,7 +8460,7 @@ msgstr "Označit vybrané"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:61
-#: data/interfaces/modern/author.html:346
+#: data/interfaces/modern/author.html:353
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:174
@@ -8481,9 +8471,9 @@ msgstr "E-kniha"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:67
-#: data/interfaces/modern/author.html:346
+#: data/interfaces/modern/author.html:353
 #: data/interfaces/modern/book_detail.html:61
-#: data/interfaces/modern/book_detail.html:132
+#: data/interfaces/modern/book_detail.html:135
 #: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:176
 #: data/interfaces/modern/members.html:114 lazylibrarian/i18n.py:404
@@ -8962,7 +8952,7 @@ msgstr "Sledovat"
 
 #: data/interfaces/modern/author.html:164
 #: data/interfaces/modern/author_detail.html:150
-#: data/interfaces/modern/book_detail.html:163
+#: data/interfaces/modern/book_detail.html:169
 #: data/interfaces/modern/books.html:166 data/interfaces/modern/comics.html:94
 #: data/interfaces/modern/history.html:68 data/interfaces/modern/index.html:108
 #: data/interfaces/modern/issues.html:100 data/interfaces/modern/logs.html:69
@@ -9014,28 +9004,28 @@ msgstr "Zobrazení"
 msgid "Sort"
 msgstr "Řadit"
 
-#: data/interfaces/modern/author.html:285 data/interfaces/modern/books.html:222
-#: data/interfaces/modern/members.html:177
+#: data/interfaces/modern/author.html:292 data/interfaces/modern/books.html:222
+#: data/interfaces/modern/members.html:184
 msgid "Search now"
 msgstr "Hledat nyní"
 
-#: data/interfaces/modern/author.html:299 data/interfaces/modern/books.html:245
+#: data/interfaces/modern/author.html:306 data/interfaces/modern/books.html:245
 #: data/interfaces/modern/managebooks.html:168
-#: data/interfaces/modern/members.html:188
+#: data/interfaces/modern/members.html:195
 msgid "Selected books"
 msgstr "Vybrané knihy"
 
-#: data/interfaces/modern/author.html:344
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/book_detail.html:279
 msgid "Show more"
 msgstr "Zobrazit více"
 
-#: data/interfaces/modern/author.html:344
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/book_detail.html:279
 msgid "Show less"
 msgstr "Zobrazit méně"
 
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/history.html:172
@@ -9044,13 +9034,13 @@ msgstr "Zobrazit méně"
 #: data/interfaces/modern/magazines.html:224
 #: data/interfaces/modern/managebooks.html:225
 #: data/interfaces/modern/manageissues.html:123
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:227
 msgid "Done"
 msgstr "Hotovo"
 
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
 #: data/interfaces/modern/history.html:171
 #: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
@@ -9062,21 +9052,21 @@ msgstr "Hotovo"
 msgid "That is all"
 msgstr "To je vše"
 
-#: data/interfaces/modern/author.html:345
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:352
+#: data/interfaces/modern/book_detail.html:279
 #: data/interfaces/modern/books.html:287 data/interfaces/modern/comics.html:209
 #: data/interfaces/modern/magazines.html:226
-#: data/interfaces/modern/members.html:211
+#: data/interfaces/modern/members.html:218
 msgid "Searching..."
 msgstr "Hledání ..."
 
-#: data/interfaces/modern/author.html:345 data/interfaces/modern/books.html:287
+#: data/interfaces/modern/author.html:352 data/interfaces/modern/books.html:287
 #: data/interfaces/modern/managebooks.html:226
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 msgid "Select at least one book first"
 msgstr "Nejprve vyberte alespoň jednu knihu"
 
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/comics.html:74
 #: data/interfaces/modern/config.html:1661
 #: data/interfaces/modern/issues.html:85
@@ -9087,13 +9077,13 @@ msgstr "Nejprve vyberte alespoň jednu knihu"
 msgid "Covers"
 msgstr "Obálky"
 
-#: data/interfaces/modern/author.html:348 data/interfaces/modern/books.html:294
+#: data/interfaces/modern/author.html:355 data/interfaces/modern/books.html:294
 #: data/interfaces/modern/comics.html:210 data/interfaces/modern/index.html:220
 #: data/interfaces/modern/issues.html:214
 #: data/interfaces/modern/magazines.html:227
 #: data/interfaces/modern/managebooks.html:231
 #: data/interfaces/modern/manageissues.html:124
-#: data/interfaces/modern/members.html:212
+#: data/interfaces/modern/members.html:219
 #: data/interfaces/modern/searchresults.html:251
 #: data/interfaces/modern/series.html:229
 #, python-format
@@ -9103,9 +9093,9 @@ msgstr[0] "%(count)s vybraná"
 msgstr[1] "%(count)s vybrané"
 msgstr[2] "%(count)s vybraných"
 
-#: data/interfaces/modern/author.html:349 data/interfaces/modern/books.html:295
+#: data/interfaces/modern/author.html:356 data/interfaces/modern/books.html:295
 #: data/interfaces/modern/managebooks.html:232
-#: data/interfaces/modern/members.html:213
+#: data/interfaces/modern/members.html:220
 #, python-format
 msgid "%(count)s book"
 msgid_plural "%(count)s books"
@@ -9121,24 +9111,36 @@ msgstr "Otevřít e-knihu"
 msgid "Open AudioBook"
 msgstr "Otevřít audioknihu"
 
-#: data/interfaces/modern/book_detail.html:72
+#: data/interfaces/modern/book_detail.html:65
+#, fuzzy
+#| msgid "Open eBook"
+msgid "Send eBook"
+msgstr "Otevřít e-knihu"
+
+#: data/interfaces/modern/book_detail.html:65
+#, fuzzy
+#| msgid "Open AudioBook"
+msgid "Send AudioBook"
+msgstr "Otevřít audioknihu"
+
+#: data/interfaces/modern/book_detail.html:75
 msgid "Published"
 msgstr "Vydáno"
 
-#: data/interfaces/modern/book_detail.html:74
+#: data/interfaces/modern/book_detail.html:77
 msgid "Original publication"
 msgstr "Původní vydání"
 
-#: data/interfaces/modern/book_detail.html:76
-#: data/interfaces/modern/book_detail.html:86
+#: data/interfaces/modern/book_detail.html:79
+#: data/interfaces/modern/book_detail.html:89
 msgid "Narrator"
 msgstr "Interpret"
 
-#: data/interfaces/modern/book_detail.html:84
+#: data/interfaces/modern/book_detail.html:87
 msgid "ISBN"
 msgstr "ISBN"
 
-#: data/interfaces/modern/book_detail.html:97
+#: data/interfaces/modern/book_detail.html:100
 #: data/interfaces/modern/editauthor.html:67
 #: data/interfaces/modern/editbook.html:48
 #: data/interfaces/modern/editcomic.html:34
@@ -9146,16 +9148,16 @@ msgstr "ISBN"
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Back"
 msgstr "Zpět"
 
-#: data/interfaces/modern/book_detail.html:134
+#: data/interfaces/modern/book_detail.html:137
 #: data/interfaces/modern/members.html:86
 msgid "by"
 msgstr "od"
 
-#: data/interfaces/modern/book_detail.html:196
+#: data/interfaces/modern/book_detail.html:202
 #: data/interfaces/modern/modern_base.html:343 lazylibrarian/webServe.py:4072
 msgid "Found, but not downloaded"
 msgstr "Nalezeno, ale nestaženo"
@@ -9165,7 +9167,7 @@ msgid "Search wanted"
 msgstr "Hledat hledané"
 
 #: data/interfaces/modern/books.html:229
-#: data/interfaces/modern/members.html:172
+#: data/interfaces/modern/members.html:179
 msgid "Want"
 msgstr "Chci"
 
@@ -10586,84 +10588,84 @@ msgstr "Přidáno do knihovny"
 msgid "Download failed"
 msgstr "Stahování selhalo"
 
-#: lazylibrarian/setupwizard.py:46 lazylibrarian/setupwizard.py:45
+#: lazylibrarian/setupwizard.py:46
 #, fuzzy
 msgid "Slovakia"
 msgstr "Slovenština"
 
-#: lazylibrarian/setupwizard.py:47 lazylibrarian/setupwizard.py:46
+#: lazylibrarian/setupwizard.py:47
 msgid "Czech Republic"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:48 lazylibrarian/setupwizard.py:47
+#: lazylibrarian/setupwizard.py:48
 #, fuzzy
 msgid "Germany"
 msgstr "Němčina"
 
-#: lazylibrarian/setupwizard.py:49 lazylibrarian/setupwizard.py:48
+#: lazylibrarian/setupwizard.py:49
 msgid "Austria"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:50 lazylibrarian/setupwizard.py:49
+#: lazylibrarian/setupwizard.py:50
 msgid "Switzerland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:51 lazylibrarian/setupwizard.py:50
+#: lazylibrarian/setupwizard.py:51
 msgid "Poland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:52 lazylibrarian/setupwizard.py:51
+#: lazylibrarian/setupwizard.py:52
 #, fuzzy
 msgid "France"
 msgstr "Zrušit"
 
-#: lazylibrarian/setupwizard.py:53 lazylibrarian/setupwizard.py:52
+#: lazylibrarian/setupwizard.py:53
 msgid "Spain"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:54 lazylibrarian/setupwizard.py:53
+#: lazylibrarian/setupwizard.py:54
 #, fuzzy
 msgid "Italy"
 msgstr "Italština"
 
-#: lazylibrarian/setupwizard.py:55 lazylibrarian/setupwizard.py:54
+#: lazylibrarian/setupwizard.py:55
 msgid "Netherlands"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:56 lazylibrarian/setupwizard.py:55
+#: lazylibrarian/setupwizard.py:56
 #, fuzzy
 msgid "Russia"
 msgstr "Ruština"
 
-#: lazylibrarian/setupwizard.py:57 lazylibrarian/setupwizard.py:56
+#: lazylibrarian/setupwizard.py:57
 #, fuzzy
 msgid "Estonia"
 msgstr "Estonština"
 
-#: lazylibrarian/setupwizard.py:58 lazylibrarian/setupwizard.py:57
+#: lazylibrarian/setupwizard.py:58
 msgid "United Kingdom"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:59 lazylibrarian/setupwizard.py:58
+#: lazylibrarian/setupwizard.py:59
 #, fuzzy
 msgid "United States"
 msgstr "Aktualizace"
 
-#: lazylibrarian/setupwizard.py:61 lazylibrarian/setupwizard.py:60
+#: lazylibrarian/setupwizard.py:61
 #, fuzzy
 msgid "Other country"
 msgstr "Uživatelské účty"
 
-#: lazylibrarian/setupwizard.py:70 lazylibrarian/setupwizard.py:69
+#: lazylibrarian/setupwizard.py:70
 msgid "Czech and Slovak book database (databazeknih.cz)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:71 lazylibrarian/setupwizard.py:70
+#: lazylibrarian/setupwizard.py:71
 #, fuzzy
 msgid "German National Library (Deutsche Nationalbibliothek)"
 msgstr "API Deutsche Nationalbibliothek:"
 
-#: lazylibrarian/setupwizard.py:72 lazylibrarian/setupwizard.py:71
+#: lazylibrarian/setupwizard.py:72
 msgid "National Library of Poland (Biblioteka Narodowa)"
 msgstr ""
 
@@ -10737,86 +10739,86 @@ msgstr "Torrenty"
 msgid "TorrentDownloads"
 msgstr "hostitel torrentdownload"
 
-#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 msgid "eBook library folder"
 msgstr "Složka knihovny e-knih"
 
-#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 msgid "AudioBook library folder"
 msgstr "Složka knihovny audioknih"
 
-#: lazylibrarian/setupwizard.py:96 lazylibrarian/setupwizard.py:79
+#: lazylibrarian/setupwizard.py:96
 #, fuzzy
 msgid "Download folder"
 msgstr "Stahování selhalo"
 
-#: lazylibrarian/setupwizard.py:342 lazylibrarian/setupwizard.py:310
+#: lazylibrarian/setupwizard.py:342
 #, fuzzy
 msgid "Main book information source"
 msgstr "Zdroje informací"
 
-#: lazylibrarian/setupwizard.py:346 lazylibrarian/setupwizard.py:314
+#: lazylibrarian/setupwizard.py:346
 #, fuzzy
 msgid "Local book database"
 msgstr "Databáze knih"
 
-#: lazylibrarian/setupwizard.py:349 lazylibrarian/setupwizard.py:317
+#: lazylibrarian/setupwizard.py:349
 msgid "Country for Google Books results"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:359 lazylibrarian/setupwizard.py:327
+#: lazylibrarian/setupwizard.py:359
 #, fuzzy
 msgid "Preferred book languages"
 msgstr "Obnovit jazyky knih"
 
-#: lazylibrarian/setupwizard.py:361 lazylibrarian/setupwizard.py:329
+#: lazylibrarian/setupwizard.py:361
 #, fuzzy
 msgid "Languages to detect in book titles"
 msgstr "Rozpoznání jazyka"
 
-#: lazylibrarian/setupwizard.py:363 lazylibrarian/setupwizard.py:331
+#: lazylibrarian/setupwizard.py:363
 msgid ""
 "When a source does not say the language of a book, it is guessed from the "
 "title, choosing only from these languages. Keep the languages you do not "
 "want too, so their books are recognised and left out."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:374 lazylibrarian/setupwizard.py:342
+#: lazylibrarian/setupwizard.py:374
 #, fuzzy
 msgid "Add month names"
 msgstr "Název měsíce"
 
-#: lazylibrarian/setupwizard.py:379 lazylibrarian/setupwizard.py:347
+#: lazylibrarian/setupwizard.py:379
 #, fuzzy
 msgid "Language for dates"
 msgstr "Jazyky"
 
-#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 msgid "Date format"
 msgstr "požadované formáty"
 
-#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 msgid "Author date format"
 msgstr "Příjmení autora na prvním místě"
 
-#: lazylibrarian/setupwizard.py:386 lazylibrarian/setupwizard.py:354
+#: lazylibrarian/setupwizard.py:386
 msgid "Preferred magazine language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:388 lazylibrarian/setupwizard.py:356
+#: lazylibrarian/setupwizard.py:388
 #, fuzzy
 msgid "Words for issue numbers"
 msgstr "Číslo vydání"
 
-#: lazylibrarian/setupwizard.py:389 lazylibrarian/setupwizard.py:357
+#: lazylibrarian/setupwizard.py:389
 msgid "Words for volume numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:390 lazylibrarian/setupwizard.py:358
+#: lazylibrarian/setupwizard.py:390
 #, fuzzy
 msgid "Other words allowed in magazine titles"
 msgstr "Slova povolená v názvech časopisů:"
@@ -10834,32 +10836,32 @@ msgstr ""
 msgid "Recommended for your country. Books and comics from the LibGen mirror."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:409 lazylibrarian/setupwizard.py:368
+#: lazylibrarian/setupwizard.py:409
 #, fuzzy
 msgid "Series number format"
 msgstr "Číslo série"
 
-#: lazylibrarian/setupwizard.py:414 lazylibrarian/setupwizard.py:373
+#: lazylibrarian/setupwizard.py:414
 #, fuzzy
 msgid "Bookstrap theme"
 msgstr "Použít Bookstrap"
 
-#: lazylibrarian/setupwizard.py:418 lazylibrarian/setupwizard.py:377
+#: lazylibrarian/setupwizard.py:418
 #, fuzzy
 msgid "Country and language"
 msgstr "Jazyk rozhraní"
 
-#: lazylibrarian/setupwizard.py:419 lazylibrarian/setupwizard.py:378
+#: lazylibrarian/setupwizard.py:419
 #, fuzzy
 msgid "Book databases"
 msgstr "Databáze knih"
 
-#: lazylibrarian/setupwizard.py:420 lazylibrarian/setupwizard.py:379
+#: lazylibrarian/setupwizard.py:420
 #, fuzzy
 msgid "Book languages"
 msgstr "Jazyky knih"
 
-#: lazylibrarian/setupwizard.py:421 lazylibrarian/setupwizard.py:380
+#: lazylibrarian/setupwizard.py:421
 msgid "Dates, months and magazines"
 msgstr ""
 
@@ -10868,128 +10870,128 @@ msgstr ""
 msgid "Search providers"
 msgstr "Hledat série"
 
-#: lazylibrarian/setupwizard.py:423 lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:423
 msgid "Library and other settings"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:479 lazylibrarian/setupwizard.py:435
+#: lazylibrarian/setupwizard.py:479
 #, fuzzy
 msgid "Not a valid value"
 msgstr "Není k dispozici"
 
-#: lazylibrarian/setupwizard.py:536 lazylibrarian/setupwizard.py:492
+#: lazylibrarian/setupwizard.py:536
 msgid "Not a setting the wizard can change"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:570 lazylibrarian/setupwizard.py:521
+#: lazylibrarian/setupwizard.py:570
 msgid "The system does not have the locale"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:573 lazylibrarian/setupwizard.py:524
+#: lazylibrarian/setupwizard.py:573
 msgid "Folder not found or not writable"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 #, fuzzy
 msgid "Summary"
 msgstr "Shrnutí:"
 
-#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 msgid "Country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:605 lazylibrarian/setupwizard.py:556
+#: lazylibrarian/setupwizard.py:605
 msgid ""
 "Pick your language and country. The next steps show what will be set for "
 "them, check it and untick anything you want to keep as it is."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:607 lazylibrarian/setupwizard.py:558
+#: lazylibrarian/setupwizard.py:607
 msgid "These settings will be changed for your country:"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:608 lazylibrarian/setupwizard.py:559
+#: lazylibrarian/setupwizard.py:608
 msgid "Nothing to change here, the settings already suit your country."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:609 lazylibrarian/setupwizard.py:560
+#: lazylibrarian/setupwizard.py:609
 msgid "Show unchanged settings too"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:610 lazylibrarian/setupwizard.py:561
+#: lazylibrarian/setupwizard.py:610
 #, fuzzy
 msgid "Show all languages"
 msgstr "Zobrazit všechny časopisy"
 
-#: lazylibrarian/setupwizard.py:611 lazylibrarian/setupwizard.py:562
+#: lazylibrarian/setupwizard.py:611
 msgid ""
 "You can run the Setup Wizard again any time: in Settings, the Setup Wizard "
 "button next to Check Version."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 msgid "Now"
 msgstr "Ne"
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 msgid "On"
 msgstr "Otevřít"
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "Off"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 #, fuzzy
 msgid "Setting"
 msgstr "Nastavení"
 
-#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 msgid "Nothing is ticked, nothing will be changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 #, fuzzy
 msgid "Skip step"
 msgstr "Přeskočené"
 
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Apply"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Don't show again"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:617 lazylibrarian/setupwizard.py:568
+#: lazylibrarian/setupwizard.py:617
 #, fuzzy, python-format
 msgid "%(count)s settings changed."
 msgstr "Nalezeno %(count)s nastavení"
 
-#: lazylibrarian/setupwizard.py:618 lazylibrarian/setupwizard.py:569
+#: lazylibrarian/setupwizard.py:618
 msgid ""
 "The web interface has no username and password, anyone on your network can "
 "change the settings."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:620 lazylibrarian/setupwizard.py:571
+#: lazylibrarian/setupwizard.py:620
 #, fuzzy
 msgid "Set them on the Interface tab"
 msgstr "Vyzkoušet nové rozhraní (beta)"
 
-#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 msgid "Folder found"
 msgstr "Složka"
 
-#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 msgid "Folder not found"
 msgstr "Uživatel nenalezen"
 
-#: lazylibrarian/setupwizard.py:622 lazylibrarian/setupwizard.py:573
+#: lazylibrarian/setupwizard.py:622
 #, fuzzy
 msgid "Folder is not writable"
 msgstr "není k dispozici"
@@ -11072,7 +11074,7 @@ msgstr "Upgrade databáze"
 msgid "Redirected"
 msgstr "Přesměrováno"
 
-#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5964
+#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5970
 msgid "Inactive Authors"
 msgstr "Neaktivní autoři"
 
@@ -11396,97 +11398,97 @@ msgstr "Vybrat typ"
 msgid "Edit Author"
 msgstr "Upravit autora"
 
-#: lazylibrarian/webServe.py:5254
+#: lazylibrarian/webServe.py:5260
 msgid "Edit Book"
 msgstr "Upravit knihu"
 
-#: lazylibrarian/webServe.py:5577
+#: lazylibrarian/webServe.py:5583
 #, python-format
 msgid "Mark Results '%(action)s' completed."
 msgstr "Označení výsledků jako „%(action)s“ dokončeno."
 
-#: lazylibrarian/webServe.py:5806
+#: lazylibrarian/webServe.py:5812
 #, python-format
 msgid "Mark Books '%(action)s' completed."
 msgstr "Označení knih jako „%(action)s“ dokončeno."
 
-#: lazylibrarian/webServe.py:5857 lazylibrarian/webServe.py:5901
-#: lazylibrarian/webServe.py:5928 lazylibrarian/webServe.py:6010
-#: lazylibrarian/webServe.py:6035
+#: lazylibrarian/webServe.py:5863 lazylibrarian/webServe.py:5907
+#: lazylibrarian/webServe.py:5934 lazylibrarian/webServe.py:6016
+#: lazylibrarian/webServe.py:6041
 #, python-format
 msgid "%(title)s (Top %(count)s)"
 msgstr "%(title)s (top %(count)s)"
 
-#: lazylibrarian/webServe.py:5914
+#: lazylibrarian/webServe.py:5920
 msgid "Recently Downloaded Books"
 msgstr "Nedávno stažené knihy"
 
-#: lazylibrarian/webServe.py:5917
+#: lazylibrarian/webServe.py:5923
 msgid "Recently Added Books"
 msgstr "Nedávno přidané knihy"
 
-#: lazylibrarian/webServe.py:5961
+#: lazylibrarian/webServe.py:5967
 msgid "Active/Wanted Authors"
 msgstr "Aktivní/hledaní autoři"
 
-#: lazylibrarian/webServe.py:6006
+#: lazylibrarian/webServe.py:6012
 msgid "Recent AudioBooks"
 msgstr "Nedávné audioknihy"
 
-#: lazylibrarian/webServe.py:6077
+#: lazylibrarian/webServe.py:6083
 msgid "Edit Comic"
 msgstr "Upravit komiks"
 
-#: lazylibrarian/webServe.py:6903
+#: lazylibrarian/webServe.py:6909
 #, python-format
 msgid "Rename Magazine %(title)s"
 msgstr "Přejmenovat časopis %(title)s"
 
-#: lazylibrarian/webServe.py:6922
+#: lazylibrarian/webServe.py:6928
 msgid "Insufficient information, need Old and New Title"
 msgstr "Nedostatek informací, je potřeba starý i nový název"
 
-#: lazylibrarian/webServe.py:6924
+#: lazylibrarian/webServe.py:6930
 #, python-format
 msgid "Title for %(title)s unchanged"
 msgstr "Název %(title)s se nezměnil"
 
-#: lazylibrarian/webServe.py:6928
+#: lazylibrarian/webServe.py:6934
 msgid "Invalid new title, unable to rename"
 msgstr "Neplatný nový název, nelze přejmenovat"
 
-#: lazylibrarian/webServe.py:6933
+#: lazylibrarian/webServe.py:6939
 #, python-format
 msgid "Title %(title)s already exists, unable to rename"
 msgstr "Název %(title)s už existuje, nelze přejmenovat"
 
-#: lazylibrarian/webServe.py:6945
+#: lazylibrarian/webServe.py:6951
 #, python-format
 msgid "Renamed %(old)s to %(new)s"
 msgstr "%(old)s přejmenováno na %(new)s"
 
-#: lazylibrarian/webServe.py:6990
+#: lazylibrarian/webServe.py:6996
 msgid "Rename completed."
 msgstr "Přejmenování dokončeno."
 
-#: lazylibrarian/webServe.py:7122
+#: lazylibrarian/webServe.py:7128
 msgid "Edit Issue"
 msgstr "Upravit číslo"
 
-#: lazylibrarian/webServe.py:7737 lazylibrarian/webServe.py:7982
+#: lazylibrarian/webServe.py:7743 lazylibrarian/webServe.py:7988
 #, python-format
 msgid "Operation '%(action)s' completed."
 msgstr "Operace „%(action)s“ dokončena."
 
-#: lazylibrarian/webServe.py:8093
+#: lazylibrarian/webServe.py:8099
 msgid "LazyLibrarian status is unknown"
 msgstr "Stav LazyLibrarian je neznámý"
 
-#: lazylibrarian/webServe.py:8097
+#: lazylibrarian/webServe.py:8103
 msgid "LazyLibrarian is up to date"
 msgstr "LazyLibrarian je aktuální"
 
-#: lazylibrarian/webServe.py:8099
+#: lazylibrarian/webServe.py:8105
 #, python-format
 msgid "LazyLibrarian is behind by %(count)s commit"
 msgid_plural "LazyLibrarian is behind by %(count)s commits"
@@ -11494,154 +11496,154 @@ msgstr[0] "LazyLibrarian je %(count)s commit pozadu"
 msgstr[1] "LazyLibrarian je %(count)s commity pozadu"
 msgstr[2] "LazyLibrarian je %(count)s commitů pozadu"
 
-#: lazylibrarian/webServe.py:8105
+#: lazylibrarian/webServe.py:8111
 msgid "Update needs manual installation"
 msgstr "Aktualizace vyžaduje ruční instalaci"
 
-#: lazylibrarian/webServe.py:8107
+#: lazylibrarian/webServe.py:8113
 msgid "LazyLibrarian version is unknown"
 msgstr "Verze LazyLibrarian je neznámá"
 
-#: lazylibrarian/webServe.py:8108
+#: lazylibrarian/webServe.py:8114
 #, python-format
 msgid "Your version (%(version)s) is not recognized at %(repo)s"
 msgstr "Vaše verze (%(version)s) není v %(repo)s rozpoznána"
 
-#: lazylibrarian/webServe.py:8228
+#: lazylibrarian/webServe.py:8234
 msgid "LazyLibrarian is updating..."
 msgstr "LazyLibrarian se aktualizuje ..."
 
-#: lazylibrarian/webServe.py:8229
+#: lazylibrarian/webServe.py:8235
 msgid "Updating"
 msgstr "Aktualizace"
 
-#: lazylibrarian/webServe.py:8419
+#: lazylibrarian/webServe.py:8425
 #, python-format
 msgid "Importing csv (background task) from %(file)s"
 msgstr "Importuje se CSV (úloha na pozadí) z %(file)s"
 
-#: lazylibrarian/webServe.py:8423
+#: lazylibrarian/webServe.py:8429
 #, python-format
 msgid "No %(library)s CSV file in [%(folder)s]"
 msgstr "Ve [%(folder)s] není žádný CSV soubor %(library)s"
 
-#: lazylibrarian/webServe.py:8427
+#: lazylibrarian/webServe.py:8433
 #, python-format
 msgid "Unable to complete the import: %(error)s"
 msgstr "Import nelze dokončit: %(error)s"
 
-#: lazylibrarian/webServe.py:8431
+#: lazylibrarian/webServe.py:8437
 msgid "CSV import is already running"
 msgstr "Import CSV už běží"
 
-#: lazylibrarian/webServe.py:8454
+#: lazylibrarian/webServe.py:8460
 msgid "LazyLibrarian is closed"
 msgstr "LazyLibrarian je zavřený"
 
-#: lazylibrarian/webServe.py:8455
+#: lazylibrarian/webServe.py:8461
 msgid "Close library"
 msgstr "Zavřít knihovnu"
 
-#: lazylibrarian/webServe.py:8465
+#: lazylibrarian/webServe.py:8471
 msgid "LazyLibrarian is reopening..."
 msgstr "LazyLibrarian se znovu otevírá ..."
 
-#: lazylibrarian/webServe.py:8466
+#: lazylibrarian/webServe.py:8472
 msgid "Reopen library"
 msgstr "Znovu otevřít knihovnu"
 
-#: lazylibrarian/webServe.py:8575
+#: lazylibrarian/webServe.py:8581
 msgid "Log"
 msgstr "Protokol"
 
-#: lazylibrarian/webServe.py:8929
+#: lazylibrarian/webServe.py:8935
 msgid "BookID not found"
 msgstr "BookID nenalezeno"
 
-#: lazylibrarian/webServe.py:8931
+#: lazylibrarian/webServe.py:8937
 msgid "No Description"
 msgstr "Bez popisu"
 
-#: lazylibrarian/webServe.py:8943
+#: lazylibrarian/webServe.py:8949
 #, python-format
 msgid "Reason: %(reason)s"
 msgstr "Důvod: %(reason)s"
 
-#: lazylibrarian/webServe.py:8955
+#: lazylibrarian/webServe.py:8961
 #, python-format
 msgid "Title: %(value)s"
 msgstr "Název: %(value)s"
 
-#: lazylibrarian/webServe.py:8956
+#: lazylibrarian/webServe.py:8962
 #, python-format
 msgid "Type: %(value)s"
 msgstr "Typ: %(value)s"
 
-#: lazylibrarian/webServe.py:8957
+#: lazylibrarian/webServe.py:8963
 #, python-format
 msgid "Date: %(value)s"
 msgstr "Datum: %(value)s"
 
-#: lazylibrarian/webServe.py:8958
+#: lazylibrarian/webServe.py:8964
 #, python-format
 msgid "Size: %(value)s Mb"
 msgstr "Velikost: %(value)s MB"
 
-#: lazylibrarian/webServe.py:8959
+#: lazylibrarian/webServe.py:8965
 #, python-format
 msgid "Provider: %(value)s"
 msgstr "Poskytovatel: %(value)s"
 
-#: lazylibrarian/webServe.py:8960
+#: lazylibrarian/webServe.py:8966
 #, python-format
 msgid "Downloader: %(value)s"
 msgstr "Stahovací program: %(value)s"
 
-#: lazylibrarian/webServe.py:8961
+#: lazylibrarian/webServe.py:8967
 #, python-format
 msgid "DownloadID: %(value)s"
 msgstr "DownloadID: %(value)s"
 
-#: lazylibrarian/webServe.py:8962
+#: lazylibrarian/webServe.py:8968
 #, python-format
 msgid "URL: %(value)s"
 msgstr "URL: %(value)s"
 
-#: lazylibrarian/webServe.py:8966
+#: lazylibrarian/webServe.py:8972
 #, python-format
 msgid "File: %(value)s"
 msgstr "Soubor: %(value)s"
 
-#: lazylibrarian/webServe.py:8970
+#: lazylibrarian/webServe.py:8976
 #, python-format
 msgid "Error: %(value)s"
 msgstr "Chyba: %(value)s"
 
-#: lazylibrarian/webServe.py:9222
+#: lazylibrarian/webServe.py:9228
 #, python-format
 msgid "%(name)s test FAILED, bad parameter: %(param)s"
 msgstr "Test %(name)s SELHAL, chybný parametr: %(param)s"
 
-#: lazylibrarian/webServe.py:9227
+#: lazylibrarian/webServe.py:9233
 #, python-format
 msgid "%(name)s test FAILED, check debug log"
 msgstr "Test %(name)s SELHAL, zkontrolujte ladicí protokol"
 
-#: lazylibrarian/webServe.py:9229
+#: lazylibrarian/webServe.py:9235
 #, python-format
 msgid "%(name)s test PASSED"
 msgstr "Test %(name)s ÚSPĚŠNÝ"
 
-#: lazylibrarian/webServe.py:9235
+#: lazylibrarian/webServe.py:9241
 #, python-format
 msgid "%(name)s test PASSED, found %(result)s"
 msgstr "Test %(name)s ÚSPĚŠNÝ, nalezeno: %(result)s"
 
-#: lazylibrarian/webServe.py:9238
+#: lazylibrarian/webServe.py:9244
 msgid "Invalid or missing name in testprovider"
 msgstr "Neplatný nebo chybějící název v testprovider"
 
-#: lazylibrarian/webServe.py:9250
+#: lazylibrarian/webServe.py:9256
 #, python-format
 msgid "Cleared %(count)s blocked provider"
 msgid_plural "Cleared %(count)s blocked providers"
@@ -11649,7 +11651,7 @@ msgstr[0] "Odblokován %(count)s blokovaný poskytovatel"
 msgstr[1] "Odblokováni %(count)s blokovaní poskytovatelé"
 msgstr[2] "Odblokováno %(count)s blokovaných poskytovatelů"
 
-#: lazylibrarian/webServe.py:9343
+#: lazylibrarian/webServe.py:9349
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
@@ -11657,187 +11659,185 @@ msgstr[0] "Smazáno počítadlo stažení pro %(count)s poskytovatele"
 msgstr[1] "Smazáno počítadlo stažení pro %(count)s poskytovatele"
 msgstr[2] "Smazáno počítadlo stažení pro %(count)s poskytovatelů"
 
-#: lazylibrarian/webServe.py:9364
+#: lazylibrarian/webServe.py:9370
 msgid "No downloads"
 msgstr "Žádná stažení"
 
-#: lazylibrarian/webServe.py:9372
+#: lazylibrarian/webServe.py:9378
 msgid "Calibre Sync is already running"
 msgstr "Synchronizace s Calibre už běží"
 
-#: lazylibrarian/webServe.py:9381
+#: lazylibrarian/webServe.py:9387
 msgid "No userid found"
 msgstr "Nenalezeno žádné ID uživatele"
 
-#: lazylibrarian/webServe.py:9480 lazylibrarian/webServe.py:9546
-#: lazylibrarian/webServe.py:9568 lazylibrarian/webServe.py:9595
-#: lazylibrarian/webServe.py:9632 lazylibrarian/webServe.py:9659
-#: lazylibrarian/webServe.py:9686 lazylibrarian/webServe.py:9713
-#: lazylibrarian/webServe.py:9739 lazylibrarian/webServe.py:9997
-#: lazylibrarian/webServe.py:10093 lazylibrarian/webServe.py:10131
-#: lazylibrarian/webServe.py:10167 lazylibrarian/webServe.py:10210
-#: lazylibrarian/webServe.py:10251 lazylibrarian/webServe.py:10290
-#: lazylibrarian/webServe.py:10326 lazylibrarian/webServe.py:10344
-#: lazylibrarian/webServe.py:10380 lazylibrarian/webServe.py:10402
-#: lazylibrarian/webServe.py:10415
+#: lazylibrarian/webServe.py:9486 lazylibrarian/webServe.py:9552
+#: lazylibrarian/webServe.py:9574 lazylibrarian/webServe.py:9601
+#: lazylibrarian/webServe.py:9638 lazylibrarian/webServe.py:9665
+#: lazylibrarian/webServe.py:9692 lazylibrarian/webServe.py:9719
+#: lazylibrarian/webServe.py:9745 lazylibrarian/webServe.py:10003
+#: lazylibrarian/webServe.py:10099 lazylibrarian/webServe.py:10137
+#: lazylibrarian/webServe.py:10173 lazylibrarian/webServe.py:10216
+#: lazylibrarian/webServe.py:10257 lazylibrarian/webServe.py:10296
+#: lazylibrarian/webServe.py:10332 lazylibrarian/webServe.py:10350
+#: lazylibrarian/webServe.py:10386 lazylibrarian/webServe.py:10408
+#: lazylibrarian/webServe.py:10421
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr "%(name)s selhalo, chybný parametr: %(param)s"
 
-#: lazylibrarian/webServe.py:9503
+#: lazylibrarian/webServe.py:9509
 msgid "Key verification successful"
 msgstr "Klíč byl úspěšně ověřen"
 
-#: lazylibrarian/webServe.py:9504
+#: lazylibrarian/webServe.py:9510
 msgid "Unable to verify key"
 msgstr "Klíč nelze ověřit"
 
-#: lazylibrarian/webServe.py:9505
+#: lazylibrarian/webServe.py:9511
 msgid "No key provided"
 msgstr "Nebyl zadán klíč"
 
-#: lazylibrarian/webServe.py:9514
+#: lazylibrarian/webServe.py:9520
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr "Tweet odeslán, zkontrolujte svůj Twitter, zda to fungovalo"
 
-#: lazylibrarian/webServe.py:9515
+#: lazylibrarian/webServe.py:9521
 msgid "Error sending tweet"
 msgstr "Chyba při odesílání tweetu"
 
-#: lazylibrarian/webServe.py:9544 lazylibrarian/webServe.py:9657
-#: lazylibrarian/webServe.py:9684 lazylibrarian/webServe.py:9711
+#: lazylibrarian/webServe.py:9550 lazylibrarian/webServe.py:9663
+#: lazylibrarian/webServe.py:9690 lazylibrarian/webServe.py:9717
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr "Testovací oznámení %(name)s bylo úspěšně odesláno"
 
-#: lazylibrarian/webServe.py:9547 lazylibrarian/webServe.py:9660
-#: lazylibrarian/webServe.py:9687 lazylibrarian/webServe.py:9714
+#: lazylibrarian/webServe.py:9553 lazylibrarian/webServe.py:9666
+#: lazylibrarian/webServe.py:9693 lazylibrarian/webServe.py:9720
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr "Testovací oznámení %(name)s selhalo"
 
-#: lazylibrarian/webServe.py:9566 lazylibrarian/webServe.py:9593
-#: lazylibrarian/webServe.py:9630 lazylibrarian/webServe.py:9741
+#: lazylibrarian/webServe.py:9572 lazylibrarian/webServe.py:9599
+#: lazylibrarian/webServe.py:9636 lazylibrarian/webServe.py:9747
 #, python-format
 msgid "%(name)s notification successful"
 msgstr "Oznámení %(name)s úspěšné"
 
-#: lazylibrarian/webServe.py:9569 lazylibrarian/webServe.py:9596
-#: lazylibrarian/webServe.py:9633 lazylibrarian/webServe.py:9737
+#: lazylibrarian/webServe.py:9575 lazylibrarian/webServe.py:9602
+#: lazylibrarian/webServe.py:9639 lazylibrarian/webServe.py:9743
 #, python-format
 msgid "%(name)s notification failed"
 msgstr "Oznámení %(name)s selhalo"
 
-#: lazylibrarian/webServe.py:9760
+#: lazylibrarian/webServe.py:9766
 msgid "Custom notification failed"
 msgstr "Vlastní oznámení selhalo"
 
-#: lazylibrarian/webServe.py:9762
+#: lazylibrarian/webServe.py:9768
 #, python-format
 msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr "Vlastní oznámení selhalo, chybný parametr: %(param)s"
 
-#: lazylibrarian/webServe.py:9764
+#: lazylibrarian/webServe.py:9770
 msgid "Custom notification successful"
 msgstr "Vlastní oznámení úspěšné"
 
-#: lazylibrarian/webServe.py:9822
+#: lazylibrarian/webServe.py:9828
 msgid "Email notification failed"
 msgstr "E-mailové oznámení selhalo"
 
-#: lazylibrarian/webServe.py:9824
+#: lazylibrarian/webServe.py:9830
 #, python-format
 msgid "Email notification failed, bad parameter: %(param)s"
 msgstr "E-mailové oznámení selhalo, chybný parametr: %(param)s"
 
-#: lazylibrarian/webServe.py:9826
+#: lazylibrarian/webServe.py:9832
 msgid "Email notification successful, check your email"
 msgstr "E-mailové oznámení úspěšné, zkontrolujte e-mail"
 
-#: lazylibrarian/webServe.py:9954
+#: lazylibrarian/webServe.py:9960
 msgid "Manage AudioBooks"
 msgstr "Spravovat audioknihy"
 
-#: lazylibrarian/webServe.py:9954
+#: lazylibrarian/webServe.py:9960
 msgid "Manage eBooks"
 msgstr "Spravovat e-knihy"
 
-#: lazylibrarian/webServe.py:10018
+#: lazylibrarian/webServe.py:10024
 msgid "Deluge: Daemon connection successful"
 msgstr "Deluge: připojení k démonovi úspěšné"
 
-#: lazylibrarian/webServe.py:10024
+#: lazylibrarian/webServe.py:10030
 msgid "Deluge daemon seems to have no labels set"
 msgstr "Démon Deluge zřejmě nemá nastavené žádné štítky"
 
-#: lazylibrarian/webServe.py:10034
+#: lazylibrarian/webServe.py:10040
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr "Štítek [%(label)s] byl přidán"
 
-#: lazylibrarian/webServe.py:10038
+#: lazylibrarian/webServe.py:10044
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr "Štítek [%(label)s] je platný"
 
-#: lazylibrarian/webServe.py:10044
+#: lazylibrarian/webServe.py:10050
 msgid "Deluge: Daemon connection FAILED"
 msgstr "Deluge: připojení k démonovi SELHALO"
 
-#: lazylibrarian/webServe.py:10047
+#: lazylibrarian/webServe.py:10053
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr "Zkontrolujte nastavení HOST a PORT démona Deluge"
 
-#: lazylibrarian/webServe.py:10049
+#: lazylibrarian/webServe.py:10055
 msgid "Invalid USERNAME or PASSWORD"
 msgstr "Neplatné UŽIVATELSKÉ JMÉNO nebo HESLO"
 
-#: lazylibrarian/webServe.py:10364 lazylibrarian/webServe.py:10387
+#: lazylibrarian/webServe.py:10370 lazylibrarian/webServe.py:10393
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr "Nalezen %(name)s verze %(version)s"
 
-#: lazylibrarian/webServe.py:10367 lazylibrarian/webServe.py:10389
+#: lazylibrarian/webServe.py:10373 lazylibrarian/webServe.py:10395
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr "%(command)s selhalo: %(error)s"
 
-#: lazylibrarian/webServe.py:10420
+#: lazylibrarian/webServe.py:10426
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr "Preprocesor vrátil %(rc)s: res[%(res)s] err[%(err)s]"
 
-#: lazylibrarian/webServe.py:10423
+#: lazylibrarian/webServe.py:10429
 msgid "No preprocessor set in config"
 msgstr "V nastavení není určen žádný program předzpracování"
 
-#: lazylibrarian/webServe.py:10477
+#: lazylibrarian/webServe.py:10483
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr "Soubor %(file)s odeslán e-mailem na %(addresses)s"
 
-#: lazylibrarian/webServe.py:10481
+#: lazylibrarian/webServe.py:10487
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr "Soubor %(file)s se nepodařilo odeslat e-mailem na %(addresses)s"
 
-#: lazylibrarian/webServe.py:10483
+#: lazylibrarian/webServe.py:10489
 msgid "Send file"
 msgstr "Odeslat soubor"
 
-#: lazylibrarian/webServe.py:10539
+#: lazylibrarian/webServe.py:10545
 msgid "Thank you for enabling Telemetry"
 msgstr "Děkujeme za povolení telemetrie"
 
-#: lazylibrarian/setupwizard.py:366
 #, fuzzy
-msgid "Search Anna's Archive"
-msgstr "Annas Archive"
+#~ msgid "Search Anna's Archive"
+#~ msgstr "Annas Archive"
 
-#: lazylibrarian/setupwizard.py:367
 #, fuzzy
-msgid "Search Z-Library"
-msgstr "Hledat v:"
+#~ msgid "Search Z-Library"
+#~ msgstr "Hledat v:"
 
 #, fuzzy
 #~ msgid "Add author"

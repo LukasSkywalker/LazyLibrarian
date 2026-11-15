@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
 "issues\n"
-"POT-Creation-Date: 2026-11-14 20:12+0000\n"
+"POT-Creation-Date: 2026-11-15 08:32+0000\n"
 "PO-Revision-Date: 2026-11-13 12:56+0000\n"
 "Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/lazylibrarian/"
@@ -129,10 +129,9 @@ msgstr "Основной автор или соавтор"
 #: data/interfaces/bookstrap/books.html:35
 #: data/interfaces/bookstrap/config.html:3966
 #: data/interfaces/modern/author.html:236
-#: data/interfaces/modern/book_detail.html:80
+#: data/interfaces/modern/book_detail.html:83
 #: data/interfaces/modern/books.html:141
 #: data/interfaces/modern/config.html:1741 lazylibrarian/setupwizard.py:604
-#: lazylibrarian/setupwizard.py:555
 msgid "Language"
 msgstr "Язык"
 
@@ -159,7 +158,7 @@ msgstr "Язык"
 #: data/interfaces/modern/author.html:237 data/interfaces/modern/books.html:143
 #: data/interfaces/modern/books.html:288 data/interfaces/modern/issues.html:170
 #: data/interfaces/modern/manualsearch.html:69
-#: data/interfaces/modern/members.html:190
+#: data/interfaces/modern/members.html:197
 #: data/interfaces/modern/series.html:78 lazylibrarian/i18n.py:401
 msgid "All"
 msgstr "Все"
@@ -425,7 +424,7 @@ msgstr "Название"
 #: data/interfaces/modern/editseries.html:49
 #: data/interfaces/modern/members.html:81
 #: data/interfaces/modern/modern_base.html:18 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:2122 lazylibrarian/setupwizard.py:77
+#: lazylibrarian/webServe.py:2122
 msgid "Series"
 msgstr "Серия"
 
@@ -482,7 +481,7 @@ msgstr "Выпущена"
 #: data/interfaces/bookstrap/magazines.html:89
 #: data/interfaces/bookstrap/magazines.html:113
 #: data/interfaces/modern/author.html:226
-#: data/interfaces/modern/book_detail.html:89
+#: data/interfaces/modern/book_detail.html:92
 #: data/interfaces/modern/books.html:137 data/interfaces/modern/comics.html:81
 #: data/interfaces/modern/index.html:95 data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:95
@@ -533,7 +532,9 @@ msgstr "В списке:"
 #: data/interfaces/bookstrap/magazines.html:181
 #: data/interfaces/bookstrap/members.html:151
 #: data/interfaces/bookstrap/members.html:167
+#: data/interfaces/modern/author.html:286
 #: data/interfaces/modern/issues.html:152
+#: data/interfaces/modern/members.html:173
 msgid "Send"
 msgstr "Отправить"
 
@@ -543,9 +544,9 @@ msgstr "Отправить"
 #: data/interfaces/bookstrap/managebooks.html:589
 #: data/interfaces/bookstrap/members.html:198
 #: data/interfaces/bookstrap/searchresults.html:238
-#: data/interfaces/modern/author.html:294 data/interfaces/modern/books.html:240
+#: data/interfaces/modern/author.html:301 data/interfaces/modern/books.html:240
 #: data/interfaces/modern/managebooks.html:163
-#: data/interfaces/modern/members.html:183
+#: data/interfaces/modern/members.html:190
 #: data/interfaces/modern/searchresults.html:246
 msgid "No books found"
 msgstr "Книги не найдены"
@@ -603,7 +604,7 @@ msgstr[2] ""
 #: data/interfaces/bookstrap/issues.html:207
 #: data/interfaces/bookstrap/magazines.html:271
 #: data/interfaces/bookstrap/users.html:276
-#: data/interfaces/modern/author.html:321
+#: data/interfaces/modern/author.html:328
 #: data/interfaces/modern/author_detail.html:341
 #: data/interfaces/modern/editseries.html:96
 #: data/interfaces/modern/modern_base.html:609
@@ -627,7 +628,7 @@ msgstr "Да"
 #: data/interfaces/bookstrap/issues.html:211
 #: data/interfaces/bookstrap/magazines.html:275
 #: data/interfaces/bookstrap/users.html:280
-#: data/interfaces/modern/author.html:320
+#: data/interfaces/modern/author.html:327
 #: data/interfaces/modern/author_detail.html:340
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editseries.html:95
@@ -990,12 +991,11 @@ msgstr "RSS-лента последних аудиокниг"
 #: data/interfaces/bookstrap/members.html:31
 #: data/interfaces/modern/author.html:168
 #: data/interfaces/modern/author_detail.html:153
-#: data/interfaces/modern/book_detail.html:168
+#: data/interfaces/modern/book_detail.html:174
 #: data/interfaces/modern/issues.html:112
 #: data/interfaces/modern/issues.html:125
 #: data/interfaces/modern/issues.html:155
 #: data/interfaces/modern/members.html:141 lazylibrarian/setupwizard.py:609
-#: lazylibrarian/setupwizard.py:560
 msgid "Edit"
 msgstr "Изменить"
 
@@ -1173,13 +1173,13 @@ msgstr "Отметить выбранные электронные книги к
 
 #: data/interfaces/bookstrap/author.html:272
 #: data/interfaces/bookstrap/managebooks.html:148
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Wanted"
 msgstr "Нужна эл. книга"
 
 #: data/interfaces/bookstrap/author.html:274
 #: data/interfaces/bookstrap/managebooks.html:151
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Wanted"
 msgstr "Нужна аудио"
 
@@ -1192,12 +1192,12 @@ msgid "Both Have"
 msgstr "Есть обе"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Have"
 msgstr "Есть эл. книга"
 
 #: data/interfaces/bookstrap/author.html:279
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Have"
 msgstr "Есть аудио"
 
@@ -1206,12 +1206,12 @@ msgid "Both Ignored"
 msgstr "Обе игнорируются"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Ignored"
 msgstr "Эл. книга игнорируется"
 
 #: data/interfaces/bookstrap/author.html:280
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Ignored"
 msgstr "Аудио игнорируется"
 
@@ -1220,12 +1220,12 @@ msgid "Both Skipped"
 msgstr "Обе пропущены"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "eBook Skipped"
 msgstr "Эл. книга пропущена"
 
 #: data/interfaces/bookstrap/author.html:281
-#: data/interfaces/modern/author.html:302
+#: data/interfaces/modern/author.html:309
 msgid "Audio Skipped"
 msgstr "Аудио пропущено"
 
@@ -1290,7 +1290,7 @@ msgstr "Брошена"
 #: data/interfaces/bookstrap/author.html:352
 #: data/interfaces/bookstrap/author_detail.html:78
 #: data/interfaces/bookstrap/editauthor.html:264
-#: data/interfaces/modern/author.html:318
+#: data/interfaces/modern/author.html:325
 #: data/interfaces/modern/author_detail.html:338
 msgid "Are you sure you want to permanently delete the author?"
 msgstr "Вы уверены, что хотите безвозвратно удалить автора?"
@@ -1373,14 +1373,14 @@ msgstr[2] "%(count)s аудиокниг"
 #: data/interfaces/bookstrap/author_detail.html:177
 #: data/interfaces/bookstrap/book_detail.html:72
 #: data/interfaces/modern/author_detail.html:214
-#: data/interfaces/modern/book_detail.html:64
+#: data/interfaces/modern/book_detail.html:67
 msgid "eBook status:"
 msgstr "Статус электронной книги:"
 
 #: data/interfaces/bookstrap/author_detail.html:184
 #: data/interfaces/bookstrap/book_detail.html:74
 #: data/interfaces/modern/author_detail.html:221
-#: data/interfaces/modern/book_detail.html:64
+#: data/interfaces/modern/book_detail.html:67
 msgid "AudioBook status:"
 msgstr "Статус аудиокниги:"
 
@@ -1414,7 +1414,7 @@ msgstr "настройки заблокированы вручную и не б�
 #: data/interfaces/bookstrap/author_detail.html:211
 #: data/interfaces/bookstrap/book_detail.html:88
 #: data/interfaces/modern/author_detail.html:244
-#: data/interfaces/modern/book_detail.html:225
+#: data/interfaces/modern/book_detail.html:231
 msgid "Sources"
 msgstr "Источники"
 
@@ -1586,7 +1586,6 @@ msgid "(filtered from _MAX_ total rows)"
 msgstr "(отфильтровано из _MAX_ строк)"
 
 #: data/interfaces/bookstrap/base.html:157 lazylibrarian/setupwizard.py:613
-#: lazylibrarian/setupwizard.py:564
 msgid "Loading..."
 msgstr "Загрузка..."
 
@@ -1599,7 +1598,6 @@ msgid "Previous"
 msgstr "Назад"
 
 #: data/interfaces/bookstrap/base.html:161 lazylibrarian/setupwizard.py:615
-#: lazylibrarian/setupwizard.py:566
 msgid "Next"
 msgstr "Вперёд"
 
@@ -1616,7 +1614,7 @@ msgstr "Очистить"
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
-#: data/interfaces/modern/author.html:311 data/interfaces/modern/books.html:260
+#: data/interfaces/modern/author.html:318 data/interfaces/modern/books.html:260
 #: data/interfaces/modern/comics.html:170
 #: data/interfaces/modern/config.html:375
 #: data/interfaces/modern/editauthor.html:241
@@ -1625,10 +1623,10 @@ msgstr "Очистить"
 #: data/interfaces/modern/magazines.html:187
 #: data/interfaces/modern/managebooks.html:186
 #: data/interfaces/modern/manageissues.html:103
-#: data/interfaces/modern/members.html:194
+#: data/interfaces/modern/members.html:201
 #: data/interfaces/modern/searchresults.html:208
 #: data/interfaces/modern/series.html:200 data/interfaces/modern/users.html:233
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1647,7 +1645,7 @@ msgid "Detailed"
 msgstr "Подробно"
 
 #: data/interfaces/bookstrap/base.html:231
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/magazines.html:88
 #: data/interfaces/modern/managebooks.html:224
 #: data/interfaces/modern/members.html:105
@@ -1659,7 +1657,7 @@ msgid "Grid"
 msgstr "Сетка"
 
 #: data/interfaces/bookstrap/base.html:232
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/comics.html:76 data/interfaces/modern/index.html:91
 #: data/interfaces/modern/issues.html:87
 #: data/interfaces/modern/magazines.html:90
@@ -1691,7 +1689,7 @@ msgstr "Авторы"
 #: data/interfaces/bookstrap/config.html:149
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3727 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:3727
 msgid "eBooks"
 msgstr "Эл. книги"
 
@@ -1704,7 +1702,7 @@ msgstr "Аудио"
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:3704 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:3704
 msgid "AudioBooks"
 msgstr "Аудиокниги"
 
@@ -1717,7 +1715,7 @@ msgstr "Журн."
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
 #: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:6886 lazylibrarian/setupwizard.py:76
+#: lazylibrarian/webServe.py:6892
 msgid "Magazines"
 msgstr "Журналы"
 
@@ -1726,8 +1724,7 @@ msgstr "Журналы"
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2896
 #: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:6176 lazylibrarian/webServe.py:6537
-#: lazylibrarian/setupwizard.py:77
+#: lazylibrarian/webServe.py:6182 lazylibrarian/webServe.py:6543
 msgid "Comics"
 msgstr "Комиксы"
 
@@ -1740,7 +1737,7 @@ msgstr "Управление"
 #: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:28
-#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8618
+#: data/interfaces/modern/modern_base.html:555 lazylibrarian/webServe.py:8624
 msgid "History"
 msgstr "История"
 
@@ -1760,7 +1757,7 @@ msgstr "Настройки"
 #: data/interfaces/bookstrap/base.html:487
 #: data/interfaces/bookstrap/base.html:717
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8179
+#: data/interfaces/modern/modern_base.html:419 lazylibrarian/webServe.py:8185
 msgid "What's new"
 msgstr "Что нового"
 
@@ -1784,7 +1781,6 @@ msgstr "Импортировать выпуски"
 #: data/interfaces/bookstrap/base.html:504
 #: data/interfaces/modern/modern_base.html:383
 #: data/interfaces/modern/modern_base.html:387 lazylibrarian/setupwizard.py:338
-#: lazylibrarian/setupwizard.py:306
 msgid "Interface language"
 msgstr "Язык интерфейса"
 
@@ -1955,9 +1951,9 @@ msgid "Translate LazyLibrarian"
 msgstr "Перевести LazyLibrarian"
 
 #: data/interfaces/bookstrap/base.html:654
-#: data/interfaces/modern/author.html:345
+#: data/interfaces/modern/author.html:352
 #: data/interfaces/modern/author_detail.html:361
-#: data/interfaces/modern/book_detail.html:274
+#: data/interfaces/modern/book_detail.html:280
 #: data/interfaces/modern/books.html:288 data/interfaces/modern/comics.html:208
 #: data/interfaces/modern/dlresult.html:48
 #: data/interfaces/modern/editauthor.html:241
@@ -1971,14 +1967,14 @@ msgstr "Перевести LazyLibrarian"
 #: data/interfaces/modern/magazines.html:225
 #: data/interfaces/modern/managebooks.html:226
 #: data/interfaces/modern/manageissues.html:122
-#: data/interfaces/modern/members.html:211
+#: data/interfaces/modern/members.html:218
 #: data/interfaces/modern/modern_base.html:803
 #: data/interfaces/modern/modern_base.html:817
 #: data/interfaces/modern/profile.html:146
 #: data/interfaces/modern/register.html:53
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:228 data/interfaces/modern/users.html:263
-#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Something went wrong, try again"
 msgstr "Что-то пошло не так, попробуйте ещё раз"
 
@@ -2037,18 +2033,18 @@ msgstr "Вы уверены, что хотите выйти?"
 
 #: data/interfaces/bookstrap/book_detail.html:14
 #: data/interfaces/bookstrap/editbook.html:11
-#: data/interfaces/modern/book_detail.html:171
+#: data/interfaces/modern/book_detail.html:177
 #: data/interfaces/modern/editbook.html:55
 msgid "Refresh Book"
 msgstr "Обновить книгу"
 
 #: data/interfaces/bookstrap/book_detail.html:17
-#: data/interfaces/modern/book_detail.html:63
+#: data/interfaces/modern/book_detail.html:66
 msgid "Search eBook"
 msgstr "Искать электронную книгу"
 
 #: data/interfaces/bookstrap/book_detail.html:19
-#: data/interfaces/modern/book_detail.html:63
+#: data/interfaces/modern/book_detail.html:66
 msgid "Search AudioBook"
 msgstr "Искать аудиокнигу"
 
@@ -2101,19 +2097,19 @@ msgid "Publisher:"
 msgstr "Издательство:"
 
 #: data/interfaces/bookstrap/book_detail.html:103
-#: data/interfaces/modern/book_detail.html:231
+#: data/interfaces/modern/book_detail.html:237
 msgid "no verified link template"
 msgstr "нет проверенного шаблона ссылки"
 
 #: data/interfaces/bookstrap/book_detail.html:109
-#: data/interfaces/modern/book_detail.html:235
-#: data/interfaces/modern/book_detail.html:237
-#: data/interfaces/modern/book_detail.html:239
+#: data/interfaces/modern/book_detail.html:241
+#: data/interfaces/modern/book_detail.html:243
+#: data/interfaces/modern/book_detail.html:245
 msgid "Amazon"
 msgstr "Amazon"
 
 #: data/interfaces/bookstrap/book_detail.html:116
-#: data/interfaces/modern/book_detail.html:239
+#: data/interfaces/modern/book_detail.html:245
 msgid "Look up on GoodReads"
 msgstr "Найти на GoodReads"
 
@@ -2122,18 +2118,18 @@ msgid "no linked GoodReads id to look up from"
 msgstr "нет связанного ID GoodReads для поиска"
 
 #: data/interfaces/bookstrap/book_detail.html:124
-#: data/interfaces/modern/book_detail.html:243
+#: data/interfaces/modern/book_detail.html:249
 msgid "No other sources linked"
 msgstr "Другие источники не связаны"
 
 #: data/interfaces/bookstrap/book_detail.html:134
 #: data/interfaces/bookstrap/comicresults.html:22
-#: data/interfaces/modern/book_detail.html:218
+#: data/interfaces/modern/book_detail.html:224
 msgid "Description"
 msgstr "Описание"
 
 #: data/interfaces/bookstrap/book_detail.html:146
-#: data/interfaces/modern/book_detail.html:274
+#: data/interfaces/modern/book_detail.html:280
 msgid "No ASIN found on GoodReads for this book"
 msgstr "Для этой книги на GoodReads не найден ASIN"
 
@@ -2198,12 +2194,12 @@ msgstr "Выпуск"
 #: data/interfaces/bookstrap/issues.html:74
 #: data/interfaces/bookstrap/magazines.html:92
 #: data/interfaces/bookstrap/magazines.html:116
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207 data/interfaces/modern/index.html:217
 #: data/interfaces/modern/issues.html:211
 #: data/interfaces/modern/magazines.html:224
 #: data/interfaces/modern/managebooks.html:225
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:227
 msgid "Select"
@@ -2215,10 +2211,10 @@ msgstr "Выбрать"
 #: data/interfaces/bookstrap/magazines.html:178
 #: data/interfaces/bookstrap/members.html:149
 #: data/interfaces/bookstrap/members.html:165
-#: data/interfaces/modern/author.html:281
+#: data/interfaces/modern/author.html:283
 #: data/interfaces/modern/config.html:1373
 #: data/interfaces/modern/issues.html:150
-#: data/interfaces/modern/members.html:168 lazylibrarian/i18n.py:402
+#: data/interfaces/modern/members.html:170 lazylibrarian/i18n.py:402
 msgid "Open"
 msgstr "Открыть"
 
@@ -2255,7 +2251,7 @@ msgid "Match"
 msgstr "Совпадение"
 
 #: data/interfaces/bookstrap/comicresults.html:20
-#: data/interfaces/modern/book_detail.html:82
+#: data/interfaces/modern/book_detail.html:85
 #: data/interfaces/modern/comicresults.html:56
 #: data/interfaces/modern/config.html:1748
 msgid "Publisher"
@@ -2414,7 +2410,6 @@ msgid "DB Stats"
 msgstr "Статистика БД"
 
 #: data/interfaces/bookstrap/config.html:33 lazylibrarian/setupwizard.py:604
-#: lazylibrarian/setupwizard.py:555
 msgid "Setup Wizard"
 msgstr ""
 
@@ -2466,7 +2461,6 @@ msgid "Save changes"
 msgstr "Сохранить изменения"
 
 #: data/interfaces/bookstrap/config.html:61 lazylibrarian/setupwizard.py:411
-#: lazylibrarian/setupwizard.py:370
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -4480,7 +4474,7 @@ msgid "rss label #%(number)s"
 msgstr "метка RSS #%(number)s"
 
 #: data/interfaces/bookstrap/config.html:1830
-#: data/interfaces/modern/book_detail.html:78
+#: data/interfaces/modern/book_detail.html:81
 msgid "Pages"
 msgstr "Страницы"
 
@@ -4689,8 +4683,7 @@ msgstr "Загрузок в день: (использовано %(count)s)"
 
 #: data/interfaces/bookstrap/config.html:2197
 #: data/interfaces/bookstrap/config.html:3609 lazylibrarian/setupwizard.py:160
-#: lazylibrarian/setupwizard.py:163 lazylibrarian/setupwizard.py:143
-#: lazylibrarian/setupwizard.py:146
+#: lazylibrarian/setupwizard.py:163
 msgid "name"
 msgstr "название"
 
@@ -6642,7 +6635,6 @@ msgid "Custom: %s"
 msgstr "Свои: %s"
 
 #: data/interfaces/bookstrap/config.html:4064 lazylibrarian/setupwizard.py:614
-#: lazylibrarian/setupwizard.py:565
 msgid "Change"
 msgstr "Изменить"
 
@@ -6663,7 +6655,6 @@ msgid "GoogleBooks Country:"
 msgstr "Страна GoogleBooks:"
 
 #: data/interfaces/bookstrap/config.html:4094 lazylibrarian/setupwizard.py:240
-#: lazylibrarian/setupwizard.py:223
 msgid "Automatic (where the server is)"
 msgstr "Автоматически (по расположению сервера)"
 
@@ -6743,7 +6734,6 @@ msgid "Default language for magazines:"
 msgstr "Язык журналов по умолчанию:"
 
 #: data/interfaces/bookstrap/config.html:4151 lazylibrarian/setupwizard.py:622
-#: lazylibrarian/setupwizard.py:573
 msgid "Not set"
 msgstr "Не задан"
 
@@ -7043,7 +7033,7 @@ msgstr "Репозиторий: %(repo)s"
 msgid "Updated: %(date)s"
 msgstr "Обновлено: %(date)s"
 
-#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8111
+#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8117
 #, python-format
 msgid "Branch: %(branch)s"
 msgstr "Ветка: %(branch)s"
@@ -8039,7 +8029,7 @@ msgstr "Импортировать выпуски"
 #: data/interfaces/bookstrap/issues.html:14
 #: data/interfaces/bookstrap/magazines.html:16
 #: data/interfaces/modern/issues.html:117
-#: data/interfaces/modern/magazines.html:111 lazylibrarian/webServe.py:7388
+#: data/interfaces/modern/magazines.html:111 lazylibrarian/webServe.py:7394
 msgid "Past Issues"
 msgstr "Прошлые выпуски"
 
@@ -8504,7 +8494,7 @@ msgstr "Отметить выбранные"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:61
-#: data/interfaces/modern/author.html:346
+#: data/interfaces/modern/author.html:353
 #: data/interfaces/modern/book_detail.html:61
 #: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:174
@@ -8515,9 +8505,9 @@ msgstr "Эл. книга"
 
 #: data/interfaces/bookstrap/members.html:51
 #: data/interfaces/bookstrap/members.html:67
-#: data/interfaces/modern/author.html:346
+#: data/interfaces/modern/author.html:353
 #: data/interfaces/modern/book_detail.html:61
-#: data/interfaces/modern/book_detail.html:132
+#: data/interfaces/modern/book_detail.html:135
 #: data/interfaces/modern/history.html:177
 #: data/interfaces/modern/managebooks.html:176
 #: data/interfaces/modern/members.html:114 lazylibrarian/i18n.py:404
@@ -8996,7 +8986,7 @@ msgstr "Отслеживать"
 
 #: data/interfaces/modern/author.html:164
 #: data/interfaces/modern/author_detail.html:150
-#: data/interfaces/modern/book_detail.html:163
+#: data/interfaces/modern/book_detail.html:169
 #: data/interfaces/modern/books.html:166 data/interfaces/modern/comics.html:94
 #: data/interfaces/modern/history.html:68 data/interfaces/modern/index.html:108
 #: data/interfaces/modern/issues.html:100 data/interfaces/modern/logs.html:69
@@ -9048,28 +9038,28 @@ msgstr "Вид"
 msgid "Sort"
 msgstr "Сортировка"
 
-#: data/interfaces/modern/author.html:285 data/interfaces/modern/books.html:222
-#: data/interfaces/modern/members.html:177
+#: data/interfaces/modern/author.html:292 data/interfaces/modern/books.html:222
+#: data/interfaces/modern/members.html:184
 msgid "Search now"
 msgstr "Искать сейчас"
 
-#: data/interfaces/modern/author.html:299 data/interfaces/modern/books.html:245
+#: data/interfaces/modern/author.html:306 data/interfaces/modern/books.html:245
 #: data/interfaces/modern/managebooks.html:168
-#: data/interfaces/modern/members.html:188
+#: data/interfaces/modern/members.html:195
 msgid "Selected books"
 msgstr "Выбранные книги"
 
-#: data/interfaces/modern/author.html:344
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/book_detail.html:279
 msgid "Show more"
 msgstr "Показать больше"
 
-#: data/interfaces/modern/author.html:344
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:351
+#: data/interfaces/modern/book_detail.html:279
 msgid "Show less"
 msgstr "Показать меньше"
 
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/history.html:172
@@ -9078,13 +9068,13 @@ msgstr "Показать меньше"
 #: data/interfaces/modern/magazines.html:224
 #: data/interfaces/modern/managebooks.html:225
 #: data/interfaces/modern/manageissues.html:123
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 #: data/interfaces/modern/searchresults.html:245
 #: data/interfaces/modern/series.html:227
 msgid "Done"
 msgstr "Готово"
 
-#: data/interfaces/modern/author.html:344 data/interfaces/modern/books.html:285
+#: data/interfaces/modern/author.html:351 data/interfaces/modern/books.html:285
 #: data/interfaces/modern/comics.html:207
 #: data/interfaces/modern/history.html:171
 #: data/interfaces/modern/index.html:217 data/interfaces/modern/issues.html:211
@@ -9096,21 +9086,21 @@ msgstr "Готово"
 msgid "That is all"
 msgstr "Это всё"
 
-#: data/interfaces/modern/author.html:345
-#: data/interfaces/modern/book_detail.html:273
+#: data/interfaces/modern/author.html:352
+#: data/interfaces/modern/book_detail.html:279
 #: data/interfaces/modern/books.html:287 data/interfaces/modern/comics.html:209
 #: data/interfaces/modern/magazines.html:226
-#: data/interfaces/modern/members.html:211
+#: data/interfaces/modern/members.html:218
 msgid "Searching..."
 msgstr "Поиск..."
 
-#: data/interfaces/modern/author.html:345 data/interfaces/modern/books.html:287
+#: data/interfaces/modern/author.html:352 data/interfaces/modern/books.html:287
 #: data/interfaces/modern/managebooks.html:226
-#: data/interfaces/modern/members.html:210
+#: data/interfaces/modern/members.html:217
 msgid "Select at least one book first"
 msgstr "Сначала выберите хотя бы одну книгу"
 
-#: data/interfaces/modern/author.html:347 data/interfaces/modern/books.html:289
+#: data/interfaces/modern/author.html:354 data/interfaces/modern/books.html:289
 #: data/interfaces/modern/comics.html:74
 #: data/interfaces/modern/config.html:1661
 #: data/interfaces/modern/issues.html:85
@@ -9121,13 +9111,13 @@ msgstr "Сначала выберите хотя бы одну книгу"
 msgid "Covers"
 msgstr "Обложки"
 
-#: data/interfaces/modern/author.html:348 data/interfaces/modern/books.html:294
+#: data/interfaces/modern/author.html:355 data/interfaces/modern/books.html:294
 #: data/interfaces/modern/comics.html:210 data/interfaces/modern/index.html:220
 #: data/interfaces/modern/issues.html:214
 #: data/interfaces/modern/magazines.html:227
 #: data/interfaces/modern/managebooks.html:231
 #: data/interfaces/modern/manageissues.html:124
-#: data/interfaces/modern/members.html:212
+#: data/interfaces/modern/members.html:219
 #: data/interfaces/modern/searchresults.html:251
 #: data/interfaces/modern/series.html:229
 #, python-format
@@ -9137,9 +9127,9 @@ msgstr[0] "Выбрано: %(count)s"
 msgstr[1] "Выбрано: %(count)s"
 msgstr[2] "Выбрано: %(count)s"
 
-#: data/interfaces/modern/author.html:349 data/interfaces/modern/books.html:295
+#: data/interfaces/modern/author.html:356 data/interfaces/modern/books.html:295
 #: data/interfaces/modern/managebooks.html:232
-#: data/interfaces/modern/members.html:213
+#: data/interfaces/modern/members.html:220
 #, python-format
 msgid "%(count)s book"
 msgid_plural "%(count)s books"
@@ -9155,24 +9145,36 @@ msgstr "Открыть эл. книгу"
 msgid "Open AudioBook"
 msgstr "Открыть аудиокнигу"
 
-#: data/interfaces/modern/book_detail.html:72
+#: data/interfaces/modern/book_detail.html:65
+#, fuzzy
+#| msgid "Open eBook"
+msgid "Send eBook"
+msgstr "Открыть эл. книгу"
+
+#: data/interfaces/modern/book_detail.html:65
+#, fuzzy
+#| msgid "Open AudioBook"
+msgid "Send AudioBook"
+msgstr "Открыть аудиокнигу"
+
+#: data/interfaces/modern/book_detail.html:75
 msgid "Published"
 msgstr "Издана"
 
-#: data/interfaces/modern/book_detail.html:74
+#: data/interfaces/modern/book_detail.html:77
 msgid "Original publication"
 msgstr "Первая публикация"
 
-#: data/interfaces/modern/book_detail.html:76
-#: data/interfaces/modern/book_detail.html:86
+#: data/interfaces/modern/book_detail.html:79
+#: data/interfaces/modern/book_detail.html:89
 msgid "Narrator"
 msgstr "Чтец"
 
-#: data/interfaces/modern/book_detail.html:84
+#: data/interfaces/modern/book_detail.html:87
 msgid "ISBN"
 msgstr "ISBN"
 
-#: data/interfaces/modern/book_detail.html:97
+#: data/interfaces/modern/book_detail.html:100
 #: data/interfaces/modern/editauthor.html:67
 #: data/interfaces/modern/editbook.html:48
 #: data/interfaces/modern/editcomic.html:34
@@ -9180,16 +9182,16 @@ msgstr "ISBN"
 #: data/interfaces/modern/editmag.html:34
 #: data/interfaces/modern/editseries.html:41
 #: data/interfaces/modern/issues.html:67 data/interfaces/modern/members.html:69
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Back"
 msgstr "Назад"
 
-#: data/interfaces/modern/book_detail.html:134
+#: data/interfaces/modern/book_detail.html:137
 #: data/interfaces/modern/members.html:86
 msgid "by"
 msgstr "автор:"
 
-#: data/interfaces/modern/book_detail.html:196
+#: data/interfaces/modern/book_detail.html:202
 #: data/interfaces/modern/modern_base.html:343 lazylibrarian/webServe.py:4072
 msgid "Found, but not downloaded"
 msgstr "Найдена, но не загружена"
@@ -9199,7 +9201,7 @@ msgid "Search wanted"
 msgstr "Искать нужные"
 
 #: data/interfaces/modern/books.html:229
-#: data/interfaces/modern/members.html:172
+#: data/interfaces/modern/members.html:179
 msgid "Want"
 msgstr "Хочу"
 
@@ -10627,84 +10629,84 @@ msgstr "Добавлено в библиотеку"
 msgid "Download failed"
 msgstr "Загрузка не удалась"
 
-#: lazylibrarian/setupwizard.py:46 lazylibrarian/setupwizard.py:45
+#: lazylibrarian/setupwizard.py:46
 #, fuzzy
 msgid "Slovakia"
 msgstr "Словацкий"
 
-#: lazylibrarian/setupwizard.py:47 lazylibrarian/setupwizard.py:46
+#: lazylibrarian/setupwizard.py:47
 msgid "Czech Republic"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:48 lazylibrarian/setupwizard.py:47
+#: lazylibrarian/setupwizard.py:48
 #, fuzzy
 msgid "Germany"
 msgstr "Немецкий"
 
-#: lazylibrarian/setupwizard.py:49 lazylibrarian/setupwizard.py:48
+#: lazylibrarian/setupwizard.py:49
 msgid "Austria"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:50 lazylibrarian/setupwizard.py:49
+#: lazylibrarian/setupwizard.py:50
 msgid "Switzerland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:51 lazylibrarian/setupwizard.py:50
+#: lazylibrarian/setupwizard.py:51
 msgid "Poland"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:52 lazylibrarian/setupwizard.py:51
+#: lazylibrarian/setupwizard.py:52
 #, fuzzy
 msgid "France"
 msgstr "Отмена"
 
-#: lazylibrarian/setupwizard.py:53 lazylibrarian/setupwizard.py:52
+#: lazylibrarian/setupwizard.py:53
 msgid "Spain"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:54 lazylibrarian/setupwizard.py:53
+#: lazylibrarian/setupwizard.py:54
 #, fuzzy
 msgid "Italy"
 msgstr "Итальянский"
 
-#: lazylibrarian/setupwizard.py:55 lazylibrarian/setupwizard.py:54
+#: lazylibrarian/setupwizard.py:55
 msgid "Netherlands"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:56 lazylibrarian/setupwizard.py:55
+#: lazylibrarian/setupwizard.py:56
 #, fuzzy
 msgid "Russia"
 msgstr "Русский"
 
-#: lazylibrarian/setupwizard.py:57 lazylibrarian/setupwizard.py:56
+#: lazylibrarian/setupwizard.py:57
 #, fuzzy
 msgid "Estonia"
 msgstr "Эстонский"
 
-#: lazylibrarian/setupwizard.py:58 lazylibrarian/setupwizard.py:57
+#: lazylibrarian/setupwizard.py:58
 msgid "United Kingdom"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:59 lazylibrarian/setupwizard.py:58
+#: lazylibrarian/setupwizard.py:59
 #, fuzzy
 msgid "United States"
 msgstr "Обновления"
 
-#: lazylibrarian/setupwizard.py:61 lazylibrarian/setupwizard.py:60
+#: lazylibrarian/setupwizard.py:61
 #, fuzzy
 msgid "Other country"
 msgstr "Учётные записи пользователей"
 
-#: lazylibrarian/setupwizard.py:70 lazylibrarian/setupwizard.py:69
+#: lazylibrarian/setupwizard.py:70
 msgid "Czech and Slovak book database (databazeknih.cz)"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:71 lazylibrarian/setupwizard.py:70
+#: lazylibrarian/setupwizard.py:71
 #, fuzzy
 msgid "German National Library (Deutsche Nationalbibliothek)"
 msgstr "API Deutsche Nationalbibliothek:"
 
-#: lazylibrarian/setupwizard.py:72 lazylibrarian/setupwizard.py:71
+#: lazylibrarian/setupwizard.py:72
 msgid "National Library of Poland (Biblioteka Narodowa)"
 msgstr ""
 
@@ -10778,86 +10780,86 @@ msgstr "Торренты"
 msgid "TorrentDownloads"
 msgstr "хост torrentdownload"
 
-#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 msgid "eBook library folder"
 msgstr "Папка библиотеки эл. книг"
 
-#: lazylibrarian/setupwizard.py:95 lazylibrarian/setupwizard.py:78
+#: lazylibrarian/setupwizard.py:95
 #, fuzzy
 msgid "AudioBook library folder"
 msgstr "Папка библиотеки аудиокниг"
 
-#: lazylibrarian/setupwizard.py:96 lazylibrarian/setupwizard.py:79
+#: lazylibrarian/setupwizard.py:96
 #, fuzzy
 msgid "Download folder"
 msgstr "Загрузка не удалась"
 
-#: lazylibrarian/setupwizard.py:342 lazylibrarian/setupwizard.py:310
+#: lazylibrarian/setupwizard.py:342
 #, fuzzy
 msgid "Main book information source"
 msgstr "Источники информации"
 
-#: lazylibrarian/setupwizard.py:346 lazylibrarian/setupwizard.py:314
+#: lazylibrarian/setupwizard.py:346
 #, fuzzy
 msgid "Local book database"
 msgstr "Базы данных книг"
 
-#: lazylibrarian/setupwizard.py:349 lazylibrarian/setupwizard.py:317
+#: lazylibrarian/setupwizard.py:349
 msgid "Country for Google Books results"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:359 lazylibrarian/setupwizard.py:327
+#: lazylibrarian/setupwizard.py:359
 #, fuzzy
 msgid "Preferred book languages"
 msgstr "Обновить языки книг"
 
-#: lazylibrarian/setupwizard.py:361 lazylibrarian/setupwizard.py:329
+#: lazylibrarian/setupwizard.py:361
 #, fuzzy
 msgid "Languages to detect in book titles"
 msgstr "Определение языка"
 
-#: lazylibrarian/setupwizard.py:363 lazylibrarian/setupwizard.py:331
+#: lazylibrarian/setupwizard.py:363
 msgid ""
 "When a source does not say the language of a book, it is guessed from the "
 "title, choosing only from these languages. Keep the languages you do not "
 "want too, so their books are recognised and left out."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:374 lazylibrarian/setupwizard.py:342
+#: lazylibrarian/setupwizard.py:374
 #, fuzzy
 msgid "Add month names"
 msgstr "Название месяца"
 
-#: lazylibrarian/setupwizard.py:379 lazylibrarian/setupwizard.py:347
+#: lazylibrarian/setupwizard.py:379
 #, fuzzy
 msgid "Language for dates"
 msgstr "Языки"
 
-#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 msgid "Date format"
 msgstr "нужные форматы"
 
-#: lazylibrarian/setupwizard.py:381 lazylibrarian/setupwizard.py:349
+#: lazylibrarian/setupwizard.py:381
 #, fuzzy
 msgid "Author date format"
 msgstr "Сначала фамилия автора"
 
-#: lazylibrarian/setupwizard.py:386 lazylibrarian/setupwizard.py:354
+#: lazylibrarian/setupwizard.py:386
 msgid "Preferred magazine language"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:388 lazylibrarian/setupwizard.py:356
+#: lazylibrarian/setupwizard.py:388
 #, fuzzy
 msgid "Words for issue numbers"
 msgstr "Номер выпуска"
 
-#: lazylibrarian/setupwizard.py:389 lazylibrarian/setupwizard.py:357
+#: lazylibrarian/setupwizard.py:389
 msgid "Words for volume numbers"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:390 lazylibrarian/setupwizard.py:358
+#: lazylibrarian/setupwizard.py:390
 #, fuzzy
 msgid "Other words allowed in magazine titles"
 msgstr "Слова, допустимые в названиях журналов:"
@@ -10875,32 +10877,32 @@ msgstr ""
 msgid "Recommended for your country. Books and comics from the LibGen mirror."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:409 lazylibrarian/setupwizard.py:368
+#: lazylibrarian/setupwizard.py:409
 #, fuzzy
 msgid "Series number format"
 msgstr "Номер в серии"
 
-#: lazylibrarian/setupwizard.py:414 lazylibrarian/setupwizard.py:373
+#: lazylibrarian/setupwizard.py:414
 #, fuzzy
 msgid "Bookstrap theme"
 msgstr "Использовать Bookstrap"
 
-#: lazylibrarian/setupwizard.py:418 lazylibrarian/setupwizard.py:377
+#: lazylibrarian/setupwizard.py:418
 #, fuzzy
 msgid "Country and language"
 msgstr "Язык интерфейса"
 
-#: lazylibrarian/setupwizard.py:419 lazylibrarian/setupwizard.py:378
+#: lazylibrarian/setupwizard.py:419
 #, fuzzy
 msgid "Book databases"
 msgstr "Базы данных книг"
 
-#: lazylibrarian/setupwizard.py:420 lazylibrarian/setupwizard.py:379
+#: lazylibrarian/setupwizard.py:420
 #, fuzzy
 msgid "Book languages"
 msgstr "Языки книг"
 
-#: lazylibrarian/setupwizard.py:421 lazylibrarian/setupwizard.py:380
+#: lazylibrarian/setupwizard.py:421
 msgid "Dates, months and magazines"
 msgstr ""
 
@@ -10909,128 +10911,128 @@ msgstr ""
 msgid "Search providers"
 msgstr "Искать по сериям"
 
-#: lazylibrarian/setupwizard.py:423 lazylibrarian/setupwizard.py:381
+#: lazylibrarian/setupwizard.py:423
 msgid "Library and other settings"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:479 lazylibrarian/setupwizard.py:435
+#: lazylibrarian/setupwizard.py:479
 #, fuzzy
 msgid "Not a valid value"
 msgstr "Недоступно"
 
-#: lazylibrarian/setupwizard.py:536 lazylibrarian/setupwizard.py:492
+#: lazylibrarian/setupwizard.py:536
 msgid "Not a setting the wizard can change"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:570 lazylibrarian/setupwizard.py:521
+#: lazylibrarian/setupwizard.py:570
 msgid "The system does not have the locale"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:573 lazylibrarian/setupwizard.py:524
+#: lazylibrarian/setupwizard.py:573
 msgid "Folder not found or not writable"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 #, fuzzy
 msgid "Summary"
 msgstr "Итог:"
 
-#: lazylibrarian/setupwizard.py:604 lazylibrarian/setupwizard.py:555
+#: lazylibrarian/setupwizard.py:604
 msgid "Country"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:605 lazylibrarian/setupwizard.py:556
+#: lazylibrarian/setupwizard.py:605
 msgid ""
 "Pick your language and country. The next steps show what will be set for "
 "them, check it and untick anything you want to keep as it is."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:607 lazylibrarian/setupwizard.py:558
+#: lazylibrarian/setupwizard.py:607
 msgid "These settings will be changed for your country:"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:608 lazylibrarian/setupwizard.py:559
+#: lazylibrarian/setupwizard.py:608
 msgid "Nothing to change here, the settings already suit your country."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:609 lazylibrarian/setupwizard.py:560
+#: lazylibrarian/setupwizard.py:609
 msgid "Show unchanged settings too"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:610 lazylibrarian/setupwizard.py:561
+#: lazylibrarian/setupwizard.py:610
 #, fuzzy
 msgid "Show all languages"
 msgstr "Показать все журналы"
 
-#: lazylibrarian/setupwizard.py:611 lazylibrarian/setupwizard.py:562
+#: lazylibrarian/setupwizard.py:611
 msgid ""
 "You can run the Setup Wizard again any time: in Settings, the Setup Wizard "
 "button next to Check Version."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 msgid "Now"
 msgstr "Нет"
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 #, fuzzy
 msgid "On"
 msgstr "Открыть"
 
-#: lazylibrarian/setupwizard.py:613 lazylibrarian/setupwizard.py:564
+#: lazylibrarian/setupwizard.py:613
 msgid "Off"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 #, fuzzy
 msgid "Setting"
 msgstr "Настройки"
 
-#: lazylibrarian/setupwizard.py:614 lazylibrarian/setupwizard.py:565
+#: lazylibrarian/setupwizard.py:614
 msgid "Nothing is ticked, nothing will be changed."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 #, fuzzy
 msgid "Skip step"
 msgstr "Пропущена"
 
-#: lazylibrarian/setupwizard.py:615 lazylibrarian/setupwizard.py:566
+#: lazylibrarian/setupwizard.py:615
 msgid "Apply"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:616 lazylibrarian/setupwizard.py:567
+#: lazylibrarian/setupwizard.py:616
 msgid "Don't show again"
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:617 lazylibrarian/setupwizard.py:568
+#: lazylibrarian/setupwizard.py:617
 #, fuzzy, python-format
 msgid "%(count)s settings changed."
 msgstr "Найдена %(count)s настройка"
 
-#: lazylibrarian/setupwizard.py:618 lazylibrarian/setupwizard.py:569
+#: lazylibrarian/setupwizard.py:618
 msgid ""
 "The web interface has no username and password, anyone on your network can "
 "change the settings."
 msgstr ""
 
-#: lazylibrarian/setupwizard.py:620 lazylibrarian/setupwizard.py:571
+#: lazylibrarian/setupwizard.py:620
 #, fuzzy
 msgid "Set them on the Interface tab"
 msgstr "Попробовать новый интерфейс (бета)"
 
-#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 msgid "Folder found"
 msgstr "Папка"
 
-#: lazylibrarian/setupwizard.py:621 lazylibrarian/setupwizard.py:572
+#: lazylibrarian/setupwizard.py:621
 #, fuzzy
 msgid "Folder not found"
 msgstr "Пользователь не найден"
 
-#: lazylibrarian/setupwizard.py:622 lazylibrarian/setupwizard.py:573
+#: lazylibrarian/setupwizard.py:622
 #, fuzzy
 msgid "Folder is not writable"
 msgstr "- недоступно"
@@ -11110,7 +11112,7 @@ msgstr "Обновление базы данных"
 msgid "Redirected"
 msgstr "Перенаправлено"
 
-#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5964
+#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5970
 msgid "Inactive Authors"
 msgstr "Неактивные авторы"
 
@@ -11433,97 +11435,97 @@ msgstr "Выберите тип"
 msgid "Edit Author"
 msgstr "Изменить автора"
 
-#: lazylibrarian/webServe.py:5254
+#: lazylibrarian/webServe.py:5260
 msgid "Edit Book"
 msgstr "Изменить книгу"
 
-#: lazylibrarian/webServe.py:5577
+#: lazylibrarian/webServe.py:5583
 #, python-format
 msgid "Mark Results '%(action)s' completed."
 msgstr "Отметка результатов «%(action)s» завершена."
 
-#: lazylibrarian/webServe.py:5806
+#: lazylibrarian/webServe.py:5812
 #, python-format
 msgid "Mark Books '%(action)s' completed."
 msgstr "Отметка книг «%(action)s» завершена."
 
-#: lazylibrarian/webServe.py:5857 lazylibrarian/webServe.py:5901
-#: lazylibrarian/webServe.py:5928 lazylibrarian/webServe.py:6010
-#: lazylibrarian/webServe.py:6035
+#: lazylibrarian/webServe.py:5863 lazylibrarian/webServe.py:5907
+#: lazylibrarian/webServe.py:5934 lazylibrarian/webServe.py:6016
+#: lazylibrarian/webServe.py:6041
 #, python-format
 msgid "%(title)s (Top %(count)s)"
 msgstr "%(title)s (топ %(count)s)"
 
-#: lazylibrarian/webServe.py:5914
+#: lazylibrarian/webServe.py:5920
 msgid "Recently Downloaded Books"
 msgstr "Недавно загруженные книги"
 
-#: lazylibrarian/webServe.py:5917
+#: lazylibrarian/webServe.py:5923
 msgid "Recently Added Books"
 msgstr "Недавно добавленные книги"
 
-#: lazylibrarian/webServe.py:5961
+#: lazylibrarian/webServe.py:5967
 msgid "Active/Wanted Authors"
 msgstr "Активные/нужные авторы"
 
-#: lazylibrarian/webServe.py:6006
+#: lazylibrarian/webServe.py:6012
 msgid "Recent AudioBooks"
 msgstr "Последние аудиокниги"
 
-#: lazylibrarian/webServe.py:6077
+#: lazylibrarian/webServe.py:6083
 msgid "Edit Comic"
 msgstr "Изменить комикс"
 
-#: lazylibrarian/webServe.py:6903
+#: lazylibrarian/webServe.py:6909
 #, python-format
 msgid "Rename Magazine %(title)s"
 msgstr "Переименовать журнал %(title)s"
 
-#: lazylibrarian/webServe.py:6922
+#: lazylibrarian/webServe.py:6928
 msgid "Insufficient information, need Old and New Title"
 msgstr "Недостаточно данных, нужны старое и новое название"
 
-#: lazylibrarian/webServe.py:6924
+#: lazylibrarian/webServe.py:6930
 #, python-format
 msgid "Title for %(title)s unchanged"
 msgstr "Название %(title)s не изменилось"
 
-#: lazylibrarian/webServe.py:6928
+#: lazylibrarian/webServe.py:6934
 msgid "Invalid new title, unable to rename"
 msgstr "Недопустимое новое название, переименование невозможно"
 
-#: lazylibrarian/webServe.py:6933
+#: lazylibrarian/webServe.py:6939
 #, python-format
 msgid "Title %(title)s already exists, unable to rename"
 msgstr "Название %(title)s уже существует, переименование невозможно"
 
-#: lazylibrarian/webServe.py:6945
+#: lazylibrarian/webServe.py:6951
 #, python-format
 msgid "Renamed %(old)s to %(new)s"
 msgstr "%(old)s переименовано в %(new)s"
 
-#: lazylibrarian/webServe.py:6990
+#: lazylibrarian/webServe.py:6996
 msgid "Rename completed."
 msgstr "Переименование завершено."
 
-#: lazylibrarian/webServe.py:7122
+#: lazylibrarian/webServe.py:7128
 msgid "Edit Issue"
 msgstr "Изменить выпуск"
 
-#: lazylibrarian/webServe.py:7737 lazylibrarian/webServe.py:7982
+#: lazylibrarian/webServe.py:7743 lazylibrarian/webServe.py:7988
 #, python-format
 msgid "Operation '%(action)s' completed."
 msgstr "Операция «%(action)s» завершена."
 
-#: lazylibrarian/webServe.py:8093
+#: lazylibrarian/webServe.py:8099
 msgid "LazyLibrarian status is unknown"
 msgstr "Состояние LazyLibrarian неизвестно"
 
-#: lazylibrarian/webServe.py:8097
+#: lazylibrarian/webServe.py:8103
 msgid "LazyLibrarian is up to date"
 msgstr "LazyLibrarian обновлён до последней версии"
 
-#: lazylibrarian/webServe.py:8099
+#: lazylibrarian/webServe.py:8105
 #, python-format
 msgid "LazyLibrarian is behind by %(count)s commit"
 msgid_plural "LazyLibrarian is behind by %(count)s commits"
@@ -11531,154 +11533,154 @@ msgstr[0] "LazyLibrarian отстаёт на %(count)s коммит"
 msgstr[1] "LazyLibrarian отстаёт на %(count)s коммита"
 msgstr[2] "LazyLibrarian отстаёт на %(count)s коммитов"
 
-#: lazylibrarian/webServe.py:8105
+#: lazylibrarian/webServe.py:8111
 msgid "Update needs manual installation"
 msgstr "Обновление требует ручной установки"
 
-#: lazylibrarian/webServe.py:8107
+#: lazylibrarian/webServe.py:8113
 msgid "LazyLibrarian version is unknown"
 msgstr "Версия LazyLibrarian неизвестна"
 
-#: lazylibrarian/webServe.py:8108
+#: lazylibrarian/webServe.py:8114
 #, python-format
 msgid "Your version (%(version)s) is not recognized at %(repo)s"
 msgstr "Ваша версия (%(version)s) не найдена в %(repo)s"
 
-#: lazylibrarian/webServe.py:8228
+#: lazylibrarian/webServe.py:8234
 msgid "LazyLibrarian is updating..."
 msgstr "LazyLibrarian обновляется..."
 
-#: lazylibrarian/webServe.py:8229
+#: lazylibrarian/webServe.py:8235
 msgid "Updating"
 msgstr "Обновление"
 
-#: lazylibrarian/webServe.py:8419
+#: lazylibrarian/webServe.py:8425
 #, python-format
 msgid "Importing csv (background task) from %(file)s"
 msgstr "Импорт CSV (фоновая задача) из %(file)s"
 
-#: lazylibrarian/webServe.py:8423
+#: lazylibrarian/webServe.py:8429
 #, python-format
 msgid "No %(library)s CSV file in [%(folder)s]"
 msgstr "Нет CSV-файла %(library)s в [%(folder)s]"
 
-#: lazylibrarian/webServe.py:8427
+#: lazylibrarian/webServe.py:8433
 #, python-format
 msgid "Unable to complete the import: %(error)s"
 msgstr "Не удалось завершить импорт: %(error)s"
 
-#: lazylibrarian/webServe.py:8431
+#: lazylibrarian/webServe.py:8437
 msgid "CSV import is already running"
 msgstr "Импорт CSV уже выполняется"
 
-#: lazylibrarian/webServe.py:8454
+#: lazylibrarian/webServe.py:8460
 msgid "LazyLibrarian is closed"
 msgstr "LazyLibrarian закрыт"
 
-#: lazylibrarian/webServe.py:8455
+#: lazylibrarian/webServe.py:8461
 msgid "Close library"
 msgstr "Закрыть библиотеку"
 
-#: lazylibrarian/webServe.py:8465
+#: lazylibrarian/webServe.py:8471
 msgid "LazyLibrarian is reopening..."
 msgstr "LazyLibrarian открывается снова..."
 
-#: lazylibrarian/webServe.py:8466
+#: lazylibrarian/webServe.py:8472
 msgid "Reopen library"
 msgstr "Открыть библиотеку снова"
 
-#: lazylibrarian/webServe.py:8575
+#: lazylibrarian/webServe.py:8581
 msgid "Log"
 msgstr "Журнал"
 
-#: lazylibrarian/webServe.py:8929
+#: lazylibrarian/webServe.py:8935
 msgid "BookID not found"
 msgstr "BookID не найден"
 
-#: lazylibrarian/webServe.py:8931
+#: lazylibrarian/webServe.py:8937
 msgid "No Description"
 msgstr "Нет описания"
 
-#: lazylibrarian/webServe.py:8943
+#: lazylibrarian/webServe.py:8949
 #, python-format
 msgid "Reason: %(reason)s"
 msgstr "Причина: %(reason)s"
 
-#: lazylibrarian/webServe.py:8955
+#: lazylibrarian/webServe.py:8961
 #, python-format
 msgid "Title: %(value)s"
 msgstr "Название: %(value)s"
 
-#: lazylibrarian/webServe.py:8956
+#: lazylibrarian/webServe.py:8962
 #, python-format
 msgid "Type: %(value)s"
 msgstr "Тип: %(value)s"
 
-#: lazylibrarian/webServe.py:8957
+#: lazylibrarian/webServe.py:8963
 #, python-format
 msgid "Date: %(value)s"
 msgstr "Дата: %(value)s"
 
-#: lazylibrarian/webServe.py:8958
+#: lazylibrarian/webServe.py:8964
 #, python-format
 msgid "Size: %(value)s Mb"
 msgstr "Размер: %(value)s МБ"
 
-#: lazylibrarian/webServe.py:8959
+#: lazylibrarian/webServe.py:8965
 #, python-format
 msgid "Provider: %(value)s"
 msgstr "Провайдер: %(value)s"
 
-#: lazylibrarian/webServe.py:8960
+#: lazylibrarian/webServe.py:8966
 #, python-format
 msgid "Downloader: %(value)s"
 msgstr "Загрузчик: %(value)s"
 
-#: lazylibrarian/webServe.py:8961
+#: lazylibrarian/webServe.py:8967
 #, python-format
 msgid "DownloadID: %(value)s"
 msgstr "DownloadID: %(value)s"
 
-#: lazylibrarian/webServe.py:8962
+#: lazylibrarian/webServe.py:8968
 #, python-format
 msgid "URL: %(value)s"
 msgstr "URL: %(value)s"
 
-#: lazylibrarian/webServe.py:8966
+#: lazylibrarian/webServe.py:8972
 #, python-format
 msgid "File: %(value)s"
 msgstr "Файл: %(value)s"
 
-#: lazylibrarian/webServe.py:8970
+#: lazylibrarian/webServe.py:8976
 #, python-format
 msgid "Error: %(value)s"
 msgstr "Ошибка: %(value)s"
 
-#: lazylibrarian/webServe.py:9222
+#: lazylibrarian/webServe.py:9228
 #, python-format
 msgid "%(name)s test FAILED, bad parameter: %(param)s"
 msgstr "%(name)s: проверка НЕ ПРОЙДЕНА, неверный параметр: %(param)s"
 
-#: lazylibrarian/webServe.py:9227
+#: lazylibrarian/webServe.py:9233
 #, python-format
 msgid "%(name)s test FAILED, check debug log"
 msgstr "%(name)s: проверка НЕ ПРОЙДЕНА, проверьте отладочный журнал"
 
-#: lazylibrarian/webServe.py:9229
+#: lazylibrarian/webServe.py:9235
 #, python-format
 msgid "%(name)s test PASSED"
 msgstr "%(name)s: проверка ПРОЙДЕНА"
 
-#: lazylibrarian/webServe.py:9235
+#: lazylibrarian/webServe.py:9241
 #, python-format
 msgid "%(name)s test PASSED, found %(result)s"
 msgstr "%(name)s: проверка ПРОЙДЕНА, найдено %(result)s"
 
-#: lazylibrarian/webServe.py:9238
+#: lazylibrarian/webServe.py:9244
 msgid "Invalid or missing name in testprovider"
 msgstr "Недопустимое или отсутствующее имя в testprovider"
 
-#: lazylibrarian/webServe.py:9250
+#: lazylibrarian/webServe.py:9256
 #, python-format
 msgid "Cleared %(count)s blocked provider"
 msgid_plural "Cleared %(count)s blocked providers"
@@ -11686,7 +11688,7 @@ msgstr[0] "Разблокирован %(count)s провайдер"
 msgstr[1] "Разблокировано %(count)s провайдера"
 msgstr[2] "Разблокировано %(count)s провайдеров"
 
-#: lazylibrarian/webServe.py:9343
+#: lazylibrarian/webServe.py:9349
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
@@ -11694,185 +11696,183 @@ msgstr[0] "Удалён счётчик загрузок для %(count)s про�
 msgstr[1] "Удалены счётчики загрузок для %(count)s провайдеров"
 msgstr[2] "Удалены счётчики загрузок для %(count)s провайдеров"
 
-#: lazylibrarian/webServe.py:9364
+#: lazylibrarian/webServe.py:9370
 msgid "No downloads"
 msgstr "Нет загрузок"
 
-#: lazylibrarian/webServe.py:9372
+#: lazylibrarian/webServe.py:9378
 msgid "Calibre Sync is already running"
 msgstr "Синхронизация с Calibre уже выполняется"
 
-#: lazylibrarian/webServe.py:9381
+#: lazylibrarian/webServe.py:9387
 msgid "No userid found"
 msgstr "UserID не найден"
 
-#: lazylibrarian/webServe.py:9480 lazylibrarian/webServe.py:9546
-#: lazylibrarian/webServe.py:9568 lazylibrarian/webServe.py:9595
-#: lazylibrarian/webServe.py:9632 lazylibrarian/webServe.py:9659
-#: lazylibrarian/webServe.py:9686 lazylibrarian/webServe.py:9713
-#: lazylibrarian/webServe.py:9739 lazylibrarian/webServe.py:9997
-#: lazylibrarian/webServe.py:10093 lazylibrarian/webServe.py:10131
-#: lazylibrarian/webServe.py:10167 lazylibrarian/webServe.py:10210
-#: lazylibrarian/webServe.py:10251 lazylibrarian/webServe.py:10290
-#: lazylibrarian/webServe.py:10326 lazylibrarian/webServe.py:10344
-#: lazylibrarian/webServe.py:10380 lazylibrarian/webServe.py:10402
-#: lazylibrarian/webServe.py:10415
+#: lazylibrarian/webServe.py:9486 lazylibrarian/webServe.py:9552
+#: lazylibrarian/webServe.py:9574 lazylibrarian/webServe.py:9601
+#: lazylibrarian/webServe.py:9638 lazylibrarian/webServe.py:9665
+#: lazylibrarian/webServe.py:9692 lazylibrarian/webServe.py:9719
+#: lazylibrarian/webServe.py:9745 lazylibrarian/webServe.py:10003
+#: lazylibrarian/webServe.py:10099 lazylibrarian/webServe.py:10137
+#: lazylibrarian/webServe.py:10173 lazylibrarian/webServe.py:10216
+#: lazylibrarian/webServe.py:10257 lazylibrarian/webServe.py:10296
+#: lazylibrarian/webServe.py:10332 lazylibrarian/webServe.py:10350
+#: lazylibrarian/webServe.py:10386 lazylibrarian/webServe.py:10408
+#: lazylibrarian/webServe.py:10421
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr "%(name)s: ошибка, неверный параметр: %(param)s"
 
-#: lazylibrarian/webServe.py:9503
+#: lazylibrarian/webServe.py:9509
 msgid "Key verification successful"
 msgstr "Ключ успешно проверен"
 
-#: lazylibrarian/webServe.py:9504
+#: lazylibrarian/webServe.py:9510
 msgid "Unable to verify key"
 msgstr "Не удалось проверить ключ"
 
-#: lazylibrarian/webServe.py:9505
+#: lazylibrarian/webServe.py:9511
 msgid "No key provided"
 msgstr "Ключ не указан"
 
-#: lazylibrarian/webServe.py:9514
+#: lazylibrarian/webServe.py:9520
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr "Твит отправлен, проверьте Twitter, чтобы убедиться, что всё сработало"
 
-#: lazylibrarian/webServe.py:9515
+#: lazylibrarian/webServe.py:9521
 msgid "Error sending tweet"
 msgstr "Ошибка отправки твита"
 
-#: lazylibrarian/webServe.py:9544 lazylibrarian/webServe.py:9657
-#: lazylibrarian/webServe.py:9684 lazylibrarian/webServe.py:9711
+#: lazylibrarian/webServe.py:9550 lazylibrarian/webServe.py:9663
+#: lazylibrarian/webServe.py:9690 lazylibrarian/webServe.py:9717
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr "Тестовое уведомление %(name)s успешно отправлено"
 
-#: lazylibrarian/webServe.py:9547 lazylibrarian/webServe.py:9660
-#: lazylibrarian/webServe.py:9687 lazylibrarian/webServe.py:9714
+#: lazylibrarian/webServe.py:9553 lazylibrarian/webServe.py:9666
+#: lazylibrarian/webServe.py:9693 lazylibrarian/webServe.py:9720
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr "Не удалось отправить тестовое уведомление %(name)s"
 
-#: lazylibrarian/webServe.py:9566 lazylibrarian/webServe.py:9593
-#: lazylibrarian/webServe.py:9630 lazylibrarian/webServe.py:9741
+#: lazylibrarian/webServe.py:9572 lazylibrarian/webServe.py:9599
+#: lazylibrarian/webServe.py:9636 lazylibrarian/webServe.py:9747
 #, python-format
 msgid "%(name)s notification successful"
 msgstr "Уведомление %(name)s отправлено"
 
-#: lazylibrarian/webServe.py:9569 lazylibrarian/webServe.py:9596
-#: lazylibrarian/webServe.py:9633 lazylibrarian/webServe.py:9737
+#: lazylibrarian/webServe.py:9575 lazylibrarian/webServe.py:9602
+#: lazylibrarian/webServe.py:9639 lazylibrarian/webServe.py:9743
 #, python-format
 msgid "%(name)s notification failed"
 msgstr "Не удалось отправить уведомление %(name)s"
 
-#: lazylibrarian/webServe.py:9760
+#: lazylibrarian/webServe.py:9766
 msgid "Custom notification failed"
 msgstr "Не удалось отправить своё уведомление"
 
-#: lazylibrarian/webServe.py:9762
+#: lazylibrarian/webServe.py:9768
 #, python-format
 msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr "Не удалось отправить своё уведомление, неверный параметр: %(param)s"
 
-#: lazylibrarian/webServe.py:9764
+#: lazylibrarian/webServe.py:9770
 msgid "Custom notification successful"
 msgstr "Своё уведомление отправлено"
 
-#: lazylibrarian/webServe.py:9822
+#: lazylibrarian/webServe.py:9828
 msgid "Email notification failed"
 msgstr "Не удалось отправить уведомление по e-mail"
 
-#: lazylibrarian/webServe.py:9824
+#: lazylibrarian/webServe.py:9830
 #, python-format
 msgid "Email notification failed, bad parameter: %(param)s"
 msgstr ""
 "Не удалось отправить уведомление по e-mail, неверный параметр: %(param)s"
 
-#: lazylibrarian/webServe.py:9826
+#: lazylibrarian/webServe.py:9832
 msgid "Email notification successful, check your email"
 msgstr "Уведомление по e-mail отправлено, проверьте почту"
 
-#: lazylibrarian/webServe.py:9954
+#: lazylibrarian/webServe.py:9960
 msgid "Manage AudioBooks"
 msgstr "Управление аудиокнигами"
 
-#: lazylibrarian/webServe.py:9954
+#: lazylibrarian/webServe.py:9960
 msgid "Manage eBooks"
 msgstr "Управление эл. книгами"
 
-#: lazylibrarian/webServe.py:10018
+#: lazylibrarian/webServe.py:10024
 msgid "Deluge: Daemon connection successful"
 msgstr "Deluge: подключение к демону успешно"
 
-#: lazylibrarian/webServe.py:10024
+#: lazylibrarian/webServe.py:10030
 msgid "Deluge daemon seems to have no labels set"
 msgstr "Похоже, в демоне Deluge не задано ни одной метки"
 
-#: lazylibrarian/webServe.py:10034
+#: lazylibrarian/webServe.py:10040
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr "Метка [%(label)s] добавлена"
 
-#: lazylibrarian/webServe.py:10038
+#: lazylibrarian/webServe.py:10044
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr "Метка [%(label)s] допустима"
 
-#: lazylibrarian/webServe.py:10044
+#: lazylibrarian/webServe.py:10050
 msgid "Deluge: Daemon connection FAILED"
 msgstr "Deluge: подключение к демону НЕ УДАЛОСЬ"
 
-#: lazylibrarian/webServe.py:10047
+#: lazylibrarian/webServe.py:10053
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr "Проверьте настройки HOST и PORT демона Deluge"
 
-#: lazylibrarian/webServe.py:10049
+#: lazylibrarian/webServe.py:10055
 msgid "Invalid USERNAME or PASSWORD"
 msgstr "Неверное имя пользователя (USERNAME) или пароль (PASSWORD)"
 
-#: lazylibrarian/webServe.py:10364 lazylibrarian/webServe.py:10387
+#: lazylibrarian/webServe.py:10370 lazylibrarian/webServe.py:10393
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr "Найден %(name)s версии %(version)s"
 
-#: lazylibrarian/webServe.py:10367 lazylibrarian/webServe.py:10389
+#: lazylibrarian/webServe.py:10373 lazylibrarian/webServe.py:10395
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr "%(command)s: ошибка: %(error)s"
 
-#: lazylibrarian/webServe.py:10420
+#: lazylibrarian/webServe.py:10426
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr "Программа предобработки вернула %(rc)s: res[%(res)s] err[%(err)s]"
 
-#: lazylibrarian/webServe.py:10423
+#: lazylibrarian/webServe.py:10429
 msgid "No preprocessor set in config"
 msgstr "Программа предобработки не задана в настройках"
 
-#: lazylibrarian/webServe.py:10477
+#: lazylibrarian/webServe.py:10483
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr "Файл %(file)s отправлен на %(addresses)s"
 
-#: lazylibrarian/webServe.py:10481
+#: lazylibrarian/webServe.py:10487
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr "Не удалось отправить файл %(file)s на %(addresses)s"
 
-#: lazylibrarian/webServe.py:10483
+#: lazylibrarian/webServe.py:10489
 msgid "Send file"
 msgstr "Отправить файл"
 
-#: lazylibrarian/webServe.py:10539
+#: lazylibrarian/webServe.py:10545
 msgid "Thank you for enabling Telemetry"
 msgstr "Спасибо, что включили телеметрию"
 
-#: lazylibrarian/setupwizard.py:366
 #, fuzzy
-msgid "Search Anna's Archive"
-msgstr "Annas Archive"
+#~ msgid "Search Anna's Archive"
+#~ msgstr "Annas Archive"
 
-#: lazylibrarian/setupwizard.py:367
 #, fuzzy
-msgid "Search Z-Library"
-msgstr "Искать в:"
+#~ msgid "Search Z-Library"
+#~ msgstr "Искать в:"
