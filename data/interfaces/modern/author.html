@@ -168,7 +168,7 @@ ${bk.headIncludes()}
             <li><a class="dropdown-item" href="edit_author?authorid=${a['AuthorID'] | u}"><i class="fa fa-pencil-alt fa-fw me-2" aria-hidden="true"></i>${_('Edit')}</a></li>
             %endif
             %if perm&lazylibrarian.perm_force:
-            <li><a class="dropdown-item" href="refresh_author?authorid=${a['AuthorID'] | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Refresh Author')}</a></li>
+            <li><a class="dropdown-item" href="refresh_author?authorid=${a['AuthorID'] | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Update books from the web')}</a></li>
               %if ebook_on:
               <li><button type="button" class="dropdown-item" @click="scan('eBook')"><i class="fa fa-folder-open fa-fw me-2" aria-hidden="true"></i>${_('Scan eBook folder')}</button></li>
               %endif
