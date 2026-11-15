@@ -14,7 +14,6 @@
 #  along with Lazylibrarian.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import time
 import traceback
 
 from rapidfuzz import fuzz

@@ -148,7 +148,7 @@ def test_provider(name: str, host=None, api=None):
                                              provider['DISPNAME'], test=True), provider['DISPNAME']
                         if '/show/' in host or '/book/' in host:
                             # goodreads listopia html page
-                            return listopia(host, provider['NAME'], provider.get_int('DLPRIORITY'),
+                            return listopia_scraper(host, provider['NAME'], provider.get_int('DLPRIORITY'),
                                             provider['DISPNAME'], test=True), provider['DISPNAME']
                     elif 'amazon' in host and '/charts' in host:
                         return amazon(host, provider['NAME'], provider.get_int('DLPRIORITY'),
@@ -1022,7 +1022,7 @@ def iterate_over_wishlists():
                 else:
                     providers += 1
                     logger.debug(f"[iterate_over_wishlists] - {provider['HOST']}")
-                    resultslist += listopia(provider['HOST'], provider['NAME'],
+                    resultslist += listopia_scraper(provider['HOST'], provider['NAME'],
                                             provider.get_int('DLPRIORITY'), provider['DISPNAME'],
                                             provider['DLTYPES'], False, provider['LABEL'])
             elif wishtype == 'amazon':
@@ -1457,7 +1457,7 @@ def penguinrandomhouse(host=None, feednr=None, priority=0, dispname=None, types=
                    f"&contentId={book_cat.lower()}&elClass=book&dataType=html&catFilter=best-sellers"
                    f"&sortType=frontlistiest_onsale")
             # page of all the book
-            result, success = fetch_url(url)
+            result, success = fetch_url(url, impersonate='chrome')
             soup = BeautifulSoup(result, 'html5lib')
             titles = soup.find_all('div', {'class': 'title'})
             authors = soup.find_all('div', {'class': 'contributor'})
@@ -1496,6 +1496,68 @@ def penguinrandomhouse(host=None, feednr=None, priority=0, dispname=None, types=
     lazylibrarian.test_data = ''
     if test:
         return len(results)
+    return results
+
+
+def listopia_scraper(host=None, feednr=None, priority=0, dispname=None, types='E', test=False, label=''):
+    logger = logging.getLogger(__name__)
+    if not test:
+        TELEMETRY.record_usage_data('Wishlist/listopia_scraper')
+    if '/show/' in host:
+        provider = host.split('/show/')[1]
+    elif '/book/' in host:
+        provider = host.split('/book/')[1]
+    else:
+        provider = host
+
+    if not dispname:
+        dispname = provider
+    lazylibrarian.test_data = f'Querying {dispname}'
+    result, success = fetch_url(host, impersonate='chrome')
+    if not success:
+        logger.error(f'Error fetching data from {host}: {result}')
+        if not test:
+            BLOCKHANDLER.block_provider(host, result)
+    results = []
+    rows = []
+    if result:
+        soup = BeautifulSoup(result.text, "html.parser")
+        # Find all book rows in the Listopia table
+        rows = soup.select("table.tableList tr")
+
+    for row in rows:
+        title_tag = row.find("a", class_="bookTitle")
+        author_tag = row.find("a", class_="authorName")
+        if title_tag and author_tag:
+            title = title_tag.get_text(strip=True)
+            author = author_tag.get_text(strip=True)
+            raw_href = title_tag["href"].split("?")[0]
+            # Extract numeric Goodreads Book ID
+            if '/show/' in host:
+                id_match = re.search(r"/show/(\d+)", raw_href)
+            else:
+                id_match = re.search(r"/book/(\d+)", raw_href)
+            book_id = id_match.group(1) if id_match else ""
+            if book_id:
+                results.append({
+                    'rss_prov': provider,
+                    'rss_feed': feednr,
+                    'rss_title': title,
+                    'rss_author': author,
+                    'rss_bookid': book_id,
+                    'rss_isbn': '',
+                    'priority': priority,
+                    'dispname': dispname,
+                    'types': types,
+                    'label': label,
+                })
+    if test:
+        logger.debug(f"Test found {len(results)} {plural(len(results), 'result')} from {host}")
+        lazylibrarian.test_data = ''
+        print(results)
+        return len(results)
+    logger.debug(f"Found {len(results)} {plural(len(results), 'result')} from {host}")
+    lazylibrarian.test_data = ''
     return results
 
 
