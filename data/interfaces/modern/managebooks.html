@@ -50,16 +50,27 @@ ${bk.headIncludes()}
     <span class="flex-grow-1"></span>
     <div class="input-group input-group-sm llb-search">
       <span class="input-group-text rounded-start-pill bg-transparent"><i class="fa fa-filter" aria-hidden="true"></i></span>
-      <input type="search" id="llmg-q" class="form-control rounded-end-pill" x-model.debounce.300ms="q"
+      <input type="search" id="llmg-q" class="form-control " x-model.debounce.300ms="q"
              placeholder="${_('Filter books') | h}" autocomplete="off" aria-label="${_('Filter books') | h}">
-    </div>
-    <div class="btn-group btn-group-sm llb-views" role="group" aria-label="${_('View') | h}">
-      <template x-for="v in views" :key="v.id">
-        <button type="button" class="btn" :class="view === v.id ? 'btn-secondary' : 'btn-outline-secondary'"
-                :aria-pressed="view === v.id" :title="v.label" :aria-label="v.label" @click="setView(v.id)">
-          <i class="fa" :class="v.icon" aria-hidden="true"></i>
+      %if len(types) > 1 and perm&lazylibrarian.perm_audio:
+      <%
+        _next_lib = types[(types.index(library) + 1) % len(types)] if library in types else types[0]
+      %>
+      <a style="min-width: 3.25rem" class="btn btn-sm btn-secondary px-3" href="manage?whichStatus=${status_now | u}&library=${_next_lib | u}"
+         title="${_('Switch to') | h} ${status_label(_next_lib) | h}" aria-label="${_('Switch to') | h} ${status_label(_next_lib) | h}">
+        <i class="fa ${lib_icon.get(library, 'fa-book')}" aria-hidden="true"></i><span class="d-none d-sm-inline"> ${status_label(library)}</span></a>
+      %endif
+      <div class="dropdown llb-status">
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-pill border-start-0" data-bs-toggle="dropdown" aria-expanded="false"
+                title="${_('Status') | h}" aria-label="${_('Status') | h}">
+          <i class="fa fa-tasks" aria-hidden="true"></i> ${dict(chips).get(status_now, status_label(status_now))}
         </button>
-      </template>
+        <ul class="dropdown-menu dropdown-menu-end">
+          %for st, label in chips:
+          <li><a class="dropdown-item ${'active' if st == status_now else ''}" href="manage?whichStatus=${st | u}&library=${library | u}">${label}</a></li>
+          %endfor
+        </ul>
+      </div>
     </div>
     <select id="llmg-sort" class="form-select form-select-sm w-auto rounded-pill" x-model="sort" aria-label="${_('Sort') | h}">
       <option value="2:asc">${_('Author')}</option>
@@ -68,22 +79,45 @@ ${bk.headIncludes()}
       <option value="7:desc">${_('Listed')}</option>
       <option value="15:desc">${_('Last Search')}</option>
     </select>
-    %if len(types) > 1 and perm&lazylibrarian.perm_audio:
-    <div class="btn-group btn-group-sm" role="group" aria-label="${_('Library') | h}">
-      %for t in types:
-      <a class="btn ${'btn-secondary' if t == library else 'btn-outline-secondary'}${' rounded-start-pill' if loop.first else ''}${' rounded-end-pill' if loop.last else ''}"
-         href="manage?whichStatus=${status_now | u}&library=${t | u}" title="${status_label(t) | h}" aria-label="${status_label(t) | h}"
-         ${'aria-current="true"' if t == library else ''}><i class="fa ${lib_icon.get(t, 'fa-book')}" aria-hidden="true"></i></a>
-      %endfor
+    <div class="dropdown llb-views">
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
+              title="${_('View') | h}" aria-label="${_('View') | h}">
+        <i class="fa" :class="(views.find(function (v) { return v.id === view; }) || views[0]).icon" aria-hidden="true"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <template x-for="v in views" :key="v.id">
+          <li><button type="button" class="dropdown-item" :class="view === v.id && 'active'" @click="setView(v.id)">
+            <i class="fa fa-fw me-2" :class="v.icon" aria-hidden="true"></i><span x-text="v.label"></span>
+          </button></li>
+        </template>
+      </ul>
     </div>
-    %endif
     %if perm&lazylibrarian.perm_status or CONFIG['USER_ACCOUNTS']:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" x-show="selecting" x-cloak @click="selectAll()">${_('Select all')}</button>
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="selecting ? stopSelect() : (selecting = true)"
             x-text="selecting ? T.done : T.select"></button>
+    <div class="dropdown dropup ll-selmenu" x-show="selecting" x-cloak>
+      <button type="button" class="btn btn-sm btn-ll rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+              x-text="llNgettext(T.selected, selCount)"></button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        %if perm&lazylibrarian.perm_status and marks:
+        %if both_on:
+        <li><button type="button" class="dropdown-item" :class="fmt.eBook && 'active'" @click.stop="toggleFmt('eBook')"><i class="fa fa-book fa-fw me-2" aria-hidden="true"></i>${_('eBook')}</button></li>
+        <li><button type="button" class="dropdown-item" :class="fmt.AudioBook && 'active'" @click.stop="toggleFmt('AudioBook')"><i class="fa fa-headphones fa-fw me-2" aria-hidden="true"></i>${_('AudioBook')}</button></li>
+        <li><hr class="dropdown-divider"></li>
+        %endif
+        %for st in marks:
+        <li><button type="button" class="dropdown-item" @click="bulk(fmtAction('${st}'))">${status_label(st)}</button></li>
+        %endfor
+        %endif
+        %for code, label in actions:
+        <li><button type="button" class="dropdown-item" @click="bulk('${code}')">${label}</button></li>
+        %endfor
+      </ul>
+    </div>
     %endif
     %if perm&lazylibrarian.perm_force:
-    <div class="dropdown">
+    <div class="dropdown ll-top">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
               title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
       <ul class="dropdown-menu dropdown-menu-end">
@@ -113,13 +147,6 @@ ${bk.headIncludes()}
       </ul>
     </div>
     %endif
-  </div>
-
-  <div class="d-flex gap-2 llmg-chips pb-1 mb-3" role="group" aria-label="${_('Status') | h}">
-    %for st, label in chips:
-    <a class="btn btn-sm rounded-pill text-nowrap ${'btn-secondary' if st == status_now else 'btn-outline-secondary'}"
-       href="manage?whichStatus=${st | u}&library=${library | u}" ${'aria-current="true"' if st == status_now else ''}>${label}</a>
-    %endfor
   </div>
 
   <div class="llb-grid" :class="'llb-v-' + view">
@@ -164,28 +191,6 @@ ${bk.headIncludes()}
   </div>
   <div x-ref="sentinel" class="text-center text-body-secondary small py-4" x-text="done && books.length ? T.allShown : ''"></div>
 
-  %if perm&lazylibrarian.perm_status or CONFIG['USER_ACCOUNTS']:
-  <div class="llb-bar d-flex align-items-center gap-2 flex-wrap" :class="!selecting && 'llb-bar-hidden'" role="region" aria-label="${_('Selected books') | h}">
-    <span class="fw-semibold me-auto" x-text="llNgettext(T.selected, selCount)"></span>
-    %if perm&lazylibrarian.perm_status and marks:
-    %if both_on:
-    <div class="btn-group btn-group-sm" role="group" aria-label="${_('Library') | h}">
-      <button type="button" class="btn rounded-start-pill" :class="fmt.eBook ? 'btn-secondary' : 'btn-outline-secondary'" :aria-pressed="fmt.eBook"
-              @click="toggleFmt('eBook')" title="${_('eBook') | h}" aria-label="${_('eBook') | h}"><i class="fa fa-book" aria-hidden="true"></i></button>
-      <button type="button" class="btn rounded-end-pill" :class="fmt.AudioBook ? 'btn-secondary' : 'btn-outline-secondary'" :aria-pressed="fmt.AudioBook"
-              @click="toggleFmt('AudioBook')" title="${_('AudioBook') | h}" aria-label="${_('AudioBook') | h}"><i class="fa fa-headphones" aria-hidden="true"></i></button>
-    </div>
-    %endif
-    %for st in marks:
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk(fmtAction('${st}'))">${status_label(st)}</button>
-    %endfor
-    %endif
-    %for code, label in actions:
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('${code}')">${label}</button>
-    %endfor
-    <button type="button" class="btn btn-sm btn-link" @click="stopSelect()">${_('Cancel')}</button>
-  </div>
-  %endif
 
   <div class="modal fade" id="llmg-result" tabindex="-1" aria-labelledby="llmg-result-title" aria-hidden="true" x-ref="resultModal">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"><div class="modal-content">
