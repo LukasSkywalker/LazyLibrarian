@@ -153,7 +153,7 @@ ${bk.headIncludes()}
         <li><hr class="dropdown-divider"></li>
         %endif
         %if perm&lazylibrarian.perm_force:
-        <li><a class="dropdown-item" href="refresh_series?seriesid=${sid | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Refresh Series')}</a></li>
+        <li><a class="dropdown-item" href="refresh_series?seriesid=${sid | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Update series from the web')}</a></li>
         %endif
         %if perm&lazylibrarian.perm_edit:
         <li><a class="dropdown-item" href="edit_series?seriesid=${sid | u}"><i class="fa fa-pencil-alt fa-fw me-2" aria-hidden="true"></i>${_('Edit')}</a></li>
