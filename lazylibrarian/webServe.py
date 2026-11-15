@@ -3399,6 +3399,13 @@ class WebInterface:
         self.check_permitted(lazylibrarian.perm_force)
         logger = logging.getLogger(__name__)
         fuzzlogger = logging.getLogger('special.fuzz')
+        ajax = bool(kwargs.get('ajax'))
+
+        def reply(ok, msg):
+            # the modern UI asks for json so it can show a notice, the old UIs just get redirected
+            cherrypy.response.headers['Content-Type'] = 'application/json'
+            return json.dumps({'ok': ok, 'msg': msg})
+
         db = database.DBConnection()
         authorsearch = db.match('SELECT AuthorName from authors WHERE AuthorID=?', (authorid,))
         if authorsearch:  # to stop error if try to refresh an author while they are still loading
@@ -3410,6 +3417,8 @@ class WebInterface:
                 types.append('AudioBook')
             if not types:
                 db.close()
+                if ajax:
+                    return reply(False, i18n.gettext('No library is enabled'))
                 raise cherrypy.HTTPRedirect('authors')
             library = types[0]
             if 'library' in kwargs and kwargs['library'] in types:
@@ -3468,12 +3477,17 @@ class WebInterface:
                 try:
                     threading.Thread(target=library_scan, name=f'AUTHOR_SCAN_{authorid}',
                                      args=[authordir, library, authorid, remv]).start()
+                    ok, msg = True, i18n.gettext('Scan started')
                 except Exception as e:
                     logger.error(f'Unable to complete the scan: {type(e).__name__} {str(e)}')
+                    ok, msg = False, i18n.gettext('Unable to start the scan, check the log')
             else:
                 # maybe we don't have any of their books
                 logger.warning(f'Unable to find author directory: {authordir}')
+                ok, msg = False, i18n.gettext('Author folder not found: %(dir)s') % {'dir': authordir}
             db.close()
+            if ajax:
+                return reply(ok, msg)
             raise cherrypy.HTTPRedirect(f"author_page?authorid={authorid}&library={library}")
         logger.debug(f'ScanAuthor Invalid authorid [{authorid}]')
         db.close()
