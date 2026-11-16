@@ -78,9 +78,7 @@ from lazylibrarian.formatter import (
 from lazylibrarian.ircbot import irc_query
 from lazylibrarian.soulseek import SLSKD
 from lazylibrarian.telemetry import record_usage_data
-from lazylibrarian.mlp import mlp_download
-from lazylibrarian.mlp import valid_url as valid_mlp_url
-from lazylibrarian.webshare import valid_ident, webshare_download
+from lazylibrarian.sources.registry import direct_provider
 from lib.bencode import BencodeDecodeError, bdecode, bencode
 
 from .magnet2torrent import magnet2torrent
@@ -409,19 +407,20 @@ def direct_dl_method(bookid=None, dl_title=None, dl_url=None, library='eBook', p
         db.close()
         return False, fname
 
-    if provider == 'webshare':
-        if not valid_ident(dl_url):
-            return False, f"Invalid webshare ident [{dl_url}]"
+    registered = direct_provider(provider)
+    if registered and registered.download:
+        if registered.valid_url and not registered.valid_url(dl_url):
+            return False, f"Invalid {provider} url [{dl_url}]"
         folder = ''
         db = database.DBConnection()
         res = db.match('SELECT bookname from books WHERE bookid=?', (bookid,))
         if res and res['bookname']:
             folder = sanitize(res['bookname'], is_folder_or_file=True)
         try:
-            success, fname = webshare_download(dl_url, folder, dl_title)
+            success, fname = registered.download(dl_url, folder, dl_title)
         except Exception as e:
             success = False
-            fname = f"Webshare download error: {e}"
+            fname = f"{registered.label} download error: {e}"
         if not success:
             logger.error(fname)
 
@@ -440,33 +439,6 @@ def direct_dl_method(bookid=None, dl_title=None, dl_url=None, library='eBook', p
             cmd = ("UPDATE wanted SET status=?, dlresult=?, Source=?, DownloadID=?, completed=? "
                    "WHERE BookID=? and NZBProv=?")
             db.action(cmd, (status, dlresult, source, dl_url, int(time.time()), bookid, provider))
-        db.close()
-        record_usage_data(f'Download/Direct/{provider}/{"Success" if success else "Failed"}')
-        return success, dlresult
-
-    if provider == 'mlp':
-        if not valid_mlp_url(dl_url):
-            return False, f"Invalid mlp url [{dl_url}]"
-        folder = ''
-        db = database.DBConnection()
-        res = db.match('SELECT bookname from books WHERE bookid=?', (bookid,))
-        if res and res['bookname']:
-            folder = sanitize(res['bookname'], is_folder_or_file=True)
-        try:
-            success, fname = mlp_download(dl_url, folder, dl_title)
-        except Exception as e:
-            success = False
-            fname = f"MLP download error: {e}"
-        if not success:
-            logger.error(fname)
-
-        status = 'Snatched' if success else 'Failed'
-        dlresult = '' if success else fname
-        if success and library == 'eBook':
-            db.action("UPDATE books SET status='Snatched' WHERE BookID=?", (bookid,))
-        cmd = ("UPDATE wanted SET status=?, dlresult=?, Source=?, DownloadID=?, completed=? "
-               "WHERE BookID=? and NZBProv=?")
-        db.action(cmd, (status, dlresult, source, dl_url, int(time.time()), bookid, provider))
         db.close()
         record_usage_data(f'Download/Direct/{provider}/{"Success" if success else "Failed"}')
         return success, dlresult

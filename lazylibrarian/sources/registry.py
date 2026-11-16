@@ -50,6 +50,9 @@ class DirectProvider:
     result_title: bool = False    # the snatched file is named by the result title, not the book name
     telemetry: str = ''           # usage key Query/<telemetry>, default the config key
     order: int = 100              # search order, lowest first
+    valid_url: Optional[Callable] = None  # valid_url(url) -> bool, checks the url of a result before it is used
+    download: Optional[Callable] = None   # download(url, folder, title) -> (success, message or filename)
+                                          # a provider with this needs no branch in direct_dl_method
 
     @property
     def usage_key(self) -> str:
@@ -95,6 +98,12 @@ def direct_provider(key_or_name: str) -> Optional[DirectProvider]:
         if key_or_name in (provider.key, provider.name):
             return provider
     return None
+
+
+def url_checker(name: str) -> Optional[Callable]:
+    """ The function that checks the url of a result from this provider, None if it has no check """
+    provider = direct_provider(name)
+    return provider.valid_url if provider else None
 
 
 def search_kind(search_type: str) -> str:

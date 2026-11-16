@@ -20,5 +20,16 @@ def search(book, search_type):
     return mlp_search(book, 'ebook')
 
 
+def valid_url(url):
+    from lazylibrarian.mlp import valid_url as mlp_valid_url
+    return mlp_valid_url(url)
+
+
+def download(url, folder, title):
+    from lazylibrarian.mlp import mlp_download
+    return mlp_download(url, folder, title)
+
+
 register_direct_provider(DirectProvider(key='MLP', name='mlp', label='Městská knihovna v Praze', search=search,
-                                        types='E', general=False, result_title=True, order=50))
+                                        types='E', general=False, result_title=True, order=50,
+                                        valid_url=valid_url, download=download))

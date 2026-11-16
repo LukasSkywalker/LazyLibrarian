@@ -20,5 +20,16 @@ def search(book, search_type):
     return webshare_search(book, media_type(search_type))
 
 
+def valid_url(url):
+    from lazylibrarian.webshare import valid_ident
+    return valid_ident(url)
+
+
+def download(url, folder, title):
+    from lazylibrarian.webshare import webshare_download
+    return webshare_download(url, folder, title)
+
+
 register_direct_provider(DirectProvider(key='WEBSHARE', name='webshare', label='Webshare', search=search,
-                                        types='EAM', result_title=True, order=40))
+                                        types='EAM', result_title=True, order=40,
+                                        valid_url=valid_url, download=download))
