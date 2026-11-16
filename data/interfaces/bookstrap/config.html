@@ -316,6 +316,16 @@
                       </div>
                     </fieldset>
                   </fieldset>
+                  <fieldset>
+                    <legend>${_('Timeouts')}</legend>
+                    <div class="input-group">
+                      <label for="http_timeout" class="input-group-addon">${_('Requests')}</label>
+                      <input type="number" id="http_timeout" name="http_timeout" value="${CONFIG['HTTP_TIMEOUT']}" min="30" class="form-control" placeholder="${_('seconds') | h}">
+                      <label for="http_ext_timeout" class="input-group-addon">${_('Aggregate indexers')}</label>
+                      <input type="number" id="http_ext_timeout" name="http_ext_timeout" value="${CONFIG['HTTP_EXT_TIMEOUT']}" min="30" class="form-control" placeholder="${_('seconds') | h}">
+                    </div>
+                    <span class="help-block">${_('How many seconds LazyLibrarian waits for a site, an indexer or a download client to answer (at least 30). Raise it when an indexer behind FlareSolverr times out. Aggregate indexers is for Torznab all/aggregate feeds that ask many trackers at once.')}</span>
+                  </fieldset>
                     <fieldset>
                       <legend>${_('Logs')}</legend>
                       <div class="input-group">
@@ -1720,6 +1730,11 @@
                       <span class="input-group-addon">${_('Used')}</span>
                       <input type="text" id="newznab_${loop.index}_apicount" name="newznab_${loop.index}_apicount" value="${provider['APICOUNT']}" class="form-control" placeholder="" readonly="true">
                     </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">${_('Timeout')}</span>
+                      <input type="number" id="newznab_${loop.index}_timeout" name="newznab_${loop.index}_timeout" value="${provider.get_int('TIMEOUT') or ''}" min="0" class="form-control" placeholder="${_('general timeout') | h}">
+                      <span class="input-group-addon">${_('seconds')}</span>
+                    </div>
                   </div>
                   %endfor
                 </fieldset>
@@ -1778,6 +1793,11 @@
                     <div class="input-group">
                       <span class="input-group-addon">${_('Seed Duration')}</span>
                       <input type="number" id="torznab_${loop.index}_seed_duration" name="torznab_${loop.index}_seed_duration" value="${provider['SEED_DURATION']}" class="form-control" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">${_('Timeout')}</span>
+                      <input type="number" id="torznab_${loop.index}_timeout" name="torznab_${loop.index}_timeout" value="${provider.get_int('TIMEOUT') or ''}" min="0" class="form-control" placeholder="${_('general timeout') | h}">
+                      <span class="input-group-addon">${_('seconds')}</span>
                     </div>
                     <div class="input-group">
                       <span class="input-group-addon">${_('API Limit')}</span>

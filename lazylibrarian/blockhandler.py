@@ -3,13 +3,33 @@
 # Purpose:
 #   Handle blocking behaviour, keep track of blocked providers, etc
 
+import html
 import json
 import logging
 import os
+import re
 import time
 
 from lazylibrarian.configtypes import ConfigDict
 from lazylibrarian.formatter import plural, pretty_approx_time, today
+
+_COMMENT = re.compile(r'<!--.*?-->', re.S)
+_TAG = re.compile(r'<[^>]*>')
+_TITLE = re.compile(r'<title[^>]*>(.*?)</title>', re.I | re.S)
+
+
+def tidy_reason(why) -> str:
+    """ A block reason fit to show: an error page that came back instead of a message (eg from Cloudflare)
+        is cut down to its title, or its text, and whitespace is collapsed """
+    why = str(why or '')
+    if re.search(r'<(!doctype|html|head|body|title|!--)', why, re.I):
+        head = why.split('<', 1)[0]
+        title = _TITLE.search(why)
+        text = title.group(1) if title else _TAG.sub(' ', _COMMENT.sub(' ', why[len(head):]))
+        # a page cut short (a block saved by an older version) can end in half a tag
+        text = re.sub(r'<[^>]*$', '', text)
+        why = ' '.join((head + html.unescape(text)).split()).rstrip(' :')
+    return ' '.join(why.split())
 
 
 class BlockHandler:
@@ -121,6 +141,7 @@ class BlockHandler:
             logger.debug(f'Not blocking {who},{why} as timer is zero')
             return 0
 
+        why = tidy_reason(why)
         if len(why) > 80:
             why = why[:80]
 
@@ -203,7 +224,7 @@ class BlockHandler:
         for key, line in self._provider_list.items():
             remaining = int(line['resume']) - timenow
             if remaining > 0:
-                result[key] = {'remaining': remaining, 'reason': line.get('reason', '')}
+                result[key] = {'remaining': remaining, 'reason': tidy_reason(line.get('reason', ''))}
         return result
 
     def get_text_list_of_blocks(self) -> str:

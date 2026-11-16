@@ -2023,7 +2023,9 @@ def newznab_plus(book: dict, provider: ConfigDict, search_type: str, search_mode
 
     rootxml = None
     logger.debug(f"URL = {url}")
-    result, success = fetch_url(url, raw=True, impersonate='chrome')
+    # its own Timeout (0 uses the general one), for a slow indexer such as one behind FlareSolverr
+    timeout = provider.get_int('TIMEOUT') if 'TIMEOUT' in provider else 0
+    result, success = fetch_url(url, raw=True, impersonate='chrome', timeout=timeout if timeout > 0 else True)
 
     if test:
         try:

@@ -651,6 +651,7 @@ ARRAY_DEFS: dict[str, DefaultArrayDef] = {
         ConfigInt('', "RATELIMIT", 0),
         ConfigInt('', "DLPRIORITY", 0),
         ConfigDownloadTypes('', "DLTYPES", 'A,E,M'),
+        ConfigInt('', "TIMEOUT", 0),  # seconds, 0 uses HTTP_TIMEOUT
         ConfigInt('', "LASTUSED", 0),
     ]),
     'TORZNAB': ('HOST', 'Torznab_%s', [
@@ -679,6 +680,7 @@ ARRAY_DEFS: dict[str, DefaultArrayDef] = {
         ConfigInt('', "SEEDERS", 0),
         ConfigFloat('', "SEED_RATIO", 0),
         ConfigInt('', "SEED_DURATION", 0),
+        ConfigInt('', "TIMEOUT", 0),  # seconds, 0 uses HTTP_TIMEOUT
         ConfigInt('', "LASTUSED", 0),
     ]),
     'RSS': ('HOST', 'RSS_%s', [

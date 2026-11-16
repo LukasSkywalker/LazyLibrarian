@@ -71,6 +71,7 @@ from lazylibrarian.auth import (
     require_auth,
 )
 from lazylibrarian.blockhandler import BLOCKHANDLER
+from lazylibrarian.blockhints import block_hint
 from lazylibrarian.booklanguages import (
     anna_search_languages,
     book_language_label,
@@ -9309,12 +9310,13 @@ class WebInterface:
                 found = lower.get(key.lower())
                 if found:
                     matched.add(found)
-                    if cards[prefix] is None:
-                        cards[prefix] = dict(blocks[found], key=found)
+                    if cards[prefix] is None:  # with what to change, and where, so it works again
+                        cards[prefix] = dict(blocks[found], key=found, hint=block_hint(prefix, blocks[found]['reason']))
             if card['enabled'] or cards[prefix]:
                 providers.append({'id': prefix, 'name': card['name'], 'enabled': card['enabled'],
                                   'block': cards[prefix]})
-        other = [dict(blocks[k], key=k) for k in sorted(blocks, key=str.lower) if k not in matched]
+        other = [dict(blocks[k], key=k, hint=block_hint('', blocks[k]['reason']))
+                 for k in sorted(blocks, key=str.lower) if k not in matched]
         return json.dumps({'cards': cards, 'providers': providers, 'other': other})
 
     @cherrypy.expose

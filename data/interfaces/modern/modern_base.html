@@ -308,6 +308,7 @@
     .ll-prov-row .ll-pt { flex: 1 1 auto; min-width: 0; }
     .ll-prov-row .ll-pn { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .ll-prov-row .ll-pr { display: block; font-size: .75rem; color: var(--bs-danger-text-emphasis); overflow-wrap: anywhere; }
+    .ll-prov-row .ll-ph { display: block; font-size: .72rem; color: var(--bs-secondary-color); overflow-wrap: anywhere; margin-top: .1rem; }
     .ll-prov-row .btn { flex: 0 0 auto; font-size: .72rem; padding: .05rem .55rem; }
     .ll-theme-btn .ll-t { display: none; }
     [data-ll-theme="auto"] .ll-theme-btn .ll-t-auto, [data-ll-theme="light"] .ll-theme-btn .ll-t-light,
@@ -784,6 +785,9 @@
           var why = document.createElement('span'); why.className = 'll-pr';
           why.textContent = T.left.replace('%(time)s', left(b.remaining)) + (b.reason ? ': ' + b.reason : '');
           t.appendChild(why);
+          if (b.hint) {  // what to change, and where (block_hint in blockhints.py)
+            var hint = document.createElement('span'); hint.className = 'll-ph'; hint.textContent = b.hint; t.appendChild(hint);
+          }
           var u = document.createElement('button'); u.type = 'button'; u.className = 'btn btn-sm btn-outline-danger rounded-pill';
           u.textContent = T.unblock; u.setAttribute('aria-label', T.unblock + ' ' + name);
           u.addEventListener('click', function () {
