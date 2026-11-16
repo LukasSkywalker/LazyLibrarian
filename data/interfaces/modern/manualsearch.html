@@ -1,6 +1,6 @@
 <%inherit file="modern_base.html" />
 <%!
-    from urllib.parse import urlencode
+    from urllib.parse import unquote, unquote_plus, urlencode
     import lazylibrarian
     from lazylibrarian.config2 import CONFIG
     page_id = 'manualsearch'
@@ -41,9 +41,11 @@
             score = 0.0
         snatch = ''
         if can_snatch:
+            # search_item quotes url and url_title for templates that paste them into a link as-is,
+            # undo that here so urlencode does not encode them a second time
             snatch = 'snatch_book?' + urlencode({'bookid': bookid or '', 'mode': item.get('mode') or '', 'provider': item.get('provider') or '',
-                                                 'title': item.get('url_title') or '', 'size': item.get('size') or '',
-                                                 'library': library or 'eBook', 'url': item.get('url') or ''})
+                                                 'title': unquote(item.get('url_title') or ''), 'size': item.get('size') or '',
+                                                 'library': library or 'eBook', 'url': unquote_plus(item.get('url') or '')})
         rows.append({'n': n, 'title': str(item.get('title') or ''), 'provider': str(item.get('provider') or ''),
                      'page': item.get('prov_page') or '', 'size': size, 'date': str(item.get('date') or ''),
                      'mode': str(item.get('mode') or ''), 'score': score, 'snatch': snatch})
