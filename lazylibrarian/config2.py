@@ -752,8 +752,8 @@ def wishlist_type(host: str) -> str:
     Return type of wishlist at host, or empty string if host is not a wishlist
     (Quite fragile, take care)
     """
-    # GoodReads rss feeds
-    if 'goodreads' in host and 'list_rss' in host:
+    # GoodReads shelves, the rss feed or shelf page url, read through the bookshelf widget
+    if 'goodreads' in host and ('list_rss' in host or '/review/list/' in host):
         return 'goodreads'
     # GoodReads Listopia html pages
     if 'goodreads' in host and '/list/show/' in host:

@@ -17,7 +17,7 @@ import re
 import threading
 import time
 from copy import deepcopy
-from urllib.parse import urlencode, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 from xml.etree import ElementTree
 
 try:
@@ -136,7 +136,7 @@ def test_provider(name: str, host=None, api=None):
                     if not host:
                         host = provider['HOST']
                     if 'goodreads' in host:
-                        if 'list_rss' in host:
+                        if wishlist_type(host) == 'goodreads':
                             return goodreads(host, provider['NAME'], provider.get_int('DLPRIORITY'),
                                              provider['DISPNAME'], test=True), provider['DISPNAME']
                         if '/show/' in host or '/book/' in host:
@@ -1585,91 +1585,184 @@ def mam(host=None, feednr=None, priority=0, dispname=None, types='E', test=False
     return results
 
 
+GR_REVIEW_PATTERN = re.compile(r'/review/show/(\d+)')
+GR_COVER_BOOKID_PATTERN = re.compile(r'/books/\d+[a-z]/(\d+)\.')
+
+
+def goodreads_widget_url(host: str, widget_id: str) -> tuple:
+    """
+    Goodreads stopped serving the shelf rss feeds (/review/list_rss/...) in October 2026.
+    Map a shelf rss feed or shelf page url to the public bookshelf widget of the same shelf.
+    Return (widget url, user id, shelf), raise ValueError if the url can't be read through the widget
+    """
+    url = host if str(host)[:4] == 'http' else f'https://{host}'
+    parsed = urlparse(url)
+    if parsed.path.startswith('/group/bookshelf/'):
+        raise ValueError('Goodreads no longer offers feeds for group bookshelves')
+    user = ''
+    for prefix in ('/review/list_rss/', '/review/list/'):
+        if parsed.path.startswith(prefix):
+            user = parsed.path[len(prefix):]
+            break
+    user_id = re.match(r'\d*', user).group()
+    if not user_id:
+        raise ValueError('No Goodreads user id in the url')
+    shelf = parse_qs(parsed.query).get('shelf', [''])[0]
+    # Without a shelf the widget gives the read shelf, and it gives no books for #ALL#
+    if not shelf or shelf.upper() == '#ALL#':
+        raise ValueError('The url needs a single shelf, such as ?shelf=to-read')
+    params = {
+        'shelf': shelf,
+        'num_books': 100,
+        'sort': 'date_added',
+        'order': 'd',
+        'show_author': 1,
+        'show_cover': 1,
+        'show_title': 1,
+        # Goodreads caches the widget per widget_id, a new one gets the current shelf
+        'widget_id': widget_id,
+    }
+    return f'https://www.goodreads.com/review/custom_widget/{user_id}?{urlencode(params)}', user_id, shelf
+
+
+def unescape_js_string(text: str) -> str:
+    """ Read a single quoted javascript string literal, stop at the closing quote """
+    escapes = {'n': '\n', 't': '\t', 'r': '\r', 'b': '\b', 'f': '\f', 'v': '\v'}
+    out = []
+    i = 0
+    while i < len(text):
+        c = text[i]
+        if c == "'":
+            return ''.join(out)
+        if c == '\\' and i + 1 < len(text):
+            nxt = text[i + 1]
+            if nxt == 'u':
+                code = int(text[i + 2:i + 6], 16)
+                i += 6
+                # characters outside the BMP come as a surrogate pair
+                if 0xD800 <= code < 0xDC00 and text[i:i + 2] == chr(92) + 'u':
+                    low = int(text[i + 2:i + 6], 16)
+                    code = 0x10000 + ((code - 0xD800) << 10) + (low - 0xDC00)
+                    i += 6
+                out.append(chr(code))
+                continue
+            if nxt == 'x':
+                out.append(chr(int(text[i + 2:i + 4], 16)))
+                i += 4
+                continue
+            out.append(escapes.get(nxt, nxt))
+            i += 2
+            continue
+        out.append(c)
+        i += 1
+    raise ValueError('Unterminated widget_code string')
+
+
+def parse_goodreads_widget(content: str, shelf: str) -> list:
+    """
+    Parse the javascript of a Goodreads bookshelf widget,
+    return a list of dicts with title, author, bookid (from the cover, can be empty)
+    Raise ValueError if the widget is not a shelf, or a different shelf
+    """
+    if "var widget_code = '" not in content:
+        raise ValueError('No widget_code in the Goodreads widget')
+    code = unescape_js_string(content.split("var widget_code = '", 1)[1])
+    soup = BeautifulSoup(code, 'html.parser')
+
+    # Class names end with the widget_id, match on their prefix
+    def cls(name):
+        return re.compile(f'^gr_custom_{name}_')
+
+    header = soup.find(class_=cls('header'))
+    link = header.find('a') if header else None
+    if not link:
+        # e.g. an unknown user gives "This Goodreads widget is not correct."
+        raise ValueError(f"Unexpected Goodreads widget: {' '.join(soup.get_text().split())[:200]}")
+    header_shelf = parse_qs(urlparse(link.get('href', '')).query).get('shelf', [''])[0]
+    if header_shelf != shelf:
+        raise ValueError(f'Goodreads widget is for shelf [{header_shelf}] instead of [{shelf}]')
+
+    books = []
+    for each in soup.find_all(class_=cls('each_container')):
+        book = each.find(class_=cls('book_container'))
+        book_link = book.find('a') if book else None
+        if not book_link or not GR_REVIEW_PATTERN.search(book_link.get('href', '')):
+            continue
+        title = book_link.get('title', '')
+        if not title:
+            title_div = each.find(class_=cls('title'))
+            title = title_div.get_text() if title_div else ''
+        author_div = each.find(class_=cls('author'))
+        author_link = author_div.find('a') if author_div else None
+        author = author_link.get_text() if author_link else ''
+        # The widget has no book id, the cover image is named after the book
+        img = book.find('img')
+        match = GR_COVER_BOOKID_PATTERN.search(img.get('src', '')) if img else None
+        books.append({
+            'title': ' '.join(title.split()),
+            'author': ' '.join(author.split()),
+            'bookid': match.group(1) if match else '',
+        })
+    return books
+
+
 def goodreads(host=None, feednr=None, priority=0, dispname=None, types='E', test=False, label=''):
     """
-    Goodreads rss query function, return all the results in a list, can handle multiple wishlists
-    but expects goodreads format (looks for goodreads category names)
+    Goodreads shelf query function, return all the books on the shelf in a list.
+    The shelf rss feeds are gone, the shelf is read through the public bookshelf widget,
+    which gives the 100 most recently added books
     """
     logger = logging.getLogger(__name__)
     if not test:
         TELEMETRY.record_usage_data('Wishlist/goodreads')
     results = []
-    basehost = host
     if not dispname:
         dispname = host
-    if str(host)[:4] != "http":
-        host = f"http://{host}"
-
-    url = host
-    maxpage = priority
-    page = 1
-    next_page = True
 
     lazylibrarian.test_data = f'Querying {dispname}'
+    try:
+        url, user_id, shelf = goodreads_widget_url(host, f'll{int(time.time() * 1000)}')
+    except ValueError as e:
+        logger.error(f'Goodreads wishlist {dispname}: {e}')
+        lazylibrarian.test_data = ''
+        return 0 if test else results
 
-    while next_page:
-        if page > 1:
-            if '?' in host:
-                url = f"{host}&page={page}"
-            else:
-                url = f"{host}?page={page}"
+    result, success = fetch_url(url, impersonate='chrome')
+    books = []
+    if not success:
+        logger.error(f'Error fetching data from {host}: {result}')
+        if not test:
+            BLOCKHANDLER.block_provider(host, result)
+    else:
+        try:
+            books = parse_goodreads_widget(make_unicode(result), shelf)
+        except ValueError as e:
+            logger.error(f'Goodreads wishlist {dispname}: {e}')
 
-        result, success = fetch_url(url, impersonate='chrome')
-        next_page = False
+    provider = f"https://www.goodreads.com/review/list/{user_id}?{urlencode({'shelf': shelf})}"
+    logger.debug(f"Goodreads shelf {provider} returned {len(books)} {plural(len(books), 'result')}")
+    for book in books:
+        if book['title'] and book['author']:
+            results.append({
+                'rss_prov': provider,
+                'rss_feed': feednr,
+                'rss_title': book['title'],
+                'rss_author': book['author'],
+                'rss_bookid': book['bookid'],
+                'rss_isbn': '',
+                'priority': priority,
+                'dispname': dispname,
+                'types': types,
+                'label': label,
+            })
+    if len(books) >= 100:
+        logger.warning(f'Goodreads wishlist {dispname}: only the 100 most recently added books are available')
 
-        if success:
-            data = feedparser.parse(result)
-        else:
-            logger.error(f'Error fetching data from {host}: {result}')
-            if not test:
-                BLOCKHANDLER.block_provider(basehost, result)
-            data = None
-
-        if data:
-            logger.debug(f'Parsing results from {url}')
-            provider = data['feed']['link']
-            if not dispname:
-                dispname = provider
-            logger.debug(f"rss {provider} returned {len(data.entries)} {plural(len(data.entries), 'result')}")
-            for post in data.entries:
-                title = ''
-                book_id = ''
-                author_name = ''
-                isbn = ''
-                if 'title' in post:
-                    title = post.title
-                if 'book_id' in post:
-                    book_id = post.book_id
-                if 'author_name' in post:
-                    author_name = post.author_name
-                if 'isbn' in post:
-                    isbn = post.isbn
-                if title and author_name:
-                    results.append({
-                        'rss_prov': provider,
-                        'rss_feed': feednr,
-                        'rss_title': title,
-                        'rss_author': author_name,
-                        'rss_bookid': book_id,
-                        'rss_isbn': isbn,
-                        'priority': priority,
-                        'dispname': dispname,
-                        'types': types,
-                        'label': label,
-                    })
-                    next_page = True
-        if test:
-            logger.debug(f"Test found {len(results)} {plural(len(results), 'result')} from {host}")
-            lazylibrarian.test_data = ''
-            return len(results)
-
-        page += 1
-        if maxpage and page > maxpage:
-            logger.warning('Maximum results page reached, still more results available')
-            next_page = False
-
-    logger.debug(f"Found {len(results)} {plural(len(results), 'result')} from {host}")
     lazylibrarian.test_data = ''
+    if test:
+        logger.debug(f"Test found {len(results)} {plural(len(results), 'result')} from {host}")
+        return len(results)
+    logger.debug(f"Found {len(results)} {plural(len(results), 'result')} from {host}")
     return results
 
 
