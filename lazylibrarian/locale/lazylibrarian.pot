@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-16 11:18+0000\n"
+"POT-Creation-Date: 2026-11-16 11:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10101,7 +10101,7 @@ msgstr ""
 msgid "%(count)s log file(s) deleted from %(folder)s"
 msgstr ""
 
-#: lazylibrarian/menulinks.py:190
+#: lazylibrarian/menulinks.py:203
 msgid "Downloaded files"
 msgstr ""
 
