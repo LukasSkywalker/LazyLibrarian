@@ -23,7 +23,19 @@
   .llc-sys .btn-danger { --bs-btn-color: var(--bs-danger-text-emphasis); }
   .llc-sys .btn .fa { margin-right: .3rem; opacity: .75; }
   .llc-sys #myAlert { border: 0; background: var(--bs-info-bg-subtle); color: var(--bs-info-text-emphasis); border-radius: 999px; font-size: .78rem; padding: .25rem .75rem; }
-  @media (max-width: 767.98px) { .llc-sys { flex: 1 1 100%; } .llc-sys #subhead_menu { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; } .llc-sys .btn { white-space: nowrap; } }
+  /* on a phone the pills fold into a drop-down under one button, so none of them runs off the screen */
+  .llc-sys-toggle { display: none; }
+  @media (max-width: 767.98px) {
+    .llc-sys { flex: 1 1 100%; }
+    .llc-sys-toggle { display: inline-flex; align-items: center; }
+    .llc-sys-toggle .fa { margin-right: .3rem; opacity: .75; }
+    .llc-sys-toggle .llc-caret { margin: 0 0 0 .4rem; transition: transform .15s; }
+    .llc-sys.open .llc-sys-toggle .llc-caret { transform: rotate(180deg); }
+    .llc-sys #subhead_menu { display: none; flex-direction: column; align-items: stretch; margin-top: .5rem; padding: .4rem; border: 1px solid var(--bs-border-color);
+                             border-radius: 12px; background: var(--bs-tertiary-bg); }
+    .llc-sys.open #subhead_menu { display: flex; }
+    .llc-sys #subhead_menu .btn { text-align: left; white-space: nowrap; }
+  }
 
   .llc-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 2rem; align-items: start; }
   @media (max-width: 991.98px) { .llc-layout { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
@@ -232,7 +244,10 @@
 <div class="llc pt-1" id="llc">
   <div class="llc-head">
     <h1>${title | h}</h1>
-    <div class="llc-sys">${bs.headerIncludes()}</div>
+    <div class="llc-sys">
+      <button type="button" class="btn btn-sm llc-sys-toggle" aria-expanded="false" onclick="var s=this.closest('.llc-sys');this.setAttribute('aria-expanded',s.classList.toggle('open'))"><i class="fa fa-wrench"></i> ${_('System')} <i class="fa fa-chevron-down llc-caret"></i></button>
+      ${bs.headerIncludes()}
+    </div>
   </div>
   <div class="llc-layout">
     <aside class="llc-side">
