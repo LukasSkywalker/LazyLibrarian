@@ -12,6 +12,7 @@
 
 # Anna's Archive, direct provider
 
+from lazylibrarian.configtypes import ConfigInt, ConfigStr
 from lazylibrarian.sources.registry import DirectProvider, media_type, register_direct_provider
 
 
@@ -47,4 +48,11 @@ def test(book, host, api):
 
 register_direct_provider(DirectProvider(key='ANNA', name='annas', label="Anna's Archive", search=search,
                                         on_error=on_error, result_title=True, telemetry='annas', order=30,
-                                        test=test))
+                                        test=test,
+                                        config=(ConfigStr('ANNA', 'ANNA_HOST', 'https://annas-archive.org'),
+                                                ConfigStr('ANNA', 'ANNA_KEY', ''),
+                                                ConfigInt('ANNA', 'ANNA_DLLIMIT', 0),
+                                                ConfigInt('ANNA', 'ANNA_MAX_SERVERS', 1),
+                                                # comma separated upper case 2 letter language codes, ANY,
+                                                # or empty to use IMP_PREFLANG
+                                                ConfigStr('ANNA', 'ANNA_SEARCH_LANG', ''))))

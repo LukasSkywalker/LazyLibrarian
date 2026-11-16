@@ -12,6 +12,7 @@
 
 # Z-Library, direct provider
 
+from lazylibrarian.configtypes import ConfigCSV, ConfigInt, ConfigStr
 from lazylibrarian.sources.registry import DirectProvider, register_direct_provider
 
 
@@ -53,4 +54,12 @@ def test(book, host, api):
 
 
 register_direct_provider(DirectProvider(key='BOK', name='zlibrary', label='Z-Library', search=search,
-                                        on_error=on_error, order=10, test=test))
+                                        on_error=on_error, order=10, test=test,
+                                        config=(ConfigStr('BOK', 'BOK_HOST', 'b-ok.cc'),
+                                                ConfigStr('BOK', 'BOK_PASS', ''),
+                                                ConfigStr('BOK', 'BOK_EMAIL', ''),
+                                                ConfigStr('BOK', 'BOK_REMIX_USERID', ''),
+                                                ConfigStr('BOK', 'BOK_REMIX_USERKEY', ''),
+                                                # comma separated language names, ANY, or empty to use IMP_PREFLANG
+                                                ConfigCSV('BOK', 'BOK_SEARCH_LANG', ''),
+                                                ConfigInt('BOK', 'BOK_DLLIMIT', 5))))

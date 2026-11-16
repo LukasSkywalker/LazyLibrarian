@@ -16,7 +16,8 @@
 
     How to add a direct provider:
     - write the code that searches and downloads, eg lazylibrarian/mlp.py
-    - add its config items (enable switch <KEY>, <KEY>_DLPRIORITY, <KEY>_DLTYPES) to configdefs.py
+    - its config items are the enable switch <KEY>, <KEY>_DLPRIORITY and <KEY>_DLTYPES, added for you, and the
+      ones in DirectProvider.config, eg a host or a login
     - add a module to lazylibrarian/sources/ that calls register_direct_provider() with a DirectProvider.
       Keep that module light: import the provider code inside the functions, so a provider that is
       switched off is never imported. The modules here are found and imported by load_sources().
@@ -51,6 +52,8 @@ class DirectProvider:
     telemetry: str = ''           # usage key Query/<telemetry>, default the config key
     order: int = 100              # search order, lowest first
     valid_url: Optional[Callable] = None  # valid_url(url) -> bool, checks the url of a result before it is used
+    config: tuple = ()            # extra ConfigItems, the switch <KEY>, <KEY>_DLPRIORITY and <KEY>_DLTYPES are added
+    dltypes: str = 'E'            # default of <KEY>_DLTYPES
     test: Optional[Callable] = None       # test(book, host, api) -> result, run by the Test button of the provider
     download: Optional[Callable] = None   # download(url, folder, title) -> (success, message or filename)
                                           # a provider with this needs no branch in direct_dl_method
@@ -91,6 +94,19 @@ def direct_providers() -> list[DirectProvider]:
     """ All registered direct providers in search order """
     load_sources()
     return sorted(_DIRECT.values(), key=lambda p: (p.order, p.key))
+
+
+def direct_config_items() -> list:
+    """ The config items of all direct providers """
+    from lazylibrarian.configtypes import ConfigBool, ConfigDownloadTypes, ConfigInt
+    items = []
+    for provider in direct_providers():
+        key = provider.key
+        items.extend(provider.config)
+        items.append(ConfigBool(key, key, 0))
+        items.append(ConfigInt(key, f'{key}_DLPRIORITY', 0))
+        items.append(ConfigDownloadTypes(key, f'{key}_DLTYPES', provider.dltypes))
+    return items
 
 
 def direct_provider(key_or_name: str) -> Optional[DirectProvider]:
