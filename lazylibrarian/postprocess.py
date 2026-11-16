@@ -109,6 +109,7 @@ from lazylibrarian.preprocessor import (
     preprocess_magazine,
 )
 from lazylibrarian.scheduling import SchedulerCommand, schedule_job
+from lazylibrarian.sources.registry import direct_providers
 from lazylibrarian.telemetry import TELEMETRY
 
 

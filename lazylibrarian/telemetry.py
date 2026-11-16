@@ -33,6 +33,7 @@ from lazylibrarian.common import proxy_list
 from lazylibrarian.config2 import CONFIG, LLConfigHandler
 from lazylibrarian.formatter import thread_name
 from lazylibrarian.processcontrol import get_info_on_caller
+from lazylibrarian.sources.registry import direct_providers
 
 
 class LazyTelemetry:

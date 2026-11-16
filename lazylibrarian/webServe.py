@@ -219,6 +219,7 @@ from lazylibrarian.scheduling import (
 from lazylibrarian.searchbook import search_book
 from lazylibrarian.searchmag import download_maglist, search_magazines
 from lazylibrarian.searchrss import search_wishlist
+from lazylibrarian.sources.registry import direct_provider, direct_providers
 from lazylibrarian.startup import prioritized_infosources
 from lazylibrarian.telemetry import TELEMETRY
 

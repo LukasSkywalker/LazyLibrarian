@@ -35,7 +35,7 @@ from lazylibrarian.blockhandler import BLOCKHANDLER
 from lazylibrarian.cache import fetch_url
 from lazylibrarian.config2 import CONFIG, wishlist_type
 from lazylibrarian.configtypes import ConfigDict
-from lazylibrarian.directparser import bok_grabs, direct_bok, direct_gen
+from lazylibrarian.directparser import direct_bok, direct_gen
 from lazylibrarian.filesystem import DIRS, path_isfile, remove_file, syspath
 from lazylibrarian.formatter import (
     age,
