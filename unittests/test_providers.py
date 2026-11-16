@@ -177,6 +177,7 @@ class ProvidersTest(LLTestCase):
     def test_wishlist_type(self):
         provs = [
             ('https://www.goodreads.com/review/list_rss/userid', 'goodreads'),
+            ('https://www.goodreads.com/review/list/12345678-jane-doe?shelf=to-read', 'goodreads'),
             ('https://www.goodreads.com/list/show/143500.Best_Books_of_the_Decade_2020_s', 'listopia'),
             ('https://www.goodreads.com/book/show/title', 'listopia'),
             ('https://www.amazon.co.uk/charts', 'amazon'),
@@ -189,6 +190,54 @@ class ProvidersTest(LLTestCase):
         ]
         for p in provs:
             self.assertEqual(wishlist_type(p[0]), p[1])
+
+    # Same markup as the Goodreads bookshelf widget, with made up books
+    GR_WIDGET = r"""  var widget_code = '  <div class=\"gr_custom_container_ll1\">\n    <h2 class=\"gr_custom_header_ll1\">\n    <a style=\"text-decoration: none;\" rel=\"nofollow\" href=\"https://www.goodreads.com/review/list/1-jane-doe?shelf=to-read&amp;utm_medium=api&amp;utm_source=custom_widget\">Jane&#39;s books<\/a>\n    <\/h2>\n      <div class=\"gr_custom_each_container_ll1\">\n          <div class=\"gr_custom_book_container_ll1\">\n            <a title=\"The Example Book (Example Series #3)\" rel=\"nofollow\" href=\"https://www.goodreads.com/review/show/1000000001?utm_medium=api&amp;utm_source=custom_widget\"><img alt=\"The Example Book\" border=\"0\" src=\"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1700000000l/87654321._SY75_.jpg\" /><\/a>\n          <\/div>\n          <div class=\"gr_custom_title_ll1\">\n            <a rel=\"nofollow\" href=\"https://www.goodreads.com/review/show/1000000001\">The Example Book<\/a>\n          <\/div>\n          <div class=\"gr_custom_author_ll1\">\n            by <a rel=\"nofollow\" href=\"https://www.goodreads.com/author/show/1000.Ann_Author\">Ann Author<\/a>\n          <\/div>\n      <\/div>\n      <div class=\"gr_custom_each_container_ll1\">\n          <div class=\"gr_custom_book_container_ll1\">\n            <a title=\"Don&#39;t Look Back &amp; Other Stories\" rel=\"nofollow\" href=\"https://www.goodreads.com/review/show/123\"><img alt=\"x\" border=\"0\" src=\"https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png\" /><\/a>\n          <\/div>\n          <div class=\"gr_custom_author_ll1\">\n            by <a rel=\"nofollow\" href=\"https://www.goodreads.com/author/show/1.A_B\">A.B. Writer<\/a>\n          <\/div>\n      <\/div>\n  <\/div>\n'
+  var widget_div = document.getElementById('gr_custom_widget_ll1')
+"""
+
+    def test_goodreads_widget_url(self):
+        url, user_id, shelf = providers.goodreads_widget_url(
+            'https://www.goodreads.com/review/list_rss/12345678?key=KEY&shelf=to-read', 'll1')
+        self.assertEqual('https://www.goodreads.com/review/custom_widget/12345678?shelf=to-read&num_books=100'
+                         '&sort=date_added&order=d&show_author=1&show_cover=1&show_title=1&widget_id=ll1', url)
+        self.assertEqual(('12345678', 'to-read'), (user_id, shelf))
+        # a shelf page url, without the scheme
+        url, user_id, shelf = providers.goodreads_widget_url(
+            'www.goodreads.com/review/list/12345678-jane-doe?shelf=my%20audio', 'll1')
+        self.assertTrue(url.startswith('https://www.goodreads.com/review/custom_widget/12345678?shelf=my+audio&'))
+        self.assertEqual('my audio', shelf)
+        # the widget can't give all books, or a group bookshelf
+        for host in ['https://www.goodreads.com/review/list_rss/12345678',
+                     'https://www.goodreads.com/review/list_rss/12345678?shelf=%23ALL%23',
+                     'https://www.goodreads.com/group/bookshelf/1.rss',
+                     'https://www.goodreads.com/review/list_rss/userid?shelf=to-read']:
+            with self.assertRaises(ValueError):
+                providers.goodreads_widget_url(host, 'll1')
+
+    def test_parse_goodreads_widget(self):
+        books = providers.parse_goodreads_widget(self.GR_WIDGET, 'to-read')
+        self.assertEqual([
+            {'title': 'The Example Book (Example Series #3)', 'author': 'Ann Author', 'bookid': '87654321'},
+            # no cover, so no book id
+            {'title': "Don't Look Back & Other Stories", 'author': 'A.B. Writer', 'bookid': ''},
+        ], books)
+        # the widget of another shelf
+        with self.assertRaises(ValueError):
+            providers.parse_goodreads_widget(self.GR_WIDGET, 'read')
+        # an unknown user
+        with self.assertRaises(ValueError):
+            providers.parse_goodreads_widget(
+                "  var widget_code = '  This Goodreads widget is not correct.\\n'\n", 'to-read')
+
+    def test_unescape_js_string(self):
+        bs = chr(92)
+        self.assertEqual('a"b</a>\n', providers.unescape_js_string(f'a{bs}"b<{bs}/a>{bs}n\' rest'))
+        # unicode escapes, also a surrogate pair
+        self.assertEqual(chr(0x10C) + chr(0x1F600), providers.unescape_js_string(
+            f"{bs}u010c{bs}ud83d{bs}ude00'"))
+        with self.assertRaises(ValueError):
+            providers.unescape_js_string('no closing quote')
 
 
 if __name__ == '__main__':
