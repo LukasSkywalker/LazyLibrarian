@@ -3731,9 +3731,6 @@ class WebInterface:
 
     # book statuses where a provider that failed to download it no longer matters
     HAVE_STATUSES = ('Open', 'Have', 'Snatched', 'Processed')
-    # direct providers are stored in the wanted table by their internal name
-    DIRECT_PROVIDER_NAMES = {'annas': "Anna's Archive", 'zlibrary': 'Z-Library', 'webshare': 'Webshare',
-                             'mlp': 'Městská knihovna v Praze', 'soulseek': 'Soulseek'}
 
     @classmethod
     def _found_not_downloaded(cls, db, bookids) -> dict:
