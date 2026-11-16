@@ -71,6 +71,7 @@ from lazylibrarian.auth import (
     require_auth,
 )
 from lazylibrarian.blockhandler import BLOCKHANDLER
+from lazylibrarian.blockhints import block_hint
 from lazylibrarian.booklanguages import (
     anna_search_languages,
     book_language_label,
@@ -222,6 +223,7 @@ from lazylibrarian.searchrss import search_wishlist
 from lazylibrarian.sources.registry import direct_provider, direct_providers
 from lazylibrarian.startup import prioritized_infosources
 from lazylibrarian.telemetry import TELEMETRY
+from lazylibrarian.torrentparser import ProviderTestFailed
 
 lastauthor = ''
 lastmagazine = ''
@@ -3400,6 +3402,13 @@ class WebInterface:
         self.check_permitted(lazylibrarian.perm_force)
         logger = logging.getLogger(__name__)
         fuzzlogger = logging.getLogger('special.fuzz')
+        ajax = bool(kwargs.get('ajax'))
+
+        def reply(ok, msg):
+            # the modern UI asks for json so it can show a notice, the old UIs just get redirected
+            cherrypy.response.headers['Content-Type'] = 'application/json'
+            return json.dumps({'ok': ok, 'msg': msg})
+
         db = database.DBConnection()
         authorsearch = db.match('SELECT AuthorName from authors WHERE AuthorID=?', (authorid,))
         if authorsearch:  # to stop error if try to refresh an author while they are still loading
@@ -3411,6 +3420,8 @@ class WebInterface:
                 types.append('AudioBook')
             if not types:
                 db.close()
+                if ajax:
+                    return reply(False, i18n.gettext('No library is enabled'))
                 raise cherrypy.HTTPRedirect('authors')
             library = types[0]
             if 'library' in kwargs and kwargs['library'] in types:
@@ -3469,12 +3480,17 @@ class WebInterface:
                 try:
                     threading.Thread(target=library_scan, name=f'AUTHOR_SCAN_{authorid}',
                                      args=[authordir, library, authorid, remv]).start()
+                    ok, msg = True, i18n.gettext('Scan started')
                 except Exception as e:
                     logger.error(f'Unable to complete the scan: {type(e).__name__} {str(e)}')
+                    ok, msg = False, i18n.gettext('Unable to start the scan, check the log')
             else:
                 # maybe we don't have any of their books
                 logger.warning(f'Unable to find author directory: {authordir}')
+                ok, msg = False, i18n.gettext('Author folder not found: %(dir)s') % {'dir': authordir}
             db.close()
+            if ajax:
+                return reply(ok, msg)
             raise cherrypy.HTTPRedirect(f"author_page?authorid={authorid}&library={library}")
         logger.debug(f'ScanAuthor Invalid authorid [{authorid}]')
         db.close()
@@ -3631,9 +3647,6 @@ class WebInterface:
     def snatch_book(self, bookid=None, mode=None, provider=None, url=None, size=None, library=None, title=''):
         self.check_permitted(lazylibrarian.perm_download)
         logger = logging.getLogger(__name__)
-        # manualbook quotes url and title, the web server only undoes one level of it
-        url = unquote_plus(url or '')
-        title = unquote(title or '')
         logger.debug(f"snatch {library} bookid {bookid} mode={mode} from {provider} url=[{url}] {title}")
         db = database.DBConnection()
         bookdata = db.match('SELECT AuthorID, BookName from books WHERE BookID=?', (bookid,))
@@ -3769,6 +3782,11 @@ class WebInterface:
         filtered = []
         logger = logging.getLogger(__name__)
         serversidelogger = logging.getLogger('special.serverside')
+        if kwargs.get('source') not in ('Manage', 'Books', 'Audio', 'Author'):
+            # stale/cached page or external caller without a valid source: empty table, not a traceback
+            logger.warning(f"get_books called without a valid source ({kwargs.get('source')!r}), "
+                           f"reload the page")
+            return {'iTotalDisplayRecords': 0, 'iTotalRecords': 0, 'aaData': []}
         db = database.DBConnection()
         # noinspection PyBroadException
         try:
@@ -5569,6 +5587,17 @@ class WebInterface:
             wantbook = "Wanted" if action in ['AddBook', 'AddBoth'] else 'Skipped'
             wantaudio = "Wanted" if action in ['AddAudio', 'AddBoth'] else 'Skipped'
             for itm in ids:
+                # the value is the book's authorid when the page knows it ('on' from a plain checkbox).
+                # Add that author first, like add_book does, instead of looking the author up by name
+                authorid = args.get(itm)
+                if authorid and authorid != 'on':
+                    db = database.DBConnection()
+                    try:
+                        known = db.match('SELECT AuthorID from authors WHERE AuthorID=?', (authorid,))
+                    finally:
+                        db.close()
+                    if not known:
+                        add_author_to_db(None, False, authorid, False, f'WebServer mark_results {itm}')
                 if api.add_bookid_to_db(itm, wantbook, wantaudio,
                                         f"Added by User from resultlist {wantbook}:{wantaudio}"):
                     passed += 1
@@ -9233,7 +9262,14 @@ class WebInterface:
                     'name': kwargs['name'], 'param': fail}
 
             result, name = test_provider(kwargs['name'], host=host, api=api)
-            if result is False:
+            if isinstance(result, ProviderTestFailed):  # the site answered with an error
+                # the error can be the start of an html error page, and the dialog shows the answer as html
+                reason = ' '.join(html.unescape(re.sub(r'<[^>]*>?', ' ', result)).split())
+                if len(reason) > 150:
+                    reason = f'{reason[:150]}…'
+                msg = i18n.gettext("%(name)s test FAILED: %(reason)s") % {'name': name,
+                                                                           'reason': html.escape(reason)}
+            elif result is False:
                 msg = i18n.gettext("%(name)s test FAILED, check debug log") % {'name': name}
             elif result is True:
                 msg = i18n.gettext("%(name)s test PASSED") % {'name': name}
@@ -9310,12 +9346,13 @@ class WebInterface:
                 found = lower.get(key.lower())
                 if found:
                     matched.add(found)
-                    if cards[prefix] is None:
-                        cards[prefix] = dict(blocks[found], key=found)
+                    if cards[prefix] is None:  # with what to change, and where, so it works again
+                        cards[prefix] = dict(blocks[found], key=found, hint=block_hint(prefix, blocks[found]['reason']))
             if card['enabled'] or cards[prefix]:
                 providers.append({'id': prefix, 'name': card['name'], 'enabled': card['enabled'],
                                   'block': cards[prefix]})
-        other = [dict(blocks[k], key=k) for k in sorted(blocks, key=str.lower) if k not in matched]
+        other = [dict(blocks[k], key=k, hint=block_hint('', blocks[k]['reason']))
+                 for k in sorted(blocks, key=str.lower) if k not in matched]
         return json.dumps({'cards': cards, 'providers': providers, 'other': other})
 
     @cherrypy.expose

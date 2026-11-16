@@ -20,7 +20,7 @@ import traceback
 import unicodedata
 from base64 import b16encode, b32decode, b64encode
 from hashlib import sha1, sha256
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 # noinspection PyBroadException
 try:
@@ -692,6 +692,32 @@ def direct_dl_method(bookid=None, dl_title=None, dl_url=None, library='eBook', p
     return False, res
 
 
+# how many http redirects to follow by hand looking for a magnet link
+MAX_MAGNET_REDIRECTS = 5
+
+
+def find_magnet_redirect(url, headers, proxies) -> str:
+    """ Follow the redirects from url one at a time and return the magnet link
+    they end at, or '' if they don't. The magnet can be more than one hop away,
+    eg Prowlarr redirects to a Jackett indexer which redirects to the magnet. """
+    for _ in range(MAX_MAGNET_REDIRECTS):
+        if url.startswith('https') and CONFIG.get_bool('SSL_VERIFY'):
+            verify = CONFIG['SSL_CERTS'] if CONFIG['SSL_CERTS'] else True
+        else:
+            verify = False
+        r = requests.get(url, headers=headers, timeout=90, proxies=proxies, impersonate='chrome',
+                         verify=verify, allow_redirects=False)
+        location = r.headers.get('Location', '')
+        if location.startswith('magnet:?'):
+            return location
+        if not location:
+            return ''
+        url = urljoin(url, location)
+        if not url.startswith(('http://', 'https://')):
+            return ''
+    return ''
+
+
 def tor_dl_method(bookid=None, tor_title=None, tor_url=None, library='eBook', label='', provider=''):
     logger = logging.getLogger(__name__)
     logging.getLogger('urllib3.connectionpool').setLevel(logging.CRITICAL)
@@ -774,15 +800,9 @@ def tor_dl_method(bookid=None, tor_title=None, tor_url=None, library='eBook', la
                 # curl_cffi doesn't include the redirect target in its error,
                 # so ask again without following redirects to find it
                 try:
-                    if tor_url.startswith('https') and CONFIG.get_bool('SSL_VERIFY'):
-                        verify = CONFIG['SSL_CERTS'] if CONFIG['SSL_CERTS'] else True
-                    else:
-                        verify = False
-                    r = requests.get(tor_url, headers=headers, timeout=90, proxies=proxies, impersonate='chrome',
-                                     verify=verify, allow_redirects=False)
-                    location = r.headers.get('Location', '')
-                    if location.startswith('magnet:?'):
-                        e = Exception(location)
+                    magnet = find_magnet_redirect(tor_url, headers, proxies)
+                    if magnet:
+                        e = Exception(magnet)
                 except Exception:
                     pass
             if "magnet:?" in str(e):

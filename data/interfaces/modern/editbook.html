@@ -52,7 +52,7 @@
   <div class="lle-bar">
     <a class="btn btn-sm btn-outline-secondary rounded-pill" href="${detail | h}"><i class="fa fa-info-circle" aria-hidden="true"></i> ${_('Detail')}</a>
     %if perm & lazylibrarian.perm_force:
-    <a class="btn btn-sm btn-outline-secondary rounded-pill" href="refresh_book?${urlencode({'bookid': bookid}) | h}"><i class="fa fa-sync" aria-hidden="true"></i> ${_('Refresh Book')}</a>
+    <a class="btn btn-sm btn-outline-secondary rounded-pill" href="refresh_book?${urlencode({'bookid': bookid}) | h}"><i class="fa fa-sync" aria-hidden="true"></i> ${_('Update book from the web')}</a>
     %endif
     <form action="booksearch" method="get" class="d-flex gap-2 align-items-center flex-wrap" @submit="busy = true">
       <input type="hidden" name="bookid" value="${bookid | h}">

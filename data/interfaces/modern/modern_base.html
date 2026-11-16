@@ -202,6 +202,33 @@
     @media (min-width: 1500px) { .ll-nav > .container-xl { max-width: 1640px; } }
     /* Config and Help are icons with a tooltip on wide screens, named in the phone menu */
     @media (min-width: 992px) { .ll-nav .ll-sec > .fa { margin-right: 0; } .ll-nav .ll-sec .ll-nl { display: none; } }
+    /* on a wide screen the filter field of every list page is the same width and sits in the middle of the toolbar */
+    @media (min-width: 641px) {
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > .flex-grow-1 { display: none; }
+      /* the title never gives up room to the filter (it used to break "E-knihy" after the hyphen) */
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > :is(h1, h2, .text-body-secondary) { flex: 0 0 auto; white-space: nowrap; }
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > .input-group { flex: 0 0 460px; max-width: 100%; margin-left: auto; margin-right: auto; }
+    }
+    /* on a wide screen (the page is 1296px wide from 1400px) the filter sits exactly in the middle of the toolbar,
+       whatever the title and the buttons are; a toolbar with too many controls to leave room for it opts out with .ll-flow */
+    @media (min-width: 1400px) {
+      .ll-main .d-flex.flex-wrap:not(.ll-flow):has(> :is(h1, h2)):has(> .flex-grow-1) { position: relative; }
+      .ll-main .d-flex.flex-wrap:not(.ll-flow):has(> :is(h1, h2)):has(> .flex-grow-1) > .flex-grow-1 { display: block; }
+      .ll-main .d-flex.flex-wrap:not(.ll-flow):has(> :is(h1, h2)):has(> .flex-grow-1) > .input-group { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 460px; margin: 0; }
+    }
+    /* the "Selected: N" menu stays put in the corner while the books scroll underneath */
+    .ll-main .ll-selmenu { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 1040; order: 0; }
+    .ll-main .ll-selmenu > .btn { padding: .45rem 1.1rem; box-shadow: 0 .25rem .9rem rgba(0, 0, 0, .45); }
+    /* the picked item of every toolbar menu (view, status, ...) wears the accent colour */
+    .ll-main .dropdown-menu .dropdown-item.active, .ll-main .dropdown-menu .dropdown-item:active { background: var(--ll-accent); color: var(--ll-accent-contrast); }
+    /* icon-only toolbar buttons (view, More, ...) all the same square size */
+    .ll-main .d-flex.flex-wrap > .dropdown > .btn:not(.btn-ll):has(> .fa:only-child) { width: 34px; padding-left: 0; padding-right: 0; }
+    /* on a phone the opened menu floats over the page instead of pushing it down */
+    @media (max-width: 991.98px) {
+      .ll-nav .navbar-collapse { position: absolute; top: 100%; left: 0; right: 0; z-index: 1030; padding: .5rem 1rem 1rem;
+                                 background: var(--bs-body-bg); border-bottom: 1px solid var(--bs-border-color);
+                                 box-shadow: 0 .75rem 1rem rgba(0, 0, 0, .25); max-height: calc(100vh - 56px); overflow-y: auto; }
+    }
     @media (min-width: 992px) { .ll-nav .ll-theme-btn > .fa, .ll-nav .ll-only-icon > .fa { margin-right: 0; } }
     .ll-main { padding-top: 1rem; padding-bottom: 6rem; }
     .btn-ll { --bs-btn-bg: var(--ll-accent); --bs-btn-border-color: var(--ll-accent); --bs-btn-color: var(--ll-accent-contrast);
@@ -281,6 +308,7 @@
     .ll-prov-row .ll-pt { flex: 1 1 auto; min-width: 0; }
     .ll-prov-row .ll-pn { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .ll-prov-row .ll-pr { display: block; font-size: .75rem; color: var(--bs-danger-text-emphasis); overflow-wrap: anywhere; }
+    .ll-prov-row .ll-ph { display: block; font-size: .72rem; color: var(--bs-secondary-color); overflow-wrap: anywhere; margin-top: .1rem; }
     .ll-prov-row .btn { flex: 0 0 auto; font-size: .72rem; padding: .05rem .55rem; }
     .ll-theme-btn .ll-t { display: none; }
     [data-ll-theme="auto"] .ll-theme-btn .ll-t-auto, [data-ll-theme="light"] .ll-theme-btn .ll-t-light,
@@ -316,12 +344,13 @@
     .ll-quick .ll-dl-dot { position: absolute; right: 3px; bottom: 4px; width: 9px; height: 9px; border-radius: 50%;
                            background: var(--bs-success); box-shadow: 0 0 0 2px var(--bs-body-bg); }
     /* list page toolbars (title, count, filter, views, sort, Select, Add, More): on a narrow screen the same three
-       lines on every page instead of wherever the buttons happen to wrap: the title with the views, then sort and
-       the buttons, then the filter */
+       rows on every page instead of wherever the buttons happen to wrap: the title with Add and More (.ll-top),
+       then the filter on a row of its own, then the rest of the controls (status, view, sort, library, Select) */
     @media (max-width: 640px) {
-      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1) > .btn-group { order: 1; }
-      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1)::after { content: ""; order: 2; flex: 0 0 100%; margin-top: -.5rem; }
-      .ll-main .d-flex.flex-wrap:has(> h1):has(> .flex-grow-1) > :is(select, .btn, .dropdown) { order: 3; }
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1)::after { content: ""; order: 2; flex: 0 0 100%; margin-top: -.5rem; }
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > .input-group { order: 3; flex: 1 1 100%; }
+      .ll-main .d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > :is(select, .btn, .dropdown, .btn-group) { order: 4; }
+      .ll-main .d-flex.d-flex.flex-wrap:has(> :is(h1, h2)):has(> .flex-grow-1) > .ll-top { order: 1; }
     }
     /* a provider found the book but could not download it (eg Anna's Archive without a secret key) */
     .ll-found { font-size: .66rem; font-weight: 600; padding: 2px 7px; background: rgba(217,130,43,.16); color: #b7651a;
@@ -756,6 +785,9 @@
           var why = document.createElement('span'); why.className = 'll-pr';
           why.textContent = T.left.replace('%(time)s', left(b.remaining)) + (b.reason ? ': ' + b.reason : '');
           t.appendChild(why);
+          if (b.hint) {  // what to change, and where (block_hint in blockhints.py)
+            var hint = document.createElement('span'); hint.className = 'll-ph'; hint.textContent = b.hint; t.appendChild(hint);
+          }
           var u = document.createElement('button'); u.type = 'button'; u.className = 'btn btn-sm btn-outline-danger rounded-pill';
           u.textContent = T.unblock; u.setAttribute('aria-label', T.unblock + ' ' + name);
           u.addEventListener('click', function () {
@@ -931,7 +963,7 @@
   call add_button() in the toolbar and add_modal() once in the page, both only with perm_search.
 </%doc>
 <%def name="add_button()">
-    <button type="button" class="btn btn-sm btn-ll rounded-pill" data-bs-toggle="modal" data-bs-target="#ll-add">
+    <button type="button" class="btn btn-sm btn-ll rounded-pill ll-top" data-bs-toggle="modal" data-bs-target="#ll-add">
       <i class="fa fa-plus" aria-hidden="true"></i> ${_('Add')}
     </button>
 </%def>

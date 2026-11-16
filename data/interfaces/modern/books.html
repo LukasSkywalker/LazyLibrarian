@@ -21,7 +21,7 @@
   .llb-search .llb-scope:hover, .llb-search .llb-scope.show { background: var(--bs-tertiary-bg); }
   .llb-search .llb-scope::after { margin-left: .1rem; }
   .llb-search .dropdown-item.active { background: var(--ll-accent); color: var(--ll-accent-contrast); }
-  @media (max-width: 640px) { .llb-search { flex: 1 1 100%; order: 5; } }
+  @media (max-width: 640px) { .llb-search { flex: 1 1 100%; } }
   .llb-card { cursor: pointer; min-width: 0; }
   .llb-card:focus-visible { outline: 2px solid var(--ll-accent); outline-offset: 3px; border-radius: 10px; }
   .llb-cover { position: relative; aspect-ratio: 2 / 3; border-radius: 10px; overflow: hidden; background: var(--bs-secondary-bg);
@@ -120,16 +120,19 @@
                       @click="scope = o.id; $nextTick(function () { document.getElementById('llb-q').focus(); })" x-text="o.label"></button></li>
         </template>
       </ul>
-      <input type="search" id="llb-q" class="form-control rounded-end-pill" x-model.debounce.300ms="q"
+      <input type="search" id="llb-q" class="form-control " x-model.debounce.300ms="q"
              :placeholder="scopeObj.placeholder" autocomplete="off" aria-label="${_('Search') | h}">
-    </div>
-    <div class="btn-group btn-group-sm llb-views" role="group" aria-label="${_('View') | h}">
-      <template x-for="v in views" :key="v.id">
-        <button type="button" class="btn" :class="view === v.id ? 'btn-secondary' : 'btn-outline-secondary'"
-                :aria-pressed="view === v.id" :title="v.label" :aria-label="v.label" @click="setView(v.id)">
-          <i class="fa" :class="v.icon" aria-hidden="true"></i>
+      <div class="dropdown llb-status">
+        <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-pill border-start-0" data-bs-toggle="dropdown" aria-expanded="false"
+                title="${_('Status') | h}" aria-label="${_('Status') | h}">
+          <i class="fa fa-tasks" aria-hidden="true"></i> <span x-text="(chips.find(function (c) { return c.f === f; }) || chips[0]).label"></span>
         </button>
-      </template>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <template x-for="c in chips" :key="c.f">
+            <li><button type="button" class="dropdown-item" :class="f === c.f && 'active'" @click="f = c.f" x-text="c.label"></button></li>
+          </template>
+        </ul>
+      </div>
     </div>
     <select id="llb-sort" class="form-select form-select-sm w-auto rounded-pill" x-model="sort" aria-label="${_('Sort') | h}">
       <option value="2:asc">${_('Author')}</option>
@@ -137,6 +140,19 @@
       <option value="7:desc">${_('Added')}</option>
       <option value="6:desc">${_('Released')}</option>
     </select>
+    <div class="dropdown llb-views">
+      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
+              title="${_('View') | h}" aria-label="${_('View') | h}">
+        <i class="fa" :class="(views.find(function (v) { return v.id === view; }) || views[0]).icon" aria-hidden="true"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <template x-for="v in views" :key="v.id">
+          <li><button type="button" class="dropdown-item" :class="view === v.id && 'active'" @click="setView(v.id)">
+            <i class="fa fa-fw me-2" :class="v.icon" aria-hidden="true"></i><span x-text="v.label"></span>
+          </button></li>
+        </template>
+      </ul>
+    </div>
     %if len(languages) > 1:
     <select id="llb-lang" class="form-select form-select-sm w-auto rounded-pill" aria-label="${_('Language') | h}"
             @change="window.location = '${'audio' if audio else 'books'}?booklang=' + encodeURIComponent($event.target.value)">
@@ -149,30 +165,48 @@
     %if perm&lazylibrarian.perm_status:
     <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="selecting ? stopSelect() : (selecting = true)"
             x-text="selecting ? T.done : T.select"></button>
+    <div class="dropdown dropup ll-selmenu" x-show="selecting" x-cloak>
+      <button type="button" class="btn btn-sm btn-ll rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+              x-text="llNgettext(T.selected, selCount)"></button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><h6 class="dropdown-header">${_('Status')}</h6></li>
+        <template x-for="a in ['Wanted', 'Have', 'Skipped', 'Ignored']" :key="a">
+          <li><button type="button" class="dropdown-item" @click="bulk(a)" x-text="llStatus(a)"></button></li>
+        </template>
+        %if CONFIG['USER_ACCOUNTS']:
+        <li><hr class="dropdown-divider"></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('Unread')">${_('Unread')}</button></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('Read')">${_('Read')}</button></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('ToRead')">${_('To Read')}</button></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('Reading')">${_('Reading')}</button></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('Abandoned')">${_('Abandoned')}</button></li>
+        %endif
+        <li><hr class="dropdown-divider"></li>
+        <li><button type="button" class="dropdown-item" @click="bulk('Remove')">${_('Remove from library')}</button></li>
+        <li><button type="button" class="dropdown-item text-danger" @click="bulk('Delete')">${_('Delete from disk')}</button></li>
+      </ul>
+    </div>
     %endif
-    <a class="btn btn-sm rounded-pill ${'btn-secondary' if primary else 'btn-outline-secondary'}" href="toggle_primary?page=${page}"
-       title="${_('Primary Author, or Contributor') | h}" aria-label="${_('Primary Author, or Contributor') | h}" aria-pressed="${'true' if primary else 'false'}">
-      <i class="fa ${'fa-star' if primary else 'fa-handshake'}" aria-hidden="true"></i>
-    </a>
     %if perm&lazylibrarian.perm_search:
     ${self.add_button()}
     %endif
-    %if perm&lazylibrarian.perm_force:
-    <a class="btn btn-sm btn-outline-secondary rounded-pill" href="force_search?source=${page}"><i class="fa fa-search" aria-hidden="true"></i> ${_('Search wanted')}</a>
-    %endif
-    %if perm&lazylibrarian.perm_force or ext_links:
-    <div class="dropdown">
+    <div class="dropdown ll-top">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
               title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
       <ul class="dropdown-menu dropdown-menu-end">
         %if perm&lazylibrarian.perm_force:
+        <li><a class="dropdown-item" href="force_search?source=${page}"><i class="fa fa-search fa-fw me-2" aria-hidden="true"></i>${_('Search wanted')}</a></li>
         <li><a class="dropdown-item" href="force_process?source=${page}"><i class="fa fa-cogs fa-fw me-2" aria-hidden="true"></i>${_('Run Post-Processor')}</a></li>
-        <li><a class="dropdown-item" href="library_scan?library=${lib}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('Library Scan')}</a></li>
+        <li><a class="dropdown-item" href="library_scan?library=${lib}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('Scan library folder')}</a></li>
         %endif
-        ${self.ext_link_items(ext_links, bool(perm&lazylibrarian.perm_force))}
+        %if perm&lazylibrarian.perm_force:
+        <li><hr class="dropdown-divider"></li>
+        %endif
+        <li><a class="dropdown-item ${'active' if primary else ''}" href="toggle_primary?page=${page}" aria-pressed="${'true' if primary else 'false'}">
+          <i class="fa ${'fa-star' if primary else 'fa-handshake'} fa-fw me-2" aria-hidden="true"></i>${_('Primary Author, or Contributor') | h}</a></li>
+        ${self.ext_link_items(ext_links, True)}
       </ul>
     </div>
-    %endif
   </div>
 
   <div x-show="scanning" x-cloak role="status">
@@ -180,14 +214,6 @@
       <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
       <span x-text="scanText || T.scanning"></span>
     </div>
-  </div>
-
-  <div class="d-flex gap-2 llb-chips pb-1 mb-3" role="group" aria-label="${_('Status') | h}">
-    <template x-for="c in chips" :key="c.f">
-      <button type="button" class="btn btn-sm rounded-pill text-nowrap"
-              :class="f === c.f ? 'btn-secondary' : 'btn-outline-secondary'"
-              :aria-pressed="f === c.f" @click="f = c.f" x-text="c.label"></button>
-    </template>
   </div>
 
   <div class="llb-grid" :class="'llb-v-' + view">
@@ -241,25 +267,6 @@
   </div>
   <div x-ref="sentinel" class="text-center text-body-secondary small py-4" x-text="done && books.length ? T.allShown : ''"></div>
 
-  %if perm&lazylibrarian.perm_status:
-  <div class="llb-bar d-flex align-items-center gap-2 flex-wrap" :class="!selecting && 'llb-bar-hidden'" role="region" aria-label="${_('Selected books') | h}">
-    <span class="fw-semibold me-auto" x-text="llNgettext(T.selected, selCount)"></span>
-    <template x-for="a in ['Wanted', 'Have', 'Skipped', 'Ignored']" :key="a">
-      <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk(a)" x-text="llStatus(a)"></button>
-    </template>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Remove')">${_('Remove from library')}</button>
-    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" @click="bulk('Delete')">${_('Delete from disk')}</button>
-    %if CONFIG['USER_ACCOUNTS']:
-    <span class="vr mx-1" aria-hidden="true"></span>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Unread')">${_('Unread')}</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Read')">${_('Read')}</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('ToRead')">${_('To Read')}</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Reading')">${_('Reading')}</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" @click="bulk('Abandoned')">${_('Abandoned')}</button>
-    %endif
-    <button type="button" class="btn btn-sm btn-link" @click="stopSelect()">${_('Cancel')}</button>
-  </div>
-  %endif
 
   %if perm&lazylibrarian.perm_search:
   ${self.add_modal(page)}

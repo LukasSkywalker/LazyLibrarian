@@ -39,7 +39,7 @@
     can_status = bool(perm & lazylibrarian.perm_status)
     can_edit = bool(perm & lazylibrarian.perm_edit)
     from lazylibrarian.menulinks import menu_links
-    ext_links = menu_links(perm, ['LINK_DOWNLOADS'], 'history')
+    ext_links = menu_links(perm, ['LINK_DOWNLOADS', 'LINK_DOWNLOADER', 'LINK_PROWLARR'], 'history')
 %>
 <div x-data="llHistory" x-init="start()">
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
@@ -63,7 +63,7 @@
       <i class="fa fa-download" aria-hidden="true"></i> <span class="d-none d-sm-inline">${_('Download Count')}</span>
     </button>
     %if can_edit or ext_links:
-    <div class="dropdown">
+    <div class="dropdown ll-top">
       <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="dropdown" aria-expanded="false"
               title="${_('More') | h}" aria-label="${_('More') | h}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
       <ul class="dropdown-menu dropdown-menu-end">

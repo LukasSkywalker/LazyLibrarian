@@ -174,7 +174,7 @@
             <li><a class="dropdown-item" href="edit_book?bookid=${book['BookID'] | u}"><i class="fa fa-pencil-alt fa-fw me-2" aria-hidden="true"></i>${_('Edit')}</a></li>
             %endif
             %if perm&lazylibrarian.perm_force:
-            <li><a class="dropdown-item" href="refresh_book?bookid=${book['BookID'] | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Refresh Book')}</a></li>
+            <li><a class="dropdown-item" href="refresh_book?bookid=${book['BookID'] | u}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Update book from the web')}</a></li>
             %endif
           </ul>
         </div>
