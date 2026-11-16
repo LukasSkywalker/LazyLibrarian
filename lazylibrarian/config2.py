@@ -656,9 +656,9 @@ class LLConfigHandler(ConfigDict):
             if provider['HOST'] and provider.get_bool('ENABLED') and \
                     not BLOCKHANDLER.is_blocked(provider['NAME']):
                 count += 1
-        for item, blockname in [('BOK', 'zlibrary'), ('ANNA', 'annas'), ('SLSK', 'soulseek'),
-                                ('WEBSHARE', 'webshare'), ('MLP', 'mlp')]:
-            if self.get_bool(item) and not BLOCKHANDLER.is_blocked(blockname):
+        from lazylibrarian.sources.registry import direct_providers
+        for source in direct_providers():
+            if self.get_bool(source.key) and not BLOCKHANDLER.is_blocked(source.name):
                 count += 1
         return count
 

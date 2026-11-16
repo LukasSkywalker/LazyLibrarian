@@ -30,7 +30,7 @@ from bs4 import BeautifulSoup
 import lazylibrarian
 import lib.feedparser as feedparser
 from lazylibrarian import database
-from lazylibrarian.annas import anna_search, block_annas
+from lazylibrarian.annas import anna_search
 from lazylibrarian.blockhandler import BLOCKHANDLER
 from lazylibrarian.cache import fetch_url
 from lazylibrarian.config2 import CONFIG, wishlist_type
