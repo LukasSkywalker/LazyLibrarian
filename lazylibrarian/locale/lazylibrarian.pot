@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-15 16:15+0000\n"
+"POT-Creation-Date: 2026-11-16 11:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1695,7 +1695,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:2873
 #: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:93
-#: lazylibrarian/webServe.py:6892
+#: lazylibrarian/webServe.py:6903
 msgid "Magazines"
 msgstr ""
 
@@ -1704,7 +1704,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2896
 #: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:94
-#: lazylibrarian/webServe.py:6182 lazylibrarian/webServe.py:6543
+#: lazylibrarian/webServe.py:6193 lazylibrarian/webServe.py:6554
 msgid "Comics"
 msgstr ""
 
@@ -1717,7 +1717,7 @@ msgstr ""
 #: data/interfaces/bookstrap/base.html:477
 #: data/interfaces/bookstrap/config.html:225
 #: data/interfaces/modern/modern_base.html:28
-#: data/interfaces/modern/modern_base.html:583 lazylibrarian/webServe.py:8624
+#: data/interfaces/modern/modern_base.html:583 lazylibrarian/webServe.py:8635
 msgid "History"
 msgstr ""
 
@@ -1737,7 +1737,7 @@ msgstr ""
 #: data/interfaces/bookstrap/base.html:487
 #: data/interfaces/bookstrap/base.html:717
 #: data/interfaces/modern/modern_base.html:71
-#: data/interfaces/modern/modern_base.html:447 lazylibrarian/webServe.py:8185
+#: data/interfaces/modern/modern_base.html:447 lazylibrarian/webServe.py:8196
 msgid "What's new"
 msgstr ""
 
@@ -6729,7 +6729,7 @@ msgstr ""
 msgid "Updated: %(date)s"
 msgstr ""
 
-#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8117
+#: data/interfaces/bookstrap/config.html:4359 lazylibrarian/webServe.py:8128
 #, python-format
 msgid "Branch: %(branch)s"
 msgstr ""
@@ -7688,7 +7688,7 @@ msgstr ""
 #: data/interfaces/bookstrap/issues.html:14
 #: data/interfaces/bookstrap/magazines.html:16
 #: data/interfaces/modern/issues.html:150
-#: data/interfaces/modern/magazines.html:141 lazylibrarian/webServe.py:7394
+#: data/interfaces/modern/magazines.html:141 lazylibrarian/webServe.py:7405
 msgid "Past Issues"
 msgstr ""
 
@@ -10590,7 +10590,7 @@ msgstr ""
 msgid "Redirected"
 msgstr ""
 
-#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5970
+#: lazylibrarian/webServe.py:878 lazylibrarian/webServe.py:5981
 msgid "Inactive Authors"
 msgstr ""
 
@@ -10908,429 +10908,429 @@ msgstr ""
 msgid "Edit Book"
 msgstr ""
 
-#: lazylibrarian/webServe.py:5583
+#: lazylibrarian/webServe.py:5594
 #, python-format
 msgid "Mark Results '%(action)s' completed."
 msgstr ""
 
-#: lazylibrarian/webServe.py:5812
+#: lazylibrarian/webServe.py:5823
 #, python-format
 msgid "Mark Books '%(action)s' completed."
 msgstr ""
 
-#: lazylibrarian/webServe.py:5863 lazylibrarian/webServe.py:5907
-#: lazylibrarian/webServe.py:5934 lazylibrarian/webServe.py:6016
-#: lazylibrarian/webServe.py:6041
+#: lazylibrarian/webServe.py:5874 lazylibrarian/webServe.py:5918
+#: lazylibrarian/webServe.py:5945 lazylibrarian/webServe.py:6027
+#: lazylibrarian/webServe.py:6052
 #, python-format
 msgid "%(title)s (Top %(count)s)"
 msgstr ""
 
-#: lazylibrarian/webServe.py:5920
+#: lazylibrarian/webServe.py:5931
 msgid "Recently Downloaded Books"
 msgstr ""
 
-#: lazylibrarian/webServe.py:5923
+#: lazylibrarian/webServe.py:5934
 msgid "Recently Added Books"
 msgstr ""
 
-#: lazylibrarian/webServe.py:5967
+#: lazylibrarian/webServe.py:5978
 msgid "Active/Wanted Authors"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6012
+#: lazylibrarian/webServe.py:6023
 msgid "Recent AudioBooks"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6083
+#: lazylibrarian/webServe.py:6094
 msgid "Edit Comic"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6909
+#: lazylibrarian/webServe.py:6920
 #, python-format
 msgid "Rename Magazine %(title)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6928
+#: lazylibrarian/webServe.py:6939
 msgid "Insufficient information, need Old and New Title"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6930
+#: lazylibrarian/webServe.py:6941
 #, python-format
 msgid "Title for %(title)s unchanged"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6934
+#: lazylibrarian/webServe.py:6945
 msgid "Invalid new title, unable to rename"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6939
+#: lazylibrarian/webServe.py:6950
 #, python-format
 msgid "Title %(title)s already exists, unable to rename"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6951
+#: lazylibrarian/webServe.py:6962
 #, python-format
 msgid "Renamed %(old)s to %(new)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:6996
+#: lazylibrarian/webServe.py:7007
 msgid "Rename completed."
 msgstr ""
 
-#: lazylibrarian/webServe.py:7128
+#: lazylibrarian/webServe.py:7139
 msgid "Edit Issue"
 msgstr ""
 
-#: lazylibrarian/webServe.py:7743 lazylibrarian/webServe.py:7988
+#: lazylibrarian/webServe.py:7754 lazylibrarian/webServe.py:7999
 #, python-format
 msgid "Operation '%(action)s' completed."
 msgstr ""
 
-#: lazylibrarian/webServe.py:8099
+#: lazylibrarian/webServe.py:8110
 msgid "LazyLibrarian status is unknown"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8103
+#: lazylibrarian/webServe.py:8114
 msgid "LazyLibrarian is up to date"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8105
+#: lazylibrarian/webServe.py:8116
 #, python-format
 msgid "LazyLibrarian is behind by %(count)s commit"
 msgid_plural "LazyLibrarian is behind by %(count)s commits"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lazylibrarian/webServe.py:8111
+#: lazylibrarian/webServe.py:8122
 msgid "Update needs manual installation"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8113
+#: lazylibrarian/webServe.py:8124
 msgid "LazyLibrarian version is unknown"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8114
+#: lazylibrarian/webServe.py:8125
 #, python-format
 msgid "Your version (%(version)s) is not recognized at %(repo)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8234
+#: lazylibrarian/webServe.py:8245
 msgid "LazyLibrarian is updating..."
 msgstr ""
 
-#: lazylibrarian/webServe.py:8235
+#: lazylibrarian/webServe.py:8246
 msgid "Updating"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8425
+#: lazylibrarian/webServe.py:8436
 #, python-format
 msgid "Importing csv (background task) from %(file)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8429
+#: lazylibrarian/webServe.py:8440
 #, python-format
 msgid "No %(library)s CSV file in [%(folder)s]"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8433
+#: lazylibrarian/webServe.py:8444
 #, python-format
 msgid "Unable to complete the import: %(error)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8437
+#: lazylibrarian/webServe.py:8448
 msgid "CSV import is already running"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8460
+#: lazylibrarian/webServe.py:8471
 msgid "LazyLibrarian is closed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8461
+#: lazylibrarian/webServe.py:8472
 msgid "Close library"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8471
+#: lazylibrarian/webServe.py:8482
 msgid "LazyLibrarian is reopening..."
 msgstr ""
 
-#: lazylibrarian/webServe.py:8472
+#: lazylibrarian/webServe.py:8483
 msgid "Reopen library"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8581
+#: lazylibrarian/webServe.py:8592
 msgid "Log"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8935
+#: lazylibrarian/webServe.py:8946
 msgid "BookID not found"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8937
+#: lazylibrarian/webServe.py:8948
 msgid "No Description"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8949
+#: lazylibrarian/webServe.py:8960
 #, python-format
 msgid "Reason: %(reason)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8961
+#: lazylibrarian/webServe.py:8972
 #, python-format
 msgid "Title: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8962
+#: lazylibrarian/webServe.py:8973
 #, python-format
 msgid "Type: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8963
+#: lazylibrarian/webServe.py:8974
 #, python-format
 msgid "Date: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8964
+#: lazylibrarian/webServe.py:8975
 #, python-format
 msgid "Size: %(value)s Mb"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8965
+#: lazylibrarian/webServe.py:8976
 #, python-format
 msgid "Provider: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8966
+#: lazylibrarian/webServe.py:8977
 #, python-format
 msgid "Downloader: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8967
+#: lazylibrarian/webServe.py:8978
 #, python-format
 msgid "DownloadID: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8968
+#: lazylibrarian/webServe.py:8979
 #, python-format
 msgid "URL: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8972
+#: lazylibrarian/webServe.py:8983
 #, python-format
 msgid "File: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:8976
+#: lazylibrarian/webServe.py:8987
 #, python-format
 msgid "Error: %(value)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9228
+#: lazylibrarian/webServe.py:9239
 #, python-format
 msgid "%(name)s test FAILED, bad parameter: %(param)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9233
+#: lazylibrarian/webServe.py:9244
 #, python-format
 msgid "%(name)s test FAILED, check debug log"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9235
+#: lazylibrarian/webServe.py:9246
 #, python-format
 msgid "%(name)s test PASSED"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9241
+#: lazylibrarian/webServe.py:9252
 #, python-format
 msgid "%(name)s test PASSED, found %(result)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9244
+#: lazylibrarian/webServe.py:9255
 msgid "Invalid or missing name in testprovider"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9256
+#: lazylibrarian/webServe.py:9267
 #, python-format
 msgid "Cleared %(count)s blocked provider"
 msgid_plural "Cleared %(count)s blocked providers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lazylibrarian/webServe.py:9349
+#: lazylibrarian/webServe.py:9360
 #, python-format
 msgid "Deleted download counter for %(count)s provider"
 msgid_plural "Deleted download counter for %(count)s providers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lazylibrarian/webServe.py:9370
+#: lazylibrarian/webServe.py:9381
 msgid "No downloads"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9378
+#: lazylibrarian/webServe.py:9389
 msgid "Calibre Sync is already running"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9387
+#: lazylibrarian/webServe.py:9398
 msgid "No userid found"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9486 lazylibrarian/webServe.py:9552
-#: lazylibrarian/webServe.py:9574 lazylibrarian/webServe.py:9601
-#: lazylibrarian/webServe.py:9638 lazylibrarian/webServe.py:9665
-#: lazylibrarian/webServe.py:9692 lazylibrarian/webServe.py:9719
-#: lazylibrarian/webServe.py:9745 lazylibrarian/webServe.py:10003
-#: lazylibrarian/webServe.py:10099 lazylibrarian/webServe.py:10137
-#: lazylibrarian/webServe.py:10173 lazylibrarian/webServe.py:10216
-#: lazylibrarian/webServe.py:10257 lazylibrarian/webServe.py:10296
-#: lazylibrarian/webServe.py:10332 lazylibrarian/webServe.py:10350
-#: lazylibrarian/webServe.py:10386 lazylibrarian/webServe.py:10408
-#: lazylibrarian/webServe.py:10421
+#: lazylibrarian/webServe.py:9497 lazylibrarian/webServe.py:9563
+#: lazylibrarian/webServe.py:9585 lazylibrarian/webServe.py:9612
+#: lazylibrarian/webServe.py:9649 lazylibrarian/webServe.py:9676
+#: lazylibrarian/webServe.py:9703 lazylibrarian/webServe.py:9730
+#: lazylibrarian/webServe.py:9756 lazylibrarian/webServe.py:10014
+#: lazylibrarian/webServe.py:10110 lazylibrarian/webServe.py:10148
+#: lazylibrarian/webServe.py:10184 lazylibrarian/webServe.py:10227
+#: lazylibrarian/webServe.py:10268 lazylibrarian/webServe.py:10307
+#: lazylibrarian/webServe.py:10343 lazylibrarian/webServe.py:10361
+#: lazylibrarian/webServe.py:10397 lazylibrarian/webServe.py:10419
+#: lazylibrarian/webServe.py:10432
 #, python-format
 msgid "%(name)s failed, bad parameter: %(param)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9509
+#: lazylibrarian/webServe.py:9520
 msgid "Key verification successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9510
+#: lazylibrarian/webServe.py:9521
 msgid "Unable to verify key"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9511
+#: lazylibrarian/webServe.py:9522
 msgid "No key provided"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9520
+#: lazylibrarian/webServe.py:9531
 msgid "Tweet successful, check your twitter to make sure it worked"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9521
+#: lazylibrarian/webServe.py:9532
 msgid "Error sending tweet"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9550 lazylibrarian/webServe.py:9663
-#: lazylibrarian/webServe.py:9690 lazylibrarian/webServe.py:9717
+#: lazylibrarian/webServe.py:9561 lazylibrarian/webServe.py:9674
+#: lazylibrarian/webServe.py:9701 lazylibrarian/webServe.py:9728
 #, python-format
 msgid "Test %(name)s notice sent successfully"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9553 lazylibrarian/webServe.py:9666
-#: lazylibrarian/webServe.py:9693 lazylibrarian/webServe.py:9720
+#: lazylibrarian/webServe.py:9564 lazylibrarian/webServe.py:9677
+#: lazylibrarian/webServe.py:9704 lazylibrarian/webServe.py:9731
 #, python-format
 msgid "Test %(name)s notice failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9572 lazylibrarian/webServe.py:9599
-#: lazylibrarian/webServe.py:9636 lazylibrarian/webServe.py:9747
+#: lazylibrarian/webServe.py:9583 lazylibrarian/webServe.py:9610
+#: lazylibrarian/webServe.py:9647 lazylibrarian/webServe.py:9758
 #, python-format
 msgid "%(name)s notification successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9575 lazylibrarian/webServe.py:9602
-#: lazylibrarian/webServe.py:9639 lazylibrarian/webServe.py:9743
+#: lazylibrarian/webServe.py:9586 lazylibrarian/webServe.py:9613
+#: lazylibrarian/webServe.py:9650 lazylibrarian/webServe.py:9754
 #, python-format
 msgid "%(name)s notification failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9766
+#: lazylibrarian/webServe.py:9777
 msgid "Custom notification failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9768
+#: lazylibrarian/webServe.py:9779
 #, python-format
 msgid "Custom notification failed, bad parameter: %(param)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9770
+#: lazylibrarian/webServe.py:9781
 msgid "Custom notification successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9828
+#: lazylibrarian/webServe.py:9839
 msgid "Email notification failed"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9830
+#: lazylibrarian/webServe.py:9841
 #, python-format
 msgid "Email notification failed, bad parameter: %(param)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9832
+#: lazylibrarian/webServe.py:9843
 msgid "Email notification successful, check your email"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9960
+#: lazylibrarian/webServe.py:9971
 msgid "Manage AudioBooks"
 msgstr ""
 
-#: lazylibrarian/webServe.py:9960
+#: lazylibrarian/webServe.py:9971
 msgid "Manage eBooks"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10024
+#: lazylibrarian/webServe.py:10035
 msgid "Deluge: Daemon connection successful"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10030
+#: lazylibrarian/webServe.py:10041
 msgid "Deluge daemon seems to have no labels set"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10040
+#: lazylibrarian/webServe.py:10051
 #, python-format
 msgid "Label [%(label)s] was added"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10044
+#: lazylibrarian/webServe.py:10055
 #, python-format
 msgid "Label [%(label)s] is valid"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10050
+#: lazylibrarian/webServe.py:10061
 msgid "Deluge: Daemon connection FAILED"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10053
+#: lazylibrarian/webServe.py:10064
 msgid "Check Deluge daemon HOST and PORT settings"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10055
+#: lazylibrarian/webServe.py:10066
 msgid "Invalid USERNAME or PASSWORD"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10370 lazylibrarian/webServe.py:10393
+#: lazylibrarian/webServe.py:10381 lazylibrarian/webServe.py:10404
 #, python-format
 msgid "Found %(name)s version %(version)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10373 lazylibrarian/webServe.py:10395
+#: lazylibrarian/webServe.py:10384 lazylibrarian/webServe.py:10406
 #, python-format
 msgid "%(command)s failed: %(error)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10426
+#: lazylibrarian/webServe.py:10437
 #, python-format
 msgid "Preprocessor returned %(rc)s: res[%(res)s] err[%(err)s]"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10429
+#: lazylibrarian/webServe.py:10440
 msgid "No preprocessor set in config"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10483
+#: lazylibrarian/webServe.py:10494
 #, python-format
 msgid "Emailed file %(file)s to %(addresses)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10487
+#: lazylibrarian/webServe.py:10498
 #, python-format
 msgid "Failed to email file %(file)s to %(addresses)s"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10489
+#: lazylibrarian/webServe.py:10500
 msgid "Send file"
 msgstr ""
 
-#: lazylibrarian/webServe.py:10545
+#: lazylibrarian/webServe.py:10556
 msgid "Thank you for enabling Telemetry"
 msgstr ""
 
