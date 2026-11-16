@@ -33,6 +33,7 @@ from lazylibrarian.common import proxy_list
 from lazylibrarian.config2 import CONFIG, LLConfigHandler
 from lazylibrarian.formatter import thread_name
 from lazylibrarian.processcontrol import get_info_on_caller
+from lazylibrarian.sources.registry import direct_providers
 
 
 class LazyTelemetry:
@@ -125,7 +126,7 @@ class LazyTelemetry:
             'TOR_DOWNLOADER_RTORRENT', 'TOR_DOWNLOADER_UTORRENT',
             'TOR_DOWNLOADER_QBITTORRENT', 'TOR_DOWNLOADER_BLACKHOLE',
             # Providers
-            'BOK', 'SLSK', 'ANNA', 'WEBSHARE', 'AUDNEXUS',
+            *[source.key for source in direct_providers()], 'AUDNEXUS',
             # Processing
             'CALIBRE_USE_SERVER', 'OPF_TAGS', 'MULTI_SOURCE',
             # Notifiers

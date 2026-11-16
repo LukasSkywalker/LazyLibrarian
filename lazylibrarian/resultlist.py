@@ -32,7 +32,7 @@ from lazylibrarian.formatter import check_int, get_list, now, replace_all, unacc
 from lazylibrarian.notifiers import custom_notify_snatch, notify_snatch, notify_text
 from lazylibrarian.providers import get_searchterm
 from lazylibrarian.scheduling import SchedulerCommand, schedule_job
-from lazylibrarian.webshare import valid_ident
+from lazylibrarian.sources.registry import url_checker
 
 
 def process_result_list(resultlist, book, searchtype, source):
@@ -256,8 +256,8 @@ def find_best_result(resultlist, book, searchtype, source):
                 elif res[prefix + 'prov'] in ['zlibrary', 'soulseek']:
                     if '^' not in url:
                         rejected = True
-                elif res[prefix + 'prov'] == 'webshare':
-                    rejected = not valid_ident(url)
+                elif url_checker(res[prefix + 'prov']):
+                    rejected = not url_checker(res[prefix + 'prov'])(url)
                 elif res[prefix + 'prov'] == 'annas':
                     # annas gives us an id in hex, verify we got hex digits
                     try:

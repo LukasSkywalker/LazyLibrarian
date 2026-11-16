@@ -78,7 +78,7 @@ from lazylibrarian.formatter import (
 from lazylibrarian.ircbot import irc_query
 from lazylibrarian.soulseek import SLSKD
 from lazylibrarian.telemetry import record_usage_data
-from lazylibrarian.webshare import valid_ident, webshare_download
+from lazylibrarian.sources.registry import direct_provider
 from lib.bencode import BencodeDecodeError, bdecode, bencode
 
 from .magnet2torrent import magnet2torrent
@@ -407,19 +407,20 @@ def direct_dl_method(bookid=None, dl_title=None, dl_url=None, library='eBook', p
         db.close()
         return False, fname
 
-    if provider == 'webshare':
-        if not valid_ident(dl_url):
-            return False, f"Invalid webshare ident [{dl_url}]"
+    registered = direct_provider(provider)
+    if registered and registered.download:
+        if registered.valid_url and not registered.valid_url(dl_url):
+            return False, f"Invalid {provider} url [{dl_url}]"
         folder = ''
         db = database.DBConnection()
         res = db.match('SELECT bookname from books WHERE bookid=?', (bookid,))
         if res and res['bookname']:
             folder = sanitize(res['bookname'], is_folder_or_file=True)
         try:
-            success, fname = webshare_download(dl_url, folder, dl_title)
+            success, fname = registered.download(dl_url, folder, dl_title)
         except Exception as e:
             success = False
-            fname = f"Webshare download error: {e}"
+            fname = f"{registered.label} download error: {e}"
         if not success:
             logger.error(fname)
 

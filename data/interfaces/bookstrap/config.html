@@ -9,6 +9,7 @@
     from lazylibrarian import MONTHNAMES, SEASONS
     from lazylibrarian import i18n
     from lazylibrarian.menulinks import client_urls, prowlarr_urls
+    from lazylibrarian.sources.registry import direct_providers
 %>
 <%doc>
   A button that opens a service in a new tab, at the address saved in the config (see menulinks.py),
@@ -2134,32 +2135,52 @@
                         </span>
                       </div>
                     </div>
-                    <% checked = 'checked="checked"' if CONFIG['WEBSHARE'] else '' %>
+                    %for provider in direct_providers():
+                    %if provider.page:
+                    <%
+                      page = provider.page
+                      pkey = provider.key
+                      pid = pkey.lower()
+                      first = page.fields[0]
+                      first_id = f"{pid}_{first.name.lower()}" if first.name else pid
+                      checked = 'checked="checked"' if CONFIG[pkey] else ''
+                    %>
                     <div class="col-md-4 form-group">
-                      <label for="webshare_user" class="sr-only">Webshare</label>
+                      <label for="${first_id}" class="sr-only">${_(page.title)}</label>
                       <div class="input-group">
-                        <span class="input-group-addon">Webshare</span>
-                        <input type="text" placeholder="${_('webshare.cz username (optional)') | h}" id="webshare_user" name="webshare_user" value="${CONFIG['WEBSHARE_USER']}" class="form-control">
+                        <span class="input-group-addon">${_(page.title)}</span>
+                        %if first.shown:
+                        <input type="text" class="form-control" value="${first.shown | h}" readonly>
+                        %else:
+                        <input type="${first.kind}" placeholder="${(_(first.placeholder) if first.placeholder else '') | h}" id="${first_id}" name="${first_id}" value="${CONFIG[pkey + '_' + first.name] | h}" class="form-control">
+                        %endif
                         <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="${_('Enable provider') | h}">
-                        <input type="checkbox" id="webshare" name="webshare" value="1" ${checked} />
+                        <input type="checkbox" id="${pid}" name="${pid}" value="1" ${checked} />
                         </span>
                       </div>
+                      %if page.help:
+                      <p class="help-block">${_(page.help)}</p>
+                      %endif
+                      %for field in page.fields[1:]:
                       <div class="input-group">
-                        <span class="input-group-addon">${_('Password')}</span>
-                        <input type="password" placeholder="${_('password (optional)') | h}" id="webshare_pass" name="webshare_pass" value="${CONFIG['WEBSHARE_PASS']}" class="form-control">
-                        <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="${_('Searching and downloading also works without an account') | h}">
+                        <span class="input-group-addon">${_(field.label) if field.label else ''}</span>
+                        <input type="${field.kind}" placeholder="${(_(field.placeholder) if field.placeholder else '') | h}" id="${pid}_${field.name.lower()}" name="${pid}_${field.name.lower()}" value="${CONFIG[pkey + '_' + field.name] | h}" class="form-control">
+                        <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="${(_(field.tooltip) if field.tooltip else '') | h}">
                         </span>
                       </div>
+                      %endfor
                       <div class="input-group">
                         <span class="input-group-addon">${_('Priority')}</span>
-                        <input type="number" id="webshare_dlpriority" name="webshare_dlpriority" value="${CONFIG['WEBSHARE_DLPRIORITY']}" class="form-control" placeholder="0">
+                        <input type="number" id="${pid}_dlpriority" name="${pid}_dlpriority" value="${CONFIG[pkey + '_DLPRIORITY']}" class="form-control" placeholder="0">
                         <span class="input-group-addon">${_('Types')}</span>
-                        <input type="text" id="webshare_dltypes" name="webshare_dltypes" value="${CONFIG['WEBSHARE_DLTYPES']}" class="form-control" placeholder="">
+                        <input type="text" id="${pid}_dltypes" name="${pid}_dltypes" value="${CONFIG[pkey + '_DLTYPES']}" class="form-control" placeholder="">
                         <span class="input-group-addon">
-                        <button role="testprov" class="button btn btn-xs btn-warning active" type="button" value="WEBSHARE"> ${_('Test')}</button>
+                        <button role="testprov" class="button btn btn-xs btn-warning active" type="button" value="${pkey}"> ${_('Test')}</button>
                         </span>
                       </div>
                     </div>
+                    %endif
+                    %endfor
                     <% checked = 'checked="checked"' if CONFIG['BOK'] else '' %>
                     <div class="col-md-4 form-group">
                       <label for="bok_host" class="sr-only">${_('zlibrary host')}</label>

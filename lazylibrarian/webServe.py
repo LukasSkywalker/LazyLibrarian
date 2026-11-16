@@ -220,6 +220,7 @@ from lazylibrarian.scheduling import (
 from lazylibrarian.searchbook import search_book
 from lazylibrarian.searchmag import download_maglist, search_magazines
 from lazylibrarian.searchrss import search_wishlist
+from lazylibrarian.sources.registry import direct_provider, direct_providers
 from lazylibrarian.startup import prioritized_infosources
 from lazylibrarian.telemetry import TELEMETRY
 from lazylibrarian.torrentparser import ProviderTestFailed
@@ -3666,7 +3667,8 @@ class WebInterface:
             db.upsert("wanted", new_value_dict, control_value_dict)
             author_id = bookdata["AuthorID"]
             dl_title = bookdata["BookName"]
-            if provider in ['soulseek', 'annas', 'webshare']:
+            source = direct_provider(provider)
+            if source and source.result_title:
                 dl_title = title
             if mode == 'direct':
                 snatch, res = direct_dl_method(bookid, dl_title, url, library, provider)
@@ -3745,9 +3747,6 @@ class WebInterface:
 
     # book statuses where a provider that failed to download it no longer matters
     HAVE_STATUSES = ('Open', 'Have', 'Snatched', 'Processed')
-    # direct providers are stored in the wanted table by their internal name
-    DIRECT_PROVIDER_NAMES = {'annas': "Anna's Archive", 'zlibrary': 'Z-Library', 'webshare': 'Webshare',
-                             'soulseek': 'Soulseek'}
 
     @classmethod
     def _found_not_downloaded(cls, db, bookids) -> dict:
@@ -3766,7 +3765,9 @@ class WebInterface:
                 prov = item['NZBprov'] or ''
                 if not prov:
                     continue
-                name = cls.DIRECT_PROVIDER_NAMES.get(prov) or CONFIG.disp_name(prov)
+                # direct providers are stored in the wanted table by their internal name
+                source = direct_provider(prov)
+                name = source.label if source else CONFIG.disp_name(prov)
                 entries = result.setdefault(item['BookID'], [])
                 if any(e[0] == name and e[2] == item['AuxInfo'] for e in entries):
                     continue
@@ -9320,11 +9321,8 @@ class WebInterface:
                                                      'name': provider['DISPNAME'] or CONFIG.disp_name(provider[field])}
         for prov in ('KAT', 'TPB', 'TDL', 'LIME', 'ABB'):  # by name, the parsers by host
             cards[prov.lower()] = {'keys': [prov, CONFIG[f'{prov}_HOST']], 'name': prov}
-        for prefix, prov, key, name in (('slsk', 'SLSK', 'soulseek', 'Soulseek'),
-                                        ('anna', 'ANNA', 'annas', "Anna's Archive"),
-                                        ('webshare', 'WEBSHARE', 'webshare', 'WebShare'),
-                                        ('bok', 'BOK', 'zlibrary', 'Z-Library')):
-            cards[prefix] = {'keys': [key, prov], 'name': name}
+        for source in direct_providers():  # by the blocklist name and the config key
+            cards[source.key.lower()] = {'keys': [source.name, source.key], 'name': source.label}
         for prefix, card in cards.items():
             card['keys'] = [k for k in card['keys'] if k]
             if 'enabled' not in card:

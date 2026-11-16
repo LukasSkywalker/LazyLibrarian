@@ -19,6 +19,7 @@ from lazylibrarian.booklanguages import BOOK_LANGUAGES, GB_COUNTRIES
 from lazylibrarian.formatter import unaccented
 from lazylibrarian.i18n import N_
 from lazylibrarian.monthlanguages import LANGUAGE_WORDS, MONTH_LANGUAGES
+from lazylibrarian.sources.registry import recommended_providers, wizard_providers
 from lazylibrarian.telemetry import TELEMETRY
 
 GENERIC = '_generic'
@@ -72,21 +73,13 @@ SOURCE_HELP = {
     'BN_API': N_('National Library of Poland (Biblioteka Narodowa)'),
 }
 # Providers the wizard can switch on: key, label, help. Hosts and logins are set on the Providers tab.
-SEARCH_PROVIDERS = [
-    ('ANNA', N_("Anna's Archive"), N_('Books in many languages. Downloads without a key are slow.')),
-    ('WEBSHARE', N_('Webshare'), N_('Czech and Slovak file hosting. Needs your Webshare login, '
-                                     'enter it on the Providers tab.')),
-    ('BOK', N_('Z-Library'), N_('Needs your Z-Library login, enter it on the Providers tab.')),
-    ('SLSK', N_('Soulseek'), N_('Needs a running slskd server, set it up on the Providers tab.')),
+SEARCH_PROVIDERS = wizard_providers() + [
     ('ABB', N_('AudioBookBay'), N_('AudioBooks by torrent, needs a torrent client.')),
     ('LIME', N_('LimeTorrents'), N_('Torrents, needs a torrent client.')),
     ('TPB', N_('The Pirate Bay'), N_('Torrents, needs a torrent client.')),
     ('KAT', N_('KickassTorrents'), N_('Torrents, needs a torrent client.')),
     ('TDL', N_('TorrentDownloads'), N_('Torrents, needs a torrent client.')),
 ]
-# Providers worth switching on per country, on top of those for every country
-PROVIDERS_ALL = ['ANNA']
-PROVIDERS_COUNTRY = {'SK': ['WEBSHARE'], 'CZ': ['WEBSHARE']}
 # Keys whose change needs the page reloaded to show
 RELOAD_KEYS = {'UI_LANGUAGE', 'HTTP_LOOK', 'BOOKSTRAP_THEME', 'EBOOK_TAB', 'AUDIO_TAB', 'MAG_TAB', 'COMIC_TAB',
                'SERIES_TAB'}
@@ -303,7 +296,7 @@ def _maglang_choices(values: list) -> list:
 
 
 def _recommended_providers(country: str) -> list:
-    return PROVIDERS_ALL + PROVIDERS_COUNTRY.get(country, [])
+    return recommended_providers(country)
 
 
 def _libgen_entry(config):

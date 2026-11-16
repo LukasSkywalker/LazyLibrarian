@@ -30,12 +30,11 @@ from bs4 import BeautifulSoup
 import lazylibrarian
 import lib.feedparser as feedparser
 from lazylibrarian import database
-from lazylibrarian.annas import anna_search, block_annas
 from lazylibrarian.blockhandler import BLOCKHANDLER
 from lazylibrarian.cache import fetch_url
 from lazylibrarian.config2 import CONFIG, wishlist_type
 from lazylibrarian.configtypes import ConfigDict
-from lazylibrarian.directparser import bok_grabs, direct_bok, direct_gen
+from lazylibrarian.directparser import direct_gen
 from lazylibrarian.filesystem import DIRS, path_isfile, remove_file, syspath
 from lazylibrarian.formatter import (
     age,
@@ -51,7 +50,7 @@ from lazylibrarian.formatter import (
     unaccented,
 )
 from lazylibrarian.ircbot import irc_query, irc_results
-from lazylibrarian.soulseek import slsk_search
+from lazylibrarian.sources.registry import direct_providers, skip_reason
 from lazylibrarian.telemetry import TELEMETRY
 from lazylibrarian.torrentparser import (
     torrent_abb,
@@ -60,7 +59,7 @@ from lazylibrarian.torrentparser import (
     torrent_tdl,
     torrent_tpb,
 )
-from lazylibrarian.webshare import webshare_search
+from lazylibrarian.sources.registry import direct_provider
 
 
 def test_provider(name: str, host=None, api=None):
@@ -121,16 +120,10 @@ def test_provider(name: str, host=None, api=None):
                     provider['SEARCH'] = api
                 return direct_gen(book, prov=provider['NAME'].lower(), test=True), name
 
-    if name == 'BOK':
-        if host:
-            CONFIG.set_str('BOK_HOST', host)
-        if api:
-            email, pwd, langs = api.split(' : ')
-            CONFIG.set_str('BOK_EMAIL', email)
-            CONFIG.set_str('BOK_PASS', pwd)
-            CONFIG.set_str('BOK_SEARCH_LANG', langs)
-        logger.debug(f"Testing provider {name}:{CONFIG['BOK_HOST']}")
-        return direct_bok(book, prov=name, test=True), "ZLibrary"
+    registered = direct_provider(name)
+    if registered and registered.test:
+        logger.debug(f"Testing provider {name}")
+        return registered.test(book, host, api), registered.label
 
     if name.startswith('rss_'):
         try:
@@ -309,30 +302,6 @@ def test_provider(name: str, host=None, api=None):
             pass
         except Exception as e:
             logger.debug(f"Exception: {str(e)}")
-
-    if name == 'SLSK':
-        logger.debug(f"Testing provider {name}")
-        if host:
-            CONFIG.set_str('SLSK_HOST', host)
-        if api:
-            CONFIG.set_str('SLSK_API', api)
-        return slsk_search(book, test=True), "SLSK"
-
-    if name == 'ANNA':
-        logger.debug(f"Testing provider {name}")
-        if host:
-            CONFIG.set_str('ANNA_HOST', host)
-        if api:
-            CONFIG.set_str('ANNA_KEY', api)
-        return anna_search(book, test=True), "ANNA"
-
-    if name == 'WEBSHARE':
-        logger.debug(f"Testing provider {name}")
-        if api:
-            user, pwd = api.split(' : ', 1)
-            CONFIG.set_str('WEBSHARE_USER', user)
-            CONFIG.set_str('WEBSHARE_PASS', pwd)
-        return webshare_search(book, test=True), "Webshare"
 
     msg = f"Unknown provider [{name}]"
     logger.error(msg)
@@ -821,156 +790,31 @@ def iterate_over_direct_sites(book=None, search_type=None):
     except RuntimeError:
         logger.debug("Error iterating gen")
 
-    prov = 'BOK'
-    if CONFIG[prov]:
-        iterateproviderslogger.debug(f"DLTYPES: {prov}: {CONFIG[prov]} {CONFIG[prov + '_DLTYPES']}")
-        ignored = False
-        if BLOCKHANDLER.is_blocked('zlibrary'):
-            logger.debug('zlibrary is BLOCKED')
-            ignored = True
-        elif search_type in ['book', 'shortbook', 'titlebook'] and \
-                'E' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for eBook")
-            ignored = True
-        elif "audio" in search_type and 'A' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for AudioBook")
-            ignored = True
-        elif "mag" in search_type and 'M' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Magazine")
-            ignored = True
-        elif "comic" in search_type and 'C' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Comic")
-            ignored = True
-        if not ignored:
-            logger.debug(f'Querying {prov}')
-            TELEMETRY.record_usage_data(f'Query/{prov}')
-            results, error = direct_bok(book, prov)
-            if error:
+    # the direct providers in lazylibrarian/sources, see registry.py
+    for source in direct_providers():
+        if not CONFIG.get_bool(source.key):
+            continue
+        dltypes = CONFIG[f"{source.key}_DLTYPES"]
+        iterateproviderslogger.debug(f"DLTYPES: {source.key}: {CONFIG[source.key]} {dltypes}")
+        if BLOCKHANDLER.is_blocked(source.name):
+            logger.debug(f"{source.name} is BLOCKED")
+            continue
+        reason = skip_reason(source, search_type, dltypes)
+        if reason:
+            logger.debug(reason)
+            continue
+        logger.debug(f"Querying {search_type} {source.name}")
+        TELEMETRY.record_usage_data(f"Query/{source.usage_key}")
+        results, error = source.search(book, search_type)
+        if error:
+            if source.on_error:
+                source.on_error(source, error)
+            else:
                 # use a short delay for site unavailable etc
-                delay = CONFIG.get_int('BLOCKLIST_TIMER')
-                dl_limit = CONFIG.get_int('BOK_DLLIMIT')
-                count = lazylibrarian.TIMERS['BOK_TODAY']
-                if count and count >= dl_limit:
-                    # rolling 24hr delay if limit reached
-                    grabs, oldest = bok_grabs()
-                    delay = oldest + 24 * 60 * 60 - time.time()
-                    error = f"Reached Daily download limit ({grabs}/{dl_limit})"
-                BLOCKHANDLER.block_provider('zlibrary', error, delay=delay)
-            else:
-                resultslist += results
-                providers += 1
-
-    prov = 'SLSK'
-    if CONFIG[prov]:
-        iterateproviderslogger.debug(f"DLTYPES: {prov}: {CONFIG[prov]} {CONFIG[prov + '_DLTYPES']}")
-        provider = 'soulseek'
-        ignored = False
-        if BLOCKHANDLER.is_blocked(provider):
-            logger.debug('soulseek is BLOCKED')
-            ignored = True
-        elif search_type in ['book', 'shortbook', 'titlebook'] and \
-                'E' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for eBook")
-            ignored = True
-        elif "audio" in search_type and 'A' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for AudioBook")
-            ignored = True
-        elif "mag" in search_type and 'M' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Magazine")
-            ignored = True
-        elif "comic" in search_type and 'C' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Comic")
-            ignored = True
-        if not ignored:
-            logger.debug(f'Querying {search_type} {provider}')
-            searchtype = 'audio' if 'audio' in search_type else 'ebook'
-            TELEMETRY.record_usage_data(f'Query/{provider}')
-            results, error = slsk_search(book, searchtype=searchtype)
-            if error:
-                # use a short delay for site unavailable etc
-                delay = CONFIG.get_int('BLOCKLIST_TIMER')
-                BLOCKHANDLER.block_provider(provider, error, delay=delay)
-            else:
-                resultslist += results
-                providers += 1
-
-    prov = 'ANNA'
-    if CONFIG[prov]:
-        iterateproviderslogger.debug(f"DLTYPES: {prov}: {CONFIG[prov]} {CONFIG[prov + '_DLTYPES']}")
-        provider = 'annas'
-        ignored = False
-        if BLOCKHANDLER.is_blocked(provider):
-            logger.debug('annas is BLOCKED')
-            ignored = True
-        elif search_type in ['book', 'shortbook', 'titlebook'] and \
-                'E' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for eBook")
-            ignored = True
-        elif "audio" in search_type and 'A' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for AudioBook")
-            ignored = True
-        elif "mag" in search_type and 'M' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Magazine")
-            ignored = True
-        elif "comic" in search_type and 'C' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Comic")
-            ignored = True
-        if not ignored:
-            logger.debug(f'Querying {provider}')
-            TELEMETRY.record_usage_data(f'Query/{provider}')
-            searchtype = 'ebook'
-            if 'audio' in search_type:
-                searchtype = 'audio'
-            if 'mag' in search_type:
-                searchtype = 'mag'
-            results, error = anna_search(book, searchtype)
-            if error:
-                dl_limit = CONFIG.get_int('ANNA_DLLIMIT')
-                count = lazylibrarian.TIMERS['ANNA_REMAINING']
-                if dl_limit and count <= 0:
-                    lazylibrarian.TIMERS['ANNA_REMAINING'] = 0
-                    block_annas(dl_limit)
-                else:
-                    # use a short delay for site unavailable etc
-                    BLOCKHANDLER.block_provider(provider, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
-            else:
-                resultslist += results
-                providers += 1
-
-    prov = 'WEBSHARE'
-    if CONFIG[prov]:
-        iterateproviderslogger.debug(f"DLTYPES: {prov}: {CONFIG[prov]} {CONFIG[prov + '_DLTYPES']}")
-        provider = 'webshare'
-        ignored = False
-        if BLOCKHANDLER.is_blocked(provider):
-            logger.debug('webshare is BLOCKED')
-            ignored = True
-        elif search_type in ['book', 'shortbook', 'titlebook'] and                 'E' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for eBook")
-            ignored = True
-        elif "audio" in search_type and 'A' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for AudioBook")
-            ignored = True
-        elif "mag" in search_type and 'M' not in CONFIG[f"{prov}_DLTYPES"]:
-            logger.debug(f"Ignoring {prov} for Magazine")
-            ignored = True
-        elif "comic" in search_type:
-            logger.debug(f"Ignoring {prov} for Comic")
-            ignored = True
-        if not ignored:
-            logger.debug(f'Querying {provider}')
-            TELEMETRY.record_usage_data(f'Query/{prov}')
-            searchtype = 'ebook'
-            if 'audio' in search_type:
-                searchtype = 'audio'
-            if 'mag' in search_type:
-                searchtype = 'mag'
-            results, error = webshare_search(book, searchtype)
-            if error:
-                BLOCKHANDLER.block_provider(provider, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
-            else:
-                resultslist += results
-                providers += 1
+                BLOCKHANDLER.block_provider(source.name, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
+        else:
+            resultslist += results
+            providers += 1
 
     return resultslist, providers
 

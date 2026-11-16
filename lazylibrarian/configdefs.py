@@ -24,6 +24,7 @@ from lazylibrarian.configtypes import (
 )
 from lazylibrarian.formatter import ImportPrefs
 from lazylibrarian.logconfig import LogConfig
+from lazylibrarian.sources.registry import direct_config_items
 
 BASE_DEFAULTS: list[ConfigItem] = [
     ConfigURL('General', 'OL_URL', 'https://www.openlibrary.org'),
@@ -342,37 +343,6 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigInt('TDL', 'TDL_DLPRIORITY', 0),
     ConfigDownloadTypes('TDL', 'TDL_DLTYPES', 'A,E,M'),
     ConfigInt('TDL', 'TDL_SEEDERS', 0),
-    ConfigStr('BOK', 'BOK_HOST', 'b-ok.cc'),
-    ConfigStr('BOK', 'BOK_PASS', ''),
-    ConfigStr('BOK', 'BOK_EMAIL', ''),
-    ConfigStr('BOK', 'BOK_REMIX_USERID', ''),
-    ConfigStr('BOK', 'BOK_REMIX_USERKEY', ''),
-    ConfigCSV('BOK', 'BOK_SEARCH_LANG', ''),  # comma separated language names, ANY, or empty to use IMP_PREFLANG
-    ConfigBool('BOK', 'BOK', 0),
-    ConfigInt('BOK', 'BOK_DLPRIORITY', 0),
-    ConfigInt('BOK', 'BOK_DLLIMIT', 5),
-    ConfigDownloadTypes('BOK', 'BOK_DLTYPES', 'E'),
-    ConfigStr('SLSK', 'SLSK_HOST', 'http://localhost:5030'),
-    ConfigStr('SLSK', 'SLSK_API', ''),
-    ConfigStr('SLSK', 'SLSK_URLBASE', '/'),
-    ConfigBool('SLSK', 'SLSK', 0),
-    ConfigInt('SLSK', 'SLSK_DLPRIORITY', 0),
-    ConfigStr('SLSK', 'SLSK_REMOTE', ''),
-    ConfigStr('SLSK', 'SLSK_LOCAL', ''),
-    ConfigDownloadTypes('SLSK', 'SLSK_DLTYPES', 'E'),
-    ConfigStr('ANNA', 'ANNA_HOST', 'https://annas-archive.org'),
-    ConfigStr('ANNA', 'ANNA_KEY', ''),
-    ConfigBool('ANNA', 'ANNA', 0),
-    ConfigInt('ANNA', 'ANNA_DLPRIORITY', 0),
-    ConfigInt('ANNA', 'ANNA_DLLIMIT', 0),
-    ConfigInt('ANNA', 'ANNA_MAX_SERVERS', 1),
-    ConfigStr('ANNA', 'ANNA_SEARCH_LANG', ''),  # comma separated upper case 2 letter language codes, ANY, or empty to use IMP_PREFLANG
-    ConfigDownloadTypes('ANNA', 'ANNA_DLTYPES', 'E'),
-    ConfigStr('WEBSHARE', 'WEBSHARE_USER', ''),
-    ConfigStr('WEBSHARE', 'WEBSHARE_PASS', ''),
-    ConfigBool('WEBSHARE', 'WEBSHARE', 0),
-    ConfigInt('WEBSHARE', 'WEBSHARE_DLPRIORITY', 0),
-    ConfigDownloadTypes('WEBSHARE', 'WEBSHARE_DLTYPES', 'A,E'),
     ConfigStr('LIME', 'LIME_HOST', 'https://www.limetorrents.cc'),
     ConfigBool('LIME', 'LIME', 0),
     ConfigInt('LIME', 'LIME_DLPRIORITY', 0),
@@ -623,6 +593,9 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigBool('Testing', 'TEST_TAGS', 0),
     ConfigInt('Testing', 'Unpersisted_test', 2, persist=False)
 ]
+
+# the config items of the direct providers come from the registry
+BASE_DEFAULTS.extend(direct_config_items())
 
 # (Sectionname, SectionNameTemplate, [Items])
 DefaultArrayDef = tuple[str, str, list[ConfigItem]]
