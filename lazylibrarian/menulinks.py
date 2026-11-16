@@ -54,10 +54,23 @@ def _browser_host() -> str:
         return ''
 
 
+def _is_container_name(name: str) -> bool:
+    """ In docker, a host name without dots (and not an address) is another container, unknown to the browser """
+    if not name or '.' in name or ':' in name:
+        return False
+    try:
+        from lazylibrarian.common import docker
+        return bool(docker())
+    except Exception:
+        return False
+
+
 def _for_browser(url: str) -> str:
-    """ A service LazyLibrarian reaches on localhost runs on the machine the browser reached LazyLibrarian on """
+    """ A service LazyLibrarian reaches on localhost runs on the machine the browser reached LazyLibrarian on,
+        and so does one reached by a docker container name (qbittorrent:8090), which only docker can resolve """
     parts = urlsplit(url)
-    if (parts.hostname or '').lower() in LOCAL_HOSTS:
+    name = (parts.hostname or '').lower()
+    if name in LOCAL_HOSTS or _is_container_name(name):
         host = _browser_host()
         if host and host.lower() not in LOCAL_HOSTS:
             if ':' in host:
