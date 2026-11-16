@@ -9282,12 +9282,8 @@ class WebInterface:
                                                      'name': provider['DISPNAME'] or CONFIG.disp_name(provider[field])}
         for prov in ('KAT', 'TPB', 'TDL', 'LIME', 'ABB'):  # by name, the parsers by host
             cards[prov.lower()] = {'keys': [prov, CONFIG[f'{prov}_HOST']], 'name': prov}
-        for prefix, prov, key, name in (('slsk', 'SLSK', 'soulseek', 'Soulseek'),
-                                        ('anna', 'ANNA', 'annas', "Anna's Archive"),
-                                        ('webshare', 'WEBSHARE', 'webshare', 'WebShare'),
-                                        ('mlp', 'MLP', 'mlp', 'Městská knihovna v Praze'),
-                                        ('bok', 'BOK', 'zlibrary', 'Z-Library')):
-            cards[prefix] = {'keys': [key, prov], 'name': name}
+        for source in direct_providers():  # by the blocklist name and the config key
+            cards[source.key.lower()] = {'keys': [source.name, source.key], 'name': source.label}
         for prefix, card in cards.items():
             card['keys'] = [k for k in card['keys'] if k]
             if 'enabled' not in card:
