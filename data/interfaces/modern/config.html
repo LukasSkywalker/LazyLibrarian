@@ -221,6 +221,9 @@
   .llc .tab-pane fieldset#rss_options { display: block !important; height: auto !important; overflow: visible !important;
                                          padding: 1rem 1.1rem .4rem !important; margin: 0 0 1rem !important; }
   .llc #rss_options.llc-locked > :not(legend):not(.llc-needs) { opacity: .5; }
+  /* with user accounts on, the grid of the section collapses to no width at the right edge of the card (its contents
+     look pushed to the right); a set width keeps it the width of the card */
+  .llc #rss_options .llc-cgrid { width: 100%; }
   .llc .llc-needs { font-size: .8rem; color: var(--bs-secondary-color); margin: 0 0 .6rem; }
   .llc .llc-needs .fa { margin-right: .3rem; }
   /* Processing: the sections in one list that flows over columns where there is room */
