@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-16 11:29+0000\n"
+"POT-Creation-Date: 2026-11-16 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,7 +149,7 @@ msgstr ""
 #: data/interfaces/bookstrap/series.html:251
 #: data/interfaces/modern/author.html:244 data/interfaces/modern/books.html:159
 #: data/interfaces/modern/books.html:295 data/interfaces/modern/issues.html:116
-#: data/interfaces/modern/manualsearch.html:69
+#: data/interfaces/modern/manualsearch.html:71
 #: data/interfaces/modern/members.html:132
 #: data/interfaces/modern/series.html:82 lazylibrarian/i18n.py:401
 msgid "All"
@@ -389,7 +389,7 @@ msgstr ""
 #: data/interfaces/modern/magazines.html:85
 #: data/interfaces/modern/managebooks.html:77
 #: data/interfaces/modern/manageissues.html:68
-#: data/interfaces/modern/manualsearch.html:66
+#: data/interfaces/modern/manualsearch.html:68
 #: data/interfaces/modern/searchresults.html:140
 msgid "Title"
 msgstr ""
@@ -562,7 +562,7 @@ msgstr ""
 #: data/interfaces/modern/comicresults.html:51
 #: data/interfaces/modern/history.html:53 data/interfaces/modern/logs.html:46
 #: data/interfaces/modern/manageissues.html:49
-#: data/interfaces/modern/manualsearch.html:59
+#: data/interfaces/modern/manualsearch.html:61
 #: data/interfaces/modern/searchresults.html:136
 #: data/interfaces/modern/users.html:64 data/interfaces/modern/users.html:65
 #: data/interfaces/modern/whatsnew.html:83
@@ -2190,8 +2190,8 @@ msgstr[1] ""
 #: data/interfaces/bookstrap/searchresults.html:54
 #: data/interfaces/modern/comicresults.html:54
 #: data/interfaces/modern/comicresults.html:66
-#: data/interfaces/modern/manualsearch.html:62
-#: data/interfaces/modern/manualsearch.html:80
+#: data/interfaces/modern/manualsearch.html:64
+#: data/interfaces/modern/manualsearch.html:82
 #: data/interfaces/modern/searchresults.html:139
 #: data/interfaces/modern/searchresults.html:247
 msgid "Match"
@@ -2210,14 +2210,14 @@ msgstr ""
 #: data/interfaces/bookstrap/manageissues.html:31
 #: data/interfaces/bookstrap/manualsearch.html:22
 #: data/interfaces/modern/comicresults.html:57
-#: data/interfaces/modern/manualsearch.html:64
+#: data/interfaces/modern/manualsearch.html:66
 msgid "Date"
 msgstr ""
 
 #: data/interfaces/bookstrap/comicresults.html:66
 #: data/interfaces/bookstrap/manualsearch.html:66
 #: data/interfaces/modern/comicresults.html:94
-#: data/interfaces/modern/manualsearch.html:106
+#: data/interfaces/modern/manualsearch.html:108
 msgid "No results found"
 msgstr ""
 
@@ -7543,7 +7543,7 @@ msgstr ""
 
 #: data/interfaces/bookstrap/history.html:31
 #: data/interfaces/bookstrap/history.html:45
-#: data/interfaces/modern/manualsearch.html:68
+#: data/interfaces/modern/manualsearch.html:70
 msgid "Type"
 msgstr ""
 
@@ -7555,7 +7555,7 @@ msgstr ""
 #: data/interfaces/modern/config.html:1066
 #: data/interfaces/modern/history.html:59
 #: data/interfaces/modern/manageissues.html:71
-#: data/interfaces/modern/manualsearch.html:65
+#: data/interfaces/modern/manualsearch.html:67
 msgid "Provider"
 msgstr ""
 
@@ -7563,7 +7563,7 @@ msgstr ""
 #: data/interfaces/bookstrap/history.html:49
 #: data/interfaces/bookstrap/manualsearch.html:21
 #: data/interfaces/modern/history.html:60
-#: data/interfaces/modern/manualsearch.html:63
+#: data/interfaces/modern/manualsearch.html:65
 msgid "Size"
 msgstr ""
 
@@ -8143,7 +8143,7 @@ msgid "No matching issues found"
 msgstr ""
 
 #: data/interfaces/bookstrap/manualsearch.html:39
-#: data/interfaces/modern/manualsearch.html:89
+#: data/interfaces/modern/manualsearch.html:91
 msgid "Snatch"
 msgstr ""
 
@@ -8718,7 +8718,7 @@ msgstr ""
 #: data/interfaces/modern/magazines.html:84
 #: data/interfaces/modern/managebooks.html:75
 #: data/interfaces/modern/manageissues.html:67
-#: data/interfaces/modern/manualsearch.html:61
+#: data/interfaces/modern/manualsearch.html:63
 #: data/interfaces/modern/searchresults.html:138
 #: data/interfaces/modern/series.html:117
 msgid "Sort"
@@ -8935,13 +8935,13 @@ msgid "Search series"
 msgstr ""
 
 #: data/interfaces/modern/comicresults.html:94
-#: data/interfaces/modern/manualsearch.html:106
+#: data/interfaces/modern/manualsearch.html:108
 #: data/interfaces/modern/searchresults.html:246
 msgid "No matching results"
 msgstr ""
 
 #: data/interfaces/modern/comicresults.html:95
-#: data/interfaces/modern/manualsearch.html:107
+#: data/interfaces/modern/manualsearch.html:109
 #: data/interfaces/modern/searchresults.html:250
 #, python-format
 msgid "%(count)s result"
