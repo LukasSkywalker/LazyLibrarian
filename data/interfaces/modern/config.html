@@ -1352,7 +1352,7 @@
       var pane = form.querySelector('.tab-content');
       var isBtn = function (n) {
         return n && n.nodeType === 1 && n.matches('.btn') && !n.matches('.llc-token, .accent-swatch, .llc-pcaret, .secret-toggle, .langchip') &&
-          !n.closest('.input-group, .llc-ph, legend, .llc-pblock, .searchlang-modes, .langpicker, .accent-picker, .help-block, .llc-actions');
+          !n.closest('.input-group, .llc-ph, legend, .llc-pblock, .searchlang-modes, .langpicker, .accent-picker, .help-block, .llc-actions, .llc-dlt');
       };
       var skippable = function (n) { return n && ((n.nodeType === 3 && !n.textContent.trim()) || (n.nodeType === 1 && n.matches('br'))); };
       // an apprise notifier: "Name | field | S [] | D []" in one bar becomes the name field with the two switches
