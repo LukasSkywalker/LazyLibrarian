@@ -372,7 +372,7 @@ BASE_DEFAULTS: list[ConfigItem] = [
     ConfigStr('WEBSHARE', 'WEBSHARE_PASS', ''),
     ConfigBool('WEBSHARE', 'WEBSHARE', 0),
     ConfigInt('WEBSHARE', 'WEBSHARE_DLPRIORITY', 0),
-    ConfigDownloadTypes('WEBSHARE', 'WEBSHARE_DLTYPES', 'E'),
+    ConfigDownloadTypes('WEBSHARE', 'WEBSHARE_DLTYPES', 'A,E'),
     ConfigStr('LIME', 'LIME_HOST', 'https://www.limetorrents.cc'),
     ConfigBool('LIME', 'LIME', 0),
     ConfigInt('LIME', 'LIME_DLPRIORITY', 0),
