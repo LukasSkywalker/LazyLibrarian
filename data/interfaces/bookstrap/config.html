@@ -316,6 +316,16 @@
                       </div>
                     </fieldset>
                   </fieldset>
+                  <fieldset>
+                    <legend>${_('Timeouts')}</legend>
+                    <div class="input-group">
+                      <label for="http_timeout" class="input-group-addon">${_('Requests')}</label>
+                      <input type="number" id="http_timeout" name="http_timeout" value="${CONFIG['HTTP_TIMEOUT']}" min="30" class="form-control" placeholder="${_('seconds') | h}">
+                      <label for="http_ext_timeout" class="input-group-addon">${_('Aggregate indexers')}</label>
+                      <input type="number" id="http_ext_timeout" name="http_ext_timeout" value="${CONFIG['HTTP_EXT_TIMEOUT']}" min="30" class="form-control" placeholder="${_('seconds') | h}">
+                    </div>
+                    <span class="help-block">${_('How many seconds LazyLibrarian waits for a site, an indexer or a download client to answer (at least 30). Raise it when an indexer behind FlareSolverr times out. Aggregate indexers is for Torznab all/aggregate feeds that ask many trackers at once.')}</span>
+                  </fieldset>
                     <fieldset>
                       <legend>${_('Logs')}</legend>
                       <div class="input-group">
