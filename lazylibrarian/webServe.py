@@ -3749,7 +3749,9 @@ class WebInterface:
                 prov = item['NZBprov'] or ''
                 if not prov:
                     continue
-                name = cls.DIRECT_PROVIDER_NAMES.get(prov) or CONFIG.disp_name(prov)
+                # direct providers are stored in the wanted table by their internal name
+                source = direct_provider(prov)
+                name = source.label if source else CONFIG.disp_name(prov)
                 entries = result.setdefault(item['BookID'], [])
                 if any(e[0] == name and e[2] == item['AuxInfo'] for e in entries):
                     continue
