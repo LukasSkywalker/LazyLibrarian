@@ -51,6 +51,7 @@ class DirectProvider:
     telemetry: str = ''           # usage key Query/<telemetry>, default the config key
     order: int = 100              # search order, lowest first
     valid_url: Optional[Callable] = None  # valid_url(url) -> bool, checks the url of a result before it is used
+    test: Optional[Callable] = None       # test(book, host, api) -> result, run by the Test button of the provider
     download: Optional[Callable] = None   # download(url, folder, title) -> (success, message or filename)
                                           # a provider with this needs no branch in direct_dl_method
 

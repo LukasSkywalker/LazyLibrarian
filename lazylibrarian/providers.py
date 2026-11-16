@@ -30,12 +30,11 @@ from bs4 import BeautifulSoup
 import lazylibrarian
 import lib.feedparser as feedparser
 from lazylibrarian import database
-from lazylibrarian.annas import anna_search
 from lazylibrarian.blockhandler import BLOCKHANDLER
 from lazylibrarian.cache import fetch_url
 from lazylibrarian.config2 import CONFIG, wishlist_type
 from lazylibrarian.configtypes import ConfigDict
-from lazylibrarian.directparser import direct_bok, direct_gen
+from lazylibrarian.directparser import direct_gen
 from lazylibrarian.filesystem import DIRS, path_isfile, remove_file, syspath
 from lazylibrarian.formatter import (
     age,
@@ -51,7 +50,6 @@ from lazylibrarian.formatter import (
     unaccented,
 )
 from lazylibrarian.ircbot import irc_query, irc_results
-from lazylibrarian.soulseek import slsk_search
 from lazylibrarian.sources.registry import direct_providers, skip_reason
 from lazylibrarian.telemetry import TELEMETRY
 from lazylibrarian.torrentparser import (
@@ -61,8 +59,7 @@ from lazylibrarian.torrentparser import (
     torrent_tdl,
     torrent_tpb,
 )
-from lazylibrarian.mlp import mlp_search
-from lazylibrarian.webshare import webshare_search
+from lazylibrarian.sources.registry import direct_provider
 
 
 def test_provider(name: str, host=None, api=None):
@@ -123,16 +120,10 @@ def test_provider(name: str, host=None, api=None):
                     provider['SEARCH'] = api
                 return direct_gen(book, prov=provider['NAME'].lower(), test=True), name
 
-    if name == 'BOK':
-        if host:
-            CONFIG.set_str('BOK_HOST', host)
-        if api:
-            email, pwd, langs = api.split(' : ')
-            CONFIG.set_str('BOK_EMAIL', email)
-            CONFIG.set_str('BOK_PASS', pwd)
-            CONFIG.set_str('BOK_SEARCH_LANG', langs)
-        logger.debug(f"Testing provider {name}:{CONFIG['BOK_HOST']}")
-        return direct_bok(book, prov=name, test=True), "ZLibrary"
+    registered = direct_provider(name)
+    if registered and registered.test:
+        logger.debug(f"Testing provider {name}")
+        return registered.test(book, host, api), registered.label
 
     if name.startswith('rss_'):
         try:
@@ -311,34 +302,6 @@ def test_provider(name: str, host=None, api=None):
             pass
         except Exception as e:
             logger.debug(f"Exception: {str(e)}")
-
-    if name == 'SLSK':
-        logger.debug(f"Testing provider {name}")
-        if host:
-            CONFIG.set_str('SLSK_HOST', host)
-        if api:
-            CONFIG.set_str('SLSK_API', api)
-        return slsk_search(book, test=True), "SLSK"
-
-    if name == 'ANNA':
-        logger.debug(f"Testing provider {name}")
-        if host:
-            CONFIG.set_str('ANNA_HOST', host)
-        if api:
-            CONFIG.set_str('ANNA_KEY', api)
-        return anna_search(book, test=True), "ANNA"
-
-    if name == 'WEBSHARE':
-        logger.debug(f"Testing provider {name}")
-        if api:
-            user, pwd = api.split(' : ', 1)
-            CONFIG.set_str('WEBSHARE_USER', user)
-            CONFIG.set_str('WEBSHARE_PASS', pwd)
-        return webshare_search(book, test=True), "Webshare"
-
-    if name == 'MLP':
-        logger.debug(f"Testing provider {name}")
-        return mlp_search(book, test=True), "MLP"
 
     msg = f"Unknown provider [{name}]"
     logger.error(msg)

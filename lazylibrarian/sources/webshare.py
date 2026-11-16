@@ -30,6 +30,16 @@ def download(url, folder, title):
     return webshare_download(url, folder, title)
 
 
+def test(book, host, api):
+    from lazylibrarian.config2 import CONFIG
+    from lazylibrarian.webshare import webshare_search
+    if api:
+        user, pwd = api.split(' : ', 1)
+        CONFIG.set_str('WEBSHARE_USER', user)
+        CONFIG.set_str('WEBSHARE_PASS', pwd)
+    return webshare_search(book, test=True)
+
+
 register_direct_provider(DirectProvider(key='WEBSHARE', name='webshare', label='Webshare', search=search,
                                         types='EAM', result_title=True, order=40,
-                                        valid_url=valid_url, download=download))
+                                        valid_url=valid_url, download=download, test=test))

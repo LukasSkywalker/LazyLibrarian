@@ -35,5 +35,16 @@ def on_error(provider, error):
         BLOCKHANDLER.block_provider(provider.name, error, delay=CONFIG.get_int('BLOCKLIST_TIMER'))
 
 
+def test(book, host, api):
+    from lazylibrarian.annas import anna_search
+    from lazylibrarian.config2 import CONFIG
+    if host:
+        CONFIG.set_str('ANNA_HOST', host)
+    if api:
+        CONFIG.set_str('ANNA_KEY', api)
+    return anna_search(book, test=True)
+
+
 register_direct_provider(DirectProvider(key='ANNA', name='annas', label="Anna's Archive", search=search,
-                                        on_error=on_error, result_title=True, telemetry='annas', order=30))
+                                        on_error=on_error, result_title=True, telemetry='annas', order=30,
+                                        test=test))

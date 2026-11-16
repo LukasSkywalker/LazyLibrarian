@@ -39,5 +39,18 @@ def on_error(provider, error):
     BLOCKHANDLER.block_provider(provider.name, error, delay=delay)
 
 
+def test(book, host, api):
+    from lazylibrarian.config2 import CONFIG
+    from lazylibrarian.directparser import direct_bok
+    if host:
+        CONFIG.set_str('BOK_HOST', host)
+    if api:
+        email, pwd, langs = api.split(' : ')
+        CONFIG.set_str('BOK_EMAIL', email)
+        CONFIG.set_str('BOK_PASS', pwd)
+        CONFIG.set_str('BOK_SEARCH_LANG', langs)
+    return direct_bok(book, prov='BOK', test=True)
+
+
 register_direct_provider(DirectProvider(key='BOK', name='zlibrary', label='Z-Library', search=search,
-                                        on_error=on_error, order=10))
+                                        on_error=on_error, order=10, test=test))

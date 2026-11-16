@@ -21,5 +21,16 @@ def search(book, search_type):
 
 
 # soulseek downloads into its own folder and is named by the result title
+def test(book, host, api):
+    from lazylibrarian.config2 import CONFIG
+    from lazylibrarian.soulseek import slsk_search
+    if host:
+        CONFIG.set_str('SLSK_HOST', host)
+    if api:
+        CONFIG.set_str('SLSK_API', api)
+    return slsk_search(book, test=True)
+
+
 register_direct_provider(DirectProvider(key='SLSK', name='soulseek', label='Soulseek', search=search,
-                                        download_dir=False, result_title=True, telemetry='soulseek', order=20))
+                                        download_dir=False, result_title=True, telemetry='soulseek', order=20,
+                                        test=test))

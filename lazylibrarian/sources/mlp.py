@@ -30,6 +30,11 @@ def download(url, folder, title):
     return mlp_download(url, folder, title)
 
 
+def test(book, host, api):
+    from lazylibrarian.mlp import mlp_search
+    return mlp_search(book, test=True)
+
+
 register_direct_provider(DirectProvider(key='MLP', name='mlp', label='Městská knihovna v Praze', search=search,
                                         types='E', general=False, result_title=True, order=50,
-                                        valid_url=valid_url, download=download))
+                                        valid_url=valid_url, download=download, test=test))
