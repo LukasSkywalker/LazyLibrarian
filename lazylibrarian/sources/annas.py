@@ -13,6 +13,7 @@
 # Anna's Archive, direct provider
 
 from lazylibrarian.configtypes import ConfigInt, ConfigStr
+from lazylibrarian.i18n import N_
 from lazylibrarian.sources.registry import DirectProvider, media_type, register_direct_provider
 
 
@@ -55,4 +56,6 @@ register_direct_provider(DirectProvider(key='ANNA', name='annas', label="Anna's 
                                                 ConfigInt('ANNA', 'ANNA_MAX_SERVERS', 1),
                                                 # comma separated upper case 2 letter language codes, ANY,
                                                 # or empty to use IMP_PREFLANG
-                                                ConfigStr('ANNA', 'ANNA_SEARCH_LANG', ''))))
+                                                ConfigStr('ANNA', 'ANNA_SEARCH_LANG', '')),
+                                        wizard=(N_("Anna's Archive"), N_('Books in many languages. Downloads without a key are slow.')),
+                                        wizard_order=10, recommended=('*',)))

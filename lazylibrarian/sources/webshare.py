@@ -13,6 +13,7 @@
 # Webshare (Czech and Slovak file hosting), direct provider
 
 from lazylibrarian.configtypes import ConfigStr
+from lazylibrarian.i18n import N_
 from lazylibrarian.sources.registry import DirectProvider, media_type, register_direct_provider
 
 
@@ -45,4 +46,7 @@ register_direct_provider(DirectProvider(key='WEBSHARE', name='webshare', label='
                                         types='EAM', result_title=True, order=40,
                                         valid_url=valid_url, download=download, test=test,
                                         config=(ConfigStr('WEBSHARE', 'WEBSHARE_USER', ''),
-                                                ConfigStr('WEBSHARE', 'WEBSHARE_PASS', ''))))
+                                                ConfigStr('WEBSHARE', 'WEBSHARE_PASS', '')),
+                                        wizard=(N_('Webshare'), N_('Czech and Slovak file hosting. Needs your Webshare login, '
+                                                   'enter it on the Providers tab.')),
+                                        wizard_order=20, recommended=('SK', 'CZ')))

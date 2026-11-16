@@ -54,6 +54,9 @@ class DirectProvider:
     valid_url: Optional[Callable] = None  # valid_url(url) -> bool, checks the url of a result before it is used
     config: tuple = ()            # extra ConfigItems, the switch <KEY>, <KEY>_DLPRIORITY and <KEY>_DLTYPES are added
     dltypes: str = 'E'            # default of <KEY>_DLTYPES
+    wizard: tuple = ()            # (label, help text) of the setup wizard, both marked with N_(), empty = not offered
+    wizard_order: int = 100       # order in the wizard, lowest first
+    recommended: tuple = ()       # countries the wizard recommends it for, '*' for every country
     test: Optional[Callable] = None       # test(book, host, api) -> result, run by the Test button of the provider
     download: Optional[Callable] = None   # download(url, folder, title) -> (success, message or filename)
                                           # a provider with this needs no branch in direct_dl_method
@@ -107,6 +110,17 @@ def direct_config_items() -> list:
         items.append(ConfigInt(key, f'{key}_DLPRIORITY', 0))
         items.append(ConfigDownloadTypes(key, f'{key}_DLTYPES', provider.dltypes))
     return items
+
+
+def wizard_providers() -> list:
+    """ (key, label, help) of the direct providers the setup wizard offers """
+    offered = [p for p in direct_providers() if p.wizard]
+    return [(p.key, *p.wizard) for p in sorted(offered, key=lambda p: (p.wizard_order, p.key))]
+
+
+def recommended_providers(country: str) -> list:
+    """ Keys of the direct providers worth switching on in this country """
+    return [p.key for p in direct_providers() if '*' in p.recommended or country in p.recommended]
 
 
 def direct_provider(key_or_name: str) -> Optional[DirectProvider]:

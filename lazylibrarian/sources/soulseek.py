@@ -13,6 +13,7 @@
 # Soulseek through a slskd server, direct provider
 
 from lazylibrarian.configtypes import ConfigStr
+from lazylibrarian.i18n import N_
 from lazylibrarian.sources.registry import DirectProvider, register_direct_provider
 
 
@@ -39,4 +40,6 @@ register_direct_provider(DirectProvider(key='SLSK', name='soulseek', label='Soul
                                                 ConfigStr('SLSK', 'SLSK_API', ''),
                                                 ConfigStr('SLSK', 'SLSK_URLBASE', '/'),
                                                 ConfigStr('SLSK', 'SLSK_REMOTE', ''),
-                                                ConfigStr('SLSK', 'SLSK_LOCAL', ''))))
+                                                ConfigStr('SLSK', 'SLSK_LOCAL', '')),
+                                        wizard=(N_('Soulseek'), N_('Needs a running slskd server, set it up on the Providers tab.')),
+                                        wizard_order=50))

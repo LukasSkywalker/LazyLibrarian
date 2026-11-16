@@ -12,6 +12,7 @@
 
 # Free e-books of the Prague City Library (Městská knihovna v Praze), direct provider
 
+from lazylibrarian.i18n import N_
 from lazylibrarian.sources.registry import DirectProvider, register_direct_provider
 
 
@@ -37,4 +38,7 @@ def test(book, host, api):
 
 register_direct_provider(DirectProvider(key='MLP', name='mlp', label='Městská knihovna v Praze', search=search,
                                         types='E', general=False, result_title=True, order=50,
-                                        valid_url=valid_url, download=download, test=test))
+                                        valid_url=valid_url, download=download, test=test,
+                                        wizard=(N_('Prague City Library'), N_('Free Czech e-books from the Městská knihovna v Praze. '
+                                                          'No login needed.')),
+                                        wizard_order=30, recommended=('CZ',)))
