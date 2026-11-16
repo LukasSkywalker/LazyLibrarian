@@ -18,6 +18,7 @@
     - write the code that searches and downloads, eg lazylibrarian/mlp.py
     - its config items are the enable switch <KEY>, <KEY>_DLPRIORITY and <KEY>_DLTYPES, added for you, and the
       ones in DirectProvider.config, eg a host or a login
+    - give it a ProviderPage so the config page shows it, unless it needs more than fields
     - add a module to lazylibrarian/sources/ that calls register_direct_provider() with a DirectProvider.
       Keep that module light: import the provider code inside the functions, so a provider that is
       switched off is never imported. The modules here are found and imported by load_sources().
@@ -39,6 +40,27 @@ KIND_NAMES = {'E': 'eBook', 'A': 'AudioBook', 'M': 'Magazine', 'C': 'Comic'}
 
 
 @dataclass(frozen=True)
+class PageField:
+    """ A text, password or number field of the provider on the config page. """
+    name: str                     # config item without the key, eg 'USER' for WEBSHARE_USER
+    label: str = ''               # label in front of the field, not used for the first field
+    kind: str = 'text'            # text, password or number
+    placeholder: str = ''
+    tooltip: str = ''             # shown on the end of the row
+    shown: str = ''               # a fixed text instead of the config value, read only (first field only)
+
+
+@dataclass(frozen=True)
+class ProviderPage:
+    """ What the config page shows of a provider, the strings are marked with N_() and translated by the page.
+        The first field is on the line of the provider name and the switch, then the other fields,
+        then the priority, types and Test button of every provider. """
+    title: str
+    fields: tuple = ()
+    help: str = ''                # shown under the first line
+
+
+@dataclass(frozen=True)
 class DirectProvider:
     key: str                      # config prefix, eg 'MLP' for MLP, MLP_DLPRIORITY, MLP_DLTYPES
     name: str                     # name in the blocklist and the wanted table, eg 'mlp'
@@ -54,6 +76,7 @@ class DirectProvider:
     valid_url: Optional[Callable] = None  # valid_url(url) -> bool, checks the url of a result before it is used
     config: tuple = ()            # extra ConfigItems, the switch <KEY>, <KEY>_DLPRIORITY and <KEY>_DLTYPES are added
     dltypes: str = 'E'            # default of <KEY>_DLTYPES
+    page: Optional[ProviderPage] = None   # the config page shows the provider from this, None = the page has its own code
     wizard: tuple = ()            # (label, help text) of the setup wizard, both marked with N_(), empty = not offered
     wizard_order: int = 100       # order in the wizard, lowest first
     recommended: tuple = ()       # countries the wizard recommends it for, '*' for every country

@@ -14,7 +14,13 @@
 
 from lazylibrarian.configtypes import ConfigStr
 from lazylibrarian.i18n import N_
-from lazylibrarian.sources.registry import DirectProvider, media_type, register_direct_provider
+from lazylibrarian.sources.registry import (
+    DirectProvider,
+    PageField,
+    ProviderPage,
+    media_type,
+    register_direct_provider,
+)
 
 
 def search(book, search_type):
@@ -49,4 +55,9 @@ register_direct_provider(DirectProvider(key='WEBSHARE', name='webshare', label='
                                                 ConfigStr('WEBSHARE', 'WEBSHARE_PASS', '')),
                                         wizard=(N_('Webshare'), N_('Czech and Slovak file hosting. Needs your Webshare login, '
                                                    'enter it on the Providers tab.')),
-                                        wizard_order=20, recommended=('SK', 'CZ')))
+                                        wizard_order=20, recommended=('SK', 'CZ'),
+                                        page=ProviderPage(
+                                            'Webshare',
+                                            (PageField('USER', placeholder=N_('webshare.cz username (optional)')),
+                                             PageField('PASS', N_('Password'), 'password', N_('password (optional)'),
+                                                       N_('Searching and downloading also works without an account'))))))
