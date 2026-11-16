@@ -222,6 +222,7 @@ from lazylibrarian.searchmag import download_maglist, search_magazines
 from lazylibrarian.searchrss import search_wishlist
 from lazylibrarian.startup import prioritized_infosources
 from lazylibrarian.telemetry import TELEMETRY
+from lazylibrarian.torrentparser import ProviderTestFailed
 
 lastauthor = ''
 lastmagazine = ''
@@ -9255,7 +9256,14 @@ class WebInterface:
                     'name': kwargs['name'], 'param': fail}
 
             result, name = test_provider(kwargs['name'], host=host, api=api)
-            if result is False:
+            if isinstance(result, ProviderTestFailed):  # the site answered with an error
+                # the error can be the start of an html error page, and the dialog shows the answer as html
+                reason = ' '.join(html.unescape(re.sub(r'<[^>]*>?', ' ', result)).split())
+                if len(reason) > 150:
+                    reason = f'{reason[:150]}…'
+                msg = i18n.gettext("%(name)s test FAILED: %(reason)s") % {'name': name,
+                                                                           'reason': html.escape(reason)}
+            elif result is False:
                 msg = i18n.gettext("%(name)s test FAILED, check debug log") % {'name': name}
             elif result is True:
                 msg = i18n.gettext("%(name)s test PASSED") % {'name': name}
