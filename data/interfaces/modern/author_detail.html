@@ -153,12 +153,12 @@
             <li><a class="dropdown-item" href="edit_author?${aq | h}"><i class="fa fa-pencil-alt fa-fw me-2" aria-hidden="true"></i>${_('Edit')}</a></li>
             %endif
             %if perm&lazylibrarian.perm_force:
-            <li><a class="dropdown-item" href="refresh_author?${aq | h}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Refresh Author')}</a></li>
+            <li><a class="dropdown-item" href="refresh_author?${aq | h}"><i class="fa fa-sync fa-fw me-2" aria-hidden="true"></i>${_('Update books from the web')}</a></li>
               %if ebook_on:
-              <li><a class="dropdown-item" href="library_scan_author?${urlencode({'authorid': aid, 'library': 'eBook'}) | h}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('eBook Scan')}</a></li>
+              <li><button type="button" class="dropdown-item" @click="scan('eBook')"><i class="fa fa-folder-open fa-fw me-2" aria-hidden="true"></i>${_('Scan eBook folder')}</button></li>
               %endif
               %if audio_on:
-              <li><a class="dropdown-item" href="library_scan_author?${urlencode({'authorid': aid, 'library': 'AudioBook'}) | h}"><i class="fa fa-bolt fa-fw me-2" aria-hidden="true"></i>${_('AudioBook Scan')}</a></li>
+              <li><button type="button" class="dropdown-item" @click="scan('AudioBook')"><i class="fa fa-folder-open fa-fw me-2" aria-hidden="true"></i>${_('Scan AudioBook folder')}</button></li>
               %endif
             %endif
             <li><a class="dropdown-item" href="toggle_primary?${urlencode({'page': 'author_detail', 'authorid': aid}) | h}">
@@ -389,6 +389,13 @@ document.addEventListener('alpine:init', function () {
         fetch('mark_authors_ajax', {method: 'POST', body: body, credentials: 'same-origin'})
           .then(function (r) { return r.json(); })
           .then(function (d) { var t = document.createElement('div'); t.innerHTML = d.summary || ''; self.toast(t.textContent || llStatus(status)); })
+          .catch(function () { self.toast(T.failed); });
+      },
+      scan: function (lib) {
+        var self = this;
+        fetch('library_scan_author?ajax=1&authorid=' + encodeURIComponent(AUTHORID) + '&library=' + encodeURIComponent(lib), {credentials: 'same-origin'})
+          .then(function (r) { return r.json(); })
+          .then(function (d) { self.toast(d.msg || T.failed); })
           .catch(function () { self.toast(T.failed); });
       },
       removeAuthor: function () {
