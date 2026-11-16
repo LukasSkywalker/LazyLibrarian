@@ -855,7 +855,17 @@
                       ${_('Enable HardCover api for book/author information')}
                     </label>
                   </div>
-                  <fieldset id="hc_options">
+                  <div id="hc_options">
+                    <div class="form-group">
+                      <label for="hc_token" class="control-label">${_('HardCover Token:')}</label>
+                      <div class="input-group">
+                        <input type="text" id="hc_token" name="hc_token" value="${config['hc_token'] | h}" class="form-control" placeholder="${_('Bearer token') | h}" spellcheck="false" autocomplete="off">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" id="test_hc_token">${_('Test')}</button>
+                        </span>
+                      </div>
+                      <span class="help-block help-keep">${_('Get your API token at')} <a href="https://hardcover.app/account/api" target="_blank" rel="noopener noreferrer">hardcover.app/account/api</a>. ${_('It is stored with the admin user.')}</span>
+                    </div>
                   <div class="row">
                     <div class="checkbox">
                       <% checked = 'checked="checked"' if CONFIG['HC_SYNC'] else '' %>
@@ -864,7 +874,7 @@
                         ${_('Enable HardCover Sync')}</label>
                     </div>
                   </div>
-                  </fieldset>
+                  </div>
                   <fieldset id="hcsync_options">
                     <div class="form-group">
                       <label for="hardcover_interval" class="control-label">${_('HardCover Sync Interval:')}</label>
@@ -896,13 +906,18 @@
                   <fieldset id="gb_options">
                   <div class="form-group">
                     <label for="gb_api" class="control-label">${_('GoogleBooks API:')}</label>
-                    <input type="text" id="gb_api" name="gb_api" value="${CONFIG['GB_API']}" class="form-control">
+                    <div class="input-group">
+                      <input type="text" id="gb_api" name="gb_api" value="${CONFIG['GB_API']}" class="form-control">
+                      <span class="input-group-btn"><button class="btn btn-default" type="button" id="test_gb_api">${_('Test')}</button></span>
+                    </div>
+                    <span class="help-block help-keep">${_('Get your API key at')} <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer">console.cloud.google.com/apis/credentials</a></span>
                   </div>
                   </fieldset>
                   <fieldset id="gr_options">
                   <div class="form-group">
                     <label for="gr_api">${_('Goodreads API:')}</label>
                     <input type="text" id="gr_api" name="gr_api" value="${CONFIG['GR_API']}" class="form-control"     placeholder="${_('Goodreads API') | h}">
+                    <span class="help-block help-keep">${_('Get your API key at')} <a href="https://www.goodreads.com/api/keys" target="_blank" rel="noopener noreferrer">goodreads.com/api/keys</a></span>
                     <div class="checkbox">
                       <% checked = 'checked="checked"' if CONFIG['GR_SYNC'] else '' %>
                       <label for="gr_sync" class="control-label">
@@ -979,6 +994,7 @@
                     <label for="lt_devkey" class="control-label">${_('LibraryThing Developer Key:')}</label>
                     <input type="text" id="lt_devkey" name="lt_devkey" value="${CONFIG['LT_DEVKEY']}" class="form-control" placeholder="${_('optional, for book covers') | h}">
                     <span class="help-block">${_('LibraryThing gives covers of books the other sources have none for. The key is free with a LibraryThing account.')}</span>
+                    <span class="help-block help-keep">${_('Get your developer key at')} <a href="https://www.librarything.com/services/keys.php" target="_blank" rel="noopener noreferrer">librarything.com/services/keys.php</a></span>
                   </div>
                 </fieldset>
                 <fieldset>
@@ -986,7 +1002,11 @@
                   <legend>ComicVine</legend>
                   <div class="form-group">
                     <label for="cv_apikey" class="control-label">${_('ComicVine Api Key:')}</label>
-                    <input type="text" id="cv_apikey" name="cv_apikey" value="${CONFIG['CV_APIKEY']}" class="form-control" placeholder="${_('optional') | h}">
+                    <div class="input-group">
+                      <input type="text" id="cv_apikey" name="cv_apikey" value="${CONFIG['CV_APIKEY']}" class="form-control" placeholder="${_('optional') | h}">
+                      <span class="input-group-btn"><button class="btn btn-default" type="button" id="test_cv_apikey">${_('Test')}</button></span>
+                    </div>
+                    <span class="help-block help-keep">${_('Get your API key at')} <a href="https://comicvine.gamespot.com/api/" target="_blank" rel="noopener noreferrer">comicvine.gamespot.com/api</a></span>
                   </div>
                   <div class="checkbox">
                     <% checked = 'checked="checked"' if CONFIG['CV_WEBSEARCH'] else '' %>
@@ -4553,7 +4573,7 @@
     // Hide sensitive values (API keys, tokens, passwords) behind an eye toggle
     function initSecretToggles() {
         var secretIds = ['api_key', 'api_ro_key', 'gb_api', 'gr_api', 'gr_secret', 'gr_oauth_token',
-                         'gr_oauth_secret', 'lt_devkey', 'cv_apikey', 'sab_api', 'slsk_api', 'anna_key',
+                         'gr_oauth_secret', 'hc_token', 'lt_devkey', 'cv_apikey', 'sab_api', 'slsk_api', 'anna_key',
                          'bok_remix_userkey', 'boxcar_token', 'pushbullet_token', 'pushover_apitoken',
                          'pushover_keys', 'prowl_apikey', 'telegram_token', 'slack_token', 'ms_trans_id',
                          'growl_password'];

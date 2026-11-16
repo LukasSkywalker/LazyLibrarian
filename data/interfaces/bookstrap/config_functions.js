@@ -577,6 +577,39 @@
             });
         });
 
+        $('#test_hc_token').click(function () {
+            let hc_token = $.trim($("#hc_token").val());
+            $.get("test_hcauth", {'hc_token': hc_token},
+                function (data) {
+                    bootbox.dialog({
+                        title: ${_js('Test HardCover Token')},
+                        message: '<pre>' + data + '</pre>',
+                        buttons: {
+                            primary: {
+                                label: ${_js('Close')},
+                                className: 'btn-primary'
+                            }
+                        }
+                    });
+                });
+        });
+
+        function keyTest(btn, field, url, title) {
+            $(btn).click(function () {
+                let params = {};
+                params[field] = $.trim($("#" + field).val());
+                $.get(url, params, function (data) {
+                    bootbox.dialog({
+                        title: title,
+                        message: '<pre>' + $('<div>').text(data).html() + '</pre>',
+                        buttons: {primary: {label: ${_js('Close')}, className: 'btn-primary'}}
+                    });
+                });
+            });
+        }
+        keyTest('#test_gb_api', 'gb_api', 'test_gbapi', ${_js('Test GoogleBooks Key')});
+        keyTest('#test_cv_apikey', 'cv_apikey', 'test_cvapi', ${_js('Test ComicVine Key')});
+
         $('#test_grauth').click(function () {
             let gr_api = $.trim($("#gr_api").val());
             let gr_secret = $.trim($("#gr_secret").val());
