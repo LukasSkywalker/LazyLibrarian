@@ -148,6 +148,7 @@
   .llc .llc-pblock { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; font-size: .8rem; color: var(--bs-danger-text-emphasis);
     background: var(--bs-danger-bg-subtle); border-radius: 8px; padding: .35rem .6rem; margin-bottom: .6rem; overflow-wrap: anywhere; }
   .llc .llc-pblock > span { flex: 1 1 12rem; min-width: 0; }
+  .llc .llc-pblock .llc-phint { display: block; color: var(--bs-body-color); margin-top: .15rem; }
   .llc .llc-pblock .btn { font-size: .72rem; padding: .1rem .6rem; }
   .llc .llc-pother { border: 1px solid var(--bs-danger-border-subtle); border-radius: 12px; padding: .6rem .8rem .1rem; margin-bottom: 1rem; }
   .llc .llc-pother-h { font-weight: 650; font-size: .9rem; margin-bottom: .5rem; }
@@ -1171,6 +1172,9 @@
         var body = new FormData(); body.append('key', b.key); btn.disabled = true;
         fetch('unblock_provider', {method: 'POST', body: body, credentials: 'same-origin'}).then(refresh, refresh);
       });
+      if (b.hint) {  // what to change, and where (block_hint in blockhints.py)
+        var hint = document.createElement('span'); hint.className = 'llc-phint'; hint.textContent = b.hint; txt.appendChild(hint);
+      }
       note.appendChild(txt); note.appendChild(btn);
       return note;
     }

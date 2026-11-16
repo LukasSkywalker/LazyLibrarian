@@ -1730,6 +1730,11 @@
                       <span class="input-group-addon">${_('Used')}</span>
                       <input type="text" id="newznab_${loop.index}_apicount" name="newznab_${loop.index}_apicount" value="${provider['APICOUNT']}" class="form-control" placeholder="" readonly="true">
                     </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">${_('Timeout')}</span>
+                      <input type="number" id="newznab_${loop.index}_timeout" name="newznab_${loop.index}_timeout" value="${provider.get_int('TIMEOUT') or ''}" min="0" class="form-control" placeholder="${_('general timeout') | h}">
+                      <span class="input-group-addon">${_('seconds')}</span>
+                    </div>
                   </div>
                   %endfor
                 </fieldset>
@@ -1788,6 +1793,11 @@
                     <div class="input-group">
                       <span class="input-group-addon">${_('Seed Duration')}</span>
                       <input type="number" id="torznab_${loop.index}_seed_duration" name="torznab_${loop.index}_seed_duration" value="${provider['SEED_DURATION']}" class="form-control" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">${_('Timeout')}</span>
+                      <input type="number" id="torznab_${loop.index}_timeout" name="torznab_${loop.index}_timeout" value="${provider.get_int('TIMEOUT') or ''}" min="0" class="form-control" placeholder="${_('general timeout') | h}">
+                      <span class="input-group-addon">${_('seconds')}</span>
                     </div>
                     <div class="input-group">
                       <span class="input-group-addon">${_('API Limit')}</span>
