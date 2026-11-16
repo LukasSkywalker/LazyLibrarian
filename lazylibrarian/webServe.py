@@ -3631,6 +3631,9 @@ class WebInterface:
     def snatch_book(self, bookid=None, mode=None, provider=None, url=None, size=None, library=None, title=''):
         self.check_permitted(lazylibrarian.perm_download)
         logger = logging.getLogger(__name__)
+        # manualbook quotes url and title, the web server only undoes one level of it
+        url = unquote_plus(url or '')
+        title = unquote(title or '')
         logger.debug(f"snatch {library} bookid {bookid} mode={mode} from {provider} url=[{url}] {title}")
         db = database.DBConnection()
         bookdata = db.match('SELECT AuthorID, BookName from books WHERE BookID=?', (bookid,))
