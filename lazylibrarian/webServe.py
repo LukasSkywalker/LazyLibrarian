@@ -3765,6 +3765,11 @@ class WebInterface:
         filtered = []
         logger = logging.getLogger(__name__)
         serversidelogger = logging.getLogger('special.serverside')
+        if kwargs.get('source') not in ('Manage', 'Books', 'Audio', 'Author'):
+            # stale/cached page or external caller without a valid source: empty table, not a traceback
+            logger.warning(f"get_books called without a valid source ({kwargs.get('source')!r}), "
+                           f"reload the page")
+            return {'iTotalDisplayRecords': 0, 'iTotalRecords': 0, 'aaData': []}
         db = database.DBConnection()
         # noinspection PyBroadException
         try:
