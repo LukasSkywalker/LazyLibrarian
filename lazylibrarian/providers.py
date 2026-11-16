@@ -52,6 +52,7 @@ from lazylibrarian.formatter import (
 )
 from lazylibrarian.ircbot import irc_query, irc_results
 from lazylibrarian.soulseek import slsk_search
+from lazylibrarian.sources.registry import direct_providers, skip_reason
 from lazylibrarian.telemetry import TELEMETRY
 from lazylibrarian.torrentparser import (
     torrent_abb,
