@@ -243,13 +243,9 @@ class LazyTelemetry:
         proxies = proxy_list()
         timeout = 5
         headers = {'User-Agent': 'LazyLibrarian'}
-        if proxies:
-            payload = {"timeout": timeout, "proxies": proxies}
-        else:
-            payload = {"timeout": timeout}
         try:
             logger.debug(f'GET {url}')
-            r = requests.get(url, verify=False, params=payload, headers=headers)
+            r = requests.get(url, verify=False, timeout=timeout, proxies=proxies, headers=headers)
         except requests.exceptions.Timeout as e:
             logger.error(f"_send_url: Timeout sending telemetry {url}")
             return f"Timeout {str(e)}", False
