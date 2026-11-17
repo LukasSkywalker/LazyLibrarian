@@ -2110,7 +2110,8 @@ def _process_comic_post(
         older = int(mostrecentissue) > int(issueid) if mostrecentissue else False
 
         # Create and cache cover
-        coverfile = _create_and_cache_cover(dest_file, BookType.COMIC, pagenum=1) or ""
+        coverfile = (_create_and_cache_cover(dest_file, BookType.COMIC, pagenum=1)
+                        if CONFIG.get_bool('IMP_COMICCOVER') else "")
 
         # Update database
         _update_issue_database(
@@ -2152,9 +2153,8 @@ def _process_magazine_post(
     else:
         coverpage = metadata.cover_page if metadata.cover_page else 1
 
-    coverfile = (
-        _create_and_cache_cover(dest_file, BookType.MAGAZINE, pagenum=coverpage) or ""
-    )
+    coverfile = (_create_and_cache_cover(dest_file, BookType.MAGAZINE, pagenum=coverpage)
+            if CONFIG.get_bool('IMP_MAGCOVER') else "")
 
     # Update database
     _update_issue_database(

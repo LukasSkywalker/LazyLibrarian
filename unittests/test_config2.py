@@ -341,6 +341,9 @@ class Config2Test(LLTestCaseWithConfigandDIRS):
             'LOGGING.LOGLEVEL': Counter({Access.WRITE_OK: 1}),
             'LOGGING.LOGDIR': Counter({Access.WRITE_OK: 1}),
             'POSTPROCESS.AUDIOBOOK_DEST_FOLDER': Counter({Access.WRITE_OK: 1}),
+            'GEN_0.DISPNAME': Counter({Access.WRITE_OK: 1}),
+            'GEN_0.HOST': Counter({Access.WRITE_OK: 1}),
+            'GEN_0.SEARCH': Counter({Access.WRITE_OK: 1}),
             'RSS_0.DISPNAME': Counter({Access.WRITE_OK: 1}),
             'RSS_0.HOST': Counter({Access.WRITE_OK: 1}),
             'IRC_0.DISPNAME': Counter({Access.WRITE_OK: 1}),
@@ -515,7 +518,7 @@ class Config2Test(LLTestCaseWithConfigandDIRS):
         testfile = DIRS.get_tmpfilename('test-small.ini')
         try:
             count = cfg.save_config_to_filename(testfile, False)  # Save only non-default values
-            self.assertEqual(count, 17, 'Saving default config.ini has unexpected # of changes')
+            self.assertEqual(count, 20, 'Saving default config.ini has unexpected # of changes')
             cfgnew = LLConfigHandler(defaults=BASE_DEFAULTS, configfile=testfile)
             self.assertTrue(are_equivalent(cfg, cfgnew),
                             f'Save error: {testfile} is not the same as original file!')
@@ -554,7 +557,7 @@ class Config2Test(LLTestCaseWithConfigandDIRS):
         testfile = DIRS.get_tmpfilename('test-small.ini')
         try:
             count = cfg.save_config_to_filename(testfile, False)  # Save only non-default values
-            self.assertEqual(count, 17, 'Saving default config.ini has unexpected # of changes')
+            self.assertEqual(count, 20, 'Saving default config.ini has unexpected # of changes')
             cfgnew = LLConfigHandler(defaults=BASE_DEFAULTS, configfile=testfile)
             with self.assertLogs(self.logger, level='WARN'):
                 self.assertFalse(are_equivalent(cfg, cfgnew),

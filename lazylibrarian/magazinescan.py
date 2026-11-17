@@ -377,7 +377,8 @@ def magazine_scan(title=None):
                         new_entry = False
                         myhash = uuid.uuid4().hex
                         if not iss_entry or iss_entry['IssueFile'] != issuefile:
-                            coverfile = create_mag_cover(issuefile, pagenum=magcoverpage, refresh=new_entry)
+                            coverfile = (create_mag_cover(issuefile, pagenum=magcoverpage, refresh=new_entry)
+                                            if CONFIG.get_bool('IMP_MAGCOVER') else '')
                             if coverfile:
                                 hashname = os.path.join(DIRS.CACHEDIR, 'magazine', f'{myhash}.jpg')
                                 copyfile(coverfile, hashname)

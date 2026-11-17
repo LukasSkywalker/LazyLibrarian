@@ -50,7 +50,7 @@ from lazylibrarian.formatter import (
     unaccented,
 )
 from lazylibrarian.ircbot import irc_query, irc_results
-from lazylibrarian.sources.registry import direct_providers, skip_reason
+from lazylibrarian.sources.registry import direct_provider, direct_providers, skip_reason
 from lazylibrarian.telemetry import TELEMETRY
 from lazylibrarian.torrentparser import (
     torrent_abb,
@@ -59,7 +59,6 @@ from lazylibrarian.torrentparser import (
     torrent_tdl,
     torrent_tpb,
 )
-from lazylibrarian.sources.registry import direct_provider
 
 
 def test_provider(name: str, host=None, api=None):

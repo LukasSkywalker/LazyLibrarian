@@ -77,8 +77,8 @@ from lazylibrarian.formatter import (
 )
 from lazylibrarian.ircbot import irc_query
 from lazylibrarian.soulseek import SLSKD
-from lazylibrarian.telemetry import record_usage_data
 from lazylibrarian.sources.registry import direct_provider
+from lazylibrarian.telemetry import record_usage_data
 from lib.bencode import BencodeDecodeError, bdecode, bencode
 
 from .magnet2torrent import magnet2torrent
