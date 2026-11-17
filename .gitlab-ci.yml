@@ -101,11 +101,21 @@ update-pot:
     - git config user.name "LazyLibrarian CI"
     - git config user.email "noreply@gitlab.com"
     - 'git commit -m "i18n: update lazylibrarian.pot [skip ci]" -- lazylibrarian/locale/lazylibrarian.pot'
-    # push over ssh with the deploy key; the variable is a file, ssh needs it to be private
+      # push over ssh with the deploy key; the variable is a file, ssh needs it to be private
     - chmod 600 "$POT_DEPLOY_KEY"
-    - mkdir -p ~/.ssh && ssh-keyscan -t ed25519,rsa "$CI_SERVER_HOST" >> ~/.ssh/known_hosts 2> /dev/null
-    - export GIT_SSH_COMMAND="ssh -i $POT_DEPLOY_KEY -o IdentitiesOnly=yes"
-    - git push "git@${CI_SERVER_HOST}:${CI_PROJECT_PATH}.git" "HEAD:${CI_DEFAULT_BRANCH}"
+    - mkdir -p ~/.ssh
+    - SSH_HOST="${CI_SERVER_SHELL_SSH_HOST:-$CI_SERVER_HOST}"
+    - SSH_PORT="${CI_SERVER_SHELL_SSH_PORT:-22}"
+    - ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+    - test -s ~/.ssh/known_hosts
+    - export GIT_SSH_COMMAND="ssh -i $POT_DEPLOY_KEY -p $SSH_PORT -o IdentitiesOnly=yes"
+    - git push "git@${SSH_HOST}:${CI_PROJECT_PATH}.git" "HEAD:${CI_DEFAULT_BRANCH}"
+
+    # push over ssh with the deploy key; the variable is a file, ssh needs it to be private
+    - #chmod 600 "$POT_DEPLOY_KEY"
+    - #mkdir -p ~/.ssh && ssh-keyscan -t ed25519,rsa "$CI_SERVER_HOST" >> ~/.ssh/known_hosts 2> /dev/null
+    - #export GIT_SSH_COMMAND="ssh -i $POT_DEPLOY_KEY -o IdentitiesOnly=yes"
+    - #git push "git@${CI_SERVER_HOST}:${CI_PROJECT_PATH}.git" "HEAD:${CI_DEFAULT_BRANCH}"
 
 # Runs after update-pot, and fetches master again so the pot commit it may have pushed is the latest.
 # That commit says [skip ci] and gets no pipeline of its own.
