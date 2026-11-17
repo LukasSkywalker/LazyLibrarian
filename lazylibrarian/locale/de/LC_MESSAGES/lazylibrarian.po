@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/LazyLibrarian/LazyLibrarian/-/"
-"issues\n"
+"Report-Msgid-Bugs-To: phil.borman@gmail.com\n"
 "POT-Creation-Date: 2026-11-16 18:46+0000\n"
-"PO-Revision-Date: 2026-11-13 12:55+0000\n"
-"Last-Translator: misko903 <misko903@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-17 09:40+0000\n"
+"Last-Translator: Benedikt Frenzel "
+"<benedikt6c4f3ec013c24761@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/lazylibrarian/"
 "webui/de/>\n"
 "Language: de\n"
@@ -1761,9 +1761,8 @@ msgstr "Hilfe"
 #: data/interfaces/bookstrap/whatsnew.html:28
 #: data/interfaces/modern/modern_base.html:475
 #: data/interfaces/modern/whatsnew.html:96
-#, fuzzy
 msgid "Report an issue"
-msgstr "Ausgaben importieren"
+msgstr "Einen Fehler melden"
 
 #: data/interfaces/bookstrap/base.html:503
 #: data/interfaces/bookstrap/base.html:504
