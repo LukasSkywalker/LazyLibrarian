@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: LazyLibrarian VERSION\n"
 "Report-Msgid-Bugs-To: "
 "https://gitlab.com/LazyLibrarian/LazyLibrarian/-/issues\n"
-"POT-Creation-Date: 2026-11-16 16:32+0000\n"
+"POT-Creation-Date: 2026-11-16 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,7 +123,7 @@ msgstr ""
 #: data/interfaces/modern/author.html:243
 #: data/interfaces/modern/book_detail.html:83
 #: data/interfaces/modern/books.html:157
-#: data/interfaces/modern/config.html:1820 lazylibrarian/setupwizard.py:597
+#: data/interfaces/modern/config.html:1823 lazylibrarian/setupwizard.py:597
 msgid "Language"
 msgstr ""
 
@@ -344,7 +344,7 @@ msgstr ""
 #: data/interfaces/bookstrap/series.html:91
 #: data/interfaces/bookstrap/series.html:110
 #: data/interfaces/modern/books.html:138 data/interfaces/modern/books.html:298
-#: data/interfaces/modern/config.html:1819
+#: data/interfaces/modern/config.html:1822
 #: data/interfaces/modern/editauthor.html:80
 #: data/interfaces/modern/history.html:96
 #: data/interfaces/modern/managebooks.html:76
@@ -382,7 +382,7 @@ msgstr ""
 #: data/interfaces/modern/books.html:298
 #: data/interfaces/modern/comicresults.html:55
 #: data/interfaces/modern/comics.html:78
-#: data/interfaces/modern/config.html:1819
+#: data/interfaces/modern/config.html:1822
 #: data/interfaces/modern/editissue.html:48
 #: data/interfaces/modern/editmag.html:43
 #: data/interfaces/modern/history.html:58
@@ -716,8 +716,8 @@ msgstr ""
 #: data/interfaces/bookstrap/members.html:260
 #: data/interfaces/bookstrap/searchresults.html:307
 #: data/interfaces/bookstrap/series.html:331
-#: data/interfaces/modern/config.html:394
-#: data/interfaces/modern/config.html:1233
+#: data/interfaces/modern/config.html:397
+#: data/interfaces/modern/config.html:1236
 #: data/interfaces/modern/editmag.html:103
 #: data/interfaces/modern/modern_base.html:769
 #: data/interfaces/modern/searchresults.html:226
@@ -836,7 +836,7 @@ msgstr ""
 #: data/interfaces/bookstrap/users.html:328
 #: data/interfaces/modern/choosetype.html:60
 #: data/interfaces/modern/comics.html:196
-#: data/interfaces/modern/config.html:394
+#: data/interfaces/modern/config.html:397
 #: data/interfaces/modern/dlresult.html:33
 #: data/interfaces/modern/history.html:126
 #: data/interfaces/modern/history.html:154 data/interfaces/modern/login.html:52
@@ -1590,7 +1590,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config_functions.js:389
 #: data/interfaces/bookstrap/editauthor.html:351
 #: data/interfaces/bookstrap/managebooks.html:262
-#: data/interfaces/modern/config.html:394
+#: data/interfaces/modern/config.html:397
 #: data/interfaces/modern/editauthor.html:241
 #: data/interfaces/modern/editcomic.html:90
 #: data/interfaces/modern/manageissues.html:83
@@ -1600,12 +1600,12 @@ msgid "Cancel"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:215
-#: data/interfaces/modern/config.html:378
+#: data/interfaces/modern/config.html:381
 msgid "Are you sure you want to restart LazyLibrarian?"
 msgstr ""
 
 #: data/interfaces/bookstrap/base.html:216
-#: data/interfaces/modern/config.html:379
+#: data/interfaces/modern/config.html:382
 msgid "Are you sure you want to shutdown LazyLibrarian?"
 msgstr ""
 
@@ -1660,7 +1660,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:135
 #: data/interfaces/bookstrap/config.html:150
 #: data/interfaces/bookstrap/config.html:226
-#: data/interfaces/modern/config.html:1084
+#: data/interfaces/modern/config.html:1087
 #: data/interfaces/modern/modern_base.html:16 lazylibrarian/setupwizard.py:86
 #: lazylibrarian/webServe.py:3769
 msgid "eBooks"
@@ -1674,7 +1674,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:136
 #: data/interfaces/bookstrap/config.html:151
 #: data/interfaces/bookstrap/config.html:226
-#: data/interfaces/modern/config.html:1084
+#: data/interfaces/modern/config.html:1087
 #: data/interfaces/modern/modern_base.html:20 lazylibrarian/setupwizard.py:86
 #: lazylibrarian/webServe.py:3746
 msgid "AudioBooks"
@@ -1688,7 +1688,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:136
 #: data/interfaces/bookstrap/config.html:152
 #: data/interfaces/bookstrap/config.html:2934
-#: data/interfaces/modern/config.html:1085
+#: data/interfaces/modern/config.html:1088
 #: data/interfaces/modern/modern_base.html:22 lazylibrarian/setupwizard.py:86
 #: lazylibrarian/webServe.py:6949
 msgid "Magazines"
@@ -1698,7 +1698,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:137
 #: data/interfaces/bookstrap/config.html:153
 #: data/interfaces/bookstrap/config.html:2957
-#: data/interfaces/modern/config.html:1085
+#: data/interfaces/modern/config.html:1088
 #: data/interfaces/modern/modern_base.html:24 lazylibrarian/setupwizard.py:87
 #: lazylibrarian/webServe.py:6239 lazylibrarian/webServe.py:6600
 msgid "Comics"
@@ -2133,7 +2133,7 @@ msgstr ""
 #: data/interfaces/bookstrap/issues.html:52
 #: data/interfaces/bookstrap/issues.html:72
 #: data/interfaces/bookstrap/manageissues.html:32
-#: data/interfaces/modern/config.html:1827
+#: data/interfaces/modern/config.html:1830
 #: data/interfaces/modern/editissue.html:44
 #: data/interfaces/modern/manageissues.html:70
 #: data/interfaces/modern/manageissues.html:128
@@ -2166,7 +2166,7 @@ msgstr ""
 #: data/interfaces/bookstrap/members.html:149
 #: data/interfaces/bookstrap/members.html:165
 #: data/interfaces/modern/author.html:306
-#: data/interfaces/modern/config.html:1452
+#: data/interfaces/modern/config.html:1455
 #: data/interfaces/modern/issues.html:183
 #: data/interfaces/modern/members.html:188 lazylibrarian/i18n.py:402
 msgid "Open"
@@ -2202,7 +2202,7 @@ msgstr ""
 #: data/interfaces/bookstrap/comicresults.html:20
 #: data/interfaces/modern/book_detail.html:85
 #: data/interfaces/modern/comicresults.html:56
-#: data/interfaces/modern/config.html:1827
+#: data/interfaces/modern/config.html:1830
 msgid "Publisher"
 msgstr ""
 
@@ -2393,7 +2393,7 @@ msgstr ""
 #: data/interfaces/bookstrap/editissue.html:38
 #: data/interfaces/bookstrap/editmag.html:24
 #: data/interfaces/bookstrap/editseries.html:41
-#: data/interfaces/modern/config.html:368
+#: data/interfaces/modern/config.html:371
 #: data/interfaces/modern/editauthor.html:157
 #: data/interfaces/modern/editbook.html:221
 #: data/interfaces/modern/editcomic.html:68
@@ -3341,7 +3341,7 @@ msgstr ""
 #: data/interfaces/bookstrap/config.html:3683
 #: data/interfaces/bookstrap/profile.html:64
 #: data/interfaces/bookstrap/users.html:96
-#: data/interfaces/modern/config.html:1456
+#: data/interfaces/modern/config.html:1459
 #: data/interfaces/modern/profile.html:82 data/interfaces/modern/users.html:166
 #: lazylibrarian/notifiers/telegram.py:72
 msgid "Test"
@@ -6827,7 +6827,7 @@ msgid "Enable:"
 msgstr ""
 
 #: data/interfaces/bookstrap/config.html:4581
-#: data/interfaces/modern/config.html:971
+#: data/interfaces/modern/config.html:974
 msgid "Hide"
 msgstr ""
 
@@ -7590,7 +7590,7 @@ msgstr ""
 #: data/interfaces/bookstrap/manageissues.html:33
 #: data/interfaces/bookstrap/manageissues.html:46
 #: data/interfaces/bookstrap/manualsearch.html:20
-#: data/interfaces/modern/config.html:1081
+#: data/interfaces/modern/config.html:1084
 #: data/interfaces/modern/history.html:59
 #: data/interfaces/modern/manageissues.html:71
 #: data/interfaces/modern/manualsearch.html:67
@@ -8022,7 +8022,7 @@ msgid "HardCover Sync"
 msgstr ""
 
 #: data/interfaces/bookstrap/managebooks.html:41
-#: data/interfaces/modern/config.html:564
+#: data/interfaces/modern/config.html:567
 #: data/interfaces/modern/members.html:120
 msgid "Library"
 msgstr ""
@@ -8817,7 +8817,7 @@ msgstr ""
 
 #: data/interfaces/modern/author.html:361 data/interfaces/modern/books.html:296
 #: data/interfaces/modern/comics.html:91
-#: data/interfaces/modern/config.html:1740
+#: data/interfaces/modern/config.html:1743
 #: data/interfaces/modern/issues.html:99
 #: data/interfaces/modern/magazines.html:97
 #: data/interfaces/modern/managebooks.html:229
@@ -9015,262 +9015,262 @@ msgid_plural "%(count)s comics"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:330
-#: data/interfaces/modern/config.html:560
-#: data/interfaces/modern/config.html:568
+#: data/interfaces/modern/config.html:333
+#: data/interfaces/modern/config.html:563
+#: data/interfaces/modern/config.html:571
 msgid "System"
 msgstr ""
 
-#: data/interfaces/modern/config.html:338
+#: data/interfaces/modern/config.html:341
 msgid "Search settings"
 msgstr ""
 
-#: data/interfaces/modern/config.html:341
-#: data/interfaces/modern/config.html:351
-#: data/interfaces/modern/config.html:637
+#: data/interfaces/modern/config.html:344
+#: data/interfaces/modern/config.html:354
+#: data/interfaces/modern/config.html:640
 msgid "Settings sections"
 msgstr ""
 
-#: data/interfaces/modern/config.html:355
+#: data/interfaces/modern/config.html:358
 msgid "Accent color:"
 msgstr ""
 
-#: data/interfaces/modern/config.html:362
+#: data/interfaces/modern/config.html:365
 msgid ""
 "Buttons, links and highlights of the modern interface. Dark mode uses a "
 "lighter shade of it."
 msgstr ""
 
-#: data/interfaces/modern/config.html:366
-#: data/interfaces/modern/config.html:485
+#: data/interfaces/modern/config.html:369
+#: data/interfaces/modern/config.html:488
 #: data/interfaces/modern/editbook.html:245
 msgid "All changes saved"
 msgstr ""
 
-#: data/interfaces/modern/config.html:367
+#: data/interfaces/modern/config.html:370
 msgid "Discard"
 msgstr ""
 
-#: data/interfaces/modern/config.html:485
+#: data/interfaces/modern/config.html:488
 msgid "Unsaved changes"
 msgstr ""
 
-#: data/interfaces/modern/config.html:485
+#: data/interfaces/modern/config.html:488
 msgid "You have unsaved changes"
 msgstr ""
 
-#: data/interfaces/modern/config.html:486
+#: data/interfaces/modern/config.html:489
 #, python-format
 msgid "%(count)s setting found"
 msgid_plural "%(count)s settings found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:486
+#: data/interfaces/modern/config.html:489
 msgid "No settings found"
 msgstr ""
 
-#: data/interfaces/modern/config.html:513
+#: data/interfaces/modern/config.html:516
 msgid "Info Sources"
 msgstr ""
 
-#: data/interfaces/modern/config.html:558
+#: data/interfaces/modern/config.html:561
 msgid "Basics"
 msgstr ""
 
-#: data/interfaces/modern/config.html:559
+#: data/interfaces/modern/config.html:562
 #: data/interfaces/modern/modern_base.html:515
 msgid "Downloading"
 msgstr ""
 
-#: data/interfaces/modern/config.html:565
+#: data/interfaces/modern/config.html:568
 msgid "Searching"
 msgstr ""
 
-#: data/interfaces/modern/config.html:566
+#: data/interfaces/modern/config.html:569
 msgid "Server and Access"
 msgstr ""
 
-#: data/interfaces/modern/config.html:572
+#: data/interfaces/modern/config.html:575
 msgid ""
 "How LazyLibrarian looks: its language, colors, the pages in the menu and "
 "how lists and dates are shown."
 msgstr ""
 
-#: data/interfaces/modern/config.html:573
+#: data/interfaces/modern/config.html:576
 msgid ""
 "Where your books are kept and how their folders and files are named. "
 "Start here: set the folder of your eBook library, and of your AudioBook "
 "library if you have one."
 msgstr ""
 
-#: data/interfaces/modern/config.html:574
+#: data/interfaces/modern/config.html:577
 msgid ""
 "Where LazyLibrarian gets details about authors and books: titles, series,"
 " covers and descriptions. The defaults work, add an API key only for a "
 "source you want to use."
 msgstr ""
 
-#: data/interfaces/modern/config.html:575
+#: data/interfaces/modern/config.html:578
 msgid ""
 "Which languages your books are in, how the language of a book is found "
 "out and in which language names and dates are written."
 msgstr ""
 
-#: data/interfaces/modern/config.html:576
+#: data/interfaces/modern/config.html:579
 msgid ""
 "How the genres from the info sources are tidied up: renamed, merged or "
 "left out."
 msgstr ""
 
-#: data/interfaces/modern/config.html:577
+#: data/interfaces/modern/config.html:580
 msgid ""
 "The places LazyLibrarian searches for books: indexers (Newznab, Torznab, "
 "often through Prowlarr or Jackett), torrent sites, rss feeds and direct "
 "download sites. Enable at least one."
 msgstr ""
 
-#: data/interfaces/modern/config.html:578
+#: data/interfaces/modern/config.html:581
 msgid ""
 "The programs that download what was found: a usenet client for Newznab "
 "results, a torrent client for torrents. Direct download sites need no "
 "downloader."
 msgstr ""
 
-#: data/interfaces/modern/config.html:579
+#: data/interfaces/modern/config.html:582
 msgid ""
 "When LazyLibrarian searches, which books it looks for and how closely a "
 "result must match a book to be downloaded."
 msgstr ""
 
-#: data/interfaces/modern/config.html:580
+#: data/interfaces/modern/config.html:583
 msgid ""
 "What is never downloaded: words you do not want, file types, sizes out of"
 " the limits, and which books are left out of the library."
 msgstr ""
 
-#: data/interfaces/modern/config.html:581
+#: data/interfaces/modern/config.html:584
 msgid ""
 "What happens to a download before it goes into the library: conversions "
 "of eBooks and audiobooks, magazine covers and the programs used for them."
 msgstr ""
 
-#: data/interfaces/modern/config.html:582
+#: data/interfaces/modern/config.html:585
 msgid ""
 "A message when a book is found or downloaded: by e-mail, Telegram, "
 "Pushover and many other services through Apprise."
 msgstr ""
 
-#: data/interfaces/modern/config.html:583
+#: data/interfaces/modern/config.html:586
 msgid ""
 "How LazyLibrarian is reached: its address and port, HTTPS, user accounts,"
 " and what it offers other apps (rss feeds, OPDS for e-readers, the API). "
 "Most changes here need a restart."
 msgstr ""
 
-#: data/interfaces/modern/config.html:584
+#: data/interfaces/modern/config.html:587
 msgid ""
 "Updates, logs, the upkeep of the cache and the database, and anonymous "
 "usage statistics."
 msgstr ""
 
-#: data/interfaces/modern/config.html:657
+#: data/interfaces/modern/config.html:660
 msgid "On this page:"
 msgstr ""
 
-#: data/interfaces/modern/config.html:893
+#: data/interfaces/modern/config.html:896
 msgid "Recommended for books in German"
 msgstr ""
 
-#: data/interfaces/modern/config.html:894
+#: data/interfaces/modern/config.html:897
 msgid "Recommended for books in Polish"
 msgstr ""
 
-#: data/interfaces/modern/config.html:895
+#: data/interfaces/modern/config.html:898
 msgid "Recommended for books in Czech and Slovak"
 msgstr ""
 
-#: data/interfaces/modern/config.html:897
+#: data/interfaces/modern/config.html:900
 msgid "For audiobooks"
 msgstr ""
 
-#: data/interfaces/modern/config.html:898
+#: data/interfaces/modern/config.html:901
 msgid "For Japanese light novels"
 msgstr ""
 
-#: data/interfaces/modern/config.html:949
+#: data/interfaces/modern/config.html:952
 msgid ""
 "The categories of each Newznab and Torznab provider show here once its "
 "address is saved. Add one under Newznab or Torznab providers above, save,"
 " and LazyLibrarian reads its categories by itself."
 msgstr ""
 
-#: data/interfaces/modern/config.html:950
+#: data/interfaces/modern/config.html:953
 msgid "Go to the providers"
 msgstr ""
 
-#: data/interfaces/modern/config.html:971
+#: data/interfaces/modern/config.html:974
 msgid "Getting started"
 msgstr ""
 
-#: data/interfaces/modern/config.html:972
+#: data/interfaces/modern/config.html:975
 msgid ""
 "To find and download books LazyLibrarian needs these three settings, the "
 "rest can stay as it is for now."
 msgstr ""
 
-#: data/interfaces/modern/config.html:973
+#: data/interfaces/modern/config.html:976
 msgid "the folder of your books"
 msgstr ""
 
-#: data/interfaces/modern/config.html:973
+#: data/interfaces/modern/config.html:976
 msgid "at least one place to search"
 msgstr ""
 
-#: data/interfaces/modern/config.html:974
+#: data/interfaces/modern/config.html:977
 msgid "a download client"
 msgstr ""
 
-#: data/interfaces/modern/config.html:974
+#: data/interfaces/modern/config.html:977
 msgid "not needed for direct download sites"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1081
+#: data/interfaces/modern/config.html:1084
 msgid "Enabled"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1081
+#: data/interfaces/modern/config.html:1084
 msgid "Show or hide details"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1082
+#: data/interfaces/modern/config.html:1085
 msgid "Word Lists"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1082
+#: data/interfaces/modern/config.html:1085
 msgid "Size Limits"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1233
+#: data/interfaces/modern/config.html:1236
 msgid "Blocked"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1233
+#: data/interfaces/modern/config.html:1236
 #: data/interfaces/modern/modern_base.html:769
 msgid "Unblock"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1234
+#: data/interfaces/modern/config.html:1237
 msgid "Other blocked sources"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1234
+#: data/interfaces/modern/config.html:1237
 #: data/interfaces/modern/modern_base.html:769
 #, python-format
 msgid "Blocked for %(time)s"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1235
+#: data/interfaces/modern/config.html:1238
 #: data/interfaces/modern/modern_base.html:771
 #, python-format
 msgid "%(count)s minute"
@@ -9278,7 +9278,7 @@ msgid_plural "%(count)s minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:1235
+#: data/interfaces/modern/config.html:1238
 #: data/interfaces/modern/modern_base.html:771
 #, python-format
 msgid "%(count)s hour"
@@ -9286,144 +9286,144 @@ msgid_plural "%(count)s hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/interfaces/modern/config.html:1598
+#: data/interfaces/modern/config.html:1601
 msgid "Search and Matching"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1617
+#: data/interfaces/modern/config.html:1620
 msgid "Maintenance"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1621
+#: data/interfaces/modern/config.html:1624
 msgid "Updates"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1672
+#: data/interfaces/modern/config.html:1675
 #, python-format
 msgid ""
 "The words of each language are filled in by the language buttons in "
 "%(card)s. The lists can also be edited by hand."
 msgstr ""
 
-#: data/interfaces/modern/config.html:1690
+#: data/interfaces/modern/config.html:1693
 msgid "Language Detection"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1692
+#: data/interfaces/modern/config.html:1695
 msgid "Magazine Titles"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1693
+#: data/interfaces/modern/config.html:1696
 msgid "Sorting"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1735
+#: data/interfaces/modern/config.html:1738
 msgid "Book Databases"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1737
+#: data/interfaces/modern/config.html:1740
 msgid "National Libraries"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1738
+#: data/interfaces/modern/config.html:1741
 msgid "Audiobooks, Comics and Light Novels"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1780
+#: data/interfaces/modern/config.html:1783
 msgid "Needs user accounts, switch them on under Access Control"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1815
+#: data/interfaces/modern/config.html:1818
 msgid "Insert at the cursor"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1816
+#: data/interfaces/modern/config.html:1819
 msgid ""
 "The buttons under the field insert the details of the book at the cursor;"
 " any other text you type stays as it is."
 msgstr ""
 
-#: data/interfaces/modern/config.html:1819
+#: data/interfaces/modern/config.html:1822
 msgid "Author, surname first"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1820
+#: data/interfaces/modern/config.html:1823
 msgid "Title for sorting"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1820
+#: data/interfaces/modern/config.html:1823
 msgid "Series (pattern)"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1821
+#: data/interfaces/modern/config.html:1824
 msgid "Series name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1821
+#: data/interfaces/modern/config.html:1824
 msgid "Series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1821
+#: data/interfaces/modern/config.html:1824
 msgid "Formatted series name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1822
+#: data/interfaces/modern/config.html:1825
 msgid "Formatted series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1822
+#: data/interfaces/modern/config.html:1825
 msgid "Padded series number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1823
+#: data/interfaces/modern/config.html:1826
 msgid "Publication year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1823
+#: data/interfaces/modern/config.html:1826
 msgid "Series year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1823
+#: data/interfaces/modern/config.html:1826
 msgid "Abridged"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1824
+#: data/interfaces/modern/config.html:1827
 msgid "Part"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1824
+#: data/interfaces/modern/config.html:1827
 msgid "Number of parts"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1824
+#: data/interfaces/modern/config.html:1827
 msgid "$ sign"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1825
+#: data/interfaces/modern/config.html:1828
 msgid "Issue date"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1825
+#: data/interfaces/modern/config.html:1828
 msgid "Year"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1825
+#: data/interfaces/modern/config.html:1828
 msgid "Volume"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1826
+#: data/interfaces/modern/config.html:1829
 msgid "Issue number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1826
+#: data/interfaces/modern/config.html:1829
 msgid "Month name"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1826
+#: data/interfaces/modern/config.html:1829
 msgid "Month number"
 msgstr ""
 
-#: data/interfaces/modern/config.html:1827
+#: data/interfaces/modern/config.html:1830
 msgid "Day"
 msgstr ""
 
